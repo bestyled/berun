@@ -1,10 +1,10 @@
 {
   "name": "@berun/template-fuse-box-react-ts",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "devDependencies": {
     "@berun/preset-fuse-box-react": "^2.1.8",
-    "@berun/runner-prettier": "^2.1.7",
-    "@berun/runner-tslint": "^2.1.7",
+    "@berun/runner-prettier": "^2.1.8",
+    "@berun/runner-tslint": "^2.1.8",
     "@berun/scripts": "^2.1.7",
     "@berun/sparky": "^2.0.25",
     "@types/jest": "^24.0.11",
