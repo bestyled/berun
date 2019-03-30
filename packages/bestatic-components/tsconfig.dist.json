@@ -4,10 +4,10 @@
     "noImplicitUseStrict": true,
     "moduleResolution": "node",
     "target": "es2016",
-    "module": "commonjs",
+    "module": "es2015",
     "sourceMap": false,
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist/esm"
   },
   "include": ["src"]
 }
