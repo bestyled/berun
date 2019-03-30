@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-webpack-css",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "BeRun runner to add react stylers for css configuration",
   "main": "src/index.js",
   "keywords": [
@@ -44,8 +44,8 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.21",
-    "@berun/preset-react": "^2.1.4"
+    "@berun/dev-scripts": "^2.0.22",
+    "@berun/preset-react": "^2.1.5"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }
