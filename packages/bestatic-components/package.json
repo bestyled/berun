@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/components",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "BeStatic Components including Tiny <head>, <body> injector, local route ",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -32,7 +32,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.23"
+    "@berun/dev-scripts": "^2.0.24"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

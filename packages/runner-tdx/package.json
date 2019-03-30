@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tdx",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "BeRun runner for building TDX documentation applications",
   "main": "src/index.js",
   "keywords": [
@@ -30,8 +30,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@berun/fluent-tdx": "^2.1.6",
-    "@berun/fuse-box-plugin-babel": "^3.5.19",
+    "@berun/fluent-tdx": "^2.1.7",
+    "@berun/fuse-box-plugin-babel": "^3.5.20",
     "@mapbox/rehype-prism": "^0.3.0",
     "@tinia/tdx": "^0.3.2",
     "@tinia/tdx-loader": "^0.3.2",
@@ -52,8 +52,8 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.23",
-    "@berun/preset-react": "^2.1.6"
+    "@berun/dev-scripts": "^2.0.24",
+    "@berun/preset-react": "^2.1.7"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

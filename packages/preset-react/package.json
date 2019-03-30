@@ -1,6 +1,6 @@
 {
   "name": "@berun/preset-react",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "BeRun preset for building React web applications",
   "main": "src/index.js",
   "keywords": [
@@ -26,10 +26,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@berun/runner-babel": "^2.1.5",
-    "@berun/runner-jest": "^2.1.6",
-    "@berun/runner-web-polyfills": "^2.1.6",
-    "@berun/runner-webpack": "^2.1.6"
+    "@berun/runner-babel": "^2.1.6",
+    "@berun/runner-jest": "^2.1.7",
+    "@berun/runner-web-polyfills": "^2.1.7",
+    "@berun/runner-webpack": "^2.1.7"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",
@@ -38,7 +38,7 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.23"
+    "@berun/dev-scripts": "^2.0.24"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

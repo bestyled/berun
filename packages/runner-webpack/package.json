@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-webpack",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Webpack runner for building React web applications",
   "main": "src/index.js",
   "keywords": [
@@ -26,7 +26,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@berun/fluent-webpack": "^2.1.6",
+    "@berun/fluent-webpack": "^2.1.7",
     "@svgr/webpack": "3.1.0",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
@@ -55,9 +55,9 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.23",
-    "@berun/runner-babel": "^2.1.5",
-    "@berun/runner-web-polyfills": "^2.1.6"
+    "@berun/dev-scripts": "^2.0.24",
+    "@berun/runner-babel": "^2.1.6",
+    "@berun/runner-web-polyfills": "^2.1.7"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
