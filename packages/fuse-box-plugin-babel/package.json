@@ -1,6 +1,6 @@
 {
   "name": "@berun/fuse-box-plugin-babel",
-  "version": "3.5.18",
+  "version": "3.5.19",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/fuse-box-plugin-babel",
   "keywords": [
     "mdx",
@@ -34,7 +34,7 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.22"
+    "@berun/dev-scripts": "^2.0.23"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

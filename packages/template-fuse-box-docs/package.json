@@ -1,12 +1,12 @@
 {
   "name": "@berun/template-fuse-box-docs",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "devDependencies": {
-    "@berun/preset-bestatic": "^2.1.10",
-    "@berun/preset-fuse-box-react": "^2.1.6",
-    "@berun/runner-eslint": "^2.1.5",
-    "@berun/runner-prettier": "^2.1.5",
-    "@berun/scripts": "^2.1.5"
+    "@berun/preset-bestatic": "^2.1.11",
+    "@berun/preset-fuse-box-react": "^2.1.7",
+    "@berun/runner-eslint": "^2.1.6",
+    "@berun/runner-prettier": "^2.1.6",
+    "@berun/scripts": "^2.1.6"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

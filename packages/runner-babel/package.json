@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-babel",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "BeRun babel preset for building React web applications",
   "main": "src/index.js",
   "keywords": [
@@ -28,8 +28,8 @@
   "dependencies": {
     "@babel/core": "7.4.0",
     "@babel/runtime": "7.4.2",
-    "@berun/babel-preset-react-app": "^5.0.18",
-    "@berun/fluent-babel": "^2.1.4",
+    "@berun/babel-preset-react-app": "^5.0.19",
+    "@berun/fluent-babel": "^2.1.5",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "8.0.5"
   },
@@ -40,7 +40,7 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.22"
+    "@berun/dev-scripts": "^2.0.23"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

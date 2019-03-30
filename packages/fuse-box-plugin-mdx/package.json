@@ -1,6 +1,6 @@
 {
   "name": "fuse-box-plugin-mdx",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/fuse-box-plugin-mdx",
   "keywords": [
     "mdx",
@@ -34,7 +34,7 @@
     "@mdx-js/mdx": "^0.20.3"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.22"
+    "@berun/dev-scripts": "^2.0.23"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

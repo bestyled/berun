@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-tdx",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-tdx",
   "keywords": [
     "mdx",
@@ -34,10 +34,10 @@
     "lint": "berun-dev lint"
   },
   "dependencies": {
-    "@berun/fluent": "^2.1.4"
+    "@berun/fluent": "^2.1.5"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.22"
+    "@berun/dev-scripts": "^2.0.23"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }
