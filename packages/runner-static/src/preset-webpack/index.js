@@ -67,7 +67,7 @@ module.exports.presetStatic = async function presetStatic(berun, opts = {}) {
     config
   } = await entry_ssr()
 
-  // await remove(opts.tempdir)
+  await remove(opts.tempdir)
   opts.basename = opts.basename || process.env.PUBLIC_URL
   opts.noJS = berun.sparkyContext.noJS
 
