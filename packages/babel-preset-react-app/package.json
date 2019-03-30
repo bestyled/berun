@@ -1,0 +1,42 @@
+{
+  "name": "@berun/babel-preset-react-app",
+  "version": "5.0.17",
+  "description": "Babel preset used by @berun",
+  "repository": "bestyled/berun",
+  "license": "MIT",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/bestyled/berun/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.js",
+    "create.js",
+    "dependencies.js",
+    "test.js"
+  ],
+  "dependencies": {
+    "@babel/core": "7.4.0",
+    "@babel/plugin-proposal-class-properties": "7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-classes": "7.4.0",
+    "@babel/plugin-transform-destructuring": "7.4.0",
+    "@babel/plugin-transform-flow-strip-types": "7.4.0",
+    "@babel/plugin-transform-react-constant-elements": "7.2.0",
+    "@babel/plugin-transform-react-display-name": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.4.0",
+    "@babel/preset-env": "7.4.2",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@babel/runtime": "7.4.2",
+    "babel-plugin-macros": "2.5.1",
+    "babel-plugin-transform-dynamic-import": "2.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

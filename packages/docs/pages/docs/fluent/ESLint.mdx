@@ -1,0 +1,169 @@
+# Configuring ESLint 
+
+> **Pluggable JavaScript linter**
+
+The [`@berun/fluent-eslint`](https://www.npmjs.com/package/@berun/fluent-eslint) package provides a high level fluent interface for configuring and using [`ESLint`](https://eslint.org).
+
+## Installation
+
+[`@berun/fluent-eslint`](https://www.npmjs.com/package/@berun/fluent-eslint) is a utility interface that is automatically
+included by commonly configured BeRun runners such as [`@berun/runner-eslint`](https://www.npmjs.com/package/@berun/runner-eslint).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-eslint
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-eslint',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const eslint = require('@berun/fluent-eslint');
+
+function(berun) {
+    berun.use(eslint);
+}
+```
+
+## ESLint shorthand methods
+
+```js
+berun.eslint
+   .fix(fix)
+  .cache(cache)
+  .formatter(formatter)
+  .eslintPath(path)
+  .emitError(error)
+  .emitWarning(warning)
+  .quiet(quiet)
+  .failOnWarning(fail)
+  .failOnError(fail)
+  .outputReport(output)
+  .root(root)
+  .env(environment)
+  .ignore(ignore)
+  .allowInlineConfig(allowInlineConfig)
+  .baseConfig(baseConfig)
+  .cacheFile(cacheFile)
+  .cacheLocation(cacheLocation)
+  .configFile(configFile)
+  .cwd(cwd)
+  .envs(envs)
+  .extensions(extensions)
+  .globals(globals)
+  .ignorePath(ignorePath)
+  .ignorePattern(ignorePattern)
+  .parser(parser)
+  .parserOptions(parserOptions)
+  .reportUnusedDisableDirectives(reportUnusedDisableDirectives)
+  .rulePaths(rulePaths)
+  .useEslintrc(useEslintrc)
+  .globInputPaths(globInputPaths)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.eslint` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[eslint docs](https://eslint.org/docs/user-guide/configuring).
+
+### ESLint plugins
+
+```js
+// Backed at berun.eslint.plugins
+berun.eslint.plugins(name) : FluentSet
+
+// Example
+  berun.eslint
+    .plugins.add('import')
+    .add('flowtype')
+    .add('jsx-a11y')
+    .add('react')
+    .end()
+```
+
+### ESLint rules
+
+```js
+// Backed at berun.eslint.fules
+berun.eslint.rules : FluentMap
+
+// Example
+berun.eslint
+   .rules.set('array-callback-return', 'warn')
+```
+
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add import plugin during production
+config
+  .when(process.env.NODE_ENV === 'production', berun => {
+    berun.eslint
+      .plugins.add('import')
+      .end()
+  });
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated ESLint config using `berun.eslint.toConfig()`. 
+
+``` js
+expect(berun.eslint.toConfig()).toEqual({
+    root: true,
+
+    parser: 'babel-eslint',
+
+    plugins: ['import', 'flowtype', 'jsx-a11y', 'react'],
+
+    env: {
+      browser: true,
+      commonjs: true,
+      es6: true,
+      jest: true,
+      node: true
+    },
+
+    parserOptions: {
+      ecmaVersion: 6,
+      sourceType: 'module',
+      ecmaFeatures: {
+        jsx: true,
+        generators: true,
+        experimentalObjectRestSpread: true
+      }
+    },
+
+    rules: {
+      'array-callback-return': 'warn',
+      'default-case': ['warn', { commentPattern: '^no default$' }]
+  })
+```

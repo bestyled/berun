@@ -1,0 +1,91 @@
+---
+name: React
+---
+
+# React Starter Template
+
+Templates are boilerplate starter projects that contain all of the essential elements 
+that are required to start building applications and component libraries.
+
+This allows you to set up a modern web app by running one command.
+
+The React starter template includes
+
+* React (latest)
+* Webpack 4
+* Babel 7
+* Jest
+* ESLint and Prettier
+* All the recommended optimizations and configurations from `create-react-app` with all the flexibilty without ejecting.
+
+### Install
+ 
+```bash
+$ yarn create berun myapp @berun/template-react
+```
+
+### Run
+
+```bash
+$ cd myapp
+$ yarn start
+```
+
+### Test
+
+```bash
+$ cd myapp
+$ yarn test
+```
+
+### Publish
+
+```bash
+$ cd myapp
+$ yarn build
+```
+
+
+## Comparison to `create-react-app`
+
+On the surface this template contains nothing more and nothing less than `create-react-app`.  For 
+quick prototyping the experience will feel very similar, with the same start, test, and build commands.
+
+However, as projects evolve, usually some extra or different build configuration will be required.  For
+example, you may want to add a storybooking tool to generate live documentation.   Or add a static website.
+Or use a custom preprocessor.   
+
+With `create-react-app` this requires ejecting, and thus all the benefits of a centrally maintained configuration
+and recommended settings are lost.  For larger organizations this leads to configuration proliferation.
+
+With `@berun/template-react` this requires adjusting a single `berun.config.js` file, regardless of whether
+changes are needed to webpack, jest, babel, etc., and can be done delicately (using a fluent interface) 
+to tweak the existing configuration vs ejecting/forking it and rewriting it.  
+
+### Example: swap out webpack for fuse-box
+
+```js
+// berun.config.js
+module.exports = {
+  use: [
+    '@berun/preset-fuse-box-react',  /* REMOVED '@berun/preset-react', */
+    '@berun/runner-eslint',
+    '@berun/runner-prettier'
+  ]
+}
+```
+
+### Example: support JSX in Markown files in addition to Javascript
+
+```js
+// berun.config.js
+module.exports = {
+  use: [
+    '@berun/preset-react',
+    '@berun/runner-mdx', /* ADDED */
+    '@berun/runner-eslint',
+    '@berun/runner-prettier'
+  ]
+}
+```
+

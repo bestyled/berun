@@ -1,0 +1,226 @@
+# Configuring Fuse-Box
+
+> **A bundler that does it right**
+
+The [`@berun/fluent-fuse-box`](https://www.npmjs.com/package/@berun/fluent-fuse-box) package provides a high level fluent interface for configuring and using [`Fuse-Box`](https://fuse-box.org).
+
+## Installation
+
+[`@berun/fluent-fuse-box`](https://www.npmjs.com/package/@berun/fluent-fuse-box) is a utility interface that is automatically
+included by common BeRun presets such as [`@berun/preset-fuse-box-react`](https://www.npmjs.com/package/@berun/preset-fuse-box-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-fuse-box
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-fuse-box',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const fusebox = require('@berun/fluent-fuse-box');
+
+function(berun) {
+    berun.use(fusebox);
+}
+```
+
+## Fuse-Box shorthand methods
+
+```js
+berun.fusebox
+  .defaultSeverity(severity)
+  .linterOptions(options)
+
+  .homeDir(string)
+  .modulesFolder(stringOrStringArray)
+  .tsConfig(string)
+  .package(value)
+  .dynamicImportsEnabled(flag)
+  .cache(flag)
+  .target(string)
+  .log(map)
+  .showBundledFiles(flag)
+  .clearTerminalOnBundle(flag)
+  .globals(value)
+  .autoImport(value)
+  .natives(value)
+  .warnings(flag)
+  .shim(value)
+  .writeBundles(flag)
+  .useTypescriptCompiler(flag)
+  .standalone(flag)
+  .sourceMaps(value)
+  .inlineCSSPath(string)
+  .inline(flag)
+  .project(flag)
+  .sourceRoot(string)
+  .hash(value)
+  .ignoreModules(stringArray)
+  .customAPIFile(string)
+  .output(string)
+  .emitHMRDependencies(flag)
+  .filterFile(fn)
+  .automaticAlias(flag)
+  .allowSyntheticDefaultImports(flag)
+  .debug(flag)
+  .files(value)
+  .useJsNext(value)
+  .stdin(flag)
+  .ensureTsConfig(flag)
+  .runAllMatchedPlugins(flag)
+  .showErrors(flag)
+  .showErrorsInBrowser(flag)
+  .polyfillNonStandardDefaultUsage(value)
+  .transformers(value)
+  .extensionOverrides(value)
+  .serverBundle(flag)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.fusebox` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[fusebox docs](https://fuse-box.org/docs/development/configuration).
+
+### Fuse-Box plugins
+
+```js
+// Backed at berun.fusebox.plugins
+berun.fusebox.plugin(name) : FluentMap
+
+// Example
+berun.fusebox
+    .plugin('Env')
+    .use(StringifyPlugin, ['development'])
+    .end()
+
+```
+
+### Fuse-Box plugin set 
+
+Plugin sets are chained arrays of plugins, often used for CSS or other sequentially applied plugins
+
+```js
+// Backed at berun.fusebox.plugins
+berun.fusebox.pluginset() : FluentSet
+
+// Example
+berun.fusebox
+    .pluginset('Env')
+    .plugin('Env1')
+    .use(StringifyPlugin, ['development'])
+    .end()
+```
+
+### Fuse-Box bundles
+
+```js
+// Backed at berun.fusebox.bundles
+berun.fusebox.bundle(name) : FluentMap
+
+// Example
+berun.fusebox
+    .bundle('app')
+    .instructions('> index.ts')
+    .end()
+```
+
+
+### Fuse-Box alias
+
+```js
+// Backed at berun.fusebox.alias
+berun.fusebox.alias : FluentMap
+
+// Example
+berun.fusebox
+    .alias
+    .set('@bestatic/config$', '~/config/bestatic.config.js')
+    .end()
+```
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add alias during production
+config
+  .when(process.env.NODE_ENV === 'production', berun => {
+     berun.fusebox.alias
+    .set('@bestatic/config$', '~/config/bestatic.config.js')
+    .end()
+  });
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated Fuse-Box config using `berun.fusebox.toConfig()`, but may need
+to massage the plugins output to match simple strings.  For example:
+
+``` js
+
+const actual_result = fusebox.toConfig()
+
+actual_result.plugins = actual_result.plugins.map(p => [
+  p.__pluginName,
+  p.__pluginConstructorName,
+  p.__pluginArgs
+])
+
+expect(actual_result).toEqual({
+    homeDir: '/Volumes/data/mypath',
+    sourceMaps: { project: true, vendor: false },
+    hash: true,
+    cache: true,
+    output: path.join('targetDir', '$name.js'),
+    target: 'browser@es2015',
+    plugins: [
+      ['Env', 'StringifyPlugin', ['development']],
+      ['SVG', 'StringifyPlugin', []],
+      ['CSS', 'StringifyPlugin', []],
+      ['JSON', 'StringifyPlugin', []],
+      [
+        'WebIndex',
+        'StringifyPlugin',
+        [
+          {
+            template: path.join('/Volumes/data/src', 'index.html'),
+            path: '/'
+          }
+        ]
+      ],
+      ['Babel', 'StringifyPlugin', []],
+      [
+        'Quantum',
+        'StringifyPlugin',
+        [{ removeExportsInterop: false, uglify: true }]
+      ]
+    ]
+  })
+```

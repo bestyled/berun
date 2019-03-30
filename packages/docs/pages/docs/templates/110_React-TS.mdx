@@ -1,0 +1,95 @@
+---
+name: React Typescript
+---
+
+# React Typescript Template
+
+Templates are boilerplate starter projects that contain all of the essential elements 
+that are required to start building applications and component libraries.
+
+This allows you to set up a modern web app by running one command.
+
+The React starter template includes
+
+* React (latest)
+* Webpack 4
+* Babel 7 with Typescript support
+* Typescript 3 (for linting)
+* Jest
+* TSLint and Prettier
+* A well-defined `tsconfig.json` file
+* All the appropriate optimizations and configurations from `create-react-app` with all the flexibilty without ejecting.
+
+### Install
+ 
+```bash
+$ yarn create berun myapp @berun/template-react-ts
+```
+
+### Run
+
+```bash
+$ cd myapp
+$ yarn start
+```
+
+### Test
+
+```bash
+$ cd myapp
+$ yarn test
+```
+
+### Publish
+
+```bash
+$ cd myapp
+$ yarn build
+```
+
+
+## Comparison to `create-react-app`
+
+On the surface this template contains nothing more and nothing less than `create-react-app`, other than
+supporting Typescript code.  For quick prototyping the experience will feel very similar, with the 
+same start, test, and build commands, but with the added benefit of design time syntax checking that comes
+with a statically typed language.
+
+However, as projects evolve, usually some extra or different build configuration will be required.  For
+example, you may want to add a storybooking tool to generate live documentation.   Or add a static website.
+Or use a custom preprocessor.   
+
+With `create-react-app` this requires ejecting, and thus all the benefits of a centrally maintained configuration
+and recommended settings are lost.  For larger organizations this leads to configuration proliferation.
+
+With `@berun/template-react-ts` this requires adjusting a single `berun.config.js` file, regardless of whether
+changes are needed to webpack, jest, babel, etc., and can be done delicately (using a fluent interface) 
+to tweak the existing configuration vs ejecting/forking it and rewriting it.  
+
+### Example: swap out webpack for fuse-box
+
+```js
+// berun.config.js
+module.exports = {
+  use: [
+    '@berun/preset-fuse-box-react-ts',  /* REMOVED '@berun/preset-react-ts', */
+    '@berun/runner-tslint',
+    '@berun/runner-prettier'
+  ]
+}
+```
+
+### Example: support TS Main to transpile Typescript dependencies in node_modules
+
+```js
+// berun.config.js
+module.exports = {
+  use: [
+    '@berun/preset-react-ts',
+    '@berun/runner-tsmain', /* ADDED */
+    '@berun/runner-tslint',
+    '@berun/runner-prettier'
+  ]
+}
+```
+

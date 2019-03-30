@@ -1,0 +1,24 @@
+---
+name: Runners (other)
+---
+
+# Runners
+
+Runners are the core building block of BeRun, otherwise known as middleware or presets.
+
+A runner typically manages one build tool or one build task, and does it well.  One runner 
+may be composed of multiple other runners.   
+
+Each runner will include the necessary `@berun/fluent` api for its toolset, so if for example you
+include `@berun/runner-babel` there is no need to include `@berun/fluent-babel` as well.
+
+## Official Utility Runners
+ 
+* Mdx -- process JSX in Markdown and regular Markdown files
+* Mdx Front Matter -- parse front matter in Mdx / Markdown files
+* Static -- run build tool (Webpack or Fuse-Box) in two passes to generate static HTML only
+* TSMain -- Allow build tool to pick up `ts:main` references as well as `main` in package.json dependencies
+* Web Polyfills -- Included standard web polyfills for older browsers
+* Webpack CSS -- Include CSS pre-processors (e.g., Sass), not needed for CSS in JS solutions
+
+Many other runners may be provided by the community or added to this list over time.

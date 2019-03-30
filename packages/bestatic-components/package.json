@@ -1,0 +1,38 @@
+{
+  "name": "@bestatic/components",
+  "version": "2.1.4",
+  "description": "BeStatic Components including Tiny <head>, <body> injector, local route ",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "keywords": [
+    "mdx",
+    "react",
+    "docs",
+    "documentation",
+    "react-static"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

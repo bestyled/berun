@@ -1,0 +1,205 @@
+# Customization
+
+No two JavaScript projects are ever the same, and as such there may be times when you will need to make modifications
+to the way your BeRun runners are building your project. BeRun provides a mechanism to augment presets and
+runners in the context of a project without resorting to creating and publishing an entirely independent preset.
+
+## `./config/berun.config.js`
+
+First, you will need to create a `./config/berun.config.js` file in the root of your project. You
+[may have already done this](./usage.md#using-multiple-presets) if you specified your middleware via `./config/berun.config.js`
+as opposed to CLI `--use`.
+
+The `./config/berun.config.js` file is picked up by BeRun automatically if it exists. This can simplify your BeRun commands
+by making them as simple as `berun start` or `berun build`. If you do all your customization within
+`./config/berun.config.js`, the CLI will pick up these changes every time you run it.
+
+### Runner formats
+
+Before we delve into making customizations in `./config/berun.config.js`, it's important to note that this file can be in any
+valid [middleware format](./middleware.md#formats) that BeRun accepts. For project-based customization, it is
+recommended to use the object format, and that will be the format we focus on for the remainder of this guide. Should
+you need a lot of API customization, you may still opt to write your `./config/berun.config.js` file in the function format.
+
+Your `./config/berun.config.js` file is a JavaScript module which will be required by BeRun using Node.js. Any code written in
+this file should be usable by the version of Node.js you have running on your system when running BeRun. The
+`./config/berun.config.js` file should export an object or function depending on which format you opt to use.
+
+```js
+module.exports = {
+  /* make customizations */
+};
+```
+
+```js
+module.exports = (berun) => {
+  /* make customizations */
+};
+```
+
+**In a nutshell, the `./config/berun.config.js` file is wholly runners**.
+
+## Using middleware
+
+By specifying a `use` array in your `./config/berun.config.js`, you can inform BeRun to load additional runners when it
+runs, including any additional files you wish to include as middleware. Each item in this `use` array can be any
+BeRun-supported [middleware format](./Runners.mdx#formats).
+
+In its simplest form, each item can be the string module name or path to middleware you wish BeRun to require and
+use for you:
+
+```js
+module.exports = {
+  use: [
+    '@berun/preset-react',
+    '@berun/tslint',
+    '@berun/prettier',
+    './override.js'
+  ]
+};
+```
+
+If your middleware module supports its own options, instead of referencing it by string, use an array pair of string
+module name and options:
+
+```js
+module.exports = {
+  use: [
+    ['@berun/runner-eslint', {
+      eslint: {
+        rules: {
+          semi: 'off'
+        }
+      }
+    }],
+
+    ['@berun/preset-react', {
+      html: { title: 'Epic React App' }
+    }]
+  ]
+};
+```
+
+If you need to make more advanced configuration changes, you can even directly pass a function as middleware to `use`
+and have access to the BeRun API:
+
+```js
+module.exports = {
+  use: [
+    '@berun/preset-react',
+    '@berun/runner-eslint',
+    (berun) => berun.webpack.module
+      .rule('style')
+      .use('css')
+      .options({ modules: true })
+  ]
+};
+```
+
+## Environment-specific overrides
+
+Sometimes you can only make certain configuration changes in certain Node.js environments, or you may choose to
+selectively make changes based on the values of any arbitrary environment variable. These can be done from
+`./config/berun.config.js` using the `env` property. Each property within `env` maps to an environment variable with key-values
+mapping to  environment values which contain further middleware. This works for any environment variable, not just
+`NODE_ENV`.
+
+For example, if you wanted to include additional middleware when `NODE_ENV` is `production`:
+
+```js
+module.exports = {
+  env: {
+    NODE_ENV: {
+      production: {
+        use: ['@berun/runner-pwa']
+      }
+    }
+  }
+};
+```
+
+_Example: Turn on CSS modules when the environment variable `CSS_MODULES=enable`:_
+
+```js
+module.exports = {
+  env: {
+    CSS_MODULES: {
+      // Turn on CSS modules when the environment variable CSS_MODULES=enable
+      enable: (berun) => {
+        berun.webpack.module
+          .rule('style')
+            .use('css')
+              .options({ modules: true });
+      }
+    }
+  }
+};
+```
+
+You may use any middleware format as the value for the matching environment-value mapping.
+
+## Advanced configuration changes
+
+Making deep or complex changes to BeRun build configuration beyond what middleware options afford you can be done
+using the function middleware format. If you wish, your entire `./config/berun.config.js` file can be a middleware function, but
+typically this function can be inlined directly as an additional item in the `use` array.
+
+If you're familiar with middleware from the Express/connect world, this works similarly. When using Express middleware,
+you provide a function to Express which receives arguments to modify a request or response along its lifecycle. There
+can be a number of middleware functions that Express can load, each one potentially modifying a request or response in
+succession.
+
+When you add a middleware function to `use`, this is typically used to override BeRun's configuration, and you can
+add as many functions as you wish in succession. Every preset or middleware that BeRun has loaded follows this same
+middleware successive pipeline.
+
+The BeRun API instance provided to your function has a `config` property that is an instance of
+[berun](https://github.com/bestyled/berun). We won't go in-depth of all the configuration
+possibilities here, but encourage you to check out the documentation for [BeRun Fluent](https://github.com/bestyled/berun/master/packages/fluent)for instructions on your
+particular use case. Just know that you can use [BeRun Fluent Webpack](https://github.com/bestyled/berun/master/packages/fluent-webpack)to modify any part of the underlying webpack configuration
+using its API.
+
+This `berun.config` is an accumulation of all configuration up to this moment. All BeRun middleware and presets
+interact with and make changes through this config, which is all available to you. For example, if you are using the
+presets `@berun/preset-react`, any config set can be extended, manipulated, or removed.
+
+_Example: BeRun's React preset adds `.jsx` as a module extension. Let's remove it._
+
+```js
+module.exports = {
+  use: [
+    '@berun/preset-react',
+    (berun) => berun.webpack.resolve.extensions.delete('.jsx')
+  ]
+};
+```
+
+_Example: BeRun's Node.js preset has performance hints disabled. Let's re-enable them._
+
+```js
+module.exports = {
+  use: [
+    '@berun/node',
+    (berun) => berun.webpack.performance.hints('error')
+  ]
+};
+```
+
+Remember, middleware can also have their own custom options for making some changes easier without having to resort to
+interacting with the BeRun API; see your respective middleware for details. See the [documentation on the
+configuration API using @berun/fluent](./@berun/fluent.md) for all ways you can modify a config instance to solve
+your use cases.
+
+### Conditional configuration
+
+Some plugins and rules are only available in certain environments. For example, the Web preset only exposes a `optimize-css`
+plugin during production, leading to issues when trying to modify its settings, but throws an exception during
+development.
+
+_Example: Remove all webpack arguments to the `optimize-css` plugin when using the Web preset._
+
+```js
+berun.webpack.when(process.env.NODE_ENV === 'production', webpack => {
+  webpack.plugin('optimize-css').tap(args => []);
+});
+```

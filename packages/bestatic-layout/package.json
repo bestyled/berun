@@ -1,0 +1,48 @@
+{
+  "name": "@bestatic/layout",
+  "version": "2.1.7",
+  "description": "MDX-based theme",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "src/index.ts",
+  "repository": "https://github.com/bestyled/bestatic/tree/master/packages/bestatic-layout",
+  "keywords": [
+    "mdx",
+    "react",
+    "docs",
+    "documentation",
+    "react-static"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@bestatic/components": "^2.1.4",
+    "@bestatic/core": "^2.1.6",
+    "@bestatic/styled": "^2.1.5",
+    "react-router-dom": "^5.0.0",
+    "styled-components": "^4.2.0",
+    "styled-system": "^4.0.8"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

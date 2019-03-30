@@ -1,0 +1,309 @@
+# Sparky
+
+`Sparky` is a task runner much like `Gulp` or `Grunt`, but what sets it apart is that it is built right into BeRun, has access to the BeRun configuration,
+and is based on well proven technology (as it was directly ported from Fuse-Box Sparky).   It works with Webpack, Fuse-Box and in fact
+any command line tools.
+
+## Benefits
+
+- Simple, intuitive, and familiar API.
+- Based on Promises. `ES2017 async/await` syntax fully supported.
+- Ability to run tasks in parallel and sequentially (waterfall).
+- Nothing to install, `Sparky` comes with every installation of `BeRun`
+
+## Usage -- Register
+
+Register Sparky tasks in presets and runners using
+
+
+```js
+  berun.sparky.task('start', function(berun){
+      // Sparky task here
+  })
+```
+
+## Usage -- execution CLI 
+Execute Sparky tasks using the `@berun/scripts` command line:
+
+```bash
+$ berun-scripts start
+```
+
+## Usage -- execution API 
+You can also execute Sparky tasks using the `@berun/berun` api
+
+```js
+const berun = require('@berun/berun')(null, {cmd: 'start'});
+berun.register("sparkyContext", { /* custom context just for Sparky */ })
+berun.sparky.exec('start').then(() => { process.nextTick(process.exit) })
+```
+
+## Sparky Context
+
+One of the great benefits in `Sparky` is `Context`. Context is an object that is shared between tasks that will be 
+instantiated upon file execution.  It is included for compatibility with Fuse-Box, but since the entire `berun` context is passed to
+every Sparky task, its often unnecessary.
+
+
+## Task
+
+The first thing you have to do with `Sparky` is to define a Task. A Task takes two parameters, the task's name as a string and a function to be executed when that task runs.
+
+```js
+berun.sparky.task('foo', (berun) => {
+  someSynchronousFunciton()
+})
+```
+
+You can also use `ES2017` `async/await` syntax.
+
+```js
+berun.sparky.task('foo', async (berun) => {
+  await someAsynchronousFunction()
+})
+```
+
+## Waterfall vs Parallel
+
+`Sparky` has two modes for executing tasks, `waterfall` and `parallel`. In `waterfall` mode, tasks are executed sequentially based on the order they are defined within the task array. This is good if you require a task to wait until another task is completed. In `parallel` mode tasks are executed asynchronously, meaning that they will not depend on each other's completion. To run tasks in `parallel` mode, just prefix the task name with an `&`.
+
+```js
+berun.sparky.task('foo', (berun) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return resolve()
+    }, 1000)
+  })
+})
+
+berun.sparky.task('bar', (berun) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return resolve()
+    }, 1000)
+  })
+})
+
+// bar task will not run until foo task is done
+berun.sparky.task('waterfall', ['foo', 'bar'], (berun) => {})
+
+// foo and bar will run immediatly
+berun.sparky.task('parallel', ['&foo', '&bar'], (berun) => {})
+```
+
+## Aggregator task
+
+You can also define a task that combines other tasks but doesn't have any function itself.
+
+For example:
+
+```js
+berun.sparky.task('copy-assets', [
+  '&copy:pdf', // parallel task mode
+  '&copy:text-files' // parallel task mode
+])
+
+berun.sparky.task('copy:pdf', async berun => {
+  // copy pdf files here
+})
+
+berun.sparky.task('copy:text-files', async berun => {
+  // copy text files here
+})
+
+tberun.sparky.ask('default', ['copy-assets'], async berun => {
+  // or exec(['copy-assets'])
+})
+```
+
+## Help
+
+You can use the `help` method to add a help message. You can then run fuse-box with a single
+`help` argument to get a list of available tasks and their associated help messages.
+
+For example:
+
+```
+berun.sparky.task('dev', /* the task implementation */).help("Run a development environment");
+```
+
+```
+$ berun-scripts help
+
+Available tasks
+  dev  Run a development environment
+```
+
+## src
+
+This method lets `Sparky` know what files it needs to operate on. This funtionality is built on top of [glob](https://github.com/isaacs/node-glob).
+
+```js
+berun.sparky.src('src/**/**.*')
+```
+
+The above will basically capture all files in your `src` folder.
+
+If you want to capture all `.html` files in your `src` folder:
+
+```js
+berun.sparky.src('src/**/*.html')
+```
+
+If you want to capture all images file formats:
+
+```js
+berun.sparky.src('src/**/*.(jpg|png|gif)')
+```
+
+The `src` method also accepts a second parameter to inject some options.
+
+### options.base
+
+Sets the base path from which the path names will be resolved.
+
+If we have an `asset` folder, and inside that, a file called `logo.png` we could copy that file to our `dist` folder like so:
+
+```js
+berun.sparky.src('./src/assets/*.png')
+  .dest('./dist')
+  .exec()
+// Result: dist/src/assets/logo.png
+
+berun.sparky.src('./assets/*.png', { base: './src' })
+  .dest('./dist')
+  .exec()
+// Result: dist/assets/logo.png
+```
+
+If you want to copy all files from `src` you should do the following:
+
+```js
+berun.sparky.task('default', async () => {
+  await src('**/**.**', { base: 'src' })
+    .dest('dist/')
+    .exec()
+})
+```
+
+## watch
+
+Same as `src` above, the only difference is that it is a daemon so it will always run whenever a file in the captured globing changes.
+
+## exec
+
+You can manually launch execution of tasks:
+
+```js
+berun.sparky.task("default", () => {
+  await exec("a", "b")
+})
+```
+
+## bumpVersion
+
+A handy function to bump package.json version:
+
+```js
+const { bumpVersion } = require('@berun/sparky')
+
+berun.sparky.task('default', () => {
+  bumpVersion('package.json', { type: 'patch' })
+})
+```
+
+Read up on semver [here](https://semver.org/).
+
+For example:
+
+- `1.1.0` -> `{type : "patch"}` -> `1.1.1`
+- `1.1.0` -> `{type : "minor"}` -> `1.2.0`
+- `1.1.0` -> `{type : "major"}` -> `2.0.0`
+- `1.1.0` -> `{type : "next"}` -> `1.1.0-next.1`
+- `1.1.0-next.1` -> `{type : "next"}` -> `1.1.0-next.2`
+
+## npmPublish
+
+Publish to npm by calling `npmPublish` and passing in the path to the directory you wish to publish:
+
+```js
+const { npmPublish } = require('@berun/sparky')
+
+berun.sparky.task('publish', async () => {
+  await npmPublish({ path: 'dist' })
+})
+```
+
+## tsc
+
+> Note: TypeScript must be installed globally for this to work.
+
+A handy function if you want to transpile just files using TypeScript and/or generate `typings`:
+
+```js
+const { task, tsc } = require('@berun/sparky')
+
+berun.sparky.task('tsc', async () => {
+  await tsc('src', {
+    target: 'esnext',
+    declaration: true,
+    outDir: 'dist/'
+  })
+})
+```
+
+## dest
+
+Set the output directory of a task operating on your project files:
+
+```js
+berun.sparky.ask('default', () => {
+  src('**/**.**').dest('dist/')
+})
+```
+
+## File API
+
+Capture 1 file:
+
+```js
+berun.sparky.src('files/**/**.*').file('bar.html', file => {})
+```
+
+Capture all html files:
+
+```js
+berun.sparky.src('files/**/**.*').file('*.html', file => {})
+```
+
+### json
+
+Modify
+
+```js
+file.json(json => {
+  json.version++
+})
+```
+
+Override
+
+```js
+file.json(json => {
+  return { a: 1 }
+})
+```
+
+### setContent
+
+You can use `rename` function to change the name of a file. Note that its necessary to use the `$name` substitution in order to use this.
+
+```js
+berun.sparky.src('originalFilename.json')
+  .file('*', file => file.rename('newFilename.json'))
+  .dest('dist/$name')
+```
+
+### save
+
+`file.save()` happens automatically on `dest` if not called, but you can override your original files

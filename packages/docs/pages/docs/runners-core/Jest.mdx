@@ -1,0 +1,40 @@
+# Jest
+
+> **Delightful JavaScript Testing**
+
+This runner creates the Jest configuration that, unmodified, is identical 
+to that in `create-react-app`.  You may add or subtract to it to configure it exactly as needed.
+
+## Installation
+
+[`@berun/runner-jest`](https://www.npmjs.com/package/@berun/runner-jest) is a common runner that is automatically
+included by BeRun presets such as [`@berun/preset-react`](https://www.npmjs.com/package/@berun/preset-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-jest
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-jest']
+}
+```
+
+
+## Example usage
+
+```js
+  berun.jest.collectCoverageFrom.add('src/**/*.{ts,tsx}').end()
+```
+
+## Sparky Tasks included
+ 
+* Test
+
+## Jest Transforms included
+
+* Babel: `ts|tsx|js|jsx|mjs`
+* File: `ts|tsx|js|jsx|mjs|css|json|graphql`
+* Css: `css`

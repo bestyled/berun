@@ -1,0 +1,48 @@
+{
+	"name": "berun-mono-repository",
+	"private": true,
+	"version": "3.0.0",
+	"description": "Configuration and scripts for front end builds, fixed",
+	"repository": "bestyled/berun",
+	"license": "Apache-2.0",
+	"directories": {
+		"doc": "docs",
+		"public": "docs/public"
+	},
+	"scripts": {
+		"bootstrap": "lerna bootstrap",
+		"ci": "bitrise run primary",
+		"clean": "rimraf **/dist && rimraf **/node_modules",
+		"build:all": "yarn build:fluent && yarn build:sparky  && yarn build:preset && yarn build:fuse && yarn build:bestatic",
+		"build:bestatic": "lerna run --scope @bestatic/* build",
+		"build:fluent": "lerna run --scope @berun/fluent* build",
+		"build:sparky": "lerna run --scope @berun/sparky build",
+		"build:preset": "lerna run --scope @berun/preset* build",
+		"build:fuse": "lerna run --scope @berun/fuse-box* build",
+		"test:all": "yarn test:fluent && yarn test:runner  && yarn test:preset && yarn test:bestatic && yarn test:template",
+		"test:bestatic": "lerna run --scope @bestatic/* lint",
+		"test:fluent": "lerna run --scope @berun/fluent* lint && lerna run --scope @berun/fluent* test",
+		"test:runner": "lerna run --scope @berun/runner* lint && lerna run --scope @berun/runner* test",
+		"test:preset": "lerna run --scope @berun/preset* lint && lerna run --scope @berun/preset* test",
+		"test:template": "lerna run --scope @berun/template* format && lerna run --scope @berun/template* test -- --coverage"
+	},
+	"devDependencies": {
+		"lerna": "^3.13.1",
+		"rimraf": "^2.6.3",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6",
+		"@types/jest": "^24.0.11",
+		"@types/react": "^16.8.10",
+		"@types/react-dom": "^16.8.3",
+		"@types/node": "^10.9.4",
+		"@types/styled-components": "4.1.2",
+		"@types/react-router-dom": "^4.3.1",
+		"@types/webpack-env": "^1.13.9"
+	},
+	"resolutions": {
+		"babel-core": "^7.0.0-bridge.0"
+	},
+	"workspaces": [
+		"packages/*"
+	]
+}

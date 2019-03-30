@@ -1,0 +1,51 @@
+{
+  "name": "@berun/runner-webpack-css",
+  "version": "2.1.4",
+  "description": "BeRun runner to add react stylers for css configuration",
+  "main": "src/index.js",
+  "keywords": [
+    "berun",
+    "berun-runner",
+    "react",
+    "web",
+    "jest",
+    "polyfill",
+    "create react app"
+  ],
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-webpack-css",
+  "bugs": "https://github.com/bestyled/berun/issues",
+  "engines": {
+    "node": ">=8.3",
+    "npm": ">=5.4.0",
+    "yarn": ">=1.2.1"
+  },
+  "dependencies": {
+    "css-loader": "1.0.0",
+    "mini-css-extract-plugin": "0.4.3",
+    "optimize-css-assets-webpack-plugin": "5.0.1",
+    "postcss-flexbugs-fixes": "4.1.0",
+    "postcss-loader": "3.0.0",
+    "postcss-preset-env": "6.0.6",
+    "postcss-safe-parser": "4.0.1",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.23.0"
+  },
+  "scripts": {
+    "coverage": "berun-dev test --coverage",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21",
+    "@berun/preset-react": "^2.1.4"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

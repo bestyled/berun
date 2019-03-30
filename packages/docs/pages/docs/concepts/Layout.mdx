@@ -1,0 +1,47 @@
+---
+name: Project Layout
+---
+
+# Project Layout
+
+Out of the box, BeRun presets and runners expect a project to have a particular structure to make the
+development process for new projects as quick as possible. The `berun` context has an options object that indicates the various subdirectories of the current project (most can be overriden in package.json in the directories field)
+
+| | | 
+|-|-|
+|`berun.options.paths.appBuild`| application build directory, defaults to `./build`
+|`berun.options.paths.appPublic`| application static assets, defaults to `./public`
+|`berun.options.paths.appHtml`| application index file for web projects, defaults to `./public/index.html`
+|`berun.options.paths.appIndexJs`| application entry point, defaults to `./src/index.js` or `.jsx` or `.ts` or `.tsx`
+|`berun.options.paths.appSrc`| application source directory, defaults to `./src`
+|`berun.options.paths.testsSetup`| application source directory, defaults to `./src/setupTests.js` or `.ts`
+|`berun.options.paths.appNodeModules`| application dependencies, defaults to `./node_modules`
+|`berun.options.paths.publicPath`| application public path prefix, defaults to`/`
+|`berun.options.paths.publicUrl`| application public url, defaults to home url in `package.json`
+|`berun.options.paths.servedPath`| application served path, defaults to that specified in `package.json`
+|`berun.options.paths.config`| berun config, defaults to `./config/berun/config.js`;  if none exisgts, a standard configuration from `@berun/scripts/config/berun.config.js` is used
+|`berun.options.paths.aooTSConfig`| typescript config, defaults to `./tsconfig.prod.json` or `./tsconfig.json`
+|`berun.options.paths.remoteOriginUrl`| remote git repository (often displayed in documentation projects)
+
+Each of these directories is set up via convention by a BeRun preset, but each can be customized as
+desired by overriding the preset's configuration or using a different preset. See
+[Custom Configuration](./customization.md) for detailed instructions.
+
+## Source Code
+
+By default, BeRun presets expect all project source code to live in a directory named `src` in the
+root of the project. This includes compiled and imported JavaScript files, CSS stylesheets, images, and any other assets
+that would be available to your compiled project.
+
+When running your project or creating a build bundle, a preset will look for this `src` directory for
+the main entry points of your application and use this as the relative location for finding other assets
+necessary for creating your builds.
+
+## Build Assets
+
+When creating a build bundle, a preset will put the compiled assets, including any generated
+JavaScript files, into a directory named `build` by default.
+
+Normally most projects will exclude checking in this build directory to source control.
+Be sure to add this directory to your project's `.gitignore`, `.hgignore`, or similar file.
+

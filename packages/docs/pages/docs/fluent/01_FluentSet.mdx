@@ -1,0 +1,73 @@
+---
+name: (FluentSet)
+---
+
+# FluentSet API
+
+Another of the core API interfaces in BeRun is a `FluentSet`. A
+`FluentSet` operates similar to a JavaScript Set, with some conveniences for
+chaining and generating configuration. If a property is marked as being a
+`FluentSet`, it will have an API and methods as described below:
+
+**Unless stated otherwise, these methods will return the `FluentSet`, allowing
+you to chain these methods.**
+
+```js
+// Add/append a value to the end of a Set.
+// value: *
+add(value)
+```
+
+```js
+// Add a value to the beginning of a Set.
+// value: *
+prepend(value)
+```
+
+```js
+// Remove all values from a Set.
+clear()
+```
+
+```js
+// Remove a specific value from a Set.
+// value: *
+delete(value)
+```
+
+```js
+// Returns `true` or `false` based on whether or not the
+// backing Set contains the specified value.
+// value: *
+// returns: Boolean
+has(value)
+```
+
+```js
+// Returns an array of values contained in the backing Set.
+// returns: Array
+values()
+```
+
+```js
+// Concatenates the given array to the end of the backing Set.
+// arr: Array
+merge(arr)
+```
+
+```js
+// Execute a function against the current configuration context
+// handler: Function -> FluentSet
+  // A function which is given a single argument of the FluentSet instance
+batch(handler)
+```
+
+```js
+// Conditionally execute a function to continue configuration
+// condition: Boolean
+// whenTruthy: Function -> FluentSet
+  // invoked when condition is truthy, given a single argument of the FluentSet instance
+// whenFalsy: Optional Function -> FluentSet
+  // invoked when condition is falsy, given a single argument of the FluentSet instance
+when(condition, whenTruthy, whenFalsy)
+```

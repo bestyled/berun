@@ -1,0 +1,45 @@
+{
+  "name": "@berun/berun",
+  "version": "2.1.4",
+  "description": "Create and build JS applications with managed configurations",
+  "main": "src/index.js",
+  "keywords": [
+    "berun",
+    "webpack",
+    "babel"
+  ],
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/berun",
+  "homepage": "https://berun.js.org",
+  "bugs": "https://github.com/bestyled/berun/issues",
+  "scripts": {
+    "coverage": "berun-dev test --coverage",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "engines": {
+    "node": ">=8.3",
+    "npm": ">=5.4.0",
+    "yarn": ">=1.2.1"
+  },
+  "dependencies": {
+    "@berun/dev-scripts": "^2.0.21",
+    "@berun/fluent-webpack": "^2.1.4",
+    "@berun/sparky": "^2.0.22",
+    "cross-spawn": "^6.0.5",
+    "deepmerge": "^2.1.1",
+    "dotenv": "^6.0.0",
+    "dotenv-expand": "^4.2.0",
+    "find-pkg": "^2.0.0",
+    "globby": "^8.0.1",
+    "remote-origin-url": "^1.0.0"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

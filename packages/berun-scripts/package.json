@@ -1,0 +1,53 @@
+{
+  "name": "@berun/scripts",
+  "version": "2.1.4",
+  "description": "Configuration and scripts for BeRun.",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/berun-scripts",
+  "license": "Apache-2.0",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "engines": {
+    "node": ">=8.3"
+  },
+  "bugs": {
+    "url": "https://github.com/bestyled/berun/issues"
+  },
+  "files": [
+    "bin",
+    "config",
+    "scripts",
+    "template",
+    "utils"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "berun-scripts": "./bin/berun-scripts.js"
+  },
+  "dependencies": {
+    "@berun/berun": "^2.1.4",
+    "react-dev-utils": "6.1.1"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21"
+  },
+  "optionalDependencies": {
+    "fsevents": "1.2.4"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

@@ -1,0 +1,196 @@
+# Configuring Jest
+
+> **Delightful JavaScript Testing**
+
+The [`@berun/fluent-jest`](https://www.npmjs.com/package/@berun/fluent-jest) package provides a high level fluent interface for configuring and using [`Jest`](https://jestjs.io).
+
+## Installation
+
+[`@berun/fluent-jest`](https://www.npmjs.com/package/@berun/fluent-jest) is a utility interface that is automatically
+included by common BeRun presets such as [`@berun/preset-react`](https://www.npmjs.com/package/@berun/preset-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-jest
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-jest',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const jest = require('@berun/fluent-jest');
+
+function(berun) {
+    berun.use(jest);
+}
+```
+
+## Jest shorthand methods
+
+```js
+berun.jest
+  .testEnvironment(value)
+  .testURL(path)
+  .rootDir(path)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.jest` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[jest docs](https://jestjs.io/docs/en/configuration).
+
+### Jest Collect Coverage
+
+```js
+// Backed at berun.jest.collectCoverageFrom
+berun.jest.collectCoverageFrom : FluentSet
+
+// Example
+berun.jest.collectCoverageFrom
+    .add(src/**/*.{js,jsx,mjs})
+    .end()
+```
+
+### Jest Setup Files
+
+```js
+// Backed at berun.jest.setupFiles
+berun.jest.setupFiles : FluentSet
+
+// Example
+berun.jest.setupFiles
+    .add('MYVOLUME/node_modules/@berun/runner-web-polyfills/src/polyfills.js)
+    .end()
+```
+
+### Jest Test Match Files
+
+```js
+// Backed at berun.jest.testMatch
+berun.jest.testMatch : FluentSet
+
+// Example
+berun.jest.testMatch
+    .add('**/__tests__/**/*.{js,jsx,mjs}')
+    .add('**/?(*.)(spec|test).{js,jsx,mjs}')
+    .end()
+```
+
+
+### Jest Roots
+
+```js
+// Backed at berun.jest.roots
+berun.jest.roots : FluentSet
+
+// Example
+berun.jest.roots
+    .add(root)
+    .end()
+```
+
+### Jest Transform Ignore Patterns
+
+```js
+// Backed at berun.jest.transformIgnorePatterns
+berun.jest.transformIgnorePatterns : FluentSet
+
+// Example
+berun.jest.transformIgnorePatterns
+    .add(pattern)
+    .end()
+```
+
+### Jest Module File Extensions
+
+```js
+// Backed at berun.jest.moduleFileExtensions
+berun.jest.moduleFileExtensions : FluentSet
+
+// Example
+berun.jest.moduleFileExtensions
+    .add('.es')
+    .end()
+```
+
+### Jest Module Name Mapper
+
+```js
+// Backed at berun.jest.moduleNameMapper
+berun.jest.moduleNameMapper : FluentMap
+
+// Example
+berun.jest.moduleNameMapper
+    .set(name, mappedname)
+    .end()
+```
+
+### Jest Transforms
+
+```js
+// Backed at berun.jest.transforms
+berun.jest.transform(name) : FluentMap
+
+// Example
+berun.jest
+    .transform('babelJest')
+    .use('/pathto/transforms/babelTransform.js')
+    .end()
+```
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add transform during production
+config
+  .when(process.env.NODE_ENV === 'production', berun => {
+    berun.transform('babelJest')
+    .use('/pathto/transforms/babelTransform.js')
+  });
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated Jest config using `berun.jest.toConfig()`. 
+
+``` js
+expect(berun.jest.toConfig()).toEqual({
+  collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
+    setupFiles: [
+      '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js'
+    ],
+    testMatch: [
+      '**/__tests__/**/*.{js,jsx,mjs}',
+      '**/?(*.)(spec|test).{js,jsx,mjs}'
+    ],
+    testEnvironment: 'node',
+    testURL: 'http://localhost'
+  })
+```

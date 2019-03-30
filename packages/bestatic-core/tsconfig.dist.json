@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noImplicitUseStrict": true,
+    "moduleResolution": "node",
+    "target": "es2016",
+    "module": "es2015",
+    "lib": ["dom", "es6"],
+    "sourceMap": false,
+    "declaration": false,
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}

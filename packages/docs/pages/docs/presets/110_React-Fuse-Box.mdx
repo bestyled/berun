@@ -1,0 +1,41 @@
+---
+name: Fuse-Box React
+---
+
+# Fuse-Box React
+
+> **React preset using Fuse-Box, modeled after `create-react-app`**
+
+This preset creates a configuration that, unmodified, is identical to `create-react-app`, except
+that Fuse-Box is used instead of Webpack.   You may add or subtract to it to configure it exactly as needed.
+
+Fuse-Box is generally much faster than Webpack for both cold and warm builds.
+
+## Installation
+
+```bash
+$ npm install --save-dev @berun/preset-fuse-box-react
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/preset-fuse-box-react']
+}
+```
+
+## Included build tools
+
+* Fuse-Box
+* Babel v7+ and/or TypeScript
+* Jest 
+
+## Sparky tasks
+
+```bash
+# Run development server on localhost:3000
+npm start
+
+# Production build
+npm run build
+```

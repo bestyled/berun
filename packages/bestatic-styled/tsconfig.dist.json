@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noImplicitUseStrict": false,
+    "moduleResolution": "node",
+    "target": "es2016",
+    "module": "es2015",
+    "sourceMap": false,
+    "declaration": true,
+    "outDir": "dist/esm"
+  },
+  "include": ["src"]
+}

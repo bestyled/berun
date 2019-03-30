@@ -1,0 +1,40 @@
+{
+  "name": "@berun/fuse-box-plugin-babel",
+  "version": "3.5.17",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/fuse-box-plugin-babel",
+  "keywords": [
+    "mdx",
+    "mdx-js",
+    "tdx",
+    "config",
+    "chain",
+    "fluent",
+    "api"
+  ],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "./dist/index.d.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "license": "Apache-2.0",
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

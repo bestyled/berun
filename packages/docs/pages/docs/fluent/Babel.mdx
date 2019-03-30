@@ -1,0 +1,293 @@
+# Configuring Babel
+
+> **Use next generation JavaScript, today**
+
+The [`@berun/fluent-babel`](https://www.npmjs.com/package/@berun/fluent-babel) package provides a high level fluent interface for configuring and 
+using [`Babel`](https://babeljs.io).
+
+## Installation
+
+[`@berun/fluent-babel`](https://www.npmjs.com/package/@berun/fluent-babel) is a utility interface that is automatically
+included by common BeRun presets such as [`@berun/preset-react`](https://www.npmjs.com/package/@berun/preset-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-babel
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-babel',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const babel = require('@berun/fluent-babel');
+
+function(berun) {
+    berun.use(babel);
+}
+```
+
+## Babel shorthand methods
+
+```js
+berun.babel
+  .root(root)
+  .ast(ast)
+  .auxiliaryCommentAfter(comment)
+  .auxiliaryCommentBefore(comment)
+  .babelrcRoots(roots)
+  .code(code)
+  .comments(comments)
+  .compact(compact)
+  .configFile(filename)
+  .cwd(dirname)
+  .envName(name)
+  .extends(class)
+  .filename(filename)
+  .filenameRelative(file)
+  .getModuleId(id)
+  .highlightCode(highligjt)
+  .inputSourceMap(map)
+  .minified(minified)
+  .moduleId(id)
+  .moduleIds(ids)
+  .moduleRoot(root)
+  .only(only)
+  .retainLines(retain)
+  .shouldPrintComment(should)
+  .sourceFileName(filename)
+  .sourceMaps(maps)
+  .sourceRoot(roots)
+  .sourceType(type)
+  .wrapPluginVisitorMethod(method)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.babel` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[babel docs](https://babeljs.io/docs/en/config-files).
+
+### Babel plugins
+
+```js
+// Backed at berun.babel.plugins
+berun.babel.plugin(name) : FluentMap
+```
+
+### Babel plugins: adding
+
+_NOTE: Do not use `new` to create the plugin, as this will be done for you._
+
+```js
+berun.babel
+  .plugin(name)
+  .options(args)
+
+// Examples
+
+berun.babel
+  .plugin('@babel/plugin-transform-react-jsx')
+  .options({ pragma: 'React.createElement' })
+
+```
+
+### Babel plugins: modify arguments
+
+```js
+berun.babel
+  .plugin(name)
+  .tap(args => newArgs)
+
+// Example
+berun.babel
+  .plugin('@babel/plugin-transform-react-jsx')
+  .tap(args => [...args, { pragma: 'Preact.createElement' }]);
+```
+
+### Babel plugins: removing
+
+```js
+berun.babel.plugins.delete(name)
+```
+
+### Babel plugins: ordering before
+
+Specify that the current `plugin` context should operate before another named
+`plugin`. You cannot use both `.before()` and `.after()` on the same plugin.
+
+```js
+berun.babel
+  .plugin(name)
+    .before(otherName)
+
+// Example
+
+berun.babel
+  .plugin('arrow-functions')
+    .end()
+  .plugin('literals')
+    .before('arrow-functions');
+```
+
+### Babel plugins: ordering after
+
+Specify that the current `plugin` context should operate after another named
+`plugin`. You cannot use both `.before()` and `.after()` on the same plugin.
+
+```js
+berun.babel
+  .plugin(name)
+    .after(otherName)
+
+// Example
+
+config
+  .plugin('arrow-functions')
+    .after('literals')
+    .end()
+```
+
+
+### Babel presets
+
+```js
+// Backed at berun.babel.presets
+berun.babel.preset(name) : FluentMap
+```
+
+### Babel presets: adding
+
+_NOTE: Do not use `new` to create the plugin, as this will be done for you._
+
+```js
+berun.babel
+  .preset(name)
+  .options(args)
+
+// Examples
+
+berun.babel
+  .preset('@berun/babel-preset-react-app')
+  .end()
+
+```
+
+### Babel presets: removing
+
+```js
+berun.babel.plugins.delete(name)
+```
+
+### Babel presets: ordering before
+
+Specify that the current `plugin` context should operate before another named
+`plugin`. You cannot use both `.before()` and `.after()` on the same plugin.
+
+```js
+berun.babel
+  .preset(name)
+    .before(otherName)
+```
+
+### Babel presets: ordering after
+
+Specify that the current `preset` context should operate after another named
+`preset`. You cannot use both `.before()` and `.after()` on the same preset.
+
+```js
+berun.babel
+  .preset(name)
+    .after(otherName
+
+```
+
+### Babel environments
+
+```js
+// Backed at berun.babel.environments
+berun.babel.env(name) : FluentBabel
+```
+
+```js
+// Example
+  berun.babel
+    .babelrc(false)
+    .env('development')
+    .plugin('literals')
+    .end()
+    .root('src')
+    .end()
+    .plugin('arrow-functions')
+    .end()
+    .plugin('literals')
+    .end()
+    .plugin('@babel/plugin-transform-react-jsx')
+    .options({ pragma: 'React.createElement' })
+    .end()
+
+ expect(berun.babel.toConfig()).toEqual({
+    babelrc: false,
+    env: {
+      development: {
+        root: 'src',
+        plugins: ['literals']
+      }
+    },
+    plugins: [
+      'arrow-functions',
+      'literals',
+      ['@babel/plugin-transform-react-jsx', { pragma: 'React.createElement' }]
+    ]
+  })
+  ```
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add literals plugin during production
+config
+  .when(process.env.NODE_ENV === 'production', berun => {
+    berun.babel
+      .plugin('literals')
+      .end()
+  });
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated ESLint config using `berun.babel.toConfig()`. 
+
+``` js
+expect(berun.babel.toConfig()).toEqual({
+    babelrc: false,
+    presets: ['@berun/babel-preset-react-app'],
+    highlightCode: true,
+    compact: false
+  })
+```

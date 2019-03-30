@@ -1,0 +1,37 @@
+{
+  "name": "@berun/template-fuse-box-react",
+  "version": "0.2.5",
+  "devDependencies": {
+    "@berun/preset-fuse-box-react": "^2.1.5",
+    "@berun/runner-eslint": "^2.1.4",
+    "@berun/runner-prettier": "^2.1.4",
+    "@berun/runner-webpack-css": "^2.1.4",
+    "@berun/scripts": "^2.1.4"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "berun-scripts start",
+    "build": "berun-scripts build",
+    "format": "berun-scripts lint",
+    "test": "berun-scripts test --env=jsdom",
+    "eject": "berun-scripts eject"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">0.25%",
+      "not op_mini all",
+      "ie 11"
+    ]
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

@@ -1,0 +1,50 @@
+{
+  "name": "@berun/preset-bestatic",
+  "version": "2.1.9",
+  "description": "TDX and MDX-based documentation server",
+  "main": "src/index.js",
+  "keywords": [
+    "mdx",
+    "react",
+    "docs",
+    "documentation",
+    "react-static"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src"
+  ],
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "scripts": {
+    "coverage": "berun-dev test --coverage",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@berun/runner-mdx": "^2.1.5",
+    "@berun/runner-mdx-frontmatter": "^2.1.5",
+    "@berun/runner-static": "^2.2.4"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">0.25%",
+      "not op_mini all",
+      "ie 11"
+    ]
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

@@ -1,0 +1,84 @@
+# Scripts
+
+Using the `@berun/scripts` interface is the preferred and simplest way of interacting with BeRun.
+
+Just like `react-sripts` in `create-react-app`, BeRun comes with a simple  `@berun/scripts` package  of scripts that are 
+intended to be called as npm/yarn sripts from package.json.
+
+Most of the script functionality is actually provided by Sparky tasks that are included in 
+the configured presets and runners.    
+
+For example, the `@berun/preset-react` includes `start` and `build` tasks.    Similarly, `@berun/preset-static` 
+includes `start:static`  and `build:static` tasks.
+
+This allows scripts to be composed to meet the needs of the particular project, expanded by community
+middleware as needed, and yet all orchestrated by a common lightweight framework.
+
+## Core Scripts
+
+There are just three functions provided by the `@berun/scripts` packages
+
+### init (bootstrapped by `yarn create berun`)
+
+The `init` script is called during boilerplate set up to set up the initial project structure.  It is not
+user callable and is very similar to the `init` script in `react-scripts`.
+
+### cmd
+
+The `cmd` script is the core script that setups up the `berun` context for any Sparky command.   It then
+immediately hands over execution to the Sparky command specified.
+
+```bash
+# The following command calls the cmd script which in turn calls the 'start:static' task
+$ berun-scripts start:static
+```
+
+### eject
+
+The `eject` script is often unnecessary with `berun` as most eject tasks in other frameworks can now be handled
+by the `berun.config.js` file.   However, if you truly want to eject and create local versions of the scripts you 
+can.
+
+## Commonly used tasks
+
+### `berun-scripts start`
+
+A common Sparky task that starts up the hot-reloading delevopment server.  Use this during development.
+
+## `berun-scripts build`
+
+Using the command `berun-scripts build` builds a project in production mode, rendering static assets to the configured build
+output destination. This command sets the `NODE_ENV` environment variable to `production` by default.
+
+## `berun-scripts test`
+
+Using the command `berun-scripts test` passes execution onto a test runner preset. It is up to the preset or middleware being
+used to determine how source files are built or provided to tests. See your particular test middleware for details. This
+command sets the `NODE_ENV` environment variable to `test` by default.
+
+Using the command `berun-scripts test` will execute every test file located in your
+[testing directory](./project-layout.md#testing). 
+
+## Custom tasks
+
+Runners have the ability to register named Sparky tasks with BeRun. These registered command tasks are also available to
+invoke from the BeRun Sripts CLI provided the middleware registering the command has been loaded when it is time for the CLI to
+invoke the command.
+
+```js
+// custom.js
+module.exports = (berun) => {
+  berun.sparky.task('startDev', webpack.taskDev)
+};
+```
+
+```bash
+$ berun-scripts startDev
+```
+
+## Exit codes
+
+When the CLI creates an instance of BeRun, it waits for all commands to either resolve or reject their registered
+command. If the command succeeded, the Scripts CLI will exit with code `0`. If there were errors, the CLI will log the errors
+to the console and exit with code `1`. This makes it easier to use BeRun commands for status reasons, such
+as failing a pull request on continuous integration if any tests fail or if there are linter errors.

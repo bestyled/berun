@@ -1,0 +1,43 @@
+{
+  "name": "@berun/fluent-mdx",
+  "version": "2.1.4",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-mdx",
+  "keywords": [
+    "mdx",
+    "mdx-js",
+    "tdx",
+    "config",
+    "chain",
+    "fluent",
+    "api"
+  ],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "./dist/index.d.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "license": "MPL-2.0",
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "dependencies": {
+    "@berun/fluent": "^2.1.3"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

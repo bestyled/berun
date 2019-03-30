@@ -1,0 +1,112 @@
+---
+name: Fluent API
+---
+
+# Fluent API
+
+Use a fluent API to generate and simplify the modification of
+Webpack, Fuse-Box, Babel, Jest and other build tool configurations.
+
+Note: while [`@berun/fluent`](https://www.npmjs.com/package/@berun/fluent) is utilized extensively in `@berun`, this package is
+completely standalone and can be used by any project.
+
+## Introduction
+
+Most commonly used build tool configurations are based on creating and modifying a
+potentially unwieldy JavaScript object. While this is okay for configurations
+on individual projects, trying to share these objects across projects and
+make subsequent modifications gets messy, as you need to have a deep
+understanding of the underlying object structure to make those changes.
+
+[`@berun/fluent`](https://www.npmjs.com/package/@berun/fluent) attempts to improve 
+this process by providing a chainable or
+['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface) for creating and modifying webpack configurations. 
+Key portions of the API can be referenced by user-specified names, which helps to
+standardize how to modify a configuration across projects.
+
+This is easier explained through the examples following which show configuration for Webpack,
+but the process is the same for other tools.
+
+## Installation
+
+[`@berun/fluent`](https://www.npmjs.com/package/@berun/fluent) requires Node.js v8.3 and higher. 
+
+You may install this package using either Yarn or npm (choose one):
+
+**Yarn**
+
+```bash
+yarn add @berun/fluent-webpack
+```
+
+**npm**
+
+```bash
+npm install --save-dev @berun/fluent-webpack
+```
+
+## Getting Started
+
+Once you have `@berun/fluent-webpack` installed, you can start creating a
+webpack configuration.
+
+```js
+// Require the @berun-webpack module. This module exports a single
+// berun runner for adding the webpack configuration API to berun.
+const webpack = require('@berun/fluent-webpack');
+
+// Instantiate the configuration with a new API on the berun object
+berun.use(webpack);
+
+// Make configuration changes using the chain API.
+// Every API call tracks a change to the stored configuration.
+
+berun.webpack
+  // Interact with entry points
+  .entry('index')
+    .add('src/index.js')
+    .end()
+  // Modify output settings
+  .output
+    .path('dist')
+    .filename('[name].bundle.js');
+
+// Create named rules which can be modified later
+berun.webpack.module
+  .rule('lint')
+    .test(/\.js$/)
+    .pre()
+    .include
+      .add('src')
+      .end()
+    // Even create named uses (loaders)
+    .use('eslint')
+      .loader('eslint-loader')
+      .options({
+        rules: {
+          semi: 'off'
+        }
+      });
+
+berun.webpack.module
+  .rule('compile')
+    .test(/\.js$/)
+    .include
+      .add('src')
+      .add('test')
+      .end()
+    .use('babel')
+      .loader('babel-loader')
+      .options({
+        presets: [
+          ['@babel/preset-env', { modules: false }]
+        ]
+      });
+
+// Create named plugins too!
+berun.webpack
+  .plugin('clean')
+    .use(CleanPlugin, [['dist'], { root: '/dir' }]);
+
+```
+

@@ -1,0 +1,27 @@
+# Mdx 
+
+> **Markdown for the component era**
+
+This runner creates the Mdx configuration and corresponding Webpack/Fuse-Box rules that allow
+markdown and JSX in Markdown files to be included in a front end or documentation project.
+
+## Installation
+
+[`@berun/runner-mdx`](https://www.npmjs.com/package/@berun/runner-mdx) is a common runner that is automatically
+included by BeRun presets such as [`@berun/preset-bestatic`](https://www.npmjs.com/package/@berun/preset-bestatic).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-mdx
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-mdx']
+}
+```
+
+## Usage
+
+Include .mdx files in the `/src` or `/pages` directories of your project.

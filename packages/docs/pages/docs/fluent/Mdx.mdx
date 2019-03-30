@@ -1,0 +1,118 @@
+# Configuring Mdx 
+
+> **Markdown for the component era**
+
+The [`@berun/fluent-mdx`](https://www.npmjs.com/package/@berun/fluent-mdx) package provides a high level fluent interface for configuring and using [`Mdx`](https://mdxjs.com/).
+
+## Installation
+
+[`@berun/fluent-mdx`](https://www.npmjs.com/package/@berun/fluent-mdx) is a utility interface that is automatically
+included by common BeRun presets such as [`@berun/preset-bestatic`](https://www.npmjs.com/package/@berun/preset-bestatic).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-mdx
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-mdx',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const mdx = require('@berun/fluent-mdx');
+
+function(berun) {
+    berun.use(mdx);
+}
+```
+
+## Mdx shorthand methods
+
+```js
+berun.mdx
+  .hast(name)
+  .plugin(name)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.mdx` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[mdx docs](https://mdxjs.com/plugins).
+
+### Mdx Remark Plugins 
+
+```js
+// Backed at berun.mdx.mdPlugins
+berun.mdx.plugin(name, useStringOrFunction?, options?) : FluentMap
+
+// Example
+  berun.mdx
+    .plugin('remark-images')
+    .end()
+    .plugin('remark-autolink-headings')
+    .end()
+    .plugin('remark-emoji', 'remark-emoji', { padSpaceAfter: true })
+    .end()
+```
+
+### Mdx Hast Plugins 
+
+```js
+// Backed at berun.mdx.hastPlugins
+berun.mdx.hast(name, useStringOrFunction?, options?) : FluentMap
+
+// Example
+  berun.mdx
+    .hast('@mapbox/rehype-prism')
+    .end()
+```
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add images plugin during production
+config
+  .when(process.env.NODE_ENV === 'production', berun => {
+    berun.mdx.plugin('remark-images')
+  });
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated Mdx config using `berun.mdx.toConfig()`. 
+
+``` js
+expect(berun.mdx.toConfig()).toEqual({
+    mdPlugins: [
+      ['remark-images', { replaced: true }],
+      'remark-autolink-headings',
+      ['remark-emoji', { padSpaceAfter: true }]
+    ]
+  })
+```

@@ -1,0 +1,43 @@
+{
+  "name": "@berun/fluent-webpack",
+  "version": "2.1.4",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-webpack",
+  "keywords": [
+    "webpack",
+    "config",
+    "chain",
+    "fluent",
+    "api"
+  ],
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "Eli Perelman <eli@eliperelman.com>",
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "license": "MPL-2.0",
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "dependencies": {
+    "deepmerge": "^2.1.1",
+    "javascript-stringify": "^2.0.0",
+    "webpack-chain": "^5.2.4"
+  },
+  "scripts": {
+    "coverage": "berun-dev test --coverage",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

@@ -1,0 +1,45 @@
+---
+name: ts:main
+---
+
+# ts:main
+
+> **Support untranspiled Typescript dependencies**
+
+This runner adds the necessary Webpack/Fuse-Box configuration to allow raw Typescript/ES7 dependencies
+that have not been transpiled to ES5.
+
+During development of multiple interrelated projects, it is sometimes convenient to leave and even 
+publish the raw source code instead of transpiling.  This is an opt-in convention, by specifying the 
+entry file using `ts:main` in the dependency's `package.json` file instead of (or in addition to) the 
+normal `main` entry.
+
+
+## Installation
+
+[`@berun/runner-tsmain`](https://www.npmjs.com/package/@berun/runner-tsmain) is not included in most BeRun
+presets, as in general its always safer to pre-transpile all ES7/Typescript dependencies before publishing (as
+versions and features of ES7/ TypeScript evolve over time).  If you  need to install it directly, 
+follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-tsmain
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-tsmain']
+}
+```
+
+## Usage
+
+`package.json` (of each typescript dependency)
+```json
+   "main": "dist/index.js",
+   "ts:main": "src/index.ts"
+```
+
+No additional changes are required to the dependent project, other than inclusion of this runner
+in the `berun.config.js` file as above.

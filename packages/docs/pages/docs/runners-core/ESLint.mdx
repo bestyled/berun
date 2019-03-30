@@ -1,0 +1,33 @@
+# ESLint 
+
+> **Pluggable JavaScript linter**
+
+This runner creates the ESLint configuration and corresponding Webpack rule that, unmodified, is identical 
+to that in `create-react-app`.  You may add or subtract to it to configure it exactly as needed.
+
+## Installation
+
+[`@berun/runner-eslint`](https://www.npmjs.com/package/@berun/runner-eslint) is a common runner that is automatically
+included by BeRun starter templates such as [`@berun/template-react`](https://www.npmjs.com/package/@berun/template-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-eslint
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-eslint']
+}
+```
+
+## Example usage
+
+```js
+  berun.webpack.module
+    .rule('eslint')
+    .test(/\.(js|jsx|mjs|ts|tsx)$/)
+
+  berun.eslint.formatter(eslintFormatter)  
+```

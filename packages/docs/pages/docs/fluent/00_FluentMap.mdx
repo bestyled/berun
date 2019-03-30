@@ -1,0 +1,117 @@
+---
+name: (FluentMap)
+---
+
+# FluentMap API
+
+One of the core API interfaces in BeRun is a `FluentMap`. A
+`FluentMap` operates similar to a JavaScript Map, with some conveniences for
+chaining and generating configuration. If a property is marked as being a
+`FluentMap`, it will have an API and methods as described below:
+
+**Unless stated otherwise, these methods will return the `FluentMap`, allowing
+you to chain these methods.**
+
+```js
+// Remove all entries from a Map.
+clear()
+```
+
+```js
+// Remove a single entry from a Map given its key.
+// key: *
+delete(key)
+```
+
+```js
+// Fetch the value from a Map located at the corresponding key.
+// key: *
+// returns: value
+get(key)
+```
+
+```js
+// Fetch the value from a Map located at the corresponding key.
+// If the key is missing, the key is set to the result of function fn.
+// key: *
+// fn: Function () -> value
+// returns: value
+getOrCompute(key, fn)
+```
+
+```js
+// Set a value on the Map stored at the `key` location.
+// key: *
+// value: *
+set(key, value)
+```
+
+```js
+// Returns `true` or `false` based on whether a Map as has a value set at a
+// particular key.
+// key: *
+// returns: Boolean
+has(key)
+```
+
+```js
+// Returns an array of all the values stored in the Map.
+// returns: Array
+values()
+```
+
+```js
+// Returns an object of all the entries in the backing Map
+// where the key is the object property, and the value
+// corresponding to the key. Will return `undefined` if the backing
+// Map is empty.
+// This will order properties by their name if the value is
+// a FluentMap that used .before() or .after().
+// returns: Object, undefined if empty
+entries()
+````
+
+```js
+// Provide an object which maps its properties and values
+// into the backing Map as keys and values.
+// You can also provide an array as the second argument
+// for property names to omit from being merged.
+// obj: Object
+// omit: Optional Array
+merge(obj, omit)
+```
+
+```js
+// Execute a function against the current configuration context
+// handler: Function -> FluentMap
+  // A function which is given a single argument of the FluentMap instance
+batch(handler)
+```
+
+```js
+// Conditionally execute a function to continue configuration
+// condition: Boolean
+// whenTruthy: Function -> FluentMap
+  // invoked when condition is truthy, given a single argument of the FluentMap instance
+// whenFalsy: Optional Function -> FluentMap
+  // invoked when condition is falsy, given a single argument of the FluentMap instance
+when(condition, whenTruthy, whenFalsy)
+```
+
+
+## Shorthand methods
+
+A number of shorthand methods exist for setting a value on a `FluentMap`
+with the same key as the shorthand method name.
+For example, `devServer.hot` is a shorthand method, so it can be used as:
+
+```js
+// A shorthand method for setting a value on a FluentMap
+devServer.hot(true);
+
+// This would be equivalent to:
+devServer.set('hot', true);
+```
+
+A shorthand method is chainable, so calling it will return the original
+instance, allowing you to continue to chain.

@@ -1,0 +1,167 @@
+# Configuring Prettier 
+
+> **An Opinionated Code Formatter**
+
+The [`@berun/fluent-prettier`](https://www.npmjs.com/package/@berun/fluent-prettier) package provides a high level fluent interface for configuring and using [`Prettier`](https://prettier.io).
+
+## Installation
+
+[`@berun/fluent-prettier`](https://www.npmjs.com/package/@berun/fluent-prettier) is a utility interface that is automatically
+included by commonly configured BeRun runners such as [`@berun/runner-prettier`](https://www.npmjs.com/package/@berun/runner-prettier).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-prettier
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-prettier',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const prettier = require('@berun/fluent-prettier');
+
+function(berun) {
+    berun.use(prettier);
+}
+```
+
+## Prettier shorthand methods
+
+```js
+berun.prettier
+  .printWidth(number)
+  .tabWidth(number)
+  .useTabs(flag)
+  .semi(flag)
+  .singleQuote(flag)
+  .trailingComma(string)
+  .bracketSpacing(flag)
+  .jsxBracketSameLine(flag)
+  .arrowParens(string)
+  .rangeStart(number)
+  .rangeEnd(number)
+  .parser(string)
+  .filepath(string)
+  .requirePragma(flag)
+  .insertPragma(flag)
+  .proseWrap(string)
+  .noConfig(flag)
+  .debugCheck(flag)
+  .config(string)
+  .ignorePath(string)
+  .listDifferent(flag)
+  .configPrecedence(string)
+  .noEditorConfig(flag)
+  .withNodeModules(flag)
+  .write(flag)
+  .logLevel(string)
+  .stdinFilepath(string)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.prettier` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[prettier docs](https://prettier.org/docs/user-guide/configuring).
+
+### Prettier files
+
+```js
+// Backed at berun.prettier.files
+berun.prettier.files : FluentSet
+
+// Example
+  berun.prettier
+    .files
+    .add('*.test.js)
+    .end()
+```
+
+
+### Prettier overrides
+
+```js
+// Backed at berun.prettier.overrides
+berun.prettier.overrides : FluentSet
+
+// Example
+  berun.prettier
+    .overrides
+    .add({ files: ['*.test.js'] })
+    .end()
+```
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add bracket spacing during production
+config
+  .when(process.env.NODE_ENV === 'production', berun => {
+    berun.prettier
+      .bracketSpacing(true)
+      .end()
+  });
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated Prettier config using `berun.prettier.toConfig()`. 
+
+``` js
+expect(berun.prettier.toConfig()).toEqual({
+    semi: false,
+    bracketSpacing: true,
+    rangeStart: 0,
+    insertPragma: true,
+    requirePragma: false,
+    arrowParens: 'always'
+  })
+```
+
+## Getting command line args
+
+You can get the generated Prettier command line args using `berun.prettier.toArgs()`. 
+
+``` js
+  berun.prettier
+    .semi(false)
+    .bracketSpacing(true)
+    .rangeStart(0)
+    .insertPragma(true)
+    .requirePragma(false)
+    .arrowParens('always')
+
+ expect(berun.prettier.toArgs()).toEqual([
+    '--no-semi',
+    '--range-start',
+    0,
+    '--insert-pragma',
+    '--arrow-parens',
+    'always'
+  ])

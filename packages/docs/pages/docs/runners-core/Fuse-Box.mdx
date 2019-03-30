@@ -1,0 +1,35 @@
+# Fuse-Box
+
+> **A bundler that does it right**
+
+This runner creates the Fuse-Box configuration that, unmodified, is equivalent to the Webpack configuration 
+in `create-react-app`.  You may add or subtract to it to configure it exactly as needed.
+
+## Installation
+
+[`@berun/runner-fuse-box`](https://www.npmjs.com/package/@berun/runner-fuse-box) is a common runner that is automatically
+included by BeRun presets such as [`@berun/preset-fuse-box-react`](https://www.npmjs.com/package/@berun/preset-fuse-box-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-fuse-box
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-fuse-box']
+}
+```
+
+## Example usage
+
+```js
+  berun.fusebox
+      .bundle('vendor')
+      .instructions(`~ ${appIndexJs}`)
+      .end()
+      .bundle('app')
+      .instructions(`!> [${appIndexJs}]`)
+      .end()
+```

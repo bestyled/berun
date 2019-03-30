@@ -1,0 +1,34 @@
+# Babel
+
+> **Use next generation JavaScript, today**
+
+This runner creates the Babel configuration that, unmodified, is identical to that in `create-react-app`.  You may
+add or subtract to it to configure it exactly as needed.
+
+## Installation
+
+[`@berun/runner-babel`](https://www.npmjs.com/package/@berun/runner-babel) is a common runner that is automatically
+included by BeRun presets such as [`@berun/preset-react`](https://www.npmjs.com/package/@berun/preset-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-babel
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-babel']
+}
+```
+
+## Example usage
+
+```js
+expect(berun.babel.toConfig()).toEqual({
+    babelrc: false,
+    presets: ['@berun/babel-preset-react-app'],
+    highlightCode: true,
+    compact: false
+  })
+```

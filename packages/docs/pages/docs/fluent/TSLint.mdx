@@ -1,0 +1,152 @@
+# Configuring TSLint
+
+> **An extensible linter for the TypeScript language**
+
+The [`@berun/fluent-tslint`](https://www.npmjs.com/package/@berun/fluent-tslint) package provides a high level fluent interface for configuring and using [`TSLint`](https://tslint.org).
+
+## Installation
+
+[`@berun/fluent-tslint`](https://www.npmjs.com/package/@berun/fluent-tslint) is a utility interface that is automatically
+included  by commonly configured BeRun runners such as [`@berun/runner-tslint`](https://www.npmjs.com/package/@berun/runner-tslint).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-tslint
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-tslint',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const tslint = require('@berun/fluent-tslint');
+
+function(berun) {
+    berun.use(tslint);
+}
+```
+
+## Create a new configuration object
+
+```js
+// Require the @berun/fluent-tslint module. 
+const tslint = require('@berun/fluent-tslint');
+
+// Instantiate the configuration with a new API on the berun object
+berun.use(tslint);
+```
+
+## TSLint shorthand methods
+
+```js
+berun.tslint
+  .defaultSeverity(severity)
+  .linterOptions(options)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.tslint` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[tslint docs](https://tslint.org/docs/user-guide/configuring).
+
+### TSLint extends
+
+```js
+// Backed at berun.tslint.extends
+berun.tslint.extends : FluentSet
+
+// Example
+berun.tslint.extends
+    .add('tslint:recommended')
+    .end()
+```
+
+### TSLint rulesDirectory
+
+```js
+// Backed at berun.tslint.rulesDirectory
+berun.tslint.rulesDirectory : FluentSet
+
+// Example
+berun.tslint.rulesDirectory
+    .add('path/to/custom/rules/directory/')
+    .add('another/path/')
+    .end()
+```
+
+### TSLint rules
+
+```js
+// Backed at berun.tslint.rules
+berun.tslint.rules : FluentMap
+
+// Example
+berun.tslint.rules
+    .set('max-line-length', { options: [120] })
+    .set('new-parens', true)
+    .end()
+```
+
+
+### TSLint jsRules
+
+```js
+// Backed at berun.tslint.jsRules
+berun.tslint.jsRules : FluentMap
+
+```
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add rulesDirectory path during production
+config
+  .when(process.env.NODE_ENV === 'production', berun => {
+    berun.rulesDirectory
+      .add('/another/path')
+      .end()
+  });
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated TSLint config using `berun.tslint.toConfig()`. 
+
+``` js
+expect(berun.tslint.toConfig()).toEqual({
+     extends: ['tslint:recommended'],
+    rulesDirectory: ['path/to/custom/rules/directory/', 'another/path/'],
+    rules: {
+      'max-line-length': {
+        options: [120]
+      },
+      'new-parens': true
+    }
+  })
+```

@@ -1,0 +1,281 @@
+# Runners
+
+Runners are the core building block of BeRun, otherwise known as runners or presets.
+
+A runner typically manages one build tool or one build task, provides default presets for all required options,
+and does it well.  One runner may be composed of multiple other runners.   
+
+## Formats
+
+BeRun runners can be specified in several different formats depending on the complexity and level of
+customization needed. The BeRun API and CLI operate on the concept that they are provided a collection of runners.
+Specifically:
+
+```js
+// The BeRun API can use many runners when it is initiated()
+const berun = require('@berun/berun')([/* array of runners */])
+
+// When no runners has been specified to run, it defaults
+// to an array only containing the local ./config/berun.config.js file
+
+// Additional runners can be added with the 'use' command
+berun.use(runner, options)
+```
+
+Each item in these collections can be provided in a number of different formats. 
+
+The string and array formats are generally used from within the more powerful object and function formats.
+
+### String format
+
+Providing a string as a runners item denotes it as being a require-able module. BeRun will attempt to require
+this string and then try to use its exports as another runners format. For example, using the string
+"@berun/preset-react" will be required by BeRun, and then be re-processed through BeRun using its exports as a
+different runners type, depending on what that preset exported.
+
+Using the string format is most commonly used to depend on other runners. Referencing a string does not enable
+access to the BeRun API, and options can only be passed to the string runners if using the BeRun API's `use`
+method.
+
+```js
+// String format exported from other runners
+// not very useful, but possible
+module.exports = '@berun/preset-react';
+```
+
+```js
+// String format being used within an object-format ./config/berun.config.js
+module.exports = {
+  use: ['@berun/preset-react']
+};
+```
+
+```js
+// String format being used within function format
+module.exports = berun => {
+  berun.use('@berun/preset-react');
+  berun.use('@berun/preset-react', {
+    devServer: { port: 3000 }
+  });
+};
+```
+
+### Array format
+
+Providing an array as a runners item denotes it as being a pair of runners format and options, i.e.
+`[runners, options]`. The first item in the pair can be any other runners format, although it is typically
+specified as a string to require, and options to be passed to the required runners.
+
+Using the array format is most commonly used to depend on other runners while being able to supply options to the
+required runners. Referencing an array does not enable access to the BeRun API.
+
+```js
+// Array format exported from other runners
+// still not very useful, but possible
+module.exports = ['@berun/preset-react', { devServer: { port: 3000 } }];
+```
+
+```js
+// Array format being used within an object-format ./config/berun.config.js
+module.exports = {
+  use: [
+    ['@berun/preset-react', {
+      devServer: { port: 3000 }
+    }]
+  ]
+};
+```
+
+```js
+// Array format being used within function format
+module.exports = berun => {
+  berun.use(['@berun/preset-react']);
+  berun.use(['@berun/preset-react', {
+    devServer: { port: 3000 }
+  }]);
+};
+```
+
+### Object format
+
+Providing an object as a runners item denotes it as being a more complex runners structure capable of
+overriding configuration and options. The object format is the recommended format when creating `./config/berun.config.js` files
+as it provides a good balance between easily setting options and using other runners. The object format can be
+structured as follows:
+
+```js
+module.exports = {
+  // specify options to override in the BeRun API
+  options: {
+    // for example, change the output directory to dist
+    output: 'dist',
+    // or set the default development port to 3000
+    port: 3000
+  },
+  
+  // Specify environment-specific changes. This is a key-value
+  // mapping of environment variable names to their matching values
+  // during which to override. The matching environment value can
+  // be any runners format
+  env: {
+    NODE_ENV: {
+      // Require style-minify runners during production
+      production: '@berun/style-minify',
+      
+      // Use dev-server during development
+      development: ['@berun/dev-server', { port: 3000 }],
+      
+      // Use Jest during test-only
+      test: {
+        use: ['@berun/jest']
+      }
+    },
+    
+    CSS_MODULES: {
+      // Turn on CSS modules when the environment variable CSS_MODULES=enable
+      enable: (berun) => {
+        berun.webpack.module
+          .rule('style')
+            .use('css')
+              .options({ modules: true });
+      }
+    }
+  },
+  
+  // The "use" array defines another set of runners for BeRun to use.
+  // Just like the CLI and API start with a collection of runners to use,
+  // providing a "use" array specifies another list of runners formats to work with
+  use: [
+    // string format
+    '@berun/airbnb-base',
+    
+    // array format
+    ['@berun/preset-react', html: { title: 'Epic React App' } }],
+    
+    // function format
+    (berun) => {
+      // Make whatever configuration overrides needed
+    }
+  ]
+}
+```
+
+Hopefully it is clear that the object format is quite powerful, and although it doesn't give you direct access to the
+BeRun API, providing a function format **within does** give you API access.
+
+### Function format
+
+The most powerful runners format. Using a function as runners gives direct access to the BeRun API, configuration,
+options, and events for modification, as well as being able to accept options for driving the behavior of the runners.
+
+```js
+function runners(berun, options) {}
+```
+
+A runners function can optionally accept an `options` argument which will be fed back into
+the runners function when used. The options argument can be whatever value you accept.
+
+If you're familiar with runners from the Express/connect world, this works similarly. When using Express runners,
+you provide a function to Express which receives arguments to modify a request or response along its lifecycle. There
+can be a number of runners functions that Express can load, each one potentially modifying a request or response in
+succession. BeRun will execute runners functions similarly, where each function successively interacts with BeRun along
+the lifecycle.
+
+To use a concrete example, let's create runners that adds an environment plugin:
+
+```js
+const { EnvironmentPlugin } = require('webpack');
+
+module.exports = (berun, additionalVars = []) => {
+  berun.webpack
+    .plugin('env')
+    .use(EnvironmentPlugin, ['NODE_ENV', ...additionalVars]);
+};
+
+// When this runners gets used, options can be passed to it
+// depending on the format:
+
+module.exports = {
+  use: [
+    'your-env-runners',
+    
+    ['your-env-runners', ['CSS_MODULES']],
+    
+    (berun) => berun.use('your-env-runners', ['CSS_MODULES'])
+  ]
+};
+```
+
+## Loading runners
+
+Additional runners can also be loaded from another runner's function. This makes their composition simpler for
+consumers.
+
+```js
+// @berun/env
+const { EnvironmentPlugin } = require('webpack');
+
+module.exports = (berun, additionalVars = []) => berun.webpack
+  .plugin('env')
+  .use(EnvironmentPlugin, ['NODE_ENV', ...additionalVars]);
+```
+
+```js
+// mdx runner 
+const mdx = require('@berun/runner-mdx');
+
+module.exports = berun => {
+  berun.use(mdx);
+  berun.use(/* next runners */);
+  berun.use(/* next runners */)
+};
+```
+
+## Configuring
+
+If your runners requires configuration _outside_ of the options necessary for _running_ the runners,
+use a closure technique for simplifying this for your runners consumers. In short, your module will provide a
+function to consumers which, when executed, will return a BeRun runners function. Describing this in code:
+
+```js
+module.exports = function wrapper(...args) {
+  return function runners(berun, options) {
+    // do something with berun, options, and args
+  };
+};
+```
+
+Let's create a contrived example using our `env` runners. Let's use a closure to let the consumer provide an
+alternate plugin name when creating the runners:
+
+```js
+// @berun/env
+const { EnvironmentPlugin } = require('webpack');
+
+module.exports = (pluginName = 'env') => (berun, additionalVars = []) => {
+    berun.webpack
+      .plugin(pluginName)
+      .use(EnvironmentPlugin, ['NODE_ENV', ...additionalVars]);
+};
+```
+
+```js
+// react preset (which is also runners)
+const env = require('@berun/env');
+
+module.exports = berun => {
+  berun.use(env('ENV-PLUGIN'), ['SECRET_KEY']);
+};
+```
+
+## Distributing
+
+If you would like your runners to be used by others, feel free to publish and distribute! By putting your runners
+on npm, GitHub, or another location, you can share the hard work put into abstracting away BeRun and webpack
+interactions and save everyone in the community time and effort. As long as the BeRun API, other runners, or
+presets can require your runners, it puts no restrictions on where you want to host it.
+
+## Core runners
+
+BeRun maintains a number of core runners packages which aid in creating the various preset packages we also
+distribute. Continue onward for documentation on these various runners packages.

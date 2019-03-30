@@ -1,0 +1,50 @@
+---
+name: Docs
+---
+
+# Docs Starter Template
+
+Templates are boilerplate starter projects that contain all of the essential elements 
+that are required to start building applications and component libraries.
+
+This allows you to set up a modern static website by running one command.
+
+The @berun Docs starter template includes
+
+* @BeStatic static site generator framework, based on React with hot reloading and no Javascript
+* React (latest version)
+* Webpack 4
+* Babel 7
+* Jest
+* ESLint and Prettier
+* All the appropriate optimizations and configurations from `create-react-app` but applied to static website generation.
+
+It's a bit like `Gatsby`, `react-static`, `next.js` but with one line installation, hot-reloading, no bloated 
+Javascript included at runtime, and even the ability to run directly alongside any other React application without
+version conflicts of build tools such as webpack (as it uses the exact same build pipeline)
+
+### Install
+ 
+```bash
+$ yarn create berun myapp @berun/template-docs
+```
+
+### View documentation with hot reloading
+
+```bash
+$ cd myapp
+$ yarn start
+```
+
+### Publish (to `/build` directory)
+
+```bash
+$ cd myapp
+$ yarn build
+```
+
+
+## configurations
+
+See the `./config/berun.config.js` and `./config/bestatic.config.js` for configuration of the build pipeline
+and static site generator respectively.

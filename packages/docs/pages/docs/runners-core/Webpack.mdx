@@ -1,0 +1,35 @@
+
+# Webpack
+
+> **A bundler for javascript and friends**
+
+The [`@berun/runner-webpack`](https://www.npmjs.com/package/@berun/runner-webpack) package provides a high level fluent interface for configuring and using [`Webpack`](https://webpack.js.org/).
+
+## Installation
+
+[`@berun/runner-webpack`](https://www.npmjs.com/package/@berun/runner-webpack) is a common runner that is automatically
+included by BeRun presets such as [`@berun/preset-react`](https://www.npmjs.com/package/@berun/preset-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-webpack
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-webpack']
+}
+```
+
+## Example usage
+
+```js
+  berun.webpack
+    .entry('main')
+    .when(!ISPRODUCTION, entry =>
+      entry.add(require.resolve('react-dev-utils/webpackHotDevClient'))
+    )
+    .add(berun.options.paths.appIndexJs)
+    .end()
+```

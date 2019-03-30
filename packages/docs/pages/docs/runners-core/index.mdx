@@ -1,0 +1,24 @@
+---
+name: Runners (core)
+---
+
+# Runners
+
+Runners are the core building block of BeRun, otherwise known as middleware or presets.
+
+A runner typically manages one build tool or one build task, and does it well.  One runner 
+may be composed of multiple other runners.   
+
+Each runner will include the necessary `@berun/fluent` api for its toolset, so if for example you
+include `@berun/runner-babel` there is no need to include `@berun/fluent-babel` as well.
+
+## Official Core Runners 
+
+* Babel
+* ESLint
+* Fuse-Box
+* Prettier
+* TSLint
+* Webpack
+
+Many other runners may be provided by the community or added to this list over time.

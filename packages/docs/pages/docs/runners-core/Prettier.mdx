@@ -1,0 +1,29 @@
+# Prettier 
+
+> **An Opinionated Code Formatter**
+
+This runner creates the Prettier configuration and corresponding Webpack rule that, unmodified, is identical 
+to that in `create-react-app`.  You may add or subtract to it to configure it exactly as needed.
+
+## Installation
+
+[`@berun/runner-prettier`](https://www.npmjs.com/package/@berun/runner-prettier) is a common runner that is automatically
+included  by BeRun starter templates such as [`@berun/template-react`](https://www.npmjs.com/package/@berun/template-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-prettier
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-prettier']
+}
+```
+
+## Example usage
+
+```js
+  berun.prettier.ignorePath('.gitignore')
+```

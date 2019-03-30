@@ -1,0 +1,1044 @@
+# Configuring Webpack
+
+> **A bundler for javascript and friends**
+
+The [`@berun/fluent-webpack`](https://www.npmjs.com/package/@berun/fluent-webpack) package provides a high level fluent interface for configuring and using [`Webpack`](https://webpack.js.org/).
+
+## Installation
+
+[`@berun/fluent-webpack`](https://www.npmjs.com/package/@berun/fluent-webpack) is a utility interface that is automatically
+included by common BeRun presets such as [`@berun/preset-react`](https://www.npmjs.com/package/@berun/preset-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/fluent-webpack
+```
+
+### 1. Embed within `berun.config.js`
+
+```js
+// berun.config.js
+
+module.exports = {
+  use: [
+     // ...
+    '@berun/fluent-webpack',
+    // ...
+  ]
+}
+```
+
+### *or* 2. Use from within other BeRun middleware
+
+```js
+const webpack = require('@berun/fluent-webpack');
+
+function(berun) {
+    berun.use(webpack);
+}
+```
+
+## Webpack shorthand methods
+
+```js
+berun.webpack
+  .amd(amd)
+  .bail(bail)
+  .cache(cache)
+  .devtool(devtool)
+  .context(context)
+  .externals(externals)
+  .loader(loader)
+  .mode(mode)
+  .parallelism(parallelism)
+  .profile(profile)
+  .recordsPath(recordsPath)
+  .recordsInputPath(recordsInputPath)
+  .recordsOutputPath(recordsOutputPath)
+  .stats(stats)
+  .target(target)
+  .watch(watch)
+  .watchOptions(watchOptions)
+```
+
+Moving to deeper points in the API will change the context of what you
+are modifying. You can move back to the higher context by either referencing
+the top-level `berun.webpack` again, or by calling `.end()` to move up one level.
+All API calls will return the API instance at the current context unless otherwise
+specified. This is so you may chain API calls continuously 
+if desired (['fluent interface'](https://en.wikipedia.org/wiki/Fluent_interface))
+
+For details on the specific values that are valid for all shorthand and
+low-level methods, please refer to their corresponding name in the
+[webpack docs hierarchy](https://webpack.js.org/configuration/).
+
+### Webpack entryPoints
+
+```js
+// Backed at berun.webpack.entryPoints : FluentMap
+berun.webpack.entry(name) : FluentSet
+
+config
+  .entry(name)
+    .add(value)
+    .add(value)
+
+config
+  .entry(name)
+    .clear()
+
+// Using low-level berun.webpack.entryPoints:
+
+berun.webpack.entryPoints
+  .get(name)
+    .add(value)
+    .add(value)
+
+berun.webpack.entryPoints
+  .get(name)
+    .clear()
+```
+
+### Webpack output: shorthand methods
+
+```js
+berun.webpack.output : FluentMap
+
+berun.webpack.output
+  .auxiliaryComment(auxiliaryComment)
+  .chunkFilename(chunkFilename)
+  .chunkLoadTimeout(chunkLoadTimeout)
+  .crossOriginLoading(crossOriginLoading)
+  .devtoolFallbackModuleFilenameTemplate(devtoolFallbackModuleFilenameTemplate)
+  .devtoolLineToLine(devtoolLineToLine)
+  .devtoolModuleFilenameTemplate(devtoolModuleFilenameTemplate)
+  .filename(filename)
+  .hashFunction(hashFunction)
+  .hashDigest(hashDigest)
+  .hashDigestLength(hashDigestLength)
+  .hashSalt(hashSalt)
+  .hotUpdateChunkFilename(hotUpdateChunkFilename)
+  .hotUpdateFunction(hotUpdateFunction)
+  .hotUpdateMainFilename(hotUpdateMainFilename)
+  .jsonpFunction(jsonpFunction)
+  .library(library)
+  .libraryExport(libraryExport)
+  .libraryTarget(libraryTarget)
+  .path(path)
+  .pathinfo(pathinfo)
+  .publicPath(publicPath)
+  .sourceMapFilename(sourceMapFilename)
+  .sourcePrefix(sourcePrefix)
+  .strictModuleExceptionHandling(strictModuleExceptionHandling)
+  .umdNamedDefine(umdNamedDefine)
+```
+
+### Webpack resolve: shorthand methods
+
+```js
+berun.webpack.resolve : FluentMap
+
+berun.webpack.resolve
+  .cachePredicate(cachePredicate)
+  .cacheWithContext(cacheWithContext)
+  .enforceExtension(enforceExtension)
+  .enforceModuleExtension(enforceModuleExtension)
+  .unsafeCache(unsafeCache)
+  .symlinks(symlinks)
+```
+
+### Webpack resolve alias
+
+```js
+berun.webpack.resolve.alias : FluentMap
+
+berun.webpack.resolve.alias
+  .set(key, value)
+  .set(key, value)
+  .delete(key)
+  .clear()
+```
+
+### Webpack resolve modules
+
+```js
+berun.webpack.resolve.modules : FluentSet
+
+berun.webpack.resolve.modules
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack resolve aliasFields
+
+```js
+berun.webpack.resolve.aliasFields : FluentSet
+
+berun.webpack.resolve.aliasFields
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack resolve descriptionFields
+
+```js
+berun.webpack.resolve.descriptionFields : FluentSet
+
+berun.webpack.resolve.descriptionFields
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack resolve extensions
+
+```js
+berun.webpack.resolve.extensions : FluentSet
+
+berun.webpack.resolve.extensions
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack resolve mainFields
+
+```js
+berun.webpack.resolve.mainFields : FluentSet
+
+berun.webpack.resolve.mainFields
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack resolve mainFiles
+
+```js
+berun.webpack.resolve.mainFiles : FluentSet
+
+berun.webpack.resolve.mainFiles
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack resolveLoader
+
+The API for `berun.webpack.resolveLoader` is identical to `berun.webpack.resolve` with
+the following additions:
+
+### Webpack resolveLoader moduleExtensions
+
+```js
+berun.webpack.resolveLoader.moduleExtensions : FluentSet
+
+berun.webpack.resolveLoader.moduleExtensions
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack resolveLoader packageMains
+
+```js
+berun.webpack.resolveLoader.packageMains : FluentSet
+
+berun.webpack.resolveLoader.packageMains
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack performance: shorthand methods
+
+```js
+berun.webpack.performance : FluentMap
+
+berun.webpack.performance
+  .hints(hints)
+  .maxEntrypointSize(maxEntrypointSize)
+  .maxAssetSize(maxAssetSize)
+  .assetFilter(assetFilter)
+```
+
+### Webpackuring optimizations: shorthand methods
+
+```js
+berun.webpack.optimization : FluentMap
+
+berun.webpack.optimization
+  .concatenateModules(concatenateModules)
+  .flagIncludedChunks(flagIncludedChunks)
+  .mergeDuplicateChunks(mergeDuplicateChunks)
+  .minimize(minimize)
+  .namedChunks(namedChunks)
+  .namedModules(namedModules)
+  .nodeEnv(nodeEnv)
+  .noEmitOnErrors(noEmitOnErrors)
+  .occurrenceOrder(occurrenceOrder)
+  .portableRecords(portableRecords)
+  .providedExports(providedExports)
+  .removeAvailableModules(removeAvailableModules)
+  .removeEmptyChunks(removeEmptyChunks)
+  .runtimeChunk(runtimeChunk)
+  .sideEffects(sideEffects)
+  .splitChunks(splitChunks)
+  .usedExports(usedExports)
+```
+
+### Webpack optimization minimizers
+
+```js
+// Backed at berun.webpack.optimization.minimizers
+berun.webpack.optimization
+  .minimizer(name) : FluentMap
+```
+
+### Webpack optimization minimizers: adding
+
+_NOTE: Do not use `new` to create the minimizer plugin, as this will be done for you._
+
+```js
+berun.webpack.optimization
+  .minimizer(name)
+  .use(WebpackPlugin, args)
+
+// Examples
+
+berun.webpack.optimization
+  .minimizer('css')
+  .use(OptimizeCSSAssetsPlugin, [{ cssProcessorOptions: { safe: true } }])
+
+// Minimizer plugins can also be specified by their path, allowing the expensive require()s to be
+// skipped in cases where the plugin or webpack configuration won't end up being used.
+berun.webpack.optimization
+  .minimizer('css')
+  .use(require.resolve('optimize-css-assets-webpack-plugin'), [{ cssProcessorOptions: { safe: true } }])
+
+```
+
+### Webpack optimization minimizers: modify arguments
+
+```js
+berun.webpack.optimization
+  .minimizer(name)
+  .tap(args => newArgs)
+
+// Example
+config
+  .minimizer('css')
+  .tap(args => [...args, { cssProcessorOptions: { safe: false } }])
+```
+
+### Webpack optimization minimizers: modify instantiation
+
+```js
+berun.webpack.optimization
+  .minimizer(name)
+  .init((Plugin, args) => new Plugin(...args));
+```
+
+### Webpack optimization minimizers: removing
+
+```js
+berun.webpack.optimization.minimizers.delete(name)
+```
+
+### Webpack plugins
+
+```js
+// Backed at berun.webpack.plugins
+berun.webpack.plugin(name) : FluentMap
+```
+
+### Webpack plugins: adding
+
+_NOTE: Do not use `new` to create the plugin, as this will be done for you._
+
+```js
+config
+  .plugin(name)
+  .use(WebpackPlugin, args)
+
+// Examples
+
+config
+  .plugin('hot')
+  .use(webpack.HotModuleReplacementPlugin);
+
+// Plugins can also be specified by their path, allowing the expensive require()s to be
+// skipped in cases where the plugin or webpack configuration won't end up being used.
+config
+  .plugin('env')
+  .use(require.resolve('webpack/lib/EnvironmentPlugin'), [{ 'VAR': false }]);
+```
+
+### Webpack plugins: modify arguments
+
+```js
+config
+  .plugin(name)
+  .tap(args => newArgs)
+
+// Example
+config
+  .plugin('env')
+  .tap(args => [...args, 'SECRET_KEY']);
+```
+
+### Webpack plugins: modify instantiation
+
+```js
+config
+  .plugin(name)
+  .init((Plugin, args) => new Plugin(...args));
+```
+
+### Webpack plugins: removing
+
+```js
+berun.webpack.plugins.delete(name)
+```
+
+### Webpack plugins: ordering before
+
+Specify that the current `plugin` context should operate before another named
+`plugin`. You cannot use both `.before()` and `.after()` on the same plugin.
+
+```js
+config
+  .plugin(name)
+    .before(otherName)
+
+// Example
+
+config
+  .plugin('html-template')
+    .use(HtmlWebpackTemplate)
+    .end()
+  .plugin('script-ext')
+    .use(ScriptExtWebpackPlugin)
+    .before('html-template');
+```
+
+### Webpack plugins: ordering after
+
+Specify that the current `plugin` context should operate after another named
+`plugin`. You cannot use both `.before()` and `.after()` on the same plugin.
+
+```js
+config
+  .plugin(name)
+    .after(otherName)
+
+// Example
+
+config
+  .plugin('html-template')
+    .after('script-ext')
+    .use(HtmlWebpackTemplate)
+    .end()
+  .plugin('script-ext')
+    .use(ScriptExtWebpackPlugin);
+```
+
+### Webpack resolve plugins
+
+```js
+// Backed at berun.webpack.resolve.plugins
+berun.webpack.resolve.plugin(name) : FluentMap
+```
+
+### Webpack resolve plugins: adding
+
+_NOTE: Do not use `new` to create the plugin, as this will be done for you._
+
+```js
+berun.webpack.resolve
+  .plugin(name)
+  .use(WebpackPlugin, args)
+```
+
+### Webpack resolve plugins: modify arguments
+
+```js
+berun.webpack.resolve
+  .plugin(name)
+  .tap(args => newArgs)
+```
+
+### Webpack resolve plugins: modify instantiation
+
+```js
+berun.webpack.resolve
+  .plugin(name)
+  .init((Plugin, args) => new Plugin(...args))
+```
+
+### Webpack resolve plugins: removing
+
+```js
+berun.webpack.resolve.plugins.delete(name)
+```
+
+### Webpack resolve plugins: ordering before
+
+Specify that the current `plugin` context should operate before another named
+`plugin`. You cannot use both `.before()` and `.after()` on the same resolve
+plugin.
+
+```js
+berun.webpack.resolve
+  .plugin(name)
+    .before(otherName)
+
+// Example
+
+berun.webpack.resolve
+  .plugin('beta')
+    .use(BetaWebpackPlugin)
+    .end()
+  .plugin('alpha')
+    .use(AlphaWebpackPlugin)
+    .before('beta');
+```
+
+### Webpack resolve plugins: ordering after
+
+Specify that the current `plugin` context should operate after another named
+`plugin`. You cannot use both `.before()` and `.after()` on the same resolve
+plugin.
+
+```js
+berun.webpack.resolve
+  .plugin(name)
+    .after(otherName)
+
+// Example
+
+berun.webpack.resolve
+  .plugin('beta')
+    .after('alpha')
+    .use(BetaWebpackTemplate)
+    .end()
+  .plugin('alpha')
+    .use(AlphaWebpackPlugin);
+```
+
+### Webpack node
+
+```js
+berun.webpack.node : FluentMap
+
+berun.webpack.node
+  .set('__dirname', 'mock')
+  .set('__filename', 'mock');
+```
+
+### Webpack devServer
+
+```js
+berun.webpack.devServer : FluentMap
+```
+
+### Webpack devServer allowedHosts
+
+```js
+berun.webpack.devServer.allowedHosts : FluentSet
+
+berun.webpack.devServer.allowedHosts
+  .add(value)
+  .prepend(value)
+  .clear()
+```
+
+### Webpack devServer: shorthand methods
+
+```js
+berun.webpack.devServer
+  .bonjour(bonjour)
+  .clientLogLevel(clientLogLevel)
+  .color(color)
+  .compress(compress)
+  .contentBase(contentBase)
+  .disableHostCheck(disableHostCheck)
+  .filename(filename)
+  .headers(headers)
+  .historyApiFallback(historyApiFallback)
+  .host(host)
+  .hot(hot)
+  .hotOnly(hotOnly)
+  .https(https)
+  .inline(inline)
+  .info(info)
+  .lazy(lazy)
+  .noInfo(noInfo)
+  .open(open)
+  .openPage(openPage)
+  .overlay(overlay)
+  .pfx(pfx)
+  .pfxPassphrase(pfsPassphrase)
+  .port(port)
+  .progress(progress)
+  .proxy(proxy)
+  .public(public)
+  .publicPath(publicPath)
+  .quiet(quiet)
+  .setup(setup)
+  .socket(socket)
+  .staticOptions(staticOptions)
+  .stats(stats)
+  .stdin(stdin)
+  .useLocalIp(useLocalIp)
+  .watchContentBase(watchContentBase)
+  .watchOptions(watchOptions)
+```
+
+### Webpack module
+
+```js
+berun.webpack.module : FluentMap
+```
+
+### Webpack module: shorthand methods
+
+```js
+berun.webpack.module : FluentMap
+
+berun.webpack.module
+  .noParse(noParse)
+```
+
+### Webpack module rules: shorthand methods
+
+```js
+berun.webpack.module.rules : FluentMap
+
+berun.webpack.module
+  .rule(name)
+    .test(test)
+    .pre()
+    .post()
+    .enforce(preOrPost)
+```
+
+### Webpack module rules uses (loaders): creating
+
+```js
+berun.webpack.module.rules{}.uses : FluentMap
+
+berun.webpack.module
+  .rule(name)
+    .use(name)
+      .loader(loader)
+      .options(options)
+
+// Example
+
+berun.webpack.module
+  .rule('compile')
+    .use('babel')
+      .loader('babel-loader')
+      .options({ presets: ['@babel/preset-env'] });
+```
+
+### Webpack module rules uses (loaders): modifying options
+
+```js
+berun.webpack.module
+  .rule(name)
+    .use(name)
+      .tap(options => newOptions)
+
+// Example
+
+berun.webpack.module
+  .rule('compile')
+    .use('babel')
+      .tap(options => merge(options, {
+        plugins: ['@babel/plugin-proposal-class-properties']
+      }));
+```
+
+### Webpack module rules oneOfs (conditional rules):
+
+```js
+berun.webpack.module.rules{}.oneOfs : FluentMap<Rule>
+
+berun.webpack.module
+  .rule(name)
+    .oneOf(name)
+
+// Example
+
+berun.webpack.module
+  .rule('css')
+    .oneOf('inline')
+      .resourceQuery(/inline/)
+      .use('url')
+        .loader('url-loader')
+        .end()
+      .end()
+    .oneOf('external')
+      .resourceQuery(/external/)
+      .use('file')
+        .loader('file-loader')
+```
+
+---
+
+## Merging Config
+
+webpack-chain supports merging in an object to the configuration instance which
+matches a layout similar to how the webpack-chain schema is laid out. Note that
+this is not a webpack configuration object, but you may transform a webpack
+configuration object before providing it to webpack-chain to match its layout.
+
+```js
+berun.webpack.merge({ devtool: 'source-map' });
+
+berun.webpack.get('devtool') // "source-map"
+```
+
+```js
+berun.webpack.merge({
+  [key]: value,
+
+  amd,
+  bail,
+  cache,
+  context,
+  devtool,
+  externals,
+  loader,
+  mode,
+  parallelism,
+  profile,
+  recordsPath,
+  recordsInputPath,
+  recordsOutputPath,
+  stats,
+  target,
+  watch,
+  watchOptions,
+
+  entry: {
+    [name]: [...values]
+  },
+
+  plugin: {
+    [name]: {
+      plugin: WebpackPlugin,
+      args: [...args],
+      before,
+      after
+    }
+  },
+
+  devServer: {
+    [key]: value,
+
+    clientLogLevel,
+    compress,
+    contentBase,
+    filename,
+    headers,
+    historyApiFallback,
+    host,
+    hot,
+    hotOnly,
+    https,
+    inline,
+    lazy,
+    noInfo,
+    overlay,
+    port,
+    proxy,
+    quiet,
+    setup,
+    stats,
+    watchContentBase
+  },
+
+  node: {
+    [key]: value
+  },
+
+  optimizations: {
+    concatenateModules,
+    flagIncludedChunks,
+    mergeDuplicateChunks,
+    minimize,
+    minimizer,
+    namedChunks,
+    namedModules,
+    nodeEnv,
+    noEmitOnErrors,
+    occurrenceOrder,
+    portableRecords,
+    providedExports,
+    removeAvailableModules,
+    removeEmptyChunks,
+    runtimeChunk,
+    sideEffects,
+    splitChunks,
+    usedExports,
+  },
+
+  performance: {
+    [key]: value,
+
+    hints,
+    maxEntrypointSize,
+    maxAssetSize,
+    assetFilter
+  },
+
+  resolve: {
+    [key]: value,
+
+    alias: {
+      [key]: value
+    },
+    aliasFields: [...values],
+    descriptionFields: [...values],
+    extensions: [...values],
+    mainFields: [...values],
+    mainFiles: [...values],
+    modules: [...values],
+
+    plugin: {
+      [name]: {
+        plugin: WebpackPlugin,
+        args: [...args],
+        before,
+        after
+      }
+    }
+  },
+
+  resolveLoader: {
+    [key]: value,
+
+    alias: {
+      [key]: value
+    },
+    aliasFields: [...values],
+    descriptionFields: [...values],
+    extensions: [...values],
+    mainFields: [...values],
+    mainFiles: [...values],
+    modules: [...values],
+    moduleExtensions: [...values],
+    packageMains: [...values],
+
+    plugin: {
+      [name]: {
+        plugin: WebpackPlugin,
+        args: [...args],
+        before,
+        after
+      }
+    }
+  },
+
+  module: {
+    [key]: value,
+
+    rule: {
+      [name]: {
+        [key]: value,
+
+        enforce,
+        issuer,
+        parser,
+        resource,
+        resourceQuery,
+        test,
+
+        include: [...paths],
+        exclude: [...paths],
+
+        oneOf: {
+          [name]: Rule
+        },
+
+        use: {
+          [name]: {
+            loader: LoaderString,
+            options: LoaderOptions,
+            before,
+            after
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+## Conditional configuration
+
+When working with instances of `FluentMap` and `FluentSet`, you can perform
+conditional configuration using `when`. You must specify an expression to
+`when()` which will be evaluated for truthiness or falsiness. If the expression
+is truthy, the first function argument will be invoked with an instance of the
+current chained instance. You can optionally provide a second function to be
+invoked when the condition is falsy, which is also given the current chained
+instance.
+
+```js
+// Example: Only add minify plugin during production
+config
+  .when(process.env.NODE_ENV === 'production', config => {
+    config
+      .plugin('minify')
+      .use(BabiliWebpackPlugin);
+  });
+```
+
+```js
+// Example: Only add minify plugin during production,
+// otherwise set devtool to source-map
+config
+  .when(process.env.NODE_ENV === 'production',
+    config => berun.webpack.plugin('minify').use(BabiliWebpackPlugin),
+    config => berun.webpack.devtool('source-map')
+  );
+```
+
+## Inspecting generated configuration
+
+You can inspect the generated webpack config using `berun.webpack.toString()`. This
+will generate a stringified version of the config with comment hints for named
+rules, uses and plugins:
+
+``` js
+config
+  .module
+    .rule('compile')
+      .test(/\.js$/)
+      .use('babel')
+        .loader('babel-loader');
+
+berun.webpack.toString();
+
+/*
+{
+  module: {
+    rules: [
+      /* berun.webpack.module.rule('compile') */
+      {
+        test: /\.js$/,
+        use: [
+          /* berun.webpack.module.rule('compile').use('babel') */
+          {
+            loader: 'babel-loader'
+          }
+        ]
+      }
+    ]
+  }
+}
+*/
+```
+
+By default the generated string cannot be used directly as real webpack config
+if it contains functions and plugins that need to be required. In order to
+generate usable config, you can customize how functions and plugins are
+stringified by setting a special `__expression` property on them:
+
+``` js
+class MyPlugin {}
+MyPlugin.__expression = `require('my-plugin')`;
+
+function myFunction () {}
+myFunction.__expression = `require('my-function')`;
+
+config
+  .plugin('example')
+    .use(MyPlugin, [{ fn: myFunction }]);
+
+berun.webpack.toString();
+
+/*
+{
+  plugins: [
+    new (require('my-plugin'))({
+      fn: require('my-function')
+    })
+  ]
+}
+*/
+```
+
+Plugins specified via their path will have their `require()` statement generated
+automatically:
+
+``` js
+config
+  .plugin('env')
+    .use(require.resolve('webpack/lib/ProvidePlugin'), [{ jQuery: 'jquery' }])
+
+berun.webpack.toString();
+
+/*
+{
+  plugins: [
+    new (require('/foo/bar/src/node_modules/webpack/lib/EnvironmentPlugin.js'))(
+      {
+        jQuery: 'jquery'
+      }
+    )
+  ]
+}
+*/
+```
+
+You can also call `toString` as a static method on `Config` in order to
+modify the configuration object prior to stringifying.
+
+```js
+Config.toString({
+  ...berun.webpack.toConfig(),
+  module: {
+    defaultRules: [
+      {
+        use: [
+          {
+            loader: 'banner-loader',
+            options: { prefix: 'banner-prefix.txt' },
+          },
+        ],
+      },
+    ],
+  },
+})
+
+/*
+{
+  plugins: [
+    /* berun.webpack.plugin('foo') */
+    new TestPlugin()
+  ],
+  module: {
+    defaultRules: [
+      {
+        use: [
+          {
+            loader: 'banner-loader',
+            options: {
+              prefix: 'banner-prefix.txt'
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+*/
+```
+

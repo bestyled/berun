@@ -1,0 +1,46 @@
+---
+name: Web Polyfills
+---
+
+# Web Polyfills
+
+> **Support older target Javascript environments**
+
+This runner creates the necessary Webpack/Fuse-box configuration and source code to support Web polyfills, 
+that, unmodified, are identical to those in `create-react-app`.  You may fork and amend this package to 
+adjust the polyfill code included.
+
+Polyfills are not required in the most modern browsers, so we have split out these polyfills into this
+small standalone runner to makes its inclusion optional.   
+
+
+## Included polyfills
+
+* Promises
+* Fetch
+* `Object.assign`
+* `for...of`
+* `...Set`, `...Map`
+* requestAnimationFrame (test environment only)
+
+## Installation
+
+[`@berun/runner-web-polyfills`](https://www.npmjs.com/package/@berun/runner-web-polyfills) is a common runner that is automatically
+included by BeRun presets such as [`@berun/preset-react`](https://www.npmjs.com/package/@berun/preset-react).   If you 
+need to install it directly, follow these directions:
+
+```bash
+$ npm install --save-dev @berun/runner-web-polyfills
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ '@berun/runner-web-polyfills']
+}
+```
+
+## Usage
+
+Once included in the BeRun configuration, no further action is necessary.   Each polyfill will
+automatically be loaded in the web browser environment if unsupported natively by the client's browser.

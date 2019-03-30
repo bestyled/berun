@@ -1,0 +1,62 @@
+{
+  "name": "@berun/runner-tdx",
+  "version": "2.1.5",
+  "description": "BeRun runner for building TDX documentation applications",
+  "main": "src/index.js",
+  "keywords": [
+    "berun",
+    "berun-preset",
+    "react",
+    "mdx",
+    "mdx-js",
+    "tdx",
+    "docs",
+    "web",
+    "hot module replacement",
+    "create react app"
+  ],
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "license": "Apache-2.0",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-tdx",
+  "bugs": "https://github.com/bestyled/berun/issues",
+  "engines": {
+    "node": ">=8.3",
+    "npm": ">=5.4.0",
+    "yarn": ">=1.2.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@berun/fluent-tdx": "^2.1.4",
+    "@berun/fuse-box-plugin-babel": "^3.5.17",
+    "@mapbox/rehype-prism": "^0.3.0",
+    "@tinia/tdx": "^0.3.2",
+    "@tinia/tdx-loader": "^0.3.2",
+    "@tinia/tdx-tag": "^0.3.2",
+    "character-parser": "^3.1.0",
+    "fuse-box-plugin-tdx": "^0.3.3",
+    "prismjs": "^1.16.0",
+    "remark-autolink-headings": "^5.1.0",
+    "remark-emoji": "^2.0.2",
+    "remark-images": "^0.18.0",
+    "remark-slug": "^5.1.1",
+    "remark-unwrap-images": "0.2.0"
+  },
+  "scripts": {
+    "coverage": "berun-dev test --coverage",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch",
+    "lint": "berun-dev lint"
+  },
+  "devDependencies": {
+    "@berun/dev-scripts": "^2.0.21",
+    "@berun/preset-react": "^2.1.4"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+}

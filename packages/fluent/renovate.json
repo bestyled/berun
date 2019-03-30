@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "config:base",
+    ":maintainLockFilesWeekly",
+    ":prNotPending",
+    ":semanticCommitsDisabled",
+    ":unpublishSafe"
+  ],
+  "reviewers": ["bestyled/core-contributors"],
+  "pinVersions": false
+}

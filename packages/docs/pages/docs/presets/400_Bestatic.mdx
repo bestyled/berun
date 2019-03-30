@@ -1,0 +1,47 @@
+---
+name: BeStatic
+---
+
+# BeStatic
+
+> **BeStatic preset for documentation projects**
+
+This preset can be used standalone or with other presets like `@berun/preset-react`.  
+
+## Installation
+
+```bash
+$ npm install --save-dev @berun/preset-bestatic
+```
+
+```js
+// berun.config.js
+module.exports = {
+  use: [ 
+    '@berun/preset-react',
+    '@berun/preset-bestatic'
+    ]
+}
+```
+
+Note: if used standalone, this preset requires and must folow `@berun/runner-react` or `@berun/runner-fuse-box-react`.
+This is because BeStatic is based on Mdx (JSX in Markdown) and requires the React runner to transpile the .mdx files.
+
+## Included build tools
+
+* @berun/runner-mdx (Mdx and Remark / Hast plugin ecosystem)
+* @berun/runner-mdx-frontmatter (Parses front matter in `.md` and `.mdx` files)
+* @berun/runner-static (Two pass execution for Webpack or Fuse-Box to generate static html)
+
+Note: requires Webpack or Fuse-Box (not included, peer dependency)
+
+## Sparky tasks
+
+```bash
+# Run development docs server on localhost:3000
+$ berun-scripts start:static
+
+# Production docs build
+$ berun-scripts build:static
+```
+Note: these two commands are usually included as npm scripts in `package.json`
