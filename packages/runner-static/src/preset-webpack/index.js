@@ -24,7 +24,7 @@ module.exports.presetTemp = async function presetTemp(berun, opts = {}) {
     .libraryTarget('umd')
     .end()
     .target('node')
-    .externals(nodeExternals())
+    .externals(nodeExternals({whitelist: [/^\@bestatic/, /^\@babel\/runtime/ ]}))
     .optimization.delete('splitChunks')
     .delete('runtimeChunk')
     .end()

@@ -27,8 +27,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@berun/runner-mdx": "^2.1.8",
-    "@berun/runner-mdx-frontmatter": "^2.1.8",
+    "@berun/runner-tdx": "^2.1.8",
+    "@berun/runner-tdx-frontmatter": "^2.1.8",
     "@berun/runner-static": "^2.2.7"
   },
   "devDependencies": {

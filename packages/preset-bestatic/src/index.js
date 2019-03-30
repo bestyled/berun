@@ -1,7 +1,7 @@
 module.exports = (berun, options = {}) => {
   berun
-    .use('@berun/runner-mdx')
-    .use('@berun/runner-mdx-frontmatter')
+    .use('@berun/runner-tdx')
+    .use('@berun/runner-tdx-frontmatter')
     .use(require('./preset'))
     .use('@berun/runner-static')
 }
