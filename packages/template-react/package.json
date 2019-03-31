@@ -1,11 +1,11 @@
 {
   "name": "@berun/template-react",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "devDependencies": {
-    "@berun/preset-react": "^2.2.2",
+    "@berun/preset-react": "^2.2.3",
     "@berun/runner-eslint": "^2.2.1",
-    "@berun/runner-prettier": "^2.2.2",
-    "@berun/runner-webpack-css": "^2.2.2",
+    "@berun/runner-prettier": "^2.2.3",
+    "@berun/runner-webpack-css": "^2.2.3",
     "@berun/scripts": "^2.2.1"
   },
   "resolutions": {
