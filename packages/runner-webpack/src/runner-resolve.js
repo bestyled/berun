@@ -13,6 +13,12 @@ class PnpWebpackPluginClass {
   }
 }
 
+class PnpWebpackPluginClassModuleLoader {
+  apply(compiler) {
+    return PnpWebpackPlugin.moduleLoader.apply(compiler, module)
+  }
+}
+
 /**
  * Add resolve webpack configuration including
  * module scope and pnp plugins
@@ -56,5 +62,5 @@ module.exports.presetResolveWebpack = (berun, options) => {
     .plugin('pnp-resolve')
     // Also related to Plug'n'Play, but this time it tells Webpack to load its loaders
     // from the current package.
-    .use(PnpWebpackPlugin.moduleLoader(module))
+    .use(PnpWebpackPluginClassModuleLoader)
 }

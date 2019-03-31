@@ -204,7 +204,31 @@ function promisifyWebpackBuild(berun) {
 
   require('fs').writeFileSync(
     require('path').join(process.cwd(), '.debug.webpack.prod.js'),
-    'module.exports=' +
+
+    `
+    const HtmlWebpackPlugin = require('html-webpack-plugin')
+    const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+    const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
+    const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
+    const PnpWebpackPlugin = require('pnp-webpack-plugin')
+    const TerserPlugin = require('terser-webpack-plugin')
+    const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+    const ManifestPlugin = require('webpack-manifest-plugin')
+    const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+    const {
+      DefinePlugin,
+      IgnorePlugin
+    } = require('webpack')
+    
+    const path = require('path')
+    
+    class PnpWebpackPluginClass {
+      apply(compiler) {
+        return PnpWebpackPlugin.apply(compiler)
+      }
+    }
+    
+    module.exports=` +
       berun.webpack.toString({ configPrefix: 'berun.webpack' })
   )
 

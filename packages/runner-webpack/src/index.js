@@ -70,7 +70,9 @@ module.exports = (berun, options = {}) => {
 
   const _webpackOldToConfig = berun.webpack.toConfig
   berun.webpack.toConfig = () => {
-    berun.babel.set('cacheDirectory', ISPRODUCTION ? false : true)
+    berun.babel.set('cacheDirectory', true)
+    berun.babel.set('cacheCompression', ISPRODUCTION)
+    berun.babel.set('compact', ISPRODUCTION)
 
     var main = berun.webpack.module.rule('main')
 

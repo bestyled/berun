@@ -50,7 +50,7 @@ module.exports.ruleMainCompile = (berun, options) => {
     .rule('main')
     .oneOf('compile')
     .test(/\.(js|jsx|ts|tsx)$/)
-    .include.merge([berun.options.paths.workspace])
+    .include.merge([berun.options.paths.appSrc])
     .end()
     .exclude.add(/[/\\]node_modules[/\\]/)
     .end()
@@ -70,14 +70,18 @@ module.exports.ruleMainExternal = (berun, options) => {
     .rule('main')
     .oneOf('external')
     .test(/\.js$/)
+    .exclude.add(/node_modules/).add(/@babel(?:\/|\\{1,2})runtime/).end()
     .use('babel')
     .loader(require.resolve('babel-loader'))
     .options({
       babelrc: false,
+      configFile: false,
       compact: false,
       presets: [require.resolve('@berun/babel-preset-react-app/dependencies')],
-      cacheDirectory: process.env.NODE_ENV !== 'production',
-      highlightCode: true
+      cacheDirectory: true,
+      cacheCompression: process.env.NODE_ENV == 'production',
+      highlightCode: true,
+      sourceMaps: false
     })
 }
 

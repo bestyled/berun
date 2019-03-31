@@ -15,7 +15,10 @@ module.exports.optimization = (berun, options) => {
  *  Add Development and Production config to berun.webpack.optimization
  */
 module.exports.terser = (berun, options) => {
+ 
   const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
+ 
+  berun.webpack.optimization.minimize(true)
 
   berun.webpack.optimization.minimizer('terser').use(TerserPlugin, [
     {
