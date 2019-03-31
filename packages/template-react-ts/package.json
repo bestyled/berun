@@ -1,16 +1,16 @@
 {
   "name": "@berun/template-react-ts",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@berun/preset-react": "^2.1.8",
-    "@berun/runner-babel": "^2.1.6",
-    "@berun/runner-prettier": "^2.1.8",
-    "@berun/runner-tslint": "^2.1.8",
-    "@berun/runner-webpack-css": "^2.1.8",
-    "@berun/scripts": "^2.1.7",
+    "@berun/preset-react": "^2.2.0",
+    "@berun/runner-babel": "^2.2.0",
+    "@berun/runner-prettier": "^2.2.0",
+    "@berun/runner-tslint": "^2.2.0",
+    "@berun/runner-webpack-css": "^2.2.0",
+    "@berun/scripts": "^2.2.0",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3"

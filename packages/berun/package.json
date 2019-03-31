@@ -1,6 +1,6 @@
 {
   "name": "@berun/berun",
-  "version": "2.1.7",
+  "version": "2.2.0",
   "description": "Create and build JS applications with managed configurations",
   "main": "src/index.js",
   "keywords": [
@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@berun/dev-scripts": "^2.0.24",
-    "@berun/fluent-webpack": "^2.1.7",
-    "@berun/sparky": "^2.0.25",
+    "@berun/fluent-webpack": "^2.2.0",
+    "@berun/sparky": "^2.1.0",
     "cross-spawn": "^6.0.5",
     "deepmerge": "^3.2.0",
     "dotenv": "^7.0.0",

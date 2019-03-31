@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-eslint",
-  "version": "2.1.7",
+  "version": "2.2.0",
   "description": "BeRun runner to add react eslint configuration",
   "main": "src/index.js",
   "keywords": [
@@ -27,7 +27,7 @@
     "yarn": ">=1.2.1"
   },
   "dependencies": {
-    "@berun/fluent-eslint": "^2.1.6",
+    "@berun/fluent-eslint": "^2.2.0",
     "babel-eslint": "10.0.1",
     "chalk": "2.4.2",
     "eslint": "5.16.0",
@@ -47,10 +47,10 @@
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
-    "@berun/fluent": "^2.1.6",
-    "@berun/fluent-babel": "^2.1.6",
+    "@berun/fluent": "^2.2.0",
+    "@berun/fluent-babel": "^2.2.0",
     "@berun/fluent-eslint": "^2.1.6",
-    "@berun/fluent-webpack": "^2.1.7"
+    "@berun/fluent-webpack": "^2.2.0"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

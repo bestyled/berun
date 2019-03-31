@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tslint",
-  "version": "2.1.8",
+  "version": "2.2.0",
   "description": "BeRun runner to add react tslint configuration",
   "main": "src/index.js",
   "keywords": [
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@berun/fluent-tslint": "^2.1.6",
+    "@berun/fluent-tslint": "^2.2.0",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-loader": "^3.5.4",
@@ -41,9 +41,9 @@
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
-    "@berun/fluent": "^2.1.6",
+    "@berun/fluent": "^2.2.0",
     "@berun/fluent-tslint": "^2.1.6",
-    "@berun/preset-react": "^2.1.8"
+    "@berun/preset-react": "^2.2.0"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

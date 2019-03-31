@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-webpack",
-  "version": "2.1.7",
+  "version": "2.2.0",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-webpack",

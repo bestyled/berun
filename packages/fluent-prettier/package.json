@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-prettier",
-  "version": "2.1.6",
+  "version": "2.2.0",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-prettier",
   "keywords": [
     "babel",
@@ -32,7 +32,7 @@
     "lint": "berun-dev lint"
   },
   "dependencies": {
-    "@berun/fluent": "^2.1.6"
+    "@berun/fluent": "^2.2.0"
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24"

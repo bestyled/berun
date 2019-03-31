@@ -1,6 +1,6 @@
 {
   "name": "@berun/sparky",
-  "version": "2.0.25",
+  "version": "2.1.0",
   "description": "Sparky task runner for @berun",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
