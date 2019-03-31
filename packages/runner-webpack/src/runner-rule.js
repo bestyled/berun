@@ -115,4 +115,7 @@ module.exports.ruleMainSvg = (berun, options) => {
     .test(/\.svg$/)
     .use('svgr')
     .loader(require.resolve('@svgr/webpack'))
+    .end()
+    .use('svgr')
+    .loader(require.resolve('url-loader'))
 }

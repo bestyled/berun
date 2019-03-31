@@ -122,6 +122,6 @@ module.exports.pluginQuantum = (berun, options = {}) => {
   berun.fusebox
     .plugin('Quantum')
     .use(QuantumPlugin, [
-      Object.assign({ removeExportsInterop: false, uglify: true }, options)
+      Object.assign({ removeExportsInterop: false, uglify: { es6: true },   treeshake: true, }, options)
     ])
 }

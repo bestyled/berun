@@ -17,7 +17,11 @@
     "noUnusedLocals": true,
     "esModuleInterop": true
   },
+  "include": ["src"],
   "exclude": [
+    "config",
+    "coverage",
+    "public",
     "node_modules",
     "build",
     "scripts",
