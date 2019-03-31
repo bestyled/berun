@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-prettier",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "BeRun runner to add prettier configuration",
   "main": "src/index.js",
   "keywords": [
@@ -40,7 +40,7 @@
     "@berun/dev-scripts": "^2.0.24",
     "@berun/fluent": "^2.2.1",
     "@berun/fluent-tslint": "^2.2.1",
-    "@berun/preset-react": "^2.2.1"
+    "@berun/preset-react": "^2.2.2"
   },
   "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
 }

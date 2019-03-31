@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-docs",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/bestyled/berun/tree/master/packages/template-docs"
@@ -10,12 +10,12 @@
     "name": "OffGrid Networks"
   },
   "devDependencies": {
-    "@berun/preset-bestatic": "^2.2.1",
-    "@berun/preset-react": "^2.2.1",
+    "@berun/preset-bestatic": "^2.2.2",
+    "@berun/preset-react": "^2.2.2",
     "@berun/runner-eslint": "^2.2.1",
-    "@berun/runner-prettier": "^2.2.1",
+    "@berun/runner-prettier": "^2.2.2",
     "@berun/scripts": "^2.2.1",
-    "@bestatic/layout": "^2.2.1",
+    "@bestatic/layout": "^2.2.2",
     "axios": "^0.18.0"
   },
   "resolutions": {
