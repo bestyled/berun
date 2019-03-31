@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-mdx",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "BeRun runner for building MDX documentation applications",
   "main": "src/index.js",
   "keywords": [
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@berun/fluent-mdx": "^2.2.0",
+    "@berun/fluent-mdx": "^2.2.1",
     "@berun/fuse-box-plugin-babel": "^3.5.20",
     "@mapbox/rehype-prism": "^0.3.1",
     "@mdx-js/loader": "^0.20.3",
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
-    "@berun/preset-react": "^2.2.0"
+    "@berun/preset-react": "^2.2.1"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-web-polyfills",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "BeRun runner to add browser polyfills",
   "main": "src/index.js",
   "keywords": [
@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
-    "@berun/fluent": "^2.2.0",
-    "@berun/fluent-webpack": "^2.2.0"
+    "@berun/fluent": "^2.2.1",
+    "@berun/fluent-webpack": "^2.2.1"
   },
   "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-babel",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-babel",
   "keywords": [
     "babel",
@@ -32,7 +32,7 @@
     "lint": "berun-dev lint"
   },
   "dependencies": {
-    "@berun/fluent": "^2.2.0"
+    "@berun/fluent": "^2.2.1"
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24"

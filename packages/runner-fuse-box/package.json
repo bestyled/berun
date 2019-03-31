@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-fuse-box",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "BeRun runner for fuse-box, a webpack alternative",
   "main": "src/index.js",
   "keywords": [
@@ -28,10 +28,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@berun/fluent-babel": "^2.2.0",
-    "@berun/fluent-fuse-box": "^2.2.0",
+    "@berun/fluent-babel": "^2.2.1",
+    "@berun/fluent-fuse-box": "^2.2.1",
     "@berun/fuse-box-plugin-babel": "^3.5.20",
-    "@berun/runner-web-polyfills": "^2.2.0",
+    "@berun/runner-web-polyfills": "^2.2.1",
     "chalk": "2.4.2",
     "fuse-box": "3.7.1"
   },
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
-    "@berun/fluent": "^2.2.0",
+    "@berun/fluent": "^2.2.1",
     "@berun/fluent-babel": "^2.1.6",
     "@berun/fluent-fuse-box": "^2.1.6"
   },
