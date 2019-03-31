@@ -20,7 +20,7 @@
     "OffGrid Networks <admin@offgridnetworks.com>"
   ],
   "license": "Apache-2.0",
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-mdx",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-tdx",
   "bugs": "https://github.com/bestyled/berun/issues",
   "engines": {
     "node": ">=8.3",
@@ -31,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "gray-matter": "^4.0.1"
+    "gray-matter": "^4.0.2"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",

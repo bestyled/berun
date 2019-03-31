@@ -1,10 +1,10 @@
 import presetReact from '@berun/preset-react'
-import { presetMdx } from '../src'
+import { presetTdx } from '../src'
 const berun_js = require('@berun/berun')
 
 test('Gets webpack core configuration', () => {
   const berun = berun_js(presetReact)
-  berun.use(presetMdx)
+  berun.use(presetTdx)
 
   expect(berun.webpack.get('mode')).toEqual('development')
 
@@ -33,7 +33,7 @@ test('Gets webpack core configuration', () => {
   expect(berun.webpack.entry('main').values()).toEqual([
     '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js',
     '/Volumes/DATA/projects/berun/node_modules/react-dev-utils/webpackHotDevClient.js',
-    '/Volumes/DATA/projects/berun/packages/runner-mdx/src/index.js'
+    '/Volumes/DATA/projects/berun/packages/runner-tdx/src/index.js'
   ])
 
   expect(berun.webpack.module.get('strictExportPresence')).toEqual(true)
@@ -47,7 +47,7 @@ test('Gets webpack core configuration', () => {
 
 test('Gets Webpack resolve configuration', () => {
   const berun = berun_js(presetReact)
-  berun.use(presetMdx)
+  berun.use(presetTdx)
 
   expect(berun.webpack.resolve.toConfig()).toMatchObject({
     alias: {
@@ -73,7 +73,7 @@ test('Gets Webpack resolve configuration', () => {
 test('Gets Webpack production core configuration', () => {
   process.env.NODE_ENV = 'production'
   const berun = berun_js(presetReact)
-  berun.use(presetMdx)
+  berun.use(presetTdx)
 
   expect(berun.webpack.get('mode')).toEqual('production')
 
@@ -90,7 +90,7 @@ test('Gets Webpack production core configuration', () => {
   })
 
   expect(berun.webpack.output.entries()).toMatchObject({
-    path: '/Volumes/DATA/projects/berun/packages/runner-mdx/build',
+    path: '/Volumes/DATA/projects/berun/packages/runner-tdx/build',
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     publicPath: '/',
@@ -103,7 +103,7 @@ test('Gets Webpack production core configuration', () => {
 
   expect(berun.webpack.entry('main').values()).toEqual([
     '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js',
-    '/Volumes/DATA/projects/berun/packages/runner-mdx/src/index.js'
+    '/Volumes/DATA/projects/berun/packages/runner-tdx/src/index.js'
   ])
 
   expect(berun.webpack.module.get('strictExportPresence')).toEqual(true)
@@ -118,7 +118,7 @@ test('Gets Webpack production core configuration', () => {
 test('Gets Webpack production resolve configuration', () => {
   process.env.NODE_ENV = 'production'
   const berun = berun_js(presetReact)
-  berun.use(presetMdx)
+  berun.use(presetTdx)
 
   expect(berun.webpack.resolve.toConfig()).toMatchObject({
     alias: {

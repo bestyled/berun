@@ -15,7 +15,7 @@ export default {
       title: 'BeRun Docs',
       blog: 'BeRun Blog',
       logo: '/logo.svg',
-      topnav: [{ href: '/blog', label: 'blog'}]
+      topnav: [{ href: '/blog', label: 'blog' }]
     }),
   getRoutes: async bestatic => {
     const { data: posts } = await axios.get(

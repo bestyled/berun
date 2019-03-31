@@ -31,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "gray-matter": "^4.0.1"
+    "gray-matter": "^4.0.2"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",

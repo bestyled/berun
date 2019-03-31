@@ -22,7 +22,8 @@ test('Gets Webpack  module extended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('post-css').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 1,
           sourceMap: false
@@ -56,7 +57,8 @@ test('Gets Webpack  module extended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('css-module').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 1,
           modules: true,
@@ -93,7 +95,8 @@ test('Gets Webpack  module extended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('sass').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 2,
           sourceMap: false
@@ -132,7 +135,8 @@ test('Gets Webpack  module extended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('sass-module').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 2,
           modules: true,
@@ -180,7 +184,8 @@ test('Gets Webpack production module exgtended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('post-css').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 1,
           sourceMap: true
@@ -214,7 +219,8 @@ test('Gets Webpack production module exgtended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('css-module').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 1,
           sourceMap: true,
@@ -251,7 +257,8 @@ test('Gets Webpack production module exgtended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('sass').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 2,
           sourceMap: true
@@ -290,7 +297,8 @@ test('Gets Webpack production module exgtended rules configuration', () => {
       },
       /* berun.webpack.module.rule('main').oneOf('sass-module').use('css') */
       {
-        loader: '/Volumes/DATA/projects/berun/node_modules/css-loader/index.js',
+        loader:
+          '/Volumes/DATA/projects/berun/node_modules/css-loader/dist/cjs.js',
         options: {
           importLoaders: 2,
           sourceMap: true,

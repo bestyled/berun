@@ -32,8 +32,8 @@
     "@berun/fluent-fuse-box": "^2.1.6",
     "@berun/fuse-box-plugin-babel": "^3.5.20",
     "@berun/runner-web-polyfills": "^2.1.7",
-    "chalk": "2.4.1",
-    "fuse-box": "3.6.0-next.13"
+    "chalk": "2.4.2",
+    "fuse-box": "3.7.1"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",
@@ -44,8 +44,8 @@
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
     "@berun/fluent": "^2.1.6",
-    "@berun/fluent-babel": "^2.0.4",
-    "@berun/fluent-fuse-box": "^2.0.0"
+    "@berun/fluent-babel": "^2.1.6",
+    "@berun/fluent-fuse-box": "^2.1.6"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

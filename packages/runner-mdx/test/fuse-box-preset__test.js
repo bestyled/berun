@@ -114,15 +114,7 @@ test('Gets Fusebox plugin configuration', () => {
             highlightCode: true,
             compact: false
           },
-          extensions: [
-            '.js',
-            '.jsx',
-            '.mjs',
-            '.ts',
-            '.tsx',
-            '.md',
-            '.mdx'
-          ],
+          extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.md', '.mdx'],
           limit2project: true
         },
         name: 'Babel'

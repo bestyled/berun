@@ -1,5 +1,5 @@
 declare function require(name: string)
-const javascriptStringify = require('javascript-stringify')
+const { stringify: javascriptStringify } = require('javascript-stringify')
 
 export abstract class Fluent<PARENT> {
   name: string

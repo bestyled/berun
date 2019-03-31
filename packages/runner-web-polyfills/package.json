@@ -26,11 +26,11 @@
     "yarn": ">=1.2.1"
   },
   "dependencies": {
-    "core-js": "2.5.7",
+    "core-js": "3.0.0",
     "object-assign": "4.1.1",
-    "promise": "8.0.2",
-    "raf": "3.4.0",
-    "whatwg-fetch": "^2.0.4"
+    "promise": "8.0.3",
+    "raf": "3.4.1",
+    "whatwg-fetch": "2.0.4"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",

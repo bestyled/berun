@@ -15,7 +15,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
       .oneOf('markdown')
       .toConfig()
   ).toEqual({
-    test: /(\.(?:md|mdx|tdx))$/,
+    test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
     exclude: [/node_modules[\/\\]/],
     use: [
@@ -34,7 +34,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
       {
         loader:
-          '/Volumes/DATA/projects/berun/node_modules/@tinia/tdx-loader/index.js',
+          '/Volumes/DATA/projects/berun/node_modules/@mdx-js/loader/index.js',
         options: {
           mdPlugins: expect.any(Array),
           hastPlugins: expect.any(Array)
@@ -61,7 +61,7 @@ test('Gets Webpack production module rules configuration', () => {
       .oneOf('markdown')
       .toConfig()
   ).toEqual({
-    test: /(\.(?:md|mdx|tdx))$/,
+    test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
     exclude: [/node_modules[\/\\]/],
     use: [
@@ -80,7 +80,7 @@ test('Gets Webpack production module rules configuration', () => {
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
       {
         loader:
-          '/Volumes/DATA/projects/berun/node_modules/@tinia/tdx-loader/index.js',
+          '/Volumes/DATA/projects/berun/node_modules/@mdx-js/loader/index.js',
         options: {
           mdPlugins: expect.any(Array),
           hastPlugins: expect.any(Array)

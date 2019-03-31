@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@berun/fluent-prettier": "^2.1.6",
-    "prettier": "^1.14.3"
+    "prettier": "^1.16.4"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",

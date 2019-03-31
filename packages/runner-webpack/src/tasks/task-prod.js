@@ -202,7 +202,11 @@ function promisifyWebpackBuild(berun) {
       'Creating an optimized production build...'
   )
 
-  require('fs').writeFileSync(require('path').join(process.cwd(), ".debug.webpack.prod.js"), "module.exports=" + berun.webpack.toString({ configPrefix: "berun.webpack" }));
+  require('fs').writeFileSync(
+    require('path').join(process.cwd(), '.debug.webpack.prod.js'),
+    'module.exports=' +
+      berun.webpack.toString({ configPrefix: 'berun.webpack' })
+  )
 
   let compiler = webpack(berun.webpack.toConfig())
   return new Promise((resolve, reject) => {

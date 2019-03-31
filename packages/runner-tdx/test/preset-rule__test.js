@@ -1,9 +1,9 @@
 import presetReact from '@berun/preset-react'
-import { presetMdx } from '../src'
+import { presetTdx } from '../src'
 const berun_js = require('@berun/berun')
 
 test('Gets Webpack additional/updated rules configuration', () => {
-  const berun = berun_js(presetReact).use(presetMdx)
+  const berun = berun_js(presetReact).use(presetTdx)
   const _ = berun.webpack.toConfig() // run once to set babel, jest config etc.
 
   expect(
@@ -13,7 +13,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx|tdx))$/,
-    include: ['/Volumes/DATA/projects/berun/packages/runner-mdx'],
+    include: ['/Volumes/DATA/projects/berun/packages/runner-tdx'],
     exclude: [/node_modules[\/\\]/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
@@ -28,7 +28,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
           presets: ['@berun/babel-preset-react-app']
         }
       },
-      /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
+      /* berun.webpack.module.rule('main').oneOf('markdown').use('tdx') */
       {
         loader:
           '/Volumes/DATA/projects/berun/node_modules/@tinia/tdx-loader/index.js',
@@ -43,7 +43,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
 
 test('Gets Webpack production module rules configuration', () => {
   process.env.NODE_ENV = 'production'
-  const berun = berun_js(presetReact).use(presetMdx)
+  const berun = berun_js(presetReact).use(presetTdx)
   const _ = berun.webpack.toConfig() // run once to set babel, jest config etc.
   expect(
     berun.webpack.module
@@ -52,7 +52,7 @@ test('Gets Webpack production module rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx|tdx))$/,
-    include: ['/Volumes/DATA/projects/berun/packages/runner-mdx'],
+    include: ['/Volumes/DATA/projects/berun/packages/runner-tdx'],
     exclude: [/node_modules[\/\\]/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
@@ -67,7 +67,7 @@ test('Gets Webpack production module rules configuration', () => {
           presets: ['@berun/babel-preset-react-app']
         }
       },
-      /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
+      /* berun.webpack.module.rule('main').oneOf('markdown').use('tdx') */
       {
         loader:
           '/Volumes/DATA/projects/berun/node_modules/@tinia/tdx-loader/index.js',
@@ -83,7 +83,7 @@ test('Gets Webpack production module rules configuration', () => {
 test('Gets Webpack module rules configuration', () => {
   process.env.NODE_ENV = 'development'
 
-  const berun = berun_js(presetReact).use(presetMdx)
+  const berun = berun_js(presetReact).use(presetTdx)
   const _ = berun.webpack.toConfig() // run once to set babel, jest config etc.
 
   expect(
@@ -183,7 +183,7 @@ test('Gets Webpack module rules configuration', () => {
 
 test('Gets Webpack production module rules configuration', () => {
   process.env.NODE_ENV = 'production'
-  const berun = berun_js(presetReact).use(presetMdx)
+  const berun = berun_js(presetReact).use(presetTdx)
   const _ = berun.webpack.toConfig() // run once to set babel, jest config etc.
 
   expect(

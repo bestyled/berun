@@ -28,10 +28,10 @@
   },
   "dependencies": {
     "@berun/fluent-tslint": "^2.1.6",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-loader": "^3.5.4",
-    "tslint-react": "^3.6.0"
+    "tslint-react": "^4.0.0"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
     "@berun/fluent": "^2.1.6",
-    "@berun/fluent-tslint": "^2.0.0",
+    "@berun/fluent-tslint": "^2.1.6",
     "@berun/preset-react": "^2.1.8"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"

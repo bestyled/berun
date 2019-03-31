@@ -28,13 +28,13 @@
   },
   "dependencies": {
     "@berun/berun": "^2.1.7",
-    "react-dev-utils": "6.1.1"
+    "react-dev-utils": "8.0.0"
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24"
   },
   "optionalDependencies": {
-    "fsevents": "1.2.4"
+    "fsevents": "1.2.7"
   },
   "browserslist": {
     "development": [

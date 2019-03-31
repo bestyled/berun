@@ -1,12 +1,12 @@
 import { presetReact } from '@berun/preset-fuse-box-react'
 const berun_js = require('@berun/berun')
-import { presetMdx } from '../src'
+import { presetTdx } from '../src'
 
 test('Gets FuseBox core configuration', async () => {
-  const berun = berun_js(presetReact).use(presetMdx)
+  const berun = berun_js(presetReact).use(presetTdx)
 
   expect(berun.fusebox.get('homeDir')).toEqual(
-    '/Volumes/DATA/projects/berun/packages/runner-mdx/src'
+    '/Volumes/DATA/projects/berun/packages/runner-tdx/src'
   )
   expect(berun.fusebox.get('sourceMaps')).toEqual({
     project: true,
@@ -15,7 +15,7 @@ test('Gets FuseBox core configuration', async () => {
   expect(berun.fusebox.get('hash')).toEqual(false)
   expect(berun.fusebox.get('cache')).toEqual(true)
   expect(berun.fusebox.get('output')).toEqual(
-    '/Volumes/DATA/projects/berun/packages/runner-mdx/build/$name.js'
+    '/Volumes/DATA/projects/berun/packages/runner-tdx/build/$name.js'
   )
   expect(berun.fusebox.get('target')).toEqual('browser@es2016')
 
@@ -28,7 +28,7 @@ test('Gets FuseBox core configuration', async () => {
 })
 
 test('Gets Fusebox plugin configuration', () => {
-  const berun = berun_js(presetReact).use(presetMdx)
+  const berun = berun_js(presetReact).use(presetTdx)
   const _ = berun.fusebox.toConfig() // call toConfig to set babel plugin
 
   expect(
@@ -52,14 +52,14 @@ test('Gets Fusebox plugin configuration', () => {
     {
       args: [
         {
-          APP_PATH: '/Volumes/DATA/projects/berun/packages/runner-mdx',
+          APP_PATH: '/Volumes/DATA/projects/berun/packages/runner-tdx',
           NODE_ENV: 'test',
           WORKSPACE: '/Volumes/DATA/projects/berun',
           FuseBox: true,
           DIRECTORIES: {},
           PUBLIC_URL: '',
           REMOTE_ORIGIN_URL: 'git@github.com:bestyled/berun.git',
-          TITLE: '@berun/runner-mdx',
+          TITLE: '@berun/runner-tdx',
           VERSION: expect.any(String)
         }
       ],
@@ -103,7 +103,7 @@ test('Gets Fusebox plugin configuration', () => {
     [
       {
         args: { mdPlugins: expect.any(Array), hastPlugins: expect.any(Array) },
-        name: 'MDX'
+        name: 'TDX'
       },
       {
         args: {

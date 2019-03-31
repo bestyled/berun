@@ -30,15 +30,7 @@ module.exports = (berun, options = {}) => {
         .end()
         .plugin('Babel')
         .tap(() => ({
-          extensions: [
-            '.js',
-            '.jsx',
-            '.mjs',
-            '.ts',
-            '.tsx',
-            '.md',
-            '.mdx'
-          ],
+          extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.md', '.mdx'],
           limit2project: true,
           config: Object.assign(berun.babel.toConfig(), { ast: true })
         }))

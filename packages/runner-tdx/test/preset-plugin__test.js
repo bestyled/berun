@@ -1,10 +1,10 @@
 import presetReact from '@berun/preset-react'
-import { presetMdx } from '../src'
+import { presetTdx } from '../src'
 const berun_js = require('@berun/berun')
 
 test('Gets Webpack plugin configuration', () => {
   const berun = berun_js(presetReact)
-  berun.use(presetMdx)
+  berun.use(presetTdx)
 
   expect(
     berun.webpack.plugins.values().map(plugin => {
@@ -44,11 +44,11 @@ test('Gets Webpack plugin configuration', () => {
         {
           'process.env': {
             NODE_ENV: '"test"',
-            APP_PATH: '"/Volumes/DATA/projects/berun/packages/runner-mdx"',
+            APP_PATH: '"/Volumes/DATA/projects/berun/packages/runner-tdx"',
             DIRECTORIES: '{}',
             PUBLIC_URL: '""',
             REMOTE_ORIGIN_URL: '"git@github.com:bestyled/berun.git"',
-            TITLE: '"@berun/runner-mdx"',
+            TITLE: '"@berun/runner-tdx"',
             VERSION: expect.any(String),
             WORKSPACE: '"/Volumes/DATA/projects/berun"'
           }
@@ -63,7 +63,7 @@ test('Gets Webpack plugin configuration', () => {
     {
       name: 'modulenotfound',
       constructor: 'ModuleNotFoundPlugin',
-      args: ['/Volumes/DATA/projects/berun/packages/runner-mdx']
+      args: ['/Volumes/DATA/projects/berun/packages/runner-tdx']
     },
     {
       name: 'hot',
@@ -78,7 +78,7 @@ test('Gets Webpack plugin configuration', () => {
     {
       name: 'watch-missing-node-modules',
       constructor: 'WatchMissingNodeModulesPlugin',
-      args: ['/Volumes/DATA/projects/berun/packages/runner-mdx/node_modules']
+      args: ['/Volumes/DATA/projects/berun/packages/runner-tdx/node_modules']
     },
     {
       name: 'moment',
@@ -101,7 +101,7 @@ test('Gets Webpack plugin configuration', () => {
 test('Gets Webpack production plugin configuration', () => {
   process.env.NODE_ENV = 'production'
   const berun = berun_js(presetReact)
-  berun.use(presetMdx)
+  berun.use(presetTdx)
 
   expect(
     berun.webpack.plugins.values().map(plugin => {
@@ -153,11 +153,11 @@ test('Gets Webpack production plugin configuration', () => {
         {
           'process.env': {
             NODE_ENV: '"production"',
-            APP_PATH: '"/Volumes/DATA/projects/berun/packages/runner-mdx"',
+            APP_PATH: '"/Volumes/DATA/projects/berun/packages/runner-tdx"',
             DIRECTORIES: '{}',
             PUBLIC_URL: '""',
             REMOTE_ORIGIN_URL: '"git@github.com:bestyled/berun.git"',
-            TITLE: '"@berun/runner-mdx"',
+            TITLE: '"@berun/runner-tdx"',
             VERSION: expect.any(String),
             WORKSPACE: '"/Volumes/DATA/projects/berun"'
           }
@@ -172,7 +172,7 @@ test('Gets Webpack production plugin configuration', () => {
     {
       name: 'modulenotfound',
       constructor: 'ModuleNotFoundPlugin',
-      args: ['/Volumes/DATA/projects/berun/packages/runner-mdx']
+      args: ['/Volumes/DATA/projects/berun/packages/runner-tdx']
     },
     {
       name: 'workbox',

@@ -1,15 +1,15 @@
 import { presetReact } from '@berun/preset-fuse-box-react'
 const berun_js = require('@berun/berun')
-import { presetMdx } from '@berun/runner-mdx'
-import { presetMdxFrontMatter } from '../src'
+import { presetTdx } from '@berun/runner-tdx'
+import { presetTdxFrontMatter } from '../src'
 
 test('Gets FuseBox core configuration', async () => {
   const berun = berun_js(presetReact)
-    .use(presetMdx)
-    .use(presetMdxFrontMatter)
+    .use(presetTdx)
+    .use(presetTdxFrontMatter)
 
   expect(berun.fusebox.get('homeDir')).toEqual(
-    '/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter/src'
+    '/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter/src'
   )
   expect(berun.fusebox.get('sourceMaps')).toEqual({
     project: true,
@@ -18,7 +18,7 @@ test('Gets FuseBox core configuration', async () => {
   expect(berun.fusebox.get('hash')).toEqual(false)
   expect(berun.fusebox.get('cache')).toEqual(true)
   expect(berun.fusebox.get('output')).toEqual(
-    '/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter/build/$name.js'
+    '/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter/build/$name.js'
   )
   expect(berun.fusebox.get('target')).toEqual('browser@es2016')
 
@@ -32,8 +32,8 @@ test('Gets FuseBox core configuration', async () => {
 
 test('Gets Fusebox plugin configuration', () => {
   const berun = berun_js(presetReact)
-    .use(presetMdx)
-    .use(presetMdxFrontMatter)
+    .use(presetTdx)
+    .use(presetTdxFrontMatter)
   const _ = berun.fusebox.toConfig() // call toConfig to set babel plugin
 
   expect(
@@ -58,16 +58,16 @@ test('Gets Fusebox plugin configuration', () => {
       args: [
         {
           APP_PATH:
-            '/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter',
+            '/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter',
           NODE_ENV: 'test',
           WORKSPACE: '/Volumes/DATA/projects/berun',
           FuseBox: true,
           APP_PATH:
-            '/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter',
+            '/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter',
           DIRECTORIES: {},
           PUBLIC_URL: '',
           REMOTE_ORIGIN_URL: 'git@github.com:bestyled/berun.git',
-          TITLE: '@berun/runner-mdx-frontmatter',
+          TITLE: '@berun/runner-tdx-frontmatter',
           VERSION: expect.any(String),
           WORKSPACE: '/Volumes/DATA/projects/berun'
         }
@@ -116,7 +116,7 @@ test('Gets Fusebox plugin configuration', () => {
       },
       {
         args: { mdPlugins: expect.any(Array), hastPlugins: expect.any(Array) },
-        name: 'MDX'
+        name: 'TDX'
       },
       {
         args: {

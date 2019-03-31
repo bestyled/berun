@@ -34,12 +34,12 @@
     "@berun/fluent-webpack": "^2.1.7",
     "@berun/sparky": "^2.0.25",
     "cross-spawn": "^6.0.5",
-    "deepmerge": "^2.1.1",
-    "dotenv": "^6.0.0",
-    "dotenv-expand": "^4.2.0",
+    "deepmerge": "^3.2.0",
+    "dotenv": "^7.0.0",
+    "dotenv-expand": "^5.1.0",
     "find-pkg": "^2.0.0",
-    "globby": "^8.0.1",
-    "remote-origin-url": "^1.0.0"
+    "globby": "^9.1.0",
+    "remote-origin-url": "^2.0.0"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

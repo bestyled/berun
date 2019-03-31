@@ -1,12 +1,12 @@
 import presetReact from '@berun/preset-react'
-import { presetMdx } from '@berun/runner-mdx'
-import { presetMdxFrontMatter } from '../src'
+import { presetTdx } from '@berun/runner-tdx'
+import { presetTdxFrontMatter } from '../src'
 const berun_js = require('@berun/berun')
 
 test('Gets Webpack additional/updated rules configuration', () => {
   const berun = berun_js(presetReact)
-    .use(presetMdx)
-    .use(presetMdxFrontMatter)
+    .use(presetTdx)
+    .use(presetTdxFrontMatter)
   const _ = berun.webpack.toConfig() // run once to set babel, jest config etc.
 
   expect(
@@ -16,7 +16,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx|tdx))$/,
-    include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
+    include: ['/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter'],
     exclude: [/node_modules[\/\\]/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
@@ -43,7 +43,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
       {
         loader:
-          '/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter/src/loader/babel-fm-loader.js'
+          '/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter/src/loader/babel-fm-loader.js'
       }
     ]
   })
@@ -52,8 +52,8 @@ test('Gets Webpack additional/updated rules configuration', () => {
 test('Gets Webpack production module rules configuration', () => {
   process.env.NODE_ENV = 'production'
   const berun = berun_js(presetReact)
-    .use(presetMdx)
-    .use(presetMdxFrontMatter)
+    .use(presetTdx)
+    .use(presetTdxFrontMatter)
   const _ = berun.webpack.toConfig() // run once to set babel, jest config etc.
   expect(
     berun.webpack.module
@@ -62,7 +62,7 @@ test('Gets Webpack production module rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx|tdx))$/,
-    include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
+    include: ['/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter'],
     exclude: [/node_modules[\/\\]/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
@@ -77,7 +77,7 @@ test('Gets Webpack production module rules configuration', () => {
           presets: ['@berun/babel-preset-react-app']
         }
       },
-      /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
+      /* berun.webpack.module.rule('main').oneOf('markdown').use('tdx') */
       {
         loader:
           '/Volumes/DATA/projects/berun/node_modules/@tinia/tdx-loader/index.js',
@@ -86,10 +86,10 @@ test('Gets Webpack production module rules configuration', () => {
           hastPlugins: expect.any(Array)
         }
       },
-      /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
+      /* berun.webpack.module.rule('main').oneOf('markdown').use('tdx') */
       {
         loader:
-          '/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter/src/loader/babel-fm-loader.js'
+          '/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter/src/loader/babel-fm-loader.js'
       }
     ]
   })

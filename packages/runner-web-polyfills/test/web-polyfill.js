@@ -79,4 +79,6 @@ test('Gets src file', () => {
 
 test('Compiles src file', () => {
   expect(() => require(src_polyfills)).not.toThrow()
+
+  /* must use whatwg-fetch 2.0.4 not 3.0.0 to avoid self not defined error */
 })
