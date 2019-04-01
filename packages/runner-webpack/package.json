@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-webpack",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Webpack runner for building React web applications",
   "main": "src/index.js",
   "keywords": [
