@@ -59,9 +59,9 @@ if (!global['btoa'])
     return rest ? result.slice(0, rest - 3) + '==='.substring(rest) : result
   }
 
-function getAlgoliaLoadScript({apiKey, apiId, indexName}) {
+function getAlgoliaLoadScript({apiKey, appId, indexName}) {
   var DOC_SEARCH = {
-    apiId,
+    appId,
     apiKey,
     indexName,
     debug: true
