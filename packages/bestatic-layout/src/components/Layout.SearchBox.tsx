@@ -59,10 +59,10 @@ if (!global['btoa'])
     return rest ? result.slice(0, rest - 3) + '==='.substring(rest) : result
   }
 
-function getAlgoliaLoadScript(algoliaKey) {
+function getAlgoliaLoadScript(key, id) {
   var DOC_SEARCH = {
-    apiKey: algoliaKey,
-    indexName: 'docsearch',
+    apiKey: key,
+    indexName: id,
     debug: true
   }
   DOC_SEARCH['inputSelector'] = '#docsearch-input'
@@ -75,7 +75,7 @@ function getAlgoliaLoadScript(algoliaKey) {
 export const SearchBox = memo<any>(props => {
   const siteData = useSiteData()
   const algoliaScript = useMemo(
-    () => getAlgoliaLoadScript(siteData.algolia),
+    () => getAlgoliaLoadScript(siteData.algolia.key, siteData.algolia.id),
     []
   )
 
