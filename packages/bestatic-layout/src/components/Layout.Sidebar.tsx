@@ -14,8 +14,6 @@ import {
   themeGet
 } from 'styled-system'
 
-import { useToggle } from '../providers/ToggleProvider'
-
 type CssProps = { css?: any }
 
 const css = props => props.css
@@ -30,7 +28,7 @@ const SidebarColumn = styled.div`
     order: -1;
     border-right: 1px solid rgba(0,0,0,.07);
 
-    max-width: ${(props: any) => (props.open ? '100%' : 0)}
+    max-width: 100%
 
 
     @media screen and (min-width: ${(props: any) =>
@@ -62,12 +60,8 @@ SidebarColumn.defaultProps = {
 }
 
 export const Sidebar: React.FC<any> = ({ width, style, ...props }) => {
-  const { open, closeMenu } = useToggle()
-
   return (
     <SidebarColumn
-      open={open}
-      onClick={closeMenu}
       {...props}
       width={width}
       style={{

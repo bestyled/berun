@@ -14,13 +14,10 @@ import {
   SpaceProps,
   ColorProps,
   DisplayProps,
-  themeGet
+  themeGet,
 } from 'styled-system'
 
-import { useToggle } from '../providers/ToggleProvider'
-
-type CssProps = { css?: any }
-const css = props => props.css
+import { Container } from './Layout.Container'
 
 const MenuIcon = withTheme(styled(({ size = 24, className, ...props }: any) => (
   <svg
@@ -42,43 +39,66 @@ const MenuIcon = withTheme(styled(({ size = 24, className, ...props }: any) => (
   display: block;
 `)
 
-const MenuButton = styled('button')`
-    appearance: none;
+type CssProps = { css?: any }
+const css = props => props.css
+
+const MenuButton = styled.label`
     font-size: inherit;
     font-family: inherit;
     border: 0;
     border-radius: 0;
     top: 0;
     left: 0;
-    position: absolute;
+    position: fixed;
+    transition: transform 0.3s;
+
    ${space} ${color} ${css} ${display}
   ` as StyledComponent<
   SpaceProps & ColorProps & DisplayProps & CssProps & React.HTMLProps<{}>,
   any
 >
 
+
 MenuButton.defaultProps = {
   bg: 'transparent',
   p: 0,
   m: 0,
-  display: ['inline-block', 'inline-block', 'none']
-}
-
-export const MenuToggle: React.FC<any> = ({ children, ...props }) => {
-  const { open, toggleMenu } = useToggle()
-
-  return typeof children === 'function' ? (
-    children({ open, toggleMenu })
-  ) : (
-    <MenuButton {...props} onClick={toggleMenu}>
-      {children}
-    </MenuButton>
-  )
-}
-
-MenuToggle.defaultProps = {
   title: 'Toggle Menu',
   children: <MenuIcon />
 }
 
+const MenuHiddenToggle = styled.input`
+top: 0;
+left: 0;
+position: absolute;
+display: none;
+
+&:checked ~ label {
+    transform: rotate(90deg);
+}
+
+& + div {
+  max-width: 0;
+ }
+
+&:checked + div {
+ max-width: 100%;
+}
+`
+
+export const MenuToggle: React.FC<any> = ({children, ...props}) => {
+  const columns = React.Children.toArray(children)
+
+  return <div>
+   <Container {...props}>
+     <MenuHiddenToggle type="checkbox" id="toggle-1" />
+      {children}
+      <MenuButton {...props} htmlFor="toggle-1" />
+    </Container>
+  </div>
+}
+
+
+
 MenuToggle['isMenuToggle'] = true
+

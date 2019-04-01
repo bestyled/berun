@@ -14,7 +14,6 @@ export const DocsLayout = props => (
       <StyleProvider title={sitedata.title} theme={sitedata.theme}>
         <Layout>
           <Layout.TopNav logo={sitedata.logo}>
-            <Layout.MenuToggle m={2} />
             <Layout.TopNavItem
               px={0}
               fontWeight="thin"
@@ -24,20 +23,22 @@ export const DocsLayout = props => (
               {sitedata.title}
             </Layout.TopNavItem>
             {sitedata.topnav.map(items => {
-              ;<Layout.TopNavItem key={items.label} href={items.href}>
+              ; <Layout.TopNavItem key={items.label} href={items.href}>
                 {items.label}
               </Layout.TopNavItem>
             })}
             <Layout.SearchBox />
             <Layout.ScrollAnimation />
           </Layout.TopNav>
-          <Layout.Sidebar py={3}>
-            <NavLinks {...props} />
-          </Layout.Sidebar>
-          <Layout.Main>
-            {props.children}
-            <Pagination {...props} />
-          </Layout.Main>
+          <Layout.MenuToggle m={2} >
+            <Layout.Sidebar py={3}>
+              <NavLinks {...props} />
+            </Layout.Sidebar>
+            <Layout.Main >
+              {props.children}
+              <Pagination {...props} />
+            </Layout.Main>
+          </Layout.MenuToggle>
           <Layout.Footer {...props} />
         </Layout>
         <ScrollTop />
