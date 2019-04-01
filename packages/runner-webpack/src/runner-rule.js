@@ -53,7 +53,7 @@ module.exports.ruleMainCompile = (berun, options) => {
     .test(/\.(js|jsx|ts|tsx)$/)
     .include.merge([berun.options.paths.workspace])
     .end()
-    .exclude.add(/node_modules/).end()
+    .exclude.add(/node_modules/)
     .end()
     .use('babel')
     .loader(require.resolve('babel-loader'))
