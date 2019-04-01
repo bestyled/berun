@@ -102,10 +102,10 @@ module.exports.ruleMainStatic = (berun, options) => {
     // Also exclude `html` and `json` extensions so they get processed
     // by webpacks internal loaders.
     .exclude.add(/\.(css|scss|sass|js|jsx|mjs|ts|tsx)$/)
-     .add(/node_modules/).end()
     .add(/\.ejs$/)
     .add(/\.html$/)
     .add(/\.json$/)
+    .add(/node_modules/)
     .end()
     .use('file')
     .loader(require.resolve('file-loader'))
