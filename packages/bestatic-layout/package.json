@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/layout",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "MDX-based theme",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
@@ -35,7 +35,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bestatic/components": "^2.1.8",
-    "@bestatic/core": "^2.2.3",
+    "@bestatic/core": "^2.2.4",
     "@bestatic/styled": "^2.2.1",
     "react-router-dom": "^5.0.0",
     "styled-components": "^4.2.0",
