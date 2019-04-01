@@ -24,6 +24,18 @@ module.exports.ruleMjs = (berun, options) => {
     .include.add(/node_modules/)
     .end()
     .type('javascript/auto')
+    .use('babel')
+    .loader(require.resolve('babel-loader'))
+    .options({
+      babelrc: false,
+      configFile: false,
+      compact: false,
+      presets: [require.resolve('@berun/babel-preset-react-app/dependencies')],
+      cacheDirectory: true,
+      cacheCompression: process.env.NODE_ENV == 'production',
+      highlightCode: true,
+      sourceMaps: false
+    })
 }
 
 /**

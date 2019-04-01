@@ -20,7 +20,7 @@ module.exports = (berun, options = {}) => {
     .use(polyfills)
     .when(ISPRODUCTION, b => b.use(webpack.terser))
     .use(webpack.ruleParser)
-    // .use(webpack.ruleMjs)
+    .use(webpack.ruleMjs)
     .use(webpack.ruleMainImage)
     .use(webpack.ruleMainCompile)
     // .use(webpack.ruleMainExternal)
