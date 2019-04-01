@@ -11,7 +11,6 @@ import {
   SpaceProps,
   ColorProps,
   DisplayProps,
-  themeGet
 } from 'styled-system'
 
 type CssProps = { css?: any }
@@ -28,18 +27,6 @@ const SidebarColumn = styled.div`
     order: -1;
     border-right: 1px solid rgba(0,0,0,.07);
 
-    max-width: 100%
-
-
-    @media screen and (min-width: ${(props: any) =>
-      themeGet('breakpoints', ['48em'])(props)[1]}) {
-      max-width: 100%;
-    }
-
-    transition-duration: 200ms;
-    transition-delay: 1ms;
-    transition: max-width 0.2s;
-    transition-timing-function: ease;
     overflow: hidden;
     
     ${display} ${space} ${width} ${color}

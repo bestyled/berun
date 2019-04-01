@@ -64,7 +64,8 @@ MenuButton.defaultProps = {
   p: 0,
   m: 0,
   title: 'Toggle Menu',
-  children: <MenuIcon />
+  children: <MenuIcon />,
+  display: ['inline-block', 'inline-block', 'none' ]
 }
 
 const MenuHiddenToggle = styled.input`
@@ -77,21 +78,29 @@ display: none;
     transform: rotate(90deg);
 }
 
+
+
 & + div {
   max-width: 0;
- }
+  transition: max-width 0.3s;
+
+  @media screen and (min-width: ${(props: any) =>
+    themeGet('breakpoints', ['48em'])(props)[1]}) {
+  max-width: 100% !important;
+  }
+}
 
 &:checked + div {
- max-width: 100%;
+  max-width: 100%;
+  transition: max-width 1s;
 }
 `
 
-export const MenuToggle: React.FC<any> = ({children, ...props}) => {
-  const columns = React.Children.toArray(children)
-
+export const MenuToggle: React.FC<any> = ({ children, ...props }) => {
+  
   return <div>
-   <Container {...props}>
-     <MenuHiddenToggle type="checkbox" id="toggle-1" />
+    <Container {...props}>
+      <MenuHiddenToggle type="checkbox" id="toggle-1" />
       {children}
       <MenuButton {...props} htmlFor="toggle-1" />
     </Container>
