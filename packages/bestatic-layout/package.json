@@ -2,9 +2,8 @@
   "name": "@bestatic/layout",
   "version": "2.2.14",
   "description": "MDX-based theme",
-  "main": "src/index.ts",
-  "main2": "dist/esm/index.js",
-  "module2": "dist/esm/index.js",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
   "types": "src/index.ts",
   "repository": "https://github.com/bestyled/bestatic/tree/master/packages/bestatic-layout",
   "keywords": [
