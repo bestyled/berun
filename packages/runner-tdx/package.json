@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tdx",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "description": "BeRun runner for building TDX documentation applications",
   "main": "src/index.js",
   "keywords": [

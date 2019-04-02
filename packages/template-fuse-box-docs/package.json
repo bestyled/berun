@@ -1,8 +1,8 @@
 {
   "name": "@berun/template-fuse-box-docs",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "devDependencies": {
-    "@berun/preset-bestatic": "^2.2.7",
+    "@berun/preset-bestatic": "^2.2.8",
     "@berun/preset-fuse-box-react": "^2.2.2",
     "@berun/runner-eslint": "^2.2.1",
     "@berun/runner-prettier": "^2.2.7",
