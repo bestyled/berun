@@ -54,10 +54,18 @@ const HeroRoot = styled.div`
   align-items: center;
   justify-content: center;
 
+  & h1 a::before {
+    background: ${(p: any) => `url("${p.logo}") no-repeat left;`};
+    background-size: 64px 64px;
+    display: inline-block;
+    width: 64px; 
+    height: 64px;
+    content:"";
+    margin-bottom: -20px;
+    padding-right: 8px;
+  }
+
   & h1 {
-    background: ${(p: any) => `url("${p.logo}") no-repeat left;`}
-    background-size: 60px 60px;
-    padding-left: 64px;
     text-align: center;
     font-weight: 100;
   }
@@ -93,7 +101,7 @@ export const HeroLayout = props => {
     <WithSiteData>
       {sitedata => (
         <StyleProvider title={sitedata.title} theme={sitedata.theme}>
-          <HeroRoot logo={sitedata.logo}>{props.children}</HeroRoot>
+          <HeroRoot logo={sitedata.herologo || sitedata.logo}>{props.children}</HeroRoot>
           <HeroFooter>
             {sitedata.footer ? (
               <Link href={sitedata.footer.href}>{sitedata.footer.label}</Link>

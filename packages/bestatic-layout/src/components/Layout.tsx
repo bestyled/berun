@@ -27,7 +27,6 @@ export const Layout = Object.assign(
     )
     const [footer] = children.filter(child => (child as any).type.isFooter)
     const cards = children.filter(child => (child as any).type.isCards)
-    console.log(cards, columns)
 
     return (
         <Root id="layout">
