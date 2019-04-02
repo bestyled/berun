@@ -98,16 +98,12 @@ display: none;
 
 export const MenuToggle: React.FC<any> = ({ children, ...props }) => {
   
-  return <div>
-    <Container {...props}>
+  return <Container id="menu-toggle-container" {...props}>
       <MenuHiddenToggle type="checkbox" id="toggle-1" />
       {children}
       <MenuButton {...props} htmlFor="toggle-1" />
     </Container>
-  </div>
 }
-
-
 
 MenuToggle['isMenuToggle'] = true
 

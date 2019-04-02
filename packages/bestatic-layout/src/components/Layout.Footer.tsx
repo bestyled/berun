@@ -13,7 +13,8 @@ import {
   FontSizeProps
 } from 'styled-system'
 
-import { WithSiteData } from '@bestatic/components'
+import { useSiteData } from '@bestatic/components'
+import { withRouter } from 'react-router';
 
 type CssProps = { css?: any }
 
@@ -60,27 +61,23 @@ FooterItem.defaultProps = {
   fontSize: 1
 }
 
-export const Footer: React.SFC = (props: any) => (
-  <WithSiteData>
-    {sitedata => (
-      <FooterRoot>
-        <FooterRow>
-          <FooterItem>
-            {sitedata.footer || (
-              <>
-                Documentation powered by{' '}
-                <a href={sitedata.remoteOriginUrl}>
-                  {new URL(sitedata.remoteOriginUrl).pathname.substr(1)}.
-                </a>
-              </>
-            )}
-          </FooterItem>
-          <FooterItem>{sitedata.copyright}</FooterItem>
-        </FooterRow>
-      </FooterRoot>
-    )}
-  </WithSiteData>
-)
+export const Footer: React.SFC = withRouter((props: any) => {
+  const sitedata = useSiteData()
+  const pathname = props.match.path
+  const route = props.routes.find(link => link.path === pathname || (link.match && link.match.path === pathname))
+  const editUrl = new URL(route ? route.id : '/', `${sitedata.remoteOriginUrl}/blob/master` )
+  
+  return <FooterRoot id="footer-root">
+    <FooterRow>
+      <FooterItem>{sitedata.copyright}</FooterItem>
+      <FooterItem>
+        {sitedata.footer || (
+          <a href={editUrl.href}> Edit this page.</a>
+        )}
+      </FooterItem>
+    </FooterRow>
+  </FooterRoot>
+}) as any as React.SFC
 
 Footer['isFooter'] = true
 

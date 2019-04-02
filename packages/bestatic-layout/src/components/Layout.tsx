@@ -10,7 +10,6 @@ import { Root } from './Layout.Root'
 import { ScrollAnimation } from './Layout.ScrollAnimation'
 import { SearchBox } from './Layout.SearchBox'
 import { Sidebar } from './Layout.Sidebar'
-import { ToggleProvider } from '../providers/ToggleProvider'
 
 export const Layout = Object.assign(
   props => {
@@ -28,21 +27,19 @@ export const Layout = Object.assign(
     )
     const [footer] = children.filter(child => (child as any).type.isFooter)
     const cards = children.filter(child => (child as any).type.isCards)
+    console.log(cards, columns)
 
-    console.log(menuToggle)
     return (
-      <ToggleProvider>
-        <Root>
+        <Root id="layout">
           {topnav}
           {menuToggle}
           {cards.length > 0 ? (
             cards
           ) : (
-            <Container {...props}>{columns}</Container>
-          )}
+           columns.length > 0 ? <Container id="layout-root-container" {...props}>{columns}</Container>
+           : null )}
           {footer}
         </Root>
-      </ToggleProvider>
     )
   },
   {

@@ -21,7 +21,7 @@ export const ScrollTop = withRouter(
     }
 
     render() {
-      return false
+      return null
     }
   }
 )

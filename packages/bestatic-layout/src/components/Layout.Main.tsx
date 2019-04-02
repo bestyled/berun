@@ -34,7 +34,7 @@ MainContainer.defaultProps = {
 }
 
 export const Main = props => (
-  <MainRoot>
-    <MainContainer {...props} />
+  <MainRoot id="main-root">
+    <MainContainer id="main-container" {...props} />
   </MainRoot>
 )

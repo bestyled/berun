@@ -75,7 +75,7 @@ export const Pagination = withRouter(
             &lsaquo; {previous.previousPage || previous.name || 'previous'}
           </NavLink>
         )}
-        <Spacer />
+        <Spacer  />
         {next && (
           <NavLink {...props} href={next.path}>
             {next.nextPage || next.name || 'next'} &rsaquo;
