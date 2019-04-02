@@ -1,6 +1,6 @@
 {
   "name": "@berun/docs",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "repository": {
     "type": "git",
     "url": "https://github.com/bestyled/berun/tree/master/packages/docs"
@@ -13,7 +13,7 @@
     "@berun/preset-bestatic": "^2.2.8",
     "@berun/preset-react": "^2.2.7",
     "@berun/scripts": "^2.2.1",
-    "@bestatic/layout": "^2.2.13"
+    "@bestatic/layout": "^2.2.14"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
