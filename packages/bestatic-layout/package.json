@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/layout",
-  "version": "2.2.14",
+  "version": "2.2.15",
   "description": "MDX-based theme",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
