@@ -1,12 +1,12 @@
 {
   "name": "@berun/template-react",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "devDependencies": {
-    "@berun/preset-react": "^2.2.8",
-    "@berun/runner-eslint": "^2.2.2",
-    "@berun/runner-prettier": "^2.2.8",
-    "@berun/runner-webpack-css": "^2.2.8",
-    "@berun/scripts": "^2.2.2"
+    "@berun/preset-react": "^2.2.9",
+    "@berun/runner-eslint": "^2.2.3",
+    "@berun/runner-prettier": "^2.2.9",
+    "@berun/runner-webpack-css": "^2.2.9",
+    "@berun/scripts": "^2.2.3"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

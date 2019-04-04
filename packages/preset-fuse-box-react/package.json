@@ -1,6 +1,6 @@
 {
   "name": "@berun/preset-fuse-box-react",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "BeRun preset for building React web applications with Fuse-Box",
   "main": "src/index.js",
   "keywords": [
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@berun/runner-babel": "^2.2.1",
-    "@berun/runner-fuse-box": "^2.2.3",
+    "@berun/runner-fuse-box": "^2.2.4",
     "@berun/runner-jest": "^2.2.1",
     "@berun/runner-web-polyfills": "^2.2.1",
     "ts-jest": "^24.0.1"

@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-mdx",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "BeRun runner for building MDX documentation applications",
   "main": "src/index.js",
   "keywords": [
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
-    "@berun/preset-react": "^2.2.8"
+    "@berun/preset-react": "^2.2.9"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
