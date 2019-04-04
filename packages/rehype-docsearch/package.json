@@ -31,15 +31,12 @@
         "unist-util-visit": "^1.4.0"
     },
     "scripts": {
-        "prebuild": "berun-dev clean",
-        "build": "berun-dev build",
-        "coverage": "berun-dev test --coverage",
-        "prepublishOnly": "yarn build",
         "test": "berun-dev test",
         "test:watch": "berun-dev test -o --watch",
         "lint": "berun-dev lint"
     },
     "devDependencies": {
         "@berun/dev-scripts": "^2.0.18"
-    }
+    },
+    "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
 }
