@@ -174,7 +174,7 @@ test('Gets Webpack production plugin configuration', () => {
       constructor: 'ModuleNotFoundPlugin',
       args: ['/Volumes/DATA/projects/berun/packages/runner-mdx']
     },
-    {
+    /* {
       name: 'workbox',
       constructor: 'GenerateSW',
       args: [
@@ -189,7 +189,7 @@ test('Gets Webpack production plugin configuration', () => {
           ]
         }
       ]
-    },
+    },*/
     {
       name: 'moment',
       constructor: 'IgnorePlugin',

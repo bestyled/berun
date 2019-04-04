@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/bestyled/berun/tree/master/packages/template-docs"
   },
-  "homepage": "https://github.com/owner/project#readme",
+  "homepage": "https://github.com/bestyled/berun/blob/master/packages/template-docs",
   "author": {
     "name": "OffGrid Networks"
   },

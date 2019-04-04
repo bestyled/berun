@@ -110,6 +110,7 @@ module.exports = Object.assign(module.exports, {
   appIndexJs: getFile(resolveApp('src/index'), ['.js', '.jsx', '.ts', '.tsx']),
   testsSetup: getFile(resolveApp('src/setupTests'), ['.js', '.ts']),
   appNodeModules: resolveApp('node_modules'),
+  homepage: getPublicUrl(resolveApp('package.json')),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   config: hasLocalConfig ? resolveApp('config/berun.config.js') : require.resolve('@berun/scripts/config/berun.config.js'),
@@ -128,6 +129,6 @@ if (process.env.NODE_ENV !== 'production') {
   module.exports.publicUrl = '';
 } else {
   module.exports.publicPath = module.exports.servedPath;
-  module.exports.publicUrl = module.exports.publicPath.slice(0, -1);
+  module.exports.publicUrl = module.exports.publicUrl // publicPath.slice(0, -1);
 }
 

@@ -17,7 +17,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
   ).toEqual({
     test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
-    exclude: [/node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
       {
@@ -26,6 +26,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
         options: {
           babelrc: false,
           cacheDirectory: true,
+          cacheCompression: false,
           compact: false,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']
@@ -63,7 +64,7 @@ test('Gets Webpack production module rules configuration', () => {
   ).toEqual({
     test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
-    exclude: [/node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
       {
@@ -71,7 +72,8 @@ test('Gets Webpack production module rules configuration', () => {
           '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
         options: {
           babelrc: false,
-          cacheDirectory: false,
+          cacheDirectory: true,
+          cacheCompression: true,
           compact: true,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']

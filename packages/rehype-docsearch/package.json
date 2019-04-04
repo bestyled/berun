@@ -1,0 +1,46 @@
+{
+    "name": "rehype-docsearch",
+    "version": "0.1.0",
+    "description": "Output docsearch json from rehype",
+    "main": "src/index.js",
+    "repository": "https://github.com/bestyled/berun/tree/master/packages/preset-react",
+    "bugs": "https://github.com/bestyled/berun/issues",
+    "engines": {
+        "node": ">=8.3",
+        "npm": ">=5.4.0",
+        "yarn": ">=1.2.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "keywords": [
+        "rehype",
+        "algolia",
+        "docsearch",
+        "tdx"
+    ],
+    "authors": [
+        "OffGrid Networks <admin@offgridnetworks.com>"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "hast-util-select": "^3.0.0",
+        "unist-util-visit": "^1.4.0",
+        "hast-util-is-element": "^1.0.2",
+        "rehype-parse": "^6.0.0",
+        "unified": "^7.1.0"
+    
+    },
+    "scripts": {
+        "prebuild": "berun-dev clean",
+        "build": "berun-dev build",
+        "coverage": "berun-dev test --coverage",
+        "prepublishOnly": "yarn build",
+        "test": "berun-dev test",
+        "test:watch": "berun-dev test -o --watch",
+        "lint": "berun-dev lint"
+      },
+    "devDependencies": {
+        "@berun/dev-scripts": "^2.0.18"
+    }
+}

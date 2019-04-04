@@ -10,7 +10,7 @@ module.exports = (berun, opts = {}) => {
 
   berun.use(TSLint)
   berun.use(presetTSlint, options)
-  if ('webpack' in berun ) berun.use(ruleTSlint, options)
+  if ('webpack' in berun) berun.use(ruleTSlint, options)
 
   berun.sparky.task('tslint', task)
   berun.sparky.append('lint', 'tslint')

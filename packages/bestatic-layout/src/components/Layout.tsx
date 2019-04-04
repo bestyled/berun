@@ -29,16 +29,18 @@ export const Layout = Object.assign(
     const cards = children.filter(child => (child as any).type.isCards)
 
     return (
-        <Root id="layout">
-          {topnav}
-          {menuToggle}
-          {cards.length > 0 ? (
-            cards
-          ) : (
-           columns.length > 0 ? <Container id="layout-root-container" {...props}>{columns}</Container>
-           : null )}
-          {footer}
-        </Root>
+      <Root id="layout">
+        {topnav}
+        {menuToggle}
+        {cards.length > 0 ? (
+          cards
+        ) : columns.length > 0 ? (
+          <Container id="layout-root-container" {...props}>
+            {columns}
+          </Container>
+        ) : null}
+        {footer}
+      </Root>
     )
   },
   {

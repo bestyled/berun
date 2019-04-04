@@ -40,7 +40,8 @@
 		"@types/webpack-env": "^1.13.9"
 	},
 	"resolutions": {
-		"babel-core": "^7.0.0-bridge.0"
+		"babel-core": "^7.0.0-bridge.0",
+		"@tinia/tdx": "0.3.5"
 	},
 	"workspaces": [
 		"packages/*"

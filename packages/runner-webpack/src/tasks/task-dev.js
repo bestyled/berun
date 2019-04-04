@@ -115,23 +115,20 @@ function taskDevBuildCompile(berun) {
   const devSocket = {
     warnings: warnings =>
       devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-    errors: errors =>
-      devServer.sockWrite(devServer.sockets, 'errors', errors),
-  };
+    errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
+  }
 
   // require('fs').writeFileSync( require('path').join(process.cwd(), '.debug.webpack.dev.js'), 'module.exports=' +   berun.webpack.toString({ configPrefix: 'berun.webpack' })  )
   // Create a webpack compiler that is configured with custom messages.
-  const compiler = createCompiler(
-    {
-      appName,
-      config: berun.webpack.toConfig(),
-      urls,
-      useYarn: berun.options.paths.useYarn,
-      webpack,
-      useTypeScript: false && berun.options.paths.isTypescript,
-      devSocket,
-    }
-  )
+  const compiler = createCompiler({
+    appName,
+    config: berun.webpack.toConfig(),
+    urls,
+    useYarn: berun.options.paths.useYarn,
+    webpack,
+    useTypeScript: false && berun.options.paths.isTypescript,
+    devSocket
+  })
 
   // require('fs').writeFileSync(require('path').join(process.cwd(), ".debug.webpack.devserver.js"), "module.exports=" + require('util').inspect(berun.devserver.toConfig(), 99));
 
@@ -149,11 +146,11 @@ function taskDevBuildCompile(berun) {
       console.log(chalk.cyan('Starting the development server...\n'))
       openBrowser(urls.localUrlForBrowser)
     })
-      ;['SIGINT', 'SIGTERM'].forEach(function (sig) {
-        process.on(sig, function () {
-          devServer.close()
-          resolve()
-        })
+    ;['SIGINT', 'SIGTERM'].forEach(function(sig) {
+      process.on(sig, function() {
+        devServer.close()
+        resolve()
       })
+    })
   })
 }

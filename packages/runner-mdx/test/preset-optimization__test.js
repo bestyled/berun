@@ -36,6 +36,7 @@ test('Gets Webpack production optimization configuration', () => {
       chunks: 'all',
       name: false
     },
-    runtimeChunk: true
+    runtimeChunk: true,
+    minimize: true
   })
 })

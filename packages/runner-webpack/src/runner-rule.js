@@ -48,7 +48,8 @@ module.exports.ruleMainImage = (berun, options) => {
     .rule('main')
     .oneOf('image')
     .test([/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/])
-    .exclude.add(/node_modules/).end()
+    .exclude.add(/node_modules/)
+    .end()
     .use('url-loader')
     .loader(require.resolve('url-loader'))
     .options({ limit: 10000, name: 'static/media/[name].[hash:8].[ext]' })
@@ -71,30 +72,6 @@ module.exports.ruleMainCompile = (berun, options) => {
     .loader(require.resolve('babel-loader'))
     .options({
       /* placeholder */
-    })
-}
-
-/**
- * Process any JS outside of the app with Babel.
- * Unlike the application JS, we only compile the standard ES features.
- */
-module.exports.ruleMainExternal = (berun, options) => {
-  berun.webpack.module
-    .rule('main')
-    .oneOf('external')
-    .test(/\.js$/)
-    .exclude.add(/node_modules/).end()
-    .use('babel')
-    .loader(require.resolve('babel-loader'))
-    .options({
-      babelrc: false,
-      configFile: false,
-      compact: false,
-      presets: [require.resolve('@berun/babel-preset-react-app/dependencies')],
-      cacheDirectory: true,
-      cacheCompression: process.env.NODE_ENV == 'production',
-      highlightCode: true,
-      sourceMaps: false
     })
 }
 
@@ -131,7 +108,8 @@ module.exports.ruleMainSvg = (berun, options) => {
     .rule('main')
     .oneOf('svg')
     .test(/\.svg$/)
-    .exclude.add(/node_modules/).end()
+    .exclude.add(/node_modules/)
+    .end()
     .use('svgr')
     .loader(require.resolve('@svgr/webpack'))
     .end()

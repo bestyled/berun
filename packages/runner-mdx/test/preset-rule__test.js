@@ -14,7 +14,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
   ).toEqual({
     test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx'],
-    exclude: [/node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
       {
@@ -22,6 +22,7 @@ test('Gets Webpack additional/updated rules configuration', () => {
           '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
         options: {
           babelrc: false,
+          cacheCompression: false,
           cacheDirectory: true,
           compact: false,
           highlightCode: true,
@@ -53,7 +54,7 @@ test('Gets Webpack production module rules configuration', () => {
   ).toEqual({
     test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx'],
-    exclude: [/node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('markdown').use('babel') */
       {
@@ -61,7 +62,8 @@ test('Gets Webpack production module rules configuration', () => {
           '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
         options: {
           babelrc: false,
-          cacheDirectory: false,
+          cacheDirectory: true,
+          cacheCompression: true,
           compact: true,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']
@@ -93,6 +95,7 @@ test('Gets Webpack module rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+    exclude: [/node_modules/],
     use: [
       {
         loader:
@@ -113,7 +116,7 @@ test('Gets Webpack module rules configuration', () => {
   ).toEqual({
     test: /\.(js|jsx|ts|tsx)$/,
     include: ['/Volumes/DATA/projects/berun'],
-    exclude: [/[\/\\]node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('compile').use('babel') */
       {
@@ -121,35 +124,11 @@ test('Gets Webpack module rules configuration', () => {
           '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
         options: {
           babelrc: false,
+          cacheCompression: false,
           cacheDirectory: true,
           compact: false,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']
-        }
-      }
-    ]
-  })
-
-  expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('external')
-      .toConfig()
-  ).toEqual({
-    test: /\.js$/,
-    use: [
-      /* berun.webpack.module.rule('main').oneOf('external').use('babel') */
-      {
-        loader:
-          '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
-        options: {
-          babelrc: false,
-          compact: false,
-          presets: [
-            '/Volumes/DATA/projects/berun/node_modules/@berun/babel-preset-react-app/dependencies.js'
-          ],
-          cacheDirectory: true,
-          highlightCode: true
         }
       }
     ]
@@ -166,6 +145,7 @@ test('Gets Webpack module rules configuration', () => {
       /\.ejs$/,
       /\.html$/,
       /\.json$/,
+      /node_modules/,
       /\.(?:md|mdx)$/
     ],
     use: [
@@ -193,6 +173,7 @@ test('Gets Webpack production module rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+    exclude: [/node_modules/],
     use: [
       {
         loader:
@@ -213,7 +194,7 @@ test('Gets Webpack production module rules configuration', () => {
   ).toEqual({
     test: /\.(js|jsx|ts|tsx)$/,
     include: ['/Volumes/DATA/projects/berun'],
-    exclude: [/[\/\\]node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('compile').use('babel') */
       {
@@ -221,35 +202,11 @@ test('Gets Webpack production module rules configuration', () => {
           '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
         options: {
           babelrc: false,
-          cacheDirectory: false,
+          cacheDirectory: true,
+          cacheCompression: true,
           compact: true,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']
-        }
-      }
-    ]
-  })
-
-  expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('external')
-      .toConfig()
-  ).toEqual({
-    test: /\.js$/,
-    use: [
-      /* berun.webpack.module.rule('main').oneOf('external').use('babel') */
-      {
-        loader:
-          '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
-        options: {
-          babelrc: false,
-          compact: false,
-          presets: [
-            '/Volumes/DATA/projects/berun/node_modules/@berun/babel-preset-react-app/dependencies.js'
-          ],
-          cacheDirectory: false,
-          highlightCode: true
         }
       }
     ]
@@ -266,6 +223,7 @@ test('Gets Webpack production module rules configuration', () => {
       /\.ejs$/,
       /\.html$/,
       /\.json$/,
+      /node_modules/,
       /\.(?:md|mdx)$/
     ],
     use: [

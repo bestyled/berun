@@ -68,7 +68,7 @@ test('Gets Webpack compile rule', () => {
   ).toEqual({
     test: /\.(js|jsx|ts|tsx)$/,
     include: ['/Volumes/DATA/projects/berun'],
-    exclude: [/[\/\\]node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('compile').use('babel') */
       {
@@ -77,6 +77,7 @@ test('Gets Webpack compile rule', () => {
         options: {
           babelrc: false,
           cacheDirectory: true,
+          cacheCompression: false,
           compact: false,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']

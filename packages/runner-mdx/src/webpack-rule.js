@@ -14,7 +14,7 @@ module.exports.ruleMainDocs = (berun, options) => {
     .test(/(\.(?:md|mdx))$/)
     .include.merge([berun.options.paths.appPath])
     .end()
-    .exclude.add(/node_modules[/\\]/)
+    .exclude.add(/node_modules/)
     .end()
     .use('babel')
     .loader(require.resolve('babel-loader'))

@@ -10,7 +10,7 @@ import {
   WidthProps,
   SpaceProps,
   ColorProps,
-  DisplayProps,
+  DisplayProps
 } from 'styled-system'
 
 type CssProps = { css?: any }

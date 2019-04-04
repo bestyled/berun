@@ -11,7 +11,7 @@ test('Gets Webpack module rules configuration', () => {
     test: /\.(ts|tsx)$/,
     enforce: 'pre',
     include: ['/Volumes/DATA/projects/berun/packages/runner-tslint/src'],
-    exclude: [/[\/\\]node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('tslint').use('tslint') */
       {

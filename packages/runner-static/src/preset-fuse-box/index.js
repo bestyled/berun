@@ -68,6 +68,8 @@ module.exports.presetStatic = async function presetStatic(berun, opts = {}) {
   await remove(opts.tempdir)
   opts.basename = opts.basename || process.env.PUBLIC_URL
   opts.noJS = berun.sparkyContext.noJS
+  opts.homepage = berun.options.paths.homepage
+  opts.appBuild = berun.options.paths.appBuild
 
   const pages = await renderHTML(
     h,

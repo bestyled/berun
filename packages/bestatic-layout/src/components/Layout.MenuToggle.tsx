@@ -14,7 +14,7 @@ import {
   SpaceProps,
   ColorProps,
   DisplayProps,
-  themeGet,
+  themeGet
 } from 'styled-system'
 
 import { Container } from './Layout.Container'
@@ -58,52 +58,49 @@ const MenuButton = styled.label`
   any
 >
 
-
 MenuButton.defaultProps = {
   bg: 'transparent',
   p: 0,
   m: 0,
   title: 'Toggle Menu',
   children: <MenuIcon />,
-  display: ['inline-block', 'inline-block', 'none' ]
+  display: ['inline-block', 'inline-block', 'none']
 }
 
 const MenuHiddenToggle = styled.input`
-top: 0;
-left: 0;
-position: absolute;
-display: none;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: none;
 
-&:checked ~ label {
+  &:checked ~ label {
     transform: rotate(90deg);
-}
-
-
-
-& + div {
-  max-width: 0;
-  transition: max-width 0.3s;
-
-  @media screen and (min-width: ${(props: any) =>
-    themeGet('breakpoints', ['48em'])(props)[1]}) {
-  max-width: 100% !important;
   }
-}
 
-&:checked + div {
-  max-width: 100%;
-  transition: max-width 1s;
-}
+  & + div {
+    max-width: 0;
+    transition: max-width 0.3s;
+
+    @media screen and (min-width: ${(props: any) =>
+        themeGet('breakpoints', ['48em'])(props)[1]}) {
+      max-width: 100% !important;
+    }
+  }
+
+  &:checked + div {
+    max-width: 100%;
+    transition: max-width 1s;
+  }
 `
 
 export const MenuToggle: React.FC<any> = ({ children, ...props }) => {
-  
-  return <Container id="menu-toggle-container" {...props}>
+  return (
+    <Container id="menu-toggle-container" {...props}>
       <MenuHiddenToggle type="checkbox" id="toggle-1" />
       {children}
       <MenuButton {...props} htmlFor="toggle-1" />
     </Container>
+  )
 }
 
 MenuToggle['isMenuToggle'] = true
-

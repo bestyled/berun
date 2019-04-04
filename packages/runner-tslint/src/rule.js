@@ -9,7 +9,7 @@ module.exports.ruleTSlint = (berun, options) => {
     .enforce('pre')
     .include.merge([options.paths.appSrc])
     .end()
-    .exclude.add(/[/\\]node_modules[/\\]/)
+    .exclude.add(/node_modules/)
     .end()
     .use('tslint')
     .loader(require.resolve('tslint-loader'))

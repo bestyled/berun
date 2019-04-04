@@ -228,8 +228,7 @@ function promisifyWebpackBuild(berun) {
       }
     }
     
-    module.exports=` +
-      berun.webpack.toString({ configPrefix: 'berun.webpack' })
+    module.exports=` + berun.webpack.toString({ configPrefix: 'berun.webpack' })
   )
 
   let compiler = webpack(berun.webpack.toConfig())

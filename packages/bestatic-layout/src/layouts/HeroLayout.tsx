@@ -101,7 +101,9 @@ export const HeroLayout = props => {
     <WithSiteData>
       {sitedata => (
         <StyleProvider title={sitedata.title} theme={sitedata.theme}>
-          <HeroRoot logo={sitedata.herologo || sitedata.logo}>{props.children}</HeroRoot>
+          <HeroRoot logo={sitedata.herologo || sitedata.logo}>
+            {props.children}
+          </HeroRoot>
           <HeroFooter>
             {sitedata.footer ? (
               <Link href={sitedata.footer.href}>{sitedata.footer.label}</Link>

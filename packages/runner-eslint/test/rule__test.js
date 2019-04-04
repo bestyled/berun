@@ -11,7 +11,7 @@ test('Gets Webpack module rules configuration', () => {
     test: /\.(js|jsx|mjs|ts|tsx)$/,
     enforce: 'pre',
     include: ['/Volumes/DATA/projects/berun/packages/runner-eslint/src'],
-    exclude: [/[\/\\]node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('eslint').use('eslint') */
       {

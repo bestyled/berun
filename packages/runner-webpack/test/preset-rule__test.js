@@ -5,12 +5,6 @@ test('Gets Webpack module rules configuration', () => {
   const berun = berun_js(presetReact)
   const _ = berun.webpack.toConfig() // run once to set babel, jest config etc.
 
-  expect(berun.webpack.module.rule('mjs').toConfig()).toEqual({
-    test: [/\.mjs$/],
-    include: [/node_modules/],
-    type: 'javascript/auto'
-  })
-
   expect(
     berun.webpack.module
       .rule('main')
@@ -18,6 +12,7 @@ test('Gets Webpack module rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+    exclude: [/node_modules/],
     use: [
       {
         loader:
@@ -38,7 +33,7 @@ test('Gets Webpack module rules configuration', () => {
   ).toEqual({
     test: /\.(js|jsx|ts|tsx)$/,
     include: ['/Volumes/DATA/projects/berun'],
-    exclude: [/[\/\\]node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('compile').use('babel') */
       {
@@ -47,34 +42,10 @@ test('Gets Webpack module rules configuration', () => {
         options: {
           babelrc: false,
           cacheDirectory: true,
+          cacheCompression: false,
           compact: false,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']
-        }
-      }
-    ]
-  })
-
-  expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('external')
-      .toConfig()
-  ).toEqual({
-    test: /\.js$/,
-    use: [
-      /* berun.webpack.module.rule('main').oneOf('external').use('babel') */
-      {
-        loader:
-          '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
-        options: {
-          babelrc: false,
-          compact: false,
-          presets: [
-            '/Volumes/DATA/projects/berun/node_modules/@berun/babel-preset-react-app/dependencies.js'
-          ],
-          cacheDirectory: true,
-          highlightCode: true
         }
       }
     ]
@@ -90,7 +61,8 @@ test('Gets Webpack module rules configuration', () => {
       /\.(css|scss|sass|js|jsx|mjs|ts|tsx)$/,
       /\.ejs$/,
       /\.html$/,
-      /\.json$/
+      /\.json$/,
+      /node_modules/
     ],
     use: [
       /* berun.webpack.module.rule('main').oneOf('static').use('file') */
@@ -117,6 +89,7 @@ test('Gets Webpack production module rules configuration', () => {
       .toConfig()
   ).toEqual({
     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+    exclude: [/node_modules/],
     use: [
       {
         loader:
@@ -137,7 +110,7 @@ test('Gets Webpack production module rules configuration', () => {
   ).toEqual({
     test: /\.(js|jsx|ts|tsx)$/,
     include: ['/Volumes/DATA/projects/berun'],
-    exclude: [/[\/\\]node_modules[\/\\]/],
+    exclude: [/node_modules/],
     use: [
       /* berun.webpack.module.rule('main').oneOf('compile').use('babel') */
       {
@@ -145,35 +118,11 @@ test('Gets Webpack production module rules configuration', () => {
           '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
         options: {
           babelrc: false,
-          cacheDirectory: false,
+          cacheDirectory: true,
+          cacheCompression: true,
           compact: true,
           highlightCode: true,
           presets: ['@berun/babel-preset-react-app']
-        }
-      }
-    ]
-  })
-
-  expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('external')
-      .toConfig()
-  ).toEqual({
-    test: /\.js$/,
-    use: [
-      /* berun.webpack.module.rule('main').oneOf('external').use('babel') */
-      {
-        loader:
-          '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
-        options: {
-          babelrc: false,
-          compact: false,
-          presets: [
-            '/Volumes/DATA/projects/berun/node_modules/@berun/babel-preset-react-app/dependencies.js'
-          ],
-          cacheDirectory: false,
-          highlightCode: true
         }
       }
     ]
@@ -189,7 +138,8 @@ test('Gets Webpack production module rules configuration', () => {
       /\.(css|scss|sass|js|jsx|mjs|ts|tsx)$/,
       /\.ejs$/,
       /\.html$/,
-      /\.json$/
+      /\.json$/,
+      /node_modules/
     ],
     use: [
       /* berun.webpack.module.rule('main').oneOf('static').use('file') */

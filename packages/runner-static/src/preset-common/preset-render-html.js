@@ -1,4 +1,5 @@
 const resolveCWD = require('resolve-cwd')
+const renderAlgolia = require('./preset-render-algolia')
 
 const renderPage = async (
   h,
@@ -92,6 +93,10 @@ const renderHTML = async (
       return Object.assign({ body, head, css }, opts, route)
     })
   )
+
+  if (sitedata.algolia) {
+    renderAlgolia(pages, routes, sitedata, opts)
+  }
 
   return pages
 }
