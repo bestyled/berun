@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-fuse-box",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "BeRun runner for fuse-box, a webpack alternative",
   "main": "src/index.js",
   "keywords": [

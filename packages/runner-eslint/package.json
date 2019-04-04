@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-eslint",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "BeRun runner to add react eslint configuration",
   "main": "src/index.js",
   "keywords": [
