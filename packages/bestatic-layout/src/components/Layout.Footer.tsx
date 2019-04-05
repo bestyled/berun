@@ -64,13 +64,15 @@ FooterItem.defaultProps = {
 export const Footer: React.SFC = (withRouter((props: any) => {
   const sitedata = useSiteData()
   const pathname = props.match.path
-  const route = props.routes.find(
+  
+  const route = props.routes.flattened.find(
     link =>
       link.path === pathname || (link.match && link.match.path === pathname)
   )
+
   const editUrl = new URL(
     route ? route.id : '/',
-    `${sitedata.remoteOriginUrl}/blob/master`
+    `${sitedata.remoteOriginUrl}/blob/master/`
   )
 
   return (
