@@ -47,7 +47,7 @@ HeroFooter.defaultProps = {
 
 const slideIn = keyframes`
   0% {
-    transform: translateY(-50px);
+    transform: translateY(-48px);
     opacity: 0;
   }
   100% {
@@ -68,7 +68,7 @@ const HeroRoot = styled.div`
 
   & h1 a::before {
     background: ${(p: any) => `url("${p.logo}") no-repeat center;`};
-    background-size: 128px 128px;
+    background-size: 96px 96px;
     display: block;
     height: 128px;
     content:"";
