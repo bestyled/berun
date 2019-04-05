@@ -40,5 +40,5 @@ const taskDev = berun => {
 module.exports = (berun, options = {}) => {
   berun.sparky.task('build:static', task)
   berun.sparky.task('start:static', taskDev)
-  berun.sparky.task('build:static:algolia', ['build:static'], taskAlgoliaDeploy)
+  berun.sparky.task('build:algolia:static', ['build:static'], taskAlgoliaDeploy)
 }
