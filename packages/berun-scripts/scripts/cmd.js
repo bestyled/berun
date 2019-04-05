@@ -15,6 +15,9 @@ const ENV = {
   'start': 'development',
   'test': 'test',
   'build:static': 'production',
+  'deploy': 'production',
+  'deploy:static': 'production',
+  'build:static:algolia': 'production',
   'docs:build': 'production',
   'docs:start': 'development'
 }

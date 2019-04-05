@@ -6,6 +6,10 @@ const {
   taskStaticPass2
 } = require('./tasks/task-static')
 
+const {
+  taskAlgoliaDeploy
+} = require('./tasks/task-algolia')
+
 function getPreset(berun) {
   if ('webpack' in berun) return require('./preset-webpack')
   else if ('fusebox' in berun) return require('./preset-fuse-box')
@@ -36,4 +40,5 @@ const taskDev = berun => {
 module.exports = (berun, options = {}) => {
   berun.sparky.task('build:static', task)
   berun.sparky.task('start:static', taskDev)
+  berun.sparky.task('build:static:algolia', ['build:static'], taskAlgoliaDeploy)
 }

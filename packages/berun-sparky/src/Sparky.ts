@@ -150,7 +150,7 @@ export class Sparky {
     }
     log.echoSparkyTaskStart(taskName)
 
-    const task = this.tasks.get(taskName)
+    const task = this.tasks.get(taskName)!
     await Promise.all([
       // resolve parallel dependencies
       Promise.all(task.parallelDependencies.map(name => this.resolve(name))),
