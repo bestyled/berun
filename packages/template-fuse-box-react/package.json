@@ -1,12 +1,12 @@
 {
   "name": "@berun/template-fuse-box-react",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "devDependencies": {
     "@berun/preset-fuse-box-react": "^2.2.4",
     "@berun/runner-eslint": "^2.2.3",
-    "@berun/runner-prettier": "^2.2.9",
-    "@berun/runner-webpack-css": "^2.2.9",
-    "@berun/scripts": "^2.2.4"
+    "@berun/runner-prettier": "^2.2.10",
+    "@berun/runner-webpack-css": "^2.2.10",
+    "@berun/scripts": "^2.2.5"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

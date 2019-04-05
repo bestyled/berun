@@ -1,6 +1,6 @@
 {
   "name": "@berun/scripts",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Configuration and scripts for BeRun.",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/berun-scripts",
   "license": "Apache-2.0",

@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tsmain",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "description": "BeRun runner to add react ts:main support",
   "main": "src/index.js",
   "keywords": [
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.24",
     "@berun/fluent": "^2.2.1",
-    "@berun/preset-react": "^2.2.9"
+    "@berun/preset-react": "^2.2.10"
   },
   "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
 }
