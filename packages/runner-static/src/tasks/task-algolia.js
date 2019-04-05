@@ -1,11 +1,11 @@
 module.exports.taskAlgoliaDeploy = async berun => {
    
     var algoliasearch = require('algoliasearch');
-    const client = algoliasearch(process.env.ALGOLIA_APPID, process.env.ALGOLIA_APIADMIN);
+    const client = algoliasearch(process.env.BERUN_ALGOLIA_APPID, process.env.BERUN_ALGOLIA_APIADMIN);
 
     // 1. Initialize the target and temporary indices
-    const index = client.initIndex(process.env.ALGOLIA_INDEX);
-    const tmpIndex = client.initIndex(`${process.env.ALGOLIA_INDEX}_tmp`);
+    const index = client.initIndex(process.env.BERUN_ALGOLIA_INDEX);
+    const tmpIndex = client.initIndex(`${process.env.BERUN_ALGOLIA_INDEX}_tmp`);
 
     // 2. Copy the settings, synonyms and rules (but not the records)
     client.copyIndex(index.indexName, tmpIndex.indexName, [
