@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-static",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Cross build engine preset for building static applications",
   "main": "src/index.js",
   "keywords": [
@@ -29,9 +29,9 @@
   "dependencies": {
     "fs-extra": "^7.0.1",
     "react-router-dom": "^5.0.0",
+    "rehype-docsearch": "^0.1.2",
     "resolve-cwd": "^2.0.0",
-    "webpack-node-externals": "~1.7.2",
-    "rehype-docsearch": "^0.1.2"
+    "webpack-node-externals": "~1.7.2"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",

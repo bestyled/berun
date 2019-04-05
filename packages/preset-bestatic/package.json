@@ -1,6 +1,6 @@
 {
   "name": "@berun/preset-bestatic",
-  "version": "2.2.10",
+  "version": "2.2.11",
   "description": "TDX and MDX-based documentation server",
   "main": "src/index.js",
   "keywords": [
@@ -27,7 +27,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@berun/runner-static": "^2.3.3",
+    "@berun/runner-static": "^2.3.4",
     "@berun/runner-tdx": "^2.2.10",
     "@berun/runner-tdx-frontmatter": "^2.2.9"
   },
