@@ -30,7 +30,8 @@
     "fs-extra": "^7.0.1",
     "react-router-dom": "^5.0.0",
     "resolve-cwd": "^2.0.0",
-    "webpack-node-externals": "~1.7.2"
+    "webpack-node-externals": "~1.7.2",
+    "rehype-docsearch": "^0.1.2"
   },
   "scripts": {
     "coverage": "berun-dev test --coverage",
