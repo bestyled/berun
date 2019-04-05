@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-docs",
-  "version": "0.3.24",
+  "version": "0.3.25",
   "repository": {
     "type": "git",
     "url": "https://github.com/bestyled/berun/tree/master/packages/template-docs"
@@ -15,7 +15,7 @@
     "@berun/runner-eslint": "^2.2.3",
     "@berun/runner-prettier": "^2.2.10",
     "@berun/scripts": "^2.2.6",
-    "@bestatic/layout": "^2.2.23",
+    "@bestatic/layout": "^2.2.24",
     "axios": "^0.18.0"
   },
   "resolutions": {
