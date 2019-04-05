@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { StyledComponent } from 'styled-components'
+import styled, { StyledComponent, keyframes } from 'styled-components'
 import StyleProvider from '@bestatic/styled'
 import { ScrollTop } from '@bestatic/layout'
 import { WithSiteData } from '@bestatic/components'
@@ -44,6 +44,18 @@ HeroFooter.defaultProps = {
   m: 2
 }
 
+
+const slideIn = keyframes`
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+`
+
 // hero.jpg by segmentio under MIT License
 const HeroRoot = styled.div`
   display: flex;
@@ -55,14 +67,12 @@ const HeroRoot = styled.div`
   justify-content: center;
 
   & h1 a::before {
-    background: ${(p: any) => `url("${p.logo}") no-repeat left;`};
-    background-size: 64px 64px;
-    display: inline-block;
-    width: 64px; 
-    height: 64px;
+    background: ${(p: any) => `url("${p.logo}") no-repeat center;`};
+    background-size: 128px 128px;
+    display: block;
+    height: 128px;
     content:"";
-    margin-bottom: -20px;
-    padding-right: 8px;
+    animation: ${slideIn} 0.5s ease-out;
   }
 
   & h1 {
