@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-static",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Cross build engine preset for building static applications",
   "main": "src/index.js",
   "keywords": [

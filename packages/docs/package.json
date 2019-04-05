@@ -1,6 +1,6 @@
 {
   "name": "@berun/docs",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "repository": {
     "type": "git",
     "url": "https://github.com/bestyled/berun/tree/master/packages/docs"
@@ -10,10 +10,10 @@
   },
   "license": "MPL-2.0",
   "devDependencies": {
-    "@berun/preset-bestatic": "^2.2.11",
+    "@berun/preset-bestatic": "^2.2.12",
     "@berun/preset-react": "^2.2.9",
-    "@berun/scripts": "^2.2.3",
-    "@bestatic/layout": "^2.2.18"
+    "@berun/scripts": "^2.2.4",
+    "@bestatic/layout": "^2.2.19"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

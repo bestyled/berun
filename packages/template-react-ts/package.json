@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-react-ts",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "publishConfig": {
     "access": "public"
   },
@@ -10,7 +10,7 @@
     "@berun/runner-prettier": "^2.2.9",
     "@berun/runner-tslint": "^2.2.9",
     "@berun/runner-webpack-css": "^2.2.9",
-    "@berun/scripts": "^2.2.3",
+    "@berun/scripts": "^2.2.4",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3"
