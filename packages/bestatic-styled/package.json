@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/styled",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Styled scope provider for Markdown/MDX/TDX documents",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
@@ -41,7 +41,7 @@
     "styled-system": "^4.1.0"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.24"
+    "@berun/dev-scripts": "^2.0.25"
   },
   "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
 }

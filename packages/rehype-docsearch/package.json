@@ -1,6 +1,6 @@
 {
     "name": "rehype-docsearch",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Output docsearch json from rehype",
     "main": "src/index.js",
     "repository": "https://github.com/bestyled/berun/tree/master/packages/preset-react",
@@ -36,7 +36,7 @@
         "lint": "berun-dev lint"
     },
     "devDependencies": {
-        "@berun/dev-scripts": "^2.0.18"
+        "@berun/dev-scripts": "^2.0.25"
     },
     "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
 }

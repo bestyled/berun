@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/components",
-  "version": "2.1.8",
+  "version": "2.1.9",
   "description": "BeStatic Components including Tiny <head>, <body> injector, local route ",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
@@ -33,7 +33,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.24"
+    "@berun/dev-scripts": "^2.0.25"
   },
   "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
 }

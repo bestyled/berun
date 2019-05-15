@@ -1,6 +1,6 @@
 {
   "name": "@berun/scripts",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "Configuration and scripts for BeRun.",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/berun-scripts",
   "license": "Apache-2.0",
@@ -27,11 +27,11 @@
     "berun-scripts": "./bin/berun-scripts.js"
   },
   "dependencies": {
-    "@berun/berun": "^2.2.5",
+    "@berun/berun": "^2.2.6",
     "react-dev-utils": "8.0.0"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.24"
+    "@berun/dev-scripts": "^2.0.25"
   },
   "optionalDependencies": {
     "fsevents": "1.2.7"

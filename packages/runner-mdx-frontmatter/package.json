@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-mdx-frontmatter",
-  "version": "2.2.10",
+  "version": "2.2.11",
   "description": "BeRun runner for using yaml frontmatter with MDX documentation applications",
   "main": "src/index.js",
   "keywords": [
@@ -40,9 +40,9 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.24",
-    "@berun/preset-react": "^2.2.10",
-    "@berun/runner-mdx": "^2.2.10"
+    "@berun/dev-scripts": "^2.0.25",
+    "@berun/preset-react": "^2.2.11",
+    "@berun/runner-mdx": "^2.2.11"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"

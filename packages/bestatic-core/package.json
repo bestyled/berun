@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/core",
-  "version": "2.2.14",
+  "version": "2.2.15",
   "description": "React Static Documentation",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -35,19 +35,19 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@berun/preset-bestatic": "^2.2.14",
-    "@berun/preset-react": "^2.2.10",
-    "@berun/runner-eslint": "^2.2.3",
-    "@berun/runner-prettier": "^2.2.10",
-    "@berun/runner-tsmain": "^2.2.10",
-    "@bestatic/components": "^2.1.8",
+    "@berun/preset-bestatic": "^2.2.15",
+    "@berun/preset-react": "^2.2.11",
+    "@berun/runner-eslint": "^2.2.4",
+    "@berun/runner-prettier": "^2.2.11",
+    "@berun/runner-tsmain": "^2.2.11",
+    "@bestatic/components": "^2.1.9",
     "@tinia/tdx-tag": "^0.3.2",
     "is-absolute-url": "^2.1.0",
     "lodash.get": "^4.4.2",
     "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.24"
+    "@berun/dev-scripts": "^2.0.25"
   },
   "peerDependencies": {
     "react": "^16.8.6",

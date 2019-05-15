@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/layout",
-  "version": "2.2.24",
+  "version": "2.2.25",
   "description": "MDX-based theme",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
@@ -34,15 +34,15 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@bestatic/components": "^2.1.8",
-    "@bestatic/core": "^2.2.14",
-    "@bestatic/styled": "^2.2.1",
+    "@bestatic/components": "^2.1.9",
+    "@bestatic/core": "^2.2.15",
+    "@bestatic/styled": "^2.2.2",
     "react-router-dom": "^5.0.0",
     "styled-components": "^4.2.0",
     "styled-system": "^4.1.0"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.24"
+    "@berun/dev-scripts": "^2.0.25"
   },
   "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
 }

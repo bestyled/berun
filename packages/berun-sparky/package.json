@@ -1,6 +1,6 @@
 {
   "name": "@berun/sparky",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Sparky task runner for @berun",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
@@ -48,7 +48,7 @@
     "lint": "berun-dev lint"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.24"
+    "@berun/dev-scripts": "^2.0.25"
   },
   "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
 }

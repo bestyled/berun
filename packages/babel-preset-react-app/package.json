@@ -1,6 +1,6 @@
 {
   "name": "@berun/babel-preset-react-app",
-  "version": "5.0.20",
+  "version": "5.0.21",
   "description": "Babel preset used by @berun",
   "repository": "bestyled/berun",
   "license": "MIT",
