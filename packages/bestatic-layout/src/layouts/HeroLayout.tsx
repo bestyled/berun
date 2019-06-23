@@ -44,7 +44,6 @@ HeroFooter.defaultProps = {
   m: 2
 }
 
-
 const slideIn = keyframes`
   0% {
     transform: translateY(-48px);

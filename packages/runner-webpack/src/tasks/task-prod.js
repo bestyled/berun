@@ -202,7 +202,7 @@ function promisifyWebpackBuild(berun) {
       'Creating an optimized production build...'
   )
 
- /* require('fs').writeFileSync(
+  /* require('fs').writeFileSync(
     require('path').join(process.cwd(), '.debug.webpack.prod.js'),
 
     `

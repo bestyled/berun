@@ -6,9 +6,7 @@ const {
   taskStaticPass2
 } = require('./tasks/task-static')
 
-const {
-  taskAlgoliaDeploy
-} = require('./tasks/task-algolia')
+const { taskAlgoliaDeploy } = require('./tasks/task-algolia')
 
 function getPreset(berun) {
   if ('webpack' in berun) return require('./preset-webpack')
