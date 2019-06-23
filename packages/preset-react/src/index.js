@@ -37,7 +37,7 @@ module.exports = (berun, options = {}) => {
     .when(!ISPRODUCTION, b => b.use(webpack.pluginWatchMissingNodeModules))
     .use(webpack.pluginMoment)
     .use(webpack.pluginManifest)
-    .when(ISPRODUCTION && berun.options.paths.isTypeScript, b =>
+    .when(ISPRODUCTION && berun.options.paths.isTypeScript && berun.options.tsChecker, b =>
       b.use(webpack.pluginForkTsChecker)
     )
 

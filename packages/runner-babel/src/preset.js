@@ -8,6 +8,7 @@ module.exports = (berun, options) => {
     babelrc: false,
     presets: ['@berun/babel-preset-react-app'],
     highlightCode: true,
-    compact: options.ISPRODUCTION ? true : false
+    compact: options.ISPRODUCTION ? true : false,
+    sourceType: 'unambiguous'
   })
 }

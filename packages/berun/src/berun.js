@@ -14,6 +14,9 @@ module.exports = class BeRun {
     if (!process.env.NODE_ENV)
       process.env.NODE_ENV = 'production';
 
+    if (!process.env.GENERATE_SOURCEMAP)
+      process.env.GENERATE_SOURCEMAP = false;
+
     const proxy = new Proxy(this, {
       get(self, property) {
 
