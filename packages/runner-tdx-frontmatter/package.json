@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tdx-frontmatter",
-  "version": "2.2.11",
+  "version": "2.2.12",
   "description": "BeRun runner for using yaml frontmatter with TDX documentation applications",
   "main": "src/index.js",
   "keywords": [
@@ -41,8 +41,8 @@
   },
   "devDependencies": {
     "@berun/dev-scripts": "^2.0.25",
-    "@berun/preset-react": "^2.2.11",
-    "@berun/runner-mdx": "^2.2.11"
+    "@berun/preset-react": "^2.2.12",
+    "@berun/runner-mdx": "^2.2.12"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
