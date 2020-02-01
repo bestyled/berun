@@ -12,7 +12,9 @@ const SAL_SCRIPT = `window.addEventListener('load', function (){
 
 export const ScrollAnimation = () => {
   useLayoutEffect(() => {
-    if (window && window['sal']) window['sal']()
+    if (window && window.sal) {
+      window.sal()
+    }
   })
 
   return (

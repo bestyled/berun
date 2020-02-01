@@ -14,12 +14,12 @@ need to install it directly, follow these directions:
 $ npm install --save-dev @berun/fluent-jest
 ```
 
-### 1. Embed within `berun.config.js`
+### 1. Embed within `berun.config.ts`
 
 ```js
-// berun.config.js
+// berun.config.ts
 
-module.exports = {
+export default {
   use: [
      // ...
     '@berun/fluent-jest',
@@ -184,7 +184,7 @@ You can inspect the generated Jest config using `berun.jest.toConfig()`.
 expect(berun.jest.toConfig()).toEqual({
   collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
     setupFiles: [
-      '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js'
+      '/Volumes/DATA/projects/berun/packages/runner-web-polyfills/src/polyfills.ts'
     ],
     testMatch: [
       '**/__tests__/**/*.{js,jsx,mjs}',

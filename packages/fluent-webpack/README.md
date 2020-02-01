@@ -50,25 +50,25 @@ be `webpack.config.js` in the root of our project directory.
 ```js
 // Require the [BeRun Fluent](https://github.com/bestyled/berun/master/packages/fluent)module. This module exports a single
 // constructor function for creating a configuration API.
-const Config = require('@berun/berun')
+import { berun as berunCreate } from '@berun/berun'
 
 // Instantiate the configuration with a new API
-const config = new Config()
+const berun = berunCreate()
 
 // Make configuration changes using the chain API.
 // Every API call tracks a change to the stored configuration.
 
-config
+berun
   // Interact with entry points
   .entry('index')
-  .add('src/index.js')
+  .add('src/index.ts')
   .end()
   // Modify output settings
   .output.path('dist')
   .filename('[name].bundle.js')
 
 // Create named rules which can be modified later
-config.module
+berun.module
   .rule('lint')
   .test(/\.js$/)
   .pre()
@@ -83,7 +83,7 @@ config.module
     }
   })
 
-config.module
+berun.module
   .rule('compile')
   .test(/\.js$/)
   .include.add('src')
@@ -96,10 +96,10 @@ config.module
   })
 
 // Create named plugins too!
-config.plugin('clean').use(CleanPlugin, [['dist'], { root: '/dir' }])
+berun.plugin('clean').use(CleanPlugin, [['dist'], { root: '/dir' }])
 
 // Export the completed configuration object to be consumed by webpack
-module.exports = config.toConfig()
+export default berun.toConfig()
 ```
 
 Having shared configurations is also simple. Just export the configuration
@@ -107,36 +107,36 @@ and call `.toConfig()` prior to passing to Webpack.
 
 ```js
 // webpack.core.js
-const Config = require('@berun/berun')
-const config = new Config()
+import { berun as berunCreate } from '@berun/berun'
+const berun = berunCreate()
 
 // Make configuration shared across targets
 // ...
 
-module.exports = config
+export default config
 
 // webpack.dev.js
 const config = require('./webpack.core')
 
 // Dev-specific configuration
 // ...
-module.exports = config.toConfig()
+export default config.toConfig()
 
 // webpack.prod.js
 const config = require('./webpack.core')
 
 // Production-specific configuration
 // ...
-module.exports = config.toConfig()
+export default config.toConfig()
 ```
 
-## ChainedMap
+## FluentMap
 
-One of the core API interfaces in [BeRun Fluent](https://github.com/bestyled/berun/master/packages/fluent)is a `ChainedMap`. A `ChainedMap` operates
+One of the core API interfaces in [BeRun Fluent](https://github.com/bestyled/berun/master/packages/fluent)is a `FluentMap`. A `FluentMap` operates
 similar to a JavaScript Map, with some conveniences for chaining and generating configuration.
-If a property is marked as being a `ChainedMap`, it will have an API and methods as described below:
+If a property is marked as being a `FluentMap`, it will have an API and methods as described below:
 
-**Unless stated otherwise, these methods will return the `ChainedMap`, allowing you to chain these methods.**
+**Unless stated otherwise, these methods will return the `FluentMap`, allowing you to chain these methods.**
 
 ```js
 // Remove all entries from a Map.
@@ -182,7 +182,7 @@ values()
 // corresponding to the key. Will return `undefined` if the backing
 // Map is empty.
 // This will order properties by their name if the value is
-// a ChainedMap that used .before() or .after().
+// a FluentMap that used .before() or .after().
 // returns: Object, undefined if empty
 entries()
 ```
@@ -199,28 +199,28 @@ merge(obj, omit)
 
 ```js
 // Execute a function against the current configuration context
-// handler: Function -> ChainedMap
-// A function which is given a single argument of the ChainedMap instance
+// handler: Function -> FluentMap
+// A function which is given a single argument of the FluentMap instance
 batch(handler)
 ```
 
 ```js
 // Conditionally execute a function to continue configuration
 // condition: Boolean
-// whenTruthy: Function -> ChainedMap
-// invoked when condition is truthy, given a single argument of the ChainedMap instance
-// whenFalsy: Optional Function -> ChainedMap
-// invoked when condition is falsy, given a single argument of the ChainedMap instance
+// whenTruthy: Function -> FluentMap
+// invoked when condition is truthy, given a single argument of the FluentMap instance
+// whenFalsy: Optional Function -> FluentMap
+// invoked when condition is falsy, given a single argument of the FluentMap instance
 when(condition, whenTruthy, whenFalsy)
 ```
 
-## ChainedSet
+## FluentSet
 
-Another of the core API interfaces in [BeRun Fluent](https://github.com/bestyled/berun/master/packages/fluent)is a `ChainedSet`. A `ChainedSet` operates
+Another of the core API interfaces in [BeRun Fluent](https://github.com/bestyled/berun/master/packages/fluent)is a `FluentSet`. A `FluentSet` operates
 similar to a JavaScript Set, with some conveniences for chaining and generating configuration.
-If a property is marked as being a `ChainedSet`, it will have an API and methods as described below:
+If a property is marked as being a `FluentSet`, it will have an API and methods as described below:
 
-**Unless stated otherwise, these methods will return the `ChainedSet`, allowing you to chain these methods.**
+**Unless stated otherwise, these methods will return the `FluentSet`, allowing you to chain these methods.**
 
 ```js
 // Add/append a value to the end of a Set.
@@ -267,29 +267,29 @@ merge(arr)
 
 ```js
 // Execute a function against the current configuration context
-// handler: Function -> ChainedSet
-// A function which is given a single argument of the ChainedSet instance
+// handler: Function -> FluentSet
+// A function which is given a single argument of the FluentSet instance
 batch(handler)
 ```
 
 ```js
 // Conditionally execute a function to continue configuration
 // condition: Boolean
-// whenTruthy: Function -> ChainedSet
-// invoked when condition is truthy, given a single argument of the ChainedSet instance
-// whenFalsy: Optional Function -> ChainedSet
-// invoked when condition is falsy, given a single argument of the ChainedSet instance
+// whenTruthy: Function -> FluentSet
+// invoked when condition is truthy, given a single argument of the FluentSet instance
+// whenFalsy: Optional Function -> FluentSet
+// invoked when condition is falsy, given a single argument of the FluentSet instance
 when(condition, whenTruthy, whenFalsy)
 ```
 
 ## Shorthand methods
 
-A number of shorthand methods exist for setting a value on a `ChainedMap`
+A number of shorthand methods exist for setting a value on a `FluentMap`
 with the same key as the shorthand method name.
 For example, `devServer.hot` is a shorthand method, so it can be used as:
 
 ```js
-// A shorthand method for setting a value on a ChainedMap
+// A shorthand method for setting a value on a FluentMap
 devServer.hot(true)
 
 // This would be equivalent to:
@@ -321,7 +321,7 @@ please refer to their corresponding name in the
 [Webpack docs hierarchy](https://webpack.js.org/configuration/).
 
 ```js
-Config: ChainedMap
+Config: FluentMap
 ```
 
 #### Config shorthand methods
@@ -350,8 +350,8 @@ config
 #### Config entryPoints
 
 ```js
-// Backed at config.entryPoints : ChainedMap
-config.entry(name) : ChainedSet
+// Backed at config.entryPoints : FluentMap
+config.entry(name) : FluentSet
 
 config
   .entry(name)
@@ -377,7 +377,7 @@ config.entryPoints
 #### Config output: shorthand methods
 
 ```js
-config.output : ChainedMap
+config.output : FluentMap
 
 config.output
   .auxiliaryComment(auxiliaryComment)
@@ -411,7 +411,7 @@ config.output
 #### Config resolve: shorthand methods
 
 ```js
-config.resolve : ChainedMap
+config.resolve : FluentMap
 
 config.resolve
   .cachePredicate(cachePredicate)
@@ -425,7 +425,7 @@ config.resolve
 #### Config resolve alias
 
 ```js
-config.resolve.alias : ChainedMap
+config.resolve.alias : FluentMap
 
 config.resolve.alias
   .set(key, value)
@@ -437,7 +437,7 @@ config.resolve.alias
 #### Config resolve modules
 
 ```js
-config.resolve.modules : ChainedSet
+config.resolve.modules : FluentSet
 
 config.resolve.modules
   .add(value)
@@ -448,7 +448,7 @@ config.resolve.modules
 #### Config resolve aliasFields
 
 ```js
-config.resolve.aliasFields : ChainedSet
+config.resolve.aliasFields : FluentSet
 
 config.resolve.aliasFields
   .add(value)
@@ -459,7 +459,7 @@ config.resolve.aliasFields
 #### Config resolve descriptionFields
 
 ```js
-config.resolve.descriptionFields : ChainedSet
+config.resolve.descriptionFields : FluentSet
 
 config.resolve.descriptionFields
   .add(value)
@@ -470,7 +470,7 @@ config.resolve.descriptionFields
 #### Config resolve extensions
 
 ```js
-config.resolve.extensions : ChainedSet
+config.resolve.extensions : FluentSet
 
 config.resolve.extensions
   .add(value)
@@ -481,7 +481,7 @@ config.resolve.extensions
 #### Config resolve mainFields
 
 ```js
-config.resolve.mainFields : ChainedSet
+config.resolve.mainFields : FluentSet
 
 config.resolve.mainFields
   .add(value)
@@ -492,7 +492,7 @@ config.resolve.mainFields
 #### Config resolve mainFiles
 
 ```js
-config.resolve.mainFiles : ChainedSet
+config.resolve.mainFiles : FluentSet
 
 config.resolve.mainFiles
   .add(value)
@@ -503,13 +503,13 @@ config.resolve.mainFiles
 #### Config resolveLoader
 
 ```js
-config.resolveLoader : ChainedMap
+config.resolveLoader : FluentMap
 ```
 
 #### Config resolveLoader extensions
 
 ```js
-config.resolveLoader.extensions : ChainedSet
+config.resolveLoader.extensions : FluentSet
 
 config.resolveLoader.extensions
   .add(value)
@@ -520,7 +520,7 @@ config.resolveLoader.extensions
 #### Config resolveLoader modules
 
 ```js
-config.resolveLoader.modules : ChainedSet
+config.resolveLoader.modules : FluentSet
 
 config.resolveLoader.modules
   .add(value)
@@ -531,7 +531,7 @@ config.resolveLoader.modules
 #### Config resolveLoader moduleExtensions
 
 ```js
-config.resolveLoader.moduleExtensions : ChainedSet
+config.resolveLoader.moduleExtensions : FluentSet
 
 config.resolveLoader.moduleExtensions
   .add(value)
@@ -542,7 +542,7 @@ config.resolveLoader.moduleExtensions
 #### Config resolveLoader packageMains
 
 ```js
-config.resolveLoader.packageMains : ChainedSet
+config.resolveLoader.packageMains : FluentSet
 
 config.resolveLoader.packageMains
   .add(value)
@@ -553,7 +553,7 @@ config.resolveLoader.packageMains
 #### Config performance: shorthand methods
 
 ```js
-config.performance : ChainedMap
+config.performance : FluentMap
 
 config.performance
   .hints(hints)
@@ -565,7 +565,7 @@ config.performance
 #### Configuring optimizations: shorthand methods
 
 ```js
-config.optimization : ChainedMap
+config.optimization : FluentMap
 
 config.optimization
   .concatenateModules(concatenateModules)
@@ -592,7 +592,7 @@ config.optimization
 
 ```js
 // Backed at config.plugins
-config.plugin(name) : ChainedMap
+config.plugin(name) : FluentMap
 ```
 
 #### Config plugins: adding
@@ -671,7 +671,7 @@ config
 
 ```js
 // Backed at config.resolve.plugins
-config.resolve.plugin(name) : ChainedMap
+config.resolve.plugin(name) : FluentMap
 ```
 
 #### Config resolve plugins: adding
@@ -741,7 +741,7 @@ config.resolve
 #### Config node
 
 ```js
-config.node : ChainedMap
+config.node : FluentMap
 
 config.node
   .set('__dirname', 'mock')
@@ -751,13 +751,13 @@ config.node
 #### Config devServer
 
 ```js
-config.devServer : ChainedMap
+config.devServer : FluentMap
 ```
 
 #### Config devServer allowedHosts
 
 ```js
-config.devServer.allowedHosts : ChainedSet
+config.devServer.allowedHosts : FluentSet
 
 config.devServer.allowedHosts
   .add(value)
@@ -810,13 +810,13 @@ config.devServer
 #### Config module
 
 ```js
-config.module : ChainedMap
+config.module : FluentMap
 ```
 
 #### Config module: shorthand methods
 
 ```js
-config.module : ChainedMap
+config.module : FluentMap
 
 config.module
   .noParse(noParse)
@@ -825,7 +825,7 @@ config.module
 #### Config module rules: shorthand methods
 
 ```js
-config.module.rules : ChainedMap
+config.module.rules : FluentMap
 
 config.module
   .rule(name)
@@ -838,7 +838,7 @@ config.module
 #### Config module rules uses (loaders): creating
 
 ```js
-config.module.rules{}.uses : ChainedMap
+config.module.rules{}.uses : FluentMap
 
 config.module
   .rule(name)
@@ -876,7 +876,7 @@ config.module
 #### Config module rules oneOfs (conditional rules):
 
 ```js
-config.module.rules{}.oneOfs : ChainedMap<Rule>
+config.module.rules{}.oneOfs : FluentMap<Rule>
 
 config.module
   .rule(name)
@@ -1076,10 +1076,10 @@ config.merge({
 
 ### Conditional configuration
 
-When working with instances of `ChainedMap` and `ChainedSet`, you can perform conditional configuration using `when`.
+When working with instances of `FluentMap` and `FluentSet`, you can perform conditional configuration using `when`.
 You must specify an expression to `when()` which will be evaluated for truthiness or falsiness. If the expression is
-truthy, the first function argument will be invoked with an instance of the current chained instance. You can optionally
-provide a second function to be invoked when the condition is falsy, which is also given the current chained instance.
+truthy, the first function argument will be invoked with an instance of the current Fluent instance. You can optionally
+provide a second function to be invoked when the condition is falsy, which is also given the current Fluent instance.
 
 ```js
 // Example: Only add minify plugin during production

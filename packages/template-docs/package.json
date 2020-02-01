@@ -1,34 +1,8 @@
 {
   "name": "@berun/template-docs",
-  "version": "0.3.27",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bestyled/berun/tree/master/packages/template-docs"
-  },
-  "homepage": "https://github.com/bestyled/berun/blob/master/packages/template-docs",
+  "version": "1.0.6",
   "author": {
     "name": "OffGrid Networks"
-  },
-  "devDependencies": {
-    "@berun/preset-bestatic": "^2.2.16",
-    "@berun/preset-react": "^2.2.12",
-    "@berun/runner-eslint": "^2.2.4",
-    "@berun/runner-prettier": "^2.2.12",
-    "@berun/scripts": "^2.2.8",
-    "@bestatic/layout": "^2.2.26",
-    "axios": "^0.18.0"
-  },
-  "resolutions": {
-    "babel-core": "^7.0.0-bridge.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "start": "berun-scripts start:static",
-    "docs": "berun-scripts build:static",
-    "format": "berun-scripts lint",
-    "build": "berun-scripts build:static"
   },
   "browserslist": {
     "development": [
@@ -42,5 +16,34 @@
       "ie 11"
     ]
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "homepage": "https://github.com/bestyled/berun/blob/master/packages/template-docs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bestyled/berun/tree/master/packages/template-docs"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "scripts": {
+    "start": "berun-scripts start:static",
+    "docs": "berun-scripts build:static",
+    "format": "berun-scripts lint",
+    "build": "berun-scripts build:static"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@bestatic/core": "3.0.6",
+    "@bestatic/layout": "3.0.6",
+    "axios": "^0.18.1",
+    "styled-components": "^4.4.1",
+    "@berun/preset-bestatic": "3.0.6",
+    "@berun/preset-react": "3.0.6",
+    "@berun/runner-eslint": "3.0.6",
+    "@berun/runner-prettier": "3.0.6",
+    "@berun/scripts": "3.0.6"
+  },
+  "peerDependencies": {}
 }

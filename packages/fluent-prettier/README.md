@@ -8,7 +8,7 @@ prettier configurations.
 ### Example
 
 ```js
-module.exports = function(berun, options) {
+export default function(berun: Berun, options) {
   berun.prettier
     .semi(false)
     .bracketSpacing(true)

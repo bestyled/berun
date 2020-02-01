@@ -38,7 +38,10 @@ function defaultComponents(routes) {
         <Root {...props}>
           <h1>Uh oh, something went wrong</h1>
           <p>The page you are looking for doesn't exist or has been moved.</p>
-          <h6>{props.location.pathname} 404</h6>
+          <h6>{props.location.pathname}
+{' '}
+404
+</h6>
         </Root>
       )
     }
@@ -161,7 +164,7 @@ export const App = ({
     </HeadProvider>
   )
 
-  return !!staticrouter ? (
+  return staticrouter ? (
     <StaticRouter {...staticrouter}>{result}</StaticRouter>
   ) : (
     result

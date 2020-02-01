@@ -24,7 +24,9 @@ export class Plugin<PARENT> extends OrderableMap<PARENT> {
 
     if ('options' in obj) {
       this.set('options', obj.options)
-    } else this.set('options', {})
+    } else {
+      this.set('options', {})
+    }
 
     return super.merge(obj, [...omit, 'options', 'plugin'])
   }
@@ -32,7 +34,9 @@ export class Plugin<PARENT> extends OrderableMap<PARENT> {
   toConfig() {
     const options = this.get('options') || {}
 
-    if (Object.keys(options).length === 0) return this.get('plugin')
+    if (Object.keys(options).length === 0) {
+      return this.get('plugin')
+    }
 
     return [this.get('plugin'), options]
   }

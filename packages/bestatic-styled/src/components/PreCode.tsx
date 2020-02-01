@@ -14,7 +14,11 @@ export const withLiveCode = Component => ({
 }) => {
   const isLive = className === 'language-.jsx'
   if (!isLive) {
-    return <Component {...props} className={className} children={children} />
+    return (
+      <Component {...props} className={className}>
+        {children}
+      </Component>
+    )
   }
 
   const code = React.Children.toArray(children).join('\n')

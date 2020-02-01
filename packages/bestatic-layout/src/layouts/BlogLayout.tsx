@@ -5,9 +5,9 @@
 
 import React from 'react'
 import StyleProvider from '@bestatic/styled'
+import { WithSiteData } from '@bestatic/components'
 import Layout from '../components/Layout'
 import ScrollTop from '../components/ScrollTop'
-import { WithSiteData } from '@bestatic/components'
 import Pagination from '../components/Pagination'
 import { Cards } from '../components/Cards'
 

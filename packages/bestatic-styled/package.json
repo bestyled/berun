@@ -1,10 +1,18 @@
 {
   "name": "@bestatic/styled",
-  "version": "2.2.2",
+  "version": "3.0.6",
   "description": "Styled scope provider for Markdown/MDX/TDX documents",
   "main": "dist/esm/index.js",
+  "ts:main": "src/index.ts",
   "module": "dist/esm/index.js",
   "types": "src/index.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "keywords": [
     "mdx",
     "tdx",
@@ -15,33 +23,33 @@
     "styled-components",
     "styled-system"
   ],
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
   "repository": "https://github.com/bestyled/bestatic/tree/master/packages/bestatic-styled",
   "scripts": {
     "prebuild": "berun-dev clean",
     "build": "berun-dev build",
     "coverage": "berun-dev test --coverage",
-    "prepublishOnly": "yarn build",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
     "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
+    "test:watch": "berun-dev test -o --watch"
   },
-  "license": "Apache-2.0",
   "dependencies": {
-    "styled-components": "^4.2.0",
-    "styled-system": "^4.1.0"
+    "@bestatic/components": "3.0.6",
+    "@bestatic/layout": "3.0.6",
+    "@tinia/tdx-tag": "^0.3.2",
+    "is-absolute-url": "^3.0.3",
+    "react-router-dom": "^5.1.2",
+    "styled-components": "^4.4.1",
+    "styled-system": "^4.2.4"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25"
+    "@berun/dev-scripts": "3.0.6"
   },
-  "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
+  "peerDependencies": {
+    "react": "^16.12.0"
+  }
 }

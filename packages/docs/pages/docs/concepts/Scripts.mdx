@@ -36,7 +36,7 @@ $ berun-scripts start:static
 ### eject
 
 The `eject` script is often unnecessary with `berun` as most eject tasks in other frameworks can now be handled
-by the `berun.config.js` file.   However, if you truly want to eject and create local versions of the scripts you 
+by the `berun.config.ts` file.   However, if you truly want to eject and create local versions of the scripts you 
 can.
 
 ## Commonly used tasks
@@ -67,7 +67,7 @@ invoke the command.
 
 ```js
 // custom.js
-module.exports = (berun) => {
+export default (berun) => {
   berun.sparky.task('startDev', webpack.taskDev)
 };
 ```

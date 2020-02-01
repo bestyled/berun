@@ -15,7 +15,9 @@ export const ScrollTop = withRouter(
       const { hash } = this.props.location
       if (hash) {
         const el = document.getElementById(hash.slice(1))
-        if (!el) return
+        if (!el) {
+          return
+        }
         el.scrollIntoView()
       }
     }

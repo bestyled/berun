@@ -1,8 +1,19 @@
 {
   "name": "@berun/runner-babel",
-  "version": "2.2.3",
+  "version": "3.0.6",
   "description": "BeRun babel preset for building React web applications",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "src/index.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bugs": "https://github.com/bestyled/berun/issues",
+  "engines": {
+    "node": ">=8.3",
+    "npm": ">=5.4.0",
+    "yarn": ">=1.2.1"
+  },
   "keywords": [
     "berun",
     "berun-runner",
@@ -11,39 +22,31 @@
     "hot module replacement",
     "create react app"
   ],
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
   "license": "Apache-2.0",
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-babel",
-  "bugs": "https://github.com/bestyled/berun/issues",
-  "engines": {
-    "node": ">=8.3",
-    "npm": ">=5.4.0",
-    "yarn": ">=1.2.1"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@babel/core": "7.4.0",
-    "@babel/runtime": "7.4.2",
-    "@berun/babel-preset-react-app": "^5.0.21",
-    "@berun/fluent-babel": "^2.2.2",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "8.0.5"
-  },
-  "scripts": {
-    "coverage": "berun-dev test --coverage",
-    "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
-  },
-  "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25"
-  },
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-babel",
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
   },
-  "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch"
+  },
+  "dependencies": {
+    "@berun/berun": "3.0.6",
+    "@berun/fluent-babel": "3.0.6"
+  },
+  "devDependencies": {
+    "@berun/berun": "3.0.6",
+    "@berun/dev-scripts": "3.0.6"
+  },
+  "peerDependencies": {}
 }

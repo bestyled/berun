@@ -4,8 +4,8 @@ export const h1 = createHeading('h1', {
   mt: 3,
   mb: 2,
   fontSize: [5, null, 6],
-  ['data-sal']: 'slide-up',
-  ['data-sal-delay']: '100'
+  'data-sal': 'slide-up',
+  'data-sal-delay': '100'
 })
 export const h2 = createHeading('h2', { mt: 3, mb: 2, fontSize: [4, null, 5] })
 export const h3 = createHeading('h3', { mt: 3, mb: 2, fontSize: [3] })

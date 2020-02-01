@@ -1,4 +1,3 @@
-import * as fs from 'fs'
 import * as fsExtra from 'fs-extra'
 import * as path from 'path'
 import { Config } from './Config'
@@ -20,9 +19,8 @@ export function replaceExt(npath, ext): string {
   }
   if (/\.[a-z0-9]+$/i.test(npath)) {
     return npath.replace(/\.[a-z0-9]+$/i, ext)
-  } else {
-    return npath + ext
   }
+  return npath + ext
 }
 
 export function isClass(obj) {
@@ -83,7 +81,7 @@ export function ensureUserPath(userPath: string) {
     userPath = path.join(Config.PROJECT_ROOT, userPath)
   }
   userPath = path.normalize(userPath)
-  let dir = path.dirname(userPath)
+  const dir = path.dirname(userPath)
 
   fsExtra.ensureDirSync(dir)
   return userPath

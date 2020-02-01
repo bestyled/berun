@@ -21,7 +21,7 @@ const BlockLink = styled.a`
 
 const heading = Tag => ({ id, children, ...props }) => (
   <Tag id={id} {...props}>
-    <BlockLink href={'#' + id}>{children}</BlockLink>
+    <BlockLink href={`#${id}`}>{children}</BlockLink>
   </Tag>
 )
 
@@ -34,13 +34,11 @@ export const createHeading = (tag, defaultProps = {}) => {
     ${fontWeight}
     ${themed(tag)}
   `
-  Heading.defaultProps = Object.assign(
-    {
-      fontFamily: 'header',
-      fontWeight: 'header'
-    },
-    defaultProps
-  )
+  Heading.defaultProps = {
+    fontFamily: 'header',
+    fontWeight: 'header',
+    ...defaultProps
+  }
   return Heading
 }
 

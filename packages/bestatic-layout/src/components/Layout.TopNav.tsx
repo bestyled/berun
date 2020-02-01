@@ -1,9 +1,6 @@
 import React from 'react'
 import styled, { StyledComponent } from 'styled-components'
 
-import { Link } from './Link'
-import { SignalSvgStr } from '../img/signal'
-
 import {
   space,
   color,
@@ -16,6 +13,8 @@ import {
   FontSizeProps,
   FontWeightProps
 } from 'styled-system'
+import { Link } from './Link'
+import { SignalSvgStr } from '../img/signal'
 
 type CssProps = { css?: any }
 
@@ -107,21 +106,21 @@ TopNavItem.defaultProps = {
   fontSize: 1
 }
 
-TopNavItem['isTopNavItem'] = true
+TopNavItem.isTopNavItem = true
 
 export const TopNav = props => {
   const Logo = props.logo
   const children = React.Children.toArray(props.children) || []
   const logoText = children.filter(
     (child: any) =>
-      !(typeof child == 'object') ||
+      !(typeof child === 'object') ||
       !(child.type.isTopNavItem || child.type.isSearchBox)
   )
   const topnavitems = children.filter(
-    (child: any) => typeof child == 'object' && child.type.isTopNavItem
+    (child: any) => typeof child === 'object' && child.type.isTopNavItem
   )
   const [searchbox] = children.filter(
-    (child: any) => typeof child == 'object' && child.type.isSearchBox
+    (child: any) => typeof child === 'object' && child.type.isSearchBox
   )
 
   return (
@@ -138,4 +137,4 @@ export const TopNav = props => {
   )
 }
 
-TopNav['isTopNav'] = true
+TopNav.isTopNav = true

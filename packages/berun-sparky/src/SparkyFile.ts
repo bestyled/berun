@@ -6,18 +6,24 @@ import { Plugin } from './FuseBox'
 
 export class SparkyFile {
   public homePath: string
+
   public name: string
+
   public contents: Buffer | string
+
   public extension: string
+
   public filepath: string
+
   public root: string
+
   private savingRequired = false
 
   constructor(filepath: string, root: string) {
     this.filepath = path.normalize(filepath)
     this.root = path.normalize(root)
 
-    let hp = path.relative(this.root, this.filepath)
+    const hp = path.relative(this.root, this.filepath)
     this.homePath = path.isAbsolute(hp) ? hp.slice(1) : hp
     this.name = path.basename(this.filepath)
   }
@@ -36,7 +42,7 @@ export class SparkyFile {
   public save(): SparkyFile {
     this.savingRequired = false
     if (this.contents) {
-      let contents = this.contents
+      const { contents } = this
       if (typeof this.contents === 'object') {
         this.contents = JSON.stringify(contents, null, 2)
       }
@@ -56,11 +62,11 @@ export class SparkyFile {
       this.read()
     }
     if (typeof fn === 'function') {
-      let contents = this.contents.toString()
+      const contents = this.contents.toString()
         ? JSON.parse(this.contents.toString())
         : {}
       const response = fn(contents)
-      this.contents = response ? response : contents
+      this.contents = response || contents
       this.savingRequired = true
     }
     return this
@@ -87,7 +93,8 @@ export class SparkyFile {
     return new Promise((resolve, reject) => {
       const isDirectory = fs.statSync(this.filepath).isDirectory()
       if (isDirectory) {
-        return resolve()
+        resolve()
+        return
       }
       const isTemplate = dest.indexOf('$') > -1
       if (isTemplate) {
@@ -100,17 +107,20 @@ export class SparkyFile {
         dest = ensureUserPath(dest)
       }
       if (this.extension) {
-        dest = replaceExt(dest, '.' + this.extension)
+        dest = replaceExt(dest, `.${this.extension}`)
         delete this.extension
       }
       fs.copy(this.filepath, dest, err => {
-        if (err) return reject(err)
+        if (err) {
+          reject(err)
+          return
+        }
         this.filepath = dest
         // save is required
         if (this.savingRequired) {
           this.save()
         }
-        return resolve()
+        resolve()
       })
     })
   }

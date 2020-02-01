@@ -15,15 +15,15 @@
 | remain unmolested.
 */
 
-const fs = require("fs");
-const path = require("path");
-const resolve = require("resolve");
-const browserResolve = require("browser-resolve");
+const fs = require('fs')
+const path = require('path')
+const resolve = require('resolve')
+const browserResolve = require('browser-resolve')
 
-const cache = {};
+const cache = {}
 
 function defaultResolver(path, options) {
-  const resv = options.browser ? browserResolve : resolve;
+  const resv = options.browser ? browserResolve : resolve
 
   return resv.sync(path, {
     basedir: options.basedir,
@@ -31,10 +31,10 @@ function defaultResolver(path, options) {
     moduleDirectory: options.moduleDirectory,
     paths: options.paths,
     packageFilter: mapModuleFieldToMain
-  });
+  })
 }
 
-module.exports = defaultResolver;
+module.exports = defaultResolver
 
 /*
 |-------------------------------------------------------------------------------
@@ -42,29 +42,36 @@ module.exports = defaultResolver;
 */
 
 function mapModuleFieldToMain(pkg, pkgDir) {
+  if (
+    /[\\/]node_modules[\\/](?!(@berun|@bestatic|@besync|@bestyled))/.test(
+      pkgDir
+    )
+  ) {
+    return pkg
+  }
 
-  if (/[\\\/]node_modules[\\\/](?!(@berun|@bestatic|@besync|@bestyled))/.test(pkgDir))
-    return pkg;
+  if (pkgDir in cache) {
+    return cache[pkgDir]
+  }
 
-  if (pkgDir in cache) return cache[pkgDir];
-
-  const realPkgDir = fs.realpathSync(pkgDir);
-  if (realPkgDir.includes("node_modules")) {
-    cache[pkgDir] = pkg;
-    return pkg;
+  const realPkgDir = fs.realpathSync(pkgDir)
+  if (realPkgDir.includes('node_modules')) {
+    cache[pkgDir] = pkg
+    return pkg
   }
 
   const tryField = key => {
     if (pkg[key]) {
-      const fullPath = path.resolve(realPkgDir, pkg[key]);
+      const fullPath = path.resolve(realPkgDir, pkg[key])
       if (fs.existsSync(fullPath)) {
-        return Object.assign({}, pkg, { main: fullPath });
+        return { ...pkg, main: fullPath }
       }
     }
-    return null;
-  };
+    return null
+  }
 
-  const result = tryField("ts:main") || tryField("module") || tryField("jsnext:main") || pkg;
-  cache[pkgDir] = result;
-  return result;
+  const result =
+    tryField('ts:main') || tryField('module') || tryField('jsnext:main') || pkg
+  cache[pkgDir] = result
+  return result
 }

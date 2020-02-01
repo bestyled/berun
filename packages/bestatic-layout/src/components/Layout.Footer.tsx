@@ -87,10 +87,10 @@ export const Footer: React.SFC = (withRouter((props: any) => {
   )
 }) as any) as React.SFC
 
-Footer['isFooter'] = true
+Footer.isFooter = true
 
 Footer.defaultProps = {
   height: 125
 }
 
-Footer['isFooter'] = true
+Footer.isFooter = true

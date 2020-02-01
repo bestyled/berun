@@ -7,13 +7,6 @@ import React from 'react'
 
 import styled, { StyledComponent } from 'styled-components'
 
-const {
-  LiveProvider,
-  LivePreview,
-  LiveEditor,
-  LiveError
-} = require('react-live')
-
 import {
   space,
   fontFamily,
@@ -26,6 +19,14 @@ import {
   ColorProps,
   BorderColorProps
 } from 'styled-system'
+
+const {
+  LiveProvider,
+  LivePreview,
+  LiveEditor,
+  LiveError
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('react-live')
 
 const themed = key => props => props.theme[key]
 const transformCode = src => `<React.Fragment>${src}</React.Fragment>`

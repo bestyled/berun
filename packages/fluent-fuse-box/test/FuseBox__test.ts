@@ -1,5 +1,5 @@
-import { FuseBoxConfig } from '../src'
 import * as path from 'path'
+import { FuseBoxConfig } from '../src'
 
 class StringifyPluginClass {
   values: any
@@ -153,7 +153,7 @@ test('toConfig from fluent', () => {
     .use(StringifyPlugin, [{ removeExportsInterop: false, uglify: true }])
     .end()
 
-  const expected_result = {
+  const expectedResult = {
     homeDir: '/Volumes/data/mypath',
     sourceMaps: { project: true, vendor: false },
     hash: true,
@@ -186,13 +186,13 @@ test('toConfig from fluent', () => {
 
   expect(instance).toBe(fusebox)
 
-  const actual_result = fusebox.toConfig() as any
-  actual_result.plugins = actual_result.plugins.map(p => [
+  const actualResult = fusebox.toConfig() as any
+  actualResult.plugins = actualResult.plugins.map(p => [
     p.__pluginName,
     p.__pluginConstructorName,
     p.__pluginArgs
   ])
-  expect(actual_result).toEqual(expected_result)
+  expect(actualResult).toEqual(expectedResult)
 })
 
 test('toConfig from merge', () => {
@@ -235,7 +235,7 @@ test('toConfig from merge', () => {
 
   const instance = fusebox.merge(config1).merge(config2)
 
-  const expected_result = {
+  const expectedResult = {
     homeDir: '/Volumes/data/mypath',
     sourceMaps: { project: true, vendor: false },
     hash: true,
@@ -268,13 +268,13 @@ test('toConfig from merge', () => {
 
   expect(instance).toBe(fusebox)
 
-  const actual_result = fusebox.toConfig() as any
-  actual_result.plugins = actual_result.plugins.map(p => [
+  const actualResult = fusebox.toConfig() as any
+  actualResult.plugins = actualResult.plugins.map(p => [
     p.__pluginName,
     p.__pluginConstructorName,
     p.__pluginArgs || []
   ])
-  expect(actual_result).toEqual(expected_result)
+  expect(actualResult).toEqual(expectedResult)
 })
 
 test('toBundles from fluent', () => {
@@ -285,12 +285,12 @@ test('toBundles from fluent', () => {
     .instructions('> index.ts')
     .end()
 
-  const expected_result = {
+  const expectedResult = {
     app: { instructions: '> index.ts' }
   }
 
   expect(instance).toBe(fusebox)
-  expect(fusebox.toBundles()).toEqual(expected_result)
+  expect(fusebox.toBundles()).toEqual(expectedResult)
 })
 
 test('toBundles with plugin', () => {
@@ -304,7 +304,7 @@ test('toBundles with plugin', () => {
     .end()
     .end()
 
-  const expected_result = {
+  const expectedResult = {
     app: {
       instructions: '> index.ts',
       plugins: [['Env', 'StringifyPlugin', ['development']]]
@@ -313,15 +313,15 @@ test('toBundles with plugin', () => {
 
   expect(instance).toBe(fusebox)
 
-  const actual_result = fusebox.toBundles() as any
+  const actualResult = fusebox.toBundles() as any
 
-  actual_result.app.plugins = actual_result.app.plugins.map(p => [
+  actualResult.app.plugins = actualResult.app.plugins.map(p => [
     p.__pluginName,
     p.__pluginConstructorName,
     p.__pluginArgs || []
   ])
 
-  expect(actual_result).toEqual(expected_result)
+  expect(actualResult).toEqual(expectedResult)
 
   expect(
     instance

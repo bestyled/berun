@@ -1,7 +1,13 @@
 {
   "name": "@berun/dev-scripts",
-  "version": "2.0.25",
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/dev-scripts",
+  "version": "3.0.6",
+  "main": "./bin/berun-dev.js",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bin": {
+    "berun-dev": "./bin/berun-dev.js"
+  },
   "keywords": [
     "jest",
     "typescript",
@@ -11,31 +17,38 @@
     "api"
   ],
   "license": "Apache-2.0",
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "berun-dev": "./bin/berun-dev.js"
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/dev-scripts",
+  "scripts": {
+    "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@babel/cli": "7.4.4",
-    "@babel/core": "7.4.4",
-    "@babel/plugin-proposal-class-properties": "7.4.4",
-    "@babel/plugin-proposal-decorators": "7.4.4",
-    "@babel/preset-env": "7.4.4",
-    "@babel/preset-typescript": "7.3.3",
-    "babel-jest": "^24.8.0",
-    "jest": "^24.8.0",
-    "prettier": "^1.17.1",
-    "react-dev-utils": "8.0.0",
-    "rimraf": "^2.6.3",
-    "tslint": "^5.16.0",
-    "tslint-config-airbnb": "^5.11.1",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.3"
+    "chalk": "^3.0.0",
+    "find-pkg": "^2.0.0",
+    "sucrase": "^3.12.1",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "cross-spawn": "^7.0.1",
+    "eslint-config-berun": "6.0.6",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.6",
+    "jest": "^25.1.0",
+    "precinct": "^6.2.0",
+    "resolve": "^1.15.0",
+    "terser": "^4.6.3",
+    "typescript": "^3.7.5"
   },
-  "gitHead": "bdb3914ad4f8827da5409e50c2cd7887840b4ede"
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.1",
+    "@types/node": "^10.17.14"
+  },
+  "peerDependencies": {}
 }

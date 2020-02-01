@@ -3,6 +3,7 @@ import { Plugin } from './Plugin'
 
 export class Tdx extends FluentMap<any> {
   mdPlugins = new FluentMap(this)
+
   hastPlugins = new FluentMap(this)
 
   constructor(parent: any = null, name = null) {
@@ -17,8 +18,11 @@ export class Tdx extends FluentMap<any> {
 
     const plugin = this.mdPlugins.get(name)
 
-    if (use) plugin.use(use, opts)
-    else plugin.use(name)
+    if (use) {
+      plugin.use(use, opts)
+    } else {
+      plugin.use(name)
+    }
 
     return plugin
   }
@@ -30,8 +34,11 @@ export class Tdx extends FluentMap<any> {
 
     const plugin = this.hastPlugins.get(name)
 
-    if (use) plugin.use(use, opts)
-    else plugin.use(name)
+    if (use) {
+      plugin.use(use, opts)
+    } else {
+      plugin.use(name)
+    }
 
     return plugin
   }
@@ -47,7 +54,9 @@ export class Tdx extends FluentMap<any> {
   }
 
   merge(obj: any, omit = []) {
-    if (!obj) return this
+    if (!obj) {
+      return this
+    }
 
     if (!omit.includes('mdPlugins') && 'mdPlugins' in obj) {
       Object.keys(obj.mdPlugins).forEach(name =>

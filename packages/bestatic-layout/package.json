@@ -1,11 +1,18 @@
 {
   "name": "@bestatic/layout",
-  "version": "2.2.26",
+  "version": "3.0.6",
   "description": "MDX-based theme",
   "main": "dist/esm/index.js",
+  "ts:main": "src/index.ts",
   "module": "dist/esm/index.js",
   "types": "src/index.ts",
-  "repository": "https://github.com/bestyled/bestatic/tree/master/packages/bestatic-layout",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "keywords": [
     "mdx",
     "react",
@@ -13,36 +20,35 @@
     "documentation",
     "react-static"
   ],
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
+  "repository": "https://github.com/bestyled/bestatic/tree/master/packages/bestatic-layout",
   "scripts": {
     "prebuild": "berun-dev clean",
     "build": "berun-dev build",
     "coverage": "berun-dev test --coverage",
-    "prepublishOnly": "yarn build",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
     "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
+    "test:watch": "berun-dev test -o --watch"
   },
-  "license": "Apache-2.0",
   "dependencies": {
-    "@bestatic/components": "^2.1.9",
-    "@bestatic/core": "^2.2.16",
-    "@bestatic/styled": "^2.2.2",
-    "react-router-dom": "^5.0.0",
-    "styled-components": "^4.2.0",
-    "styled-system": "^4.1.0"
+    "@bestatic/components": "3.0.6",
+    "@bestatic/core": "3.0.6",
+    "@bestatic/styled": "3.0.6",
+    "is-absolute-url": "^3.0.3",
+    "lodash.sortby": "^4.7.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "styled-components": "^4.4.1",
+    "styled-system": "^4.2.4"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25"
+    "@berun/dev-scripts": "3.0.6"
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "peerDependencies": {
+    "react": "^16.12.0"
+  }
 }

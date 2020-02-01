@@ -1,4 +1,5 @@
 import { FuseBox as FuseBoxConfig } from './FuseBox'
+
 export { FuseBoxConfig }
 
 export const FuseBox = berun => {

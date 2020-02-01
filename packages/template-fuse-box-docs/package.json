@@ -1,25 +1,6 @@
 {
   "name": "@berun/template-fuse-box-docs",
-  "version": "0.3.17",
-  "devDependencies": {
-    "@berun/preset-bestatic": "^2.2.16",
-    "@berun/preset-fuse-box-react": "^2.2.6",
-    "@berun/runner-eslint": "^2.2.4",
-    "@berun/runner-prettier": "^2.2.12",
-    "@berun/scripts": "^2.2.8"
-  },
-  "resolutions": {
-    "babel-core": "^7.0.0-bridge.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "start": "berun-scripts start:static",
-    "docs": "berun-scripts build:static",
-    "format": "berun-scripts lint",
-    "build": "berun-scripts build"
-  },
+  "version": "1.0.6",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -32,5 +13,31 @@
       "ie 11"
     ]
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "publishConfig": {
+    "access": "public"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "scripts": {
+    "start": "berun-scripts start:static",
+    "docs": "berun-scripts build:static",
+    "format": "berun-scripts lint",
+    "build": "berun-scripts build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@bestatic/core": "3.0.6",
+    "@bestatic/layout": "3.0.6",
+    "axios": "^0.18.1",
+    "styled-components": "^4.4.1",
+    "@berun/preset-bestatic": "3.0.6",
+    "@berun/preset-fuse-box-react": "3.0.6",
+    "@berun/runner-eslint": "3.0.6",
+    "@berun/runner-prettier": "3.0.6",
+    "@berun/scripts": "3.0.6"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  }
 }

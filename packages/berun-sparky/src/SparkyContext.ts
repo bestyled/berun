@@ -2,15 +2,19 @@ import { utils } from 'realm-utils'
 import { isClass } from './Utils'
 
 export class SparkyContextClass {
-  constructor(public target: any) {}
+  // eslint-disable-next-line no-useless-constructor
+  constructor(public target: any) {
+    /** noop */
+  }
 }
-export let SparkyCurrentContext: any
+
+let _SparkyCurrentContext: any
 
 export function getSparkyContext() {
-  if (!SparkyCurrentContext) {
-    SparkyCurrentContext = {}
+  if (!_SparkyCurrentContext) {
+    _SparkyCurrentContext = {}
   }
-  return SparkyCurrentContext
+  return _SparkyCurrentContext
 }
 
 export function SparkyContext(
@@ -20,12 +24,12 @@ export function SparkyContext(
     | { [key: string]: any }
 ) {
   if (utils.isPlainObject(target)) {
-    SparkyCurrentContext = target
+    _SparkyCurrentContext = target
   } else if (isClass(target)) {
     const Class: any = target
-    SparkyCurrentContext = new Class()
+    _SparkyCurrentContext = new Class()
   } else if (utils.isFunction(target)) {
-    SparkyCurrentContext = target()
+    _SparkyCurrentContext = target()
   }
-  return new SparkyContextClass(SparkyCurrentContext)
+  return new SparkyContextClass(_SparkyCurrentContext)
 }

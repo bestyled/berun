@@ -1,57 +1,91 @@
 #!/usr/bin/env node
-'use strict';
+
+/*eslint-disable*/
+
+//
+// Node.js require pirate
+//
+
+require('sucrase/register/ts-legacy-module-interop')
+const Module = require('module')
+const path = require('path')
+
+const originalRequire = Module.prototype.require
+const proxyCache = {}
+
+Module.prototype.require = function(name) {
+  if (name in proxyCache) {
+    return originalRequire.apply(this, [proxyCache[name]])
+  }
+
+  // TEST IF FIRST PATH INTO NODE_MODULE
+  if (/(^[^.\/]*$)|(^@[^.\/]*\/[^.\/]*$)/.test(name)) {
+    let packagefile
+    try {
+      packagefile = require.resolve(`${name}/package.json`)
+    } catch (ex) {
+      // noop: base node module
+    }
+
+    if (packagefile && !packagefile.includes('/node_modules/')) {
+      const packagejson = originalRequire.apply(this, [packagefile])
+      const main = packagejson['ts:main'] || packagejson['main'] || 'index.js'
+      const abspath = path.join(path.dirname(packagefile), main)
+      proxyCache[name] = abspath
+      return originalRequire.apply(this, [abspath])
+    }
+  }
+
+  return originalRequire.apply(this, arguments)
+}
 
 // Makes the script crash on unhandled rejections instead of silently
-// ignoring them. In the future, promise rejections that are not handled will
+// ignoring them. Promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
 process.on('unhandledRejection', err => {
-  throw err;
-});
+  console.error(err)
+  throw err
+})
 
-const spawn = require('react-dev-utils/crossSpawn');
-const args = process.argv.slice(2);
+//
+// MAIN ENTRY POINT
+//
 
+const logDirectory = require('../lib/devscripts/log-directory').default
+
+const args = process.argv
 const scriptIndex = args.findIndex(
-  x => x === 'build' || x === 'lint' || x === 'test' || x === 'clean'
-);
-const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
-const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : [];
+  x =>
+    x === 'build' ||
+    x === 'fix' ||
+    x === 'pack' ||
+    x === 'lint' ||
+    x === 'format' ||
+    x === 'test' ||
+    x === 'clean'
+)
+
+const script = scriptIndex === -1 ? args[0] : args[scriptIndex]
+const nodeArgs = scriptIndex > 0 ? args.slice(scriptIndex + 1) : args.slice(1)
+process.argv = nodeArgs
+
 switch (script) {
   case 'build':
-  case 'lint': 
   case 'clean':
-  case 'test': {
-    const result = spawn.sync(
-      'node',
-      nodeArgs
-        .concat(require.resolve('../scripts/' + script))
-        .concat(args.slice(scriptIndex + 1)),
-      { stdio: 'inherit' }
-    );
-    if (result.signal) {
-      if (result.signal === 'SIGKILL') {
-        console.log(
-          'The build failed because the process exited too early. ' +
-            'This probably means the system ran out of memory or someone called ' +
-            '`kill -9` on the process.'
-        );
-      } else if (result.signal === 'SIGTERM') {
-        console.log(
-          'The build failed because the process exited too early. ' +
-            'Someone might have called `kill` or `killall`, or the system could ' +
-            'be shutting down.'
-        );
-      }
-      process.exit(1);
-    }
-    process.exit(result.status);
-    break;
-  }
+  case 'lint':
+  case 'fix':
+  case 'pack':
+  case 'format':
+  case 'test': 
+    logDirectory(`running ${script} script in`, process.cwd())
+    process.argv = args
+    require('../scripts/' + script)
+    break
   default:
-    console.log('Unknown script "' + script + '".');
-    console.log('Perhaps you need to update @berun/dev-scripts?');
+    console.log('Unknown script "' + script + '".')
+    console.log('Perhaps you need to update @berun/dev-scripts?')
     console.log(
       'See: https://github.com/bestyled/berun/blob/master/packages/dev-scripts'
-    );
-    break;
+    )
+    break
 }

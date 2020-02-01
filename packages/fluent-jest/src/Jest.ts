@@ -3,15 +3,25 @@ import { Transform } from './Transform'
 
 export class Jest<PARENT> extends FluentMap<PARENT> {
   collectCoverageFrom = new FluentSet(this)
+
   setupFiles = new FluentSet(this)
+
   testMatch = new FluentSet(this)
+
   roots = new FluentSet(this)
+
   transformIgnorePatterns = new FluentSet(this)
+
   moduleFileExtensions = new FluentSet(this)
+
   moduleNameMapper = new FluentMap(this)
+
   transforms = new FluentMap(this)
+
   testEnvironment = FluentValue<this, any>()
+
   testURL = FluentValue<this, string>()
+
   rootDir = FluentValue<this, string>()
 
   constructor(parent?: PARENT, name?: string) {

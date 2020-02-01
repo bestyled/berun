@@ -9,7 +9,7 @@ but may be used standalone.
 ### Example
 
 ```js
-module.exports = function(berun, options) {
+export default function(berun: Berun, options) {
   berun.eslint
     .root(true)
     .parser('babel-eslint')

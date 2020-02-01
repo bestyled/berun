@@ -33,7 +33,8 @@ $ berun-scripts start
 You can also execute Sparky tasks using the `@berun/berun` api
 
 ```js
-const berun = require('@berun/berun')(null, {cmd: 'start'});
+import { create as berunCreate } from '@berun/berun'
+const berun = berunCreate(null, {cmd: 'start'});
 berun.register("sparkyContext", { /* custom context just for Sparky */ })
 berun.sparky.exec('start').then(() => { process.nextTick(process.exit) })
 ```

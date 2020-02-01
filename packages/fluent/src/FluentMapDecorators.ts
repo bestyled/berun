@@ -6,8 +6,8 @@ export function FluentValue<T, V>(obj?: T, value?: V): (value: V) => T {
   return FluentValueInstance as any
 }
 
-export function fluent<T>(target: T, key: string): any {
-  const descriptor = arguments[2]
+/** Replaced by FluentValue API
+export function fluent<T>(target: T, key: string, descriptor): any {
   ;(target as any).$fluentprops = (target as any).$fluentprops || []
   ;(target as any).$fluentprops.push(key)
 
@@ -21,3 +21,4 @@ export function fluent<T>(target: T, key: string): any {
 
   return descriptor
 }
+ */

@@ -1,8 +1,19 @@
 {
   "name": "@berun/runner-jest",
-  "version": "2.2.2",
+  "version": "3.0.6",
   "description": "BeRun runner to add react jest configuration",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "src/index.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bugs": "https://github.com/bestyled/berun/issues",
+  "engines": {
+    "node": ">=8.3",
+    "npm": ">=5.4.0",
+    "yarn": ">=1.2.1"
+  },
   "keywords": [
     "berun",
     "berun-runner",
@@ -12,41 +23,37 @@
     "polyfill",
     "create react app"
   ],
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
   "license": "Apache-2.0",
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-jest",
-  "bugs": "https://github.com/bestyled/berun/issues",
-  "engines": {
-    "node": ">=8.3",
-    "npm": ">=5.4.0",
-    "yarn": ">=1.2.1"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@berun/fluent-jest": "^2.2.2",
-    "@berun/runner-web-polyfills": "^2.2.2",
-    "babel-jest": "24.5.0",
-    "chalk": "2.4.2",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.5.0",
-    "jest-pnp-resolver": "1.2.1"
-  },
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-jest",
   "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
     "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "prepublishOnly": "yarn build",
     "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
+    "test:watch": "berun-dev test -o --watch"
+  },
+  "dependencies": {
+    "@berun/berun": "3.0.6",
+    "@berun/fluent-jest": "3.0.6",
+    "@berun/runner-web-polyfills": "3.0.6",
+    "babel-jest": "^25.1.0",
+    "chalk": "^3.0.0",
+    "jest": "^25.1.0",
+    "jest-pnp-resolver": "^1.2.1"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25",
-    "@berun/fluent": "^2.2.2",
-    "@berun/fluent-babel": "^2.2.2",
-    "@berun/fluent-jest": "^2.1.6",
-    "@berun/fluent-webpack": "^2.2.2"
+    "@berun/fluent-babel": "3.0.6",
+    "@berun/berun": "3.0.6",
+    "@berun/dev-scripts": "3.0.6",
+    "@berun/fluent": "3.0.6",
+    "@berun/fluent-jest": "3.0.6",
+    "@berun/fluent-webpack": "3.0.6"
   },
-  "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
+  "peerDependencies": {}
 }

@@ -60,8 +60,12 @@ export class Body extends React.Component<any, any> {
       if (child.type === 'script') {
         const { id } = child.props
         let oldScript
-        if (id) oldScript = document.body.querySelector(`script[id="${id}"]`)
-        if (oldScript) oldScript.remove()
+        if (id) {
+          oldScript = document.body.querySelector(`script[id="${id}"]`)
+        }
+        if (oldScript) {
+          oldScript.remove()
+        }
         this.appendScript(child)
       }
     })
@@ -81,13 +85,16 @@ export class Body extends React.Component<any, any> {
     } = scriptTag.props
 
     // Create a new HTML script element
-    let newElement = document.createElement('script')
+    const newElement = document.createElement('script')
 
     Object.keys(props).forEach(key => newElement.setAttribute(key, props[key]))
 
-    if (children) newElement.innerHTML = children
-    if (dangerouslySetInnerHTML)
+    if (children) {
+      newElement.innerHTML = children
+    }
+    if (dangerouslySetInnerHTML) {
       newElement.innerHTML = dangerouslySetInnerHTML.__html
+    }
 
     // Bind event listeners
     newElement.addEventListener('load', onLoad)

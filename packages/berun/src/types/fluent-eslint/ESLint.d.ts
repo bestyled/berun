@@ -1,0 +1,36 @@
+import { FluentMap, FluentSet } from '@berun/fluent';
+export declare class ESLint<PARENT> extends FluentMap<PARENT> {
+    plugins: FluentSet<this, unknown>;
+    rules: FluentMap<this>;
+    fix: (value: any) => this;
+    cache: (value: any) => this;
+    formatter: (value: any) => this;
+    eslintPath: (value: any) => this;
+    emitError: (value: any) => this;
+    emitWarning: (value: any) => this;
+    quiet: (value: any) => this;
+    failOnWarning: (value: any) => this;
+    failOnError: (value: any) => this;
+    outputReport: (value: any) => this;
+    root: (value: any) => this;
+    env: (value: any) => this;
+    ignore: (value: any) => this;
+    allowInlineConfig: (value: any) => this;
+    baseConfig: (value: any) => this;
+    cacheFile: (value: any) => this;
+    cacheLocation: (value: any) => this;
+    configFile: (value: any) => this;
+    cwd: (value: any) => this;
+    envs: (value: any) => this;
+    extensions: (value: any) => this;
+    globals: (value: any) => this;
+    ignorePath: (value: any) => this;
+    ignorePattern: (value: any) => this;
+    parser: (value: any) => this;
+    parserOptions: (value: any) => this;
+    reportUnusedDisableDirectives: (value: any) => this;
+    rulePaths: (value: any) => this;
+    useEslintrc: (value: any) => this;
+    globInputPaths: (value: any) => this;
+    constructor(parent?: PARENT, name?: string);
+}

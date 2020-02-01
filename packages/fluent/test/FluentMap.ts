@@ -1,4 +1,4 @@
-import { FluentMap, FluentSet, FluentValue, fluent } from '../src'
+import { FluentMap, FluentSet, FluentValue } from '../src'
 import { $FluentAdmin } from '../src/FluentMap'
 
 interface $IFluent {
@@ -9,28 +9,17 @@ interface $IFluent {
   has: (key: string) => boolean
 }
 
-class FluentDecoratedTestClass extends FluentMap<any> {
-  @fluent
-  item3 = new FluentMap(this)
-
-  @fluent
-  item1: (value: string) => this
-
-  @fluent
-  item2: (value: boolean) => this
-
-  constructor(parent: any, name?: string) {
-    super(parent, name)
-    this.extendfluent()
-  }
-}
-
 export class FluentValuePropertiedClass<PARENT> extends FluentMap<PARENT> {
   extends = new FluentSet(this)
+
   rulesDirectory = new FluentSet(this)
+
   rules = new FluentMap(this)
+
   jsRules = new FluentMap(this)
+
   defaultSeverity = FluentValue<this, string>() // prumary format
+
   linterOptions = FluentValue(this, {}) // alternative format
 
   constructor(parent, name?: string) {
@@ -38,21 +27,6 @@ export class FluentValuePropertiedClass<PARENT> extends FluentMap<PARENT> {
     this.extendfluent()
   }
 }
-
-test('@fluent decorated fields', () => {
-  const parent = { parent: true }
-  const test = new FluentDecoratedTestClass(parent as any)
-
-  const instance = test.item1('test').item2(true)
-
-  const result = {
-    item1: 'test',
-    item2: true
-  }
-
-  expect(instance).toBe(test)
-  expect(test.toConfig()).toEqual(result)
-})
 
 test('FluentValue with toConfig on property fields', () => {
   const parent = { parent: true }

@@ -2,7 +2,9 @@ import { Fluent } from './Fluent'
 
 class $FluentSetAdmin<T> {
   name: string
+
   parent: any
+
   store: Set<T> = new Set()
 }
 

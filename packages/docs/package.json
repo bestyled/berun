@@ -1,29 +1,8 @@
 {
   "name": "@berun/docs",
-  "version": "0.3.27",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bestyled/berun/tree/master/packages/docs"
-  },
+  "version": "3.0.6",
   "author": {
     "name": "OffGrid Networks"
-  },
-  "license": "MPL-2.0",
-  "devDependencies": {
-    "@berun/preset-bestatic": "^2.2.16",
-    "@berun/preset-react": "^2.2.12",
-    "@berun/scripts": "^2.2.8",
-    "@bestatic/layout": "^2.2.26"
-  },
-  "resolutions": {
-    "babel-core": "^7.0.0-bridge.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "start": "berun-scripts start:static",
-    "build": "berun-scripts build:static"
   },
   "browserslist": {
     "development": [
@@ -37,5 +16,29 @@
       "ie 11"
     ]
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "license": "MPL-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bestyled/berun/tree/master/packages/docs"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "scripts": {
+    "start": "berun-scripts start:static",
+    "build": "berun-scripts build:static"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@bestatic/core": "3.0.6",
+    "styled-components": "^4.4.1",
+    "@berun/preset-bestatic": "3.0.6",
+    "@berun/preset-react": "3.0.6",
+    "@berun/scripts": "3.0.6",
+    "@bestatic/layout": "3.0.6"
+  },
+  "peerDependencies": {}
 }

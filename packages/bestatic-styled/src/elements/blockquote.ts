@@ -1,5 +1,5 @@
-import { createComponent } from '../util'
 import { themeGet } from 'styled-system'
+import { createComponent } from '../util'
 
 export const blockquote = createComponent(
   'blockquote',
@@ -16,7 +16,7 @@ export const blockquote = createComponent(
     fontSize: 2,
     bg: 'primaryLight',
     color: 'textOnPrimaryLight',
-    ['data-sal']: 'fade',
-    ['data-sal-delay']: '150'
+    'data-sal': 'fade',
+    'data-sal-delay': '150'
   }
 )

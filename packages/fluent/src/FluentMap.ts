@@ -1,13 +1,14 @@
-declare function require(name: string)
-const deepmerge = require('deepmerge')
-
-import { Fluent, FluentSet } from './'
+import deepmerge from 'deepmerge'
+import { Fluent, FluentSet } from '.'
 import { FluentValueInstance } from './FluentMapDecorators'
 
 export class $FluentAdmin {
   store: Map<string, any> = new Map()
+
   shorthands: Array<string> = []
+
   childmaps: Array<string> = []
+
   childsets: Array<string> = []
 }
 
@@ -34,6 +35,7 @@ export class FluentMap<PARENT> extends Fluent<PARENT> {
       ...Object.getOwnPropertyNames(this).filter(
         value => !['$fluent', 'parent', 'name'].includes(value)
       ),
+      // eslint-disable-next-line no-proto
       ...((this as any).__proto__.$fluentprops || [])
     ]
 
@@ -124,11 +126,15 @@ export class FluentMap<PARENT> extends Fluent<PARENT> {
     return this.clean({
       ...this.entries(),
       ...this.$fluent.childmaps.reduce((accum, key) => {
-        if (!omit.includes(key)) accum[key] = this[key].entries()
+        if (!omit.includes(key)) {
+          accum[key] = this[key].entries()
+        }
         return accum
       }, {}),
       ...this.$fluent.childsets.reduce((accum, key) => {
-        if (!omit.includes(key)) accum[key] = this[key].values()
+        if (!omit.includes(key)) {
+          accum[key] = this[key].values()
+        }
         return accum
       }, {})
     })
@@ -186,9 +192,11 @@ export class FluentMap<PARENT> extends Fluent<PARENT> {
     return this
   }
 
-  private order(omit: string[] = []) {
+  public order(omit: string[] = []) {
     const entries = [...this.$fluent.store].reduce((acc, [key, value]) => {
-      if (!omit.includes(key)) acc[key] = value
+      if (!omit.includes(key)) {
+        acc[key] = value
+      }
       return acc
     }, {})
     const names = Object.keys(entries)

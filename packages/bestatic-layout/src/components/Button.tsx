@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import { Link } from './Link'
-
 import {
   themeGet,
   space,
@@ -8,6 +6,7 @@ import {
   borderRadius,
   BorderRadiusProps
 } from 'styled-system'
+import { Link } from './Link'
 
 export const Button = styled<SpaceProps & BorderRadiusProps>(Link)`
   padding: 0.7em;

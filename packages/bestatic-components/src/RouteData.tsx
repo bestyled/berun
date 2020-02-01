@@ -31,7 +31,9 @@ export class WithRouteData extends React.Component<RouteDataProps, any> {
 
     const dataPromise = new Promise<null>(async resolve => {
       const data = await getData()
-      if (datacache) datacache[id] = data
+      if (datacache) {
+        datacache[id] = data
+      }
       this.setState({ loading: false, ...data })
       resolve(null)
     })

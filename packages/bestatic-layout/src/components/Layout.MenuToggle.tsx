@@ -103,4 +103,4 @@ export const MenuToggle: React.FC<any> = ({ children, ...props }) => {
   )
 }
 
-MenuToggle['isMenuToggle'] = true
+MenuToggle.isMenuToggle = true

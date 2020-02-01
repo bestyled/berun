@@ -1,8 +1,8 @@
-declare function require(name: string)
-const { stringify: javascriptStringify } = require('javascript-stringify')
+import { stringify as javascriptStringify } from 'javascript-stringify'
 
 export abstract class Fluent<PARENT> {
   name: string
+
   parent: PARENT
 
   constructor(parent?: PARENT, name?: string) {
@@ -23,10 +23,7 @@ export abstract class Fluent<PARENT> {
 
   abstract toConfig(): {}
 
-  private static toString(
-    config: {},
-    { verbose = false, configPrefix = 'config' } = {}
-  ) {
+  private static toString(config: {}, { verbose = false } = {}) {
     return javascriptStringify(
       config,
       (value, indent, stringify) => {

@@ -64,15 +64,15 @@ Or use a custom preprocessor.
 With `create-react-app` this requires ejecting, and thus all the benefits of a centrally maintained configuration
 and recommended settings are lost.  For larger organizations this leads to configuration proliferation.
 
-With `@berun/template-fuse-box-react-ts` this requires adjusting a single `berun.config.js` file, regardless of whether
+With `@berun/template-fuse-box-react-ts` this requires adjusting a single `berun.config.ts` file, regardless of whether
 changes are needed to webpack, jest, babel, etc., and can be done delicately (using a fluent interface) 
 to tweak the existing configuration vs ejecting/forking it and rewriting it.  
 
 ### Example: swap out fuse-box for webpack
 
 ```js
-// berun.config.js
-module.exports = {
+// berun.config.ts
+export default {
   use: [
     '@berun/preset-react-ts',  /* REMOVED '@berun/preset-fuse-box-react-ts', */
     '@berun/runner-tslint',
@@ -84,8 +84,8 @@ module.exports = {
 ### Example: support TS Main to transpile Typescript dependencies in node_modules
 
 ```js
-// berun.config.js
-module.exports = {
+// berun.config.ts
+export default {
   use: [
     '@berun/preset-react-fusebox-ts',
     '@berun/runner-tsmain', /* ADDED */

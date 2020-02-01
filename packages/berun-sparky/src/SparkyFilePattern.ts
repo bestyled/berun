@@ -19,7 +19,9 @@ export function parse(
   const base = opts ? opts.base || '' : ''
   const isGlob = /[*{}}]/.test(str)
   const isAbsolutePath = path.isAbsolute(str)
-  let root, filepath, glob
+  let root
+  let filepath
+  let glob
   if (!isGlob) {
     root = isAbsolutePath
       ? path.dirname(str)
@@ -27,20 +29,18 @@ export function parse(
     filepath = isAbsolutePath
       ? path.normalize(str)
       : path.join(Config.PROJECT_ROOT, base, str)
+  } else if (isAbsolutePath) {
+    root = path.normalize(str.split('*')[0])
+    glob = path.normalize(str)
   } else {
-    if (isAbsolutePath) {
-      root = path.normalize(str.split('*')[0])
-      glob = path.normalize(str)
-    } else {
-      glob = path.join(Config.PROJECT_ROOT, base, str)
-      root = path.join(Config.PROJECT_ROOT, base)
-    }
+    glob = path.join(Config.PROJECT_ROOT, base, str)
+    root = path.join(Config.PROJECT_ROOT, base)
   }
 
   return {
-    isGlob: isGlob,
-    root: root,
-    glob: glob,
-    filepath: filepath
+    isGlob,
+    root,
+    glob,
+    filepath
   }
 }

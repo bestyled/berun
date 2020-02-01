@@ -3,9 +3,13 @@ import { Plugin } from './Plugin'
 
 export class Bundle<PARENT> extends OrderableMap<PARENT> {
   watch = FluentValue<this, string>()
+
   globals = FluentValue<this, any>()
+
   tsConfig = FluentValue<this, string>()
+
   shim = FluentValue<this, any>()
+
   hmr = FluentValue<
     this,
     {
@@ -14,9 +18,12 @@ export class Bundle<PARENT> extends OrderableMap<PARENT> {
       reload?: boolean
     }
   >()
+
   alias = new FluentMap(this)
+
   // split =   new FluentMap(this)
   cache = FluentValue<this, boolean>()
+
   splitConfig = FluentValue<
     this,
     {
@@ -25,15 +32,25 @@ export class Bundle<PARENT> extends OrderableMap<PARENT> {
       dest?: string
     }
   >()
+
   log = FluentValue<this, boolean>()
+
   extensionOverrides = FluentValue<this, string[]>()
+
   plugins = new FluentMap(this)
+
   natives = FluentValue<this, any>()
+
   instructions = FluentValue<this, string>()
+
   target = FluentValue<this, string>()
+
   sourceMaps = FluentValue<this, any>()
+
   test = FluentValue<this, string>()
+
   testOptions = FluentValue<this, any>()
+
   completed = FluentValue<this, (process: any) => void>()
 
   constructor(parent?: PARENT, name?: string) {
@@ -54,7 +71,9 @@ export class Bundle<PARENT> extends OrderableMap<PARENT> {
   }
 
   merge(obj: any, omit = []) {
-    if (!obj) return this
+    if (!obj) {
+      return this
+    }
 
     if (!omit.includes('plugin') && 'plugin' in obj) {
       Object.keys(obj.plugin).forEach(name =>

@@ -1,7 +1,16 @@
 {
   "name": "@berun/fluent-tdx",
-  "version": "2.2.2",
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-tdx",
+  "version": "3.0.6",
+  "main": "./dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "src/index.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "keywords": [
     "mdx",
     "mdx-js",
@@ -11,33 +20,27 @@
     "fluent",
     "api"
   ],
-  "files": [
-    "dist"
-  ],
+  "license": "MPL-2.0",
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/index.js",
-  "ts:main": "src/index.ts",
-  "types": "./dist/index.d.ts",
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
-  "license": "MPL-2.0",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-tdx",
   "scripts": {
     "prebuild": "berun-dev clean",
     "build": "berun-dev build",
+    "berun:types": "tsc --pretty --emitDeclarationOnly --declarationDir ../berun/src/types/fluent-tdx",
     "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
     "prepublishOnly": "yarn build",
     "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
+    "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent": "^2.2.2"
+    "@berun/fluent": "3.0.6"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25"
+    "@berun/dev-scripts": "3.0.6"
   },
-  "gitHead": "2f4dc1bdee137bd57444b4e42dbb22e2b4784b2e"
+  "peerDependencies": {}
 }

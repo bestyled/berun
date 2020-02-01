@@ -1,6 +1,7 @@
 import { spawn } from 'child_process'
 import * as fs from 'fs'
 import { ensureAbsolutePath } from './Utils'
+
 export type Libs =
   | 'ES5'
   | 'ES6'
@@ -124,10 +125,11 @@ export interface TscOptions {
 }
 
 export async function tsc(root: string, opts?: TscOptions) {
-  let tscOptions: any = []
+  const tscOptions: any = []
   root = ensureAbsolutePath(root)
   opts.project = root
-  for (const key in opts) {
+
+  Object.keys(opts).forEach(key => {
     if (opts[key] !== undefined) {
       if (key === 'watch') {
         tscOptions.push(`--${key}`)
@@ -135,21 +137,22 @@ export async function tsc(root: string, opts?: TscOptions) {
         tscOptions.push(`--${key}`, String(opts[key]))
       }
     }
-  }
+  })
 
   return new Promise((resolve, reject) => {
     const proc = spawn(
-      'tsc' + (/^win/.test(process.platform) ? '.cmd' : ''),
+      `tsc${/^win/.test(process.platform) ? '.cmd' : ''}`,
       tscOptions,
       {
         stdio: 'inherit'
       }
     )
-    proc.on('close', function(code) {
+    proc.on('close', code => {
       if (code === 8) {
-        return reject('Error detected')
+        reject(new Error('Error detected'))
+      } else {
+        resolve()
       }
-      return resolve()
     })
   })
 }
@@ -162,11 +165,12 @@ export async function npmPublish(opts: { path: string; tag?: string }) {
       stdio: 'inherit',
       cwd: ensureAbsolutePath(opts.path)
     })
-    publish.on('close', function(code) {
+    publish.on('close', code => {
       if (code === 8) {
-        return reject('Error detected, waiting for changes...')
+        reject(new Error('Error detected, waiting for changes...'))
+      } else {
+        resolve()
       }
-      return resolve()
     })
   })
 }
@@ -178,7 +182,8 @@ export function bumpVersion(
     type: 'minor' | 'major' | 'patch' | 'next' | 'alpha' | 'beta' | 'rc' | 'dev'
   }
 ) {
-  let filePath, json
+  let filePath
+  let json
   if (!opts.userJson) {
     filePath = ensureAbsolutePath(packageJSONPath)
     if (!fs.existsSync(filePath)) {
@@ -189,10 +194,10 @@ export function bumpVersion(
     json = opts.userJson
   }
 
-  let version = json.version || '1.0.0'
-  const type = opts.type
+  const version = json.version || '1.0.0'
+  const { type } = opts
 
-  let matched = version.match(
+  const matched = version.match(
     /(\d{1,}).(\d{1,})\.(\d{1,})(-(\w{1,})\.(\d{1,}))?/i
   )
   let major = matched[1] * 1
@@ -217,13 +222,11 @@ export function bumpVersion(
     minor = 0
     resetAddon()
     major++
+  } else if (addonName === type && addonNumber > -1) {
+    addonNumber++
   } else {
-    if (addonName === type && addonNumber > -1) {
-      addonNumber++
-    } else {
-      addonName = type
-      addonNumber = 1
-    }
+    addonName = type
+    addonNumber = 1
   }
   const base = [`${major}.${minor}.${patch}`]
   if (addonName) {
@@ -233,8 +236,8 @@ export function bumpVersion(
   json.version = finalVersion
   if (opts.userJson) {
     return json
-  } else {
-    fs.writeFileSync(filePath, JSON.stringify(json, null, 2))
   }
+  fs.writeFileSync(filePath, JSON.stringify(json, null, 2))
+
   return json
 }

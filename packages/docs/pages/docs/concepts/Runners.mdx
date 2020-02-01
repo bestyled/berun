@@ -13,10 +13,11 @@ Specifically:
 
 ```js
 // The BeRun API can use many runners when it is initiated()
-const berun = require('@berun/berun')([/* array of runners */])
+import { create as berunCreate } from '@berun/berun'
+const berun = berunCreate([/* array of runners */])
 
 // When no runners has been specified to run, it defaults
-// to an array only containing the local ./config/berun.config.js file
+// to an array only containing the local ./config/berun.config.ts file
 
 // Additional runners can be added with the 'use' command
 berun.use(runner, options)
@@ -40,19 +41,19 @@ method.
 ```js
 // String format exported from other runners
 // not very useful, but possible
-module.exports = '@berun/preset-react';
+export default '@berun/preset-react';
 ```
 
 ```js
-// String format being used within an object-format ./config/berun.config.js
-module.exports = {
+// String format being used within an object-format ./config/berun.config.ts
+export default {
   use: ['@berun/preset-react']
 };
 ```
 
 ```js
 // String format being used within function format
-module.exports = berun => {
+export default berun => {
   berun.use('@berun/preset-react');
   berun.use('@berun/preset-react', {
     devServer: { port: 3000 }
@@ -72,12 +73,12 @@ required runners. Referencing an array does not enable access to the BeRun API.
 ```js
 // Array format exported from other runners
 // still not very useful, but possible
-module.exports = ['@berun/preset-react', { devServer: { port: 3000 } }];
+export default ['@berun/preset-react', { devServer: { port: 3000 } }];
 ```
 
 ```js
-// Array format being used within an object-format ./config/berun.config.js
-module.exports = {
+// Array format being used within an object-format ./config/berun.config.ts
+export default {
   use: [
     ['@berun/preset-react', {
       devServer: { port: 3000 }
@@ -88,7 +89,7 @@ module.exports = {
 
 ```js
 // Array format being used within function format
-module.exports = berun => {
+export default berun => {
   berun.use(['@berun/preset-react']);
   berun.use(['@berun/preset-react', {
     devServer: { port: 3000 }
@@ -99,12 +100,12 @@ module.exports = berun => {
 ### Object format
 
 Providing an object as a runners item denotes it as being a more complex runners structure capable of
-overriding configuration and options. The object format is the recommended format when creating `./config/berun.config.js` files
+overriding configuration and options. The object format is the recommended format when creating `./config/berun.config.ts` files
 as it provides a good balance between easily setting options and using other runners. The object format can be
 structured as follows:
 
 ```js
-module.exports = {
+export default {
   // specify options to override in the BeRun API
   options: {
     // for example, change the output directory to dist
@@ -169,7 +170,7 @@ The most powerful runners format. Using a function as runners gives direct acces
 options, and events for modification, as well as being able to accept options for driving the behavior of the runners.
 
 ```js
-function runners(berun, options) {}
+function runners(berun: Berun, options: any) {}
 ```
 
 A runners function can optionally accept an `options` argument which will be fed back into
@@ -186,7 +187,7 @@ To use a concrete example, let's create runners that adds an environment plugin:
 ```js
 const { EnvironmentPlugin } = require('webpack');
 
-module.exports = (berun, additionalVars = []) => {
+export default (berun: Berun, additionalVars = []) => {
   berun.webpack
     .plugin('env')
     .use(EnvironmentPlugin, ['NODE_ENV', ...additionalVars]);
@@ -195,7 +196,7 @@ module.exports = (berun, additionalVars = []) => {
 // When this runners gets used, options can be passed to it
 // depending on the format:
 
-module.exports = {
+export default {
   use: [
     'your-env-runners',
     
@@ -215,7 +216,7 @@ consumers.
 // @berun/env
 const { EnvironmentPlugin } = require('webpack');
 
-module.exports = (berun, additionalVars = []) => berun.webpack
+export default (berun: Berun, additionalVars = []) => berun.webpack
   .plugin('env')
   .use(EnvironmentPlugin, ['NODE_ENV', ...additionalVars]);
 ```
@@ -224,7 +225,7 @@ module.exports = (berun, additionalVars = []) => berun.webpack
 // mdx runner 
 const mdx = require('@berun/runner-mdx');
 
-module.exports = berun => {
+export default berun => {
   berun.use(mdx);
   berun.use(/* next runners */);
   berun.use(/* next runners */)
@@ -238,8 +239,8 @@ use a closure technique for simplifying this for your runners consumers. In shor
 function to consumers which, when executed, will return a BeRun runners function. Describing this in code:
 
 ```js
-module.exports = function wrapper(...args) {
-  return function runners(berun, options) {
+export default function wrapper(...args) {
+  return function runners(berun: Berun, options) {
     // do something with berun, options, and args
   };
 };
@@ -252,7 +253,7 @@ alternate plugin name when creating the runners:
 // @berun/env
 const { EnvironmentPlugin } = require('webpack');
 
-module.exports = (pluginName = 'env') => (berun, additionalVars = []) => {
+export default (pluginName = 'env') => (berun: Berun, additionalVars = []) => {
     berun.webpack
       .plugin(pluginName)
       .use(EnvironmentPlugin, ['NODE_ENV', ...additionalVars]);
@@ -263,7 +264,7 @@ module.exports = (pluginName = 'env') => (berun, additionalVars = []) => {
 // react preset (which is also runners)
 const env = require('@berun/env');
 
-module.exports = berun => {
+export default berun => {
   berun.use(env('ENV-PLUGIN'), ['SECRET_KEY']);
 };
 ```

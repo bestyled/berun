@@ -24,15 +24,25 @@ class Transform<PARENT> extends FluentMap<PARENT> {
 
 class Jest<PARENT> extends FluentMap<PARENT> {
   collectCoverageFrom = new FluentSet(this)
+
   setupFiles = new FluentSet(this)
+
   testMatch = new FluentSet(this)
+
   roots = new FluentSet(this)
+
   transformIgnorePatterns = new FluentSet(this)
+
   moduleFileExtensions = new FluentSet(this)
+
   moduleNameMapper = new FluentMap(this)
+
   transforms = new FluentMap(this)
+
   testEnvironment = FluentValue<this, any>()
+
   testURL = FluentValue<this, string>()
+
   rootDir = FluentValue<this, string>()
 
   constructor(parent?: PARENT, name?: string) {
@@ -108,7 +118,7 @@ test('sets methods', () => {
     .add('src/**/*.{js,jsx,mjs}')
     .end()
     .setupFiles.add(
-      '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js'
+      '/Volumes/DATA/projects/berun/packages/runner-web-polyfills/src/polyfills.ts'
     )
     .end()
     .testMatch.add('**/__tests__/**/*.{js,jsx,mjs}')
@@ -137,7 +147,7 @@ test('toConfig with merge', () => {
   const obj = {
     collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
     setupFiles: [
-      '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js'
+      '/Volumes/DATA/projects/berun/packages/runner-web-polyfills/src/polyfills.ts'
     ],
     testMatch: [
       '**/__tests__/**/*.{js,jsx,mjs}',

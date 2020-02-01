@@ -6,8 +6,6 @@
     ":semanticCommitsDisabled",
     ":unpublishSafe"
   ],
-  "reviewers": [
-    "bestyled/core-contributors"
-  ],
+  "reviewers": ["bestyled/core-contributors"],
   "pinVersions": false
 }

@@ -1,8 +1,19 @@
 {
   "name": "@berun/runner-fuse-box",
-  "version": "2.2.5",
+  "version": "3.0.6",
   "description": "BeRun runner for fuse-box, a webpack alternative",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "src/index.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bugs": "https://github.com/bestyled/berun/issues",
+  "engines": {
+    "node": ">=8.3",
+    "npm": ">=5.4.0",
+    "yarn": ">=1.2.1"
+  },
   "keywords": [
     "berun",
     "berun-runner",
@@ -13,39 +24,40 @@
     "polyfill",
     "create react app"
   ],
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
   "license": "Apache-2.0",
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-fuse-box",
-  "bugs": "https://github.com/bestyled/berun/issues",
-  "engines": {
-    "node": ">=8.3",
-    "npm": ">=5.4.0",
-    "yarn": ">=1.2.1"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@berun/fluent-babel": "^2.2.2",
-    "@berun/fluent-fuse-box": "^2.2.2",
-    "@berun/fuse-box-plugin-babel": "^3.5.21",
-    "@berun/runner-web-polyfills": "^2.2.2",
-    "chalk": "2.4.2",
-    "fuse-box": "3.7.1"
-  },
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-fuse-box",
   "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
     "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "prepublishOnly": "yarn build",
     "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
+    "test:watch": "berun-dev test -o --watch"
+  },
+  "dependencies": {
+    "@berun/berun": "3.0.6",
+    "@berun/fluent-fuse-box": "3.0.6",
+    "@berun/fuse-box-plugin-babel": "3.0.6",
+    "chalk": "^3.0.0",
+    "express": "^4.17.1",
+    "fs-extra": "^8.1.0",
+    "fuse-box": "3.7.1",
+    "global-modules": "^2.0.0",
+    "react-dev-utils": "^8.0.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25",
-    "@berun/fluent": "^2.2.2",
-    "@berun/fluent-babel": "^2.1.6",
-    "@berun/fluent-fuse-box": "^2.1.6"
+    "@berun/runner-babel": "3.0.6",
+    "@berun/berun": "3.0.6",
+    "@berun/dev-scripts": "3.0.6",
+    "@berun/fluent": "3.0.6",
+    "@berun/fluent-babel": "3.0.6",
+    "@berun/fluent-fuse-box": "3.0.6"
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "peerDependencies": {}
 }

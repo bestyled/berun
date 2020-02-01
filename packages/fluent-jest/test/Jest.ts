@@ -34,7 +34,7 @@ test('sets methods', () => {
     .add('src/**/*.{js,jsx,mjs}')
     .end()
     .setupFiles.add(
-      '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js'
+      '/Volumes/DATA/projects/berun/packages/runner-web-polyfills/src/polyfills.ts'
     )
     .end()
     .testMatch.add('**/__tests__/**/*.{js,jsx,mjs}')
@@ -63,7 +63,7 @@ test('toConfig with merge', () => {
   const obj = {
     collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
     setupFiles: [
-      '/Volumes/DATA/projects/berun/node_modules/@berun/runner-web-polyfills/src/polyfills.js'
+      '/Volumes/DATA/projects/berun/packages/runner-web-polyfills/src/polyfills.ts'
     ],
     testMatch: [
       '(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',

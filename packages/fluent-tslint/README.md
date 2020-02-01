@@ -8,7 +8,7 @@ TSLint configurations.
 ### Example
 
 ```js
-module.exports = function(berun, options) {
+export default function(berun: Berun, options) {
   berun.tslint.extends
     .add('tslint:recommended')
     .add('tslint-react')

@@ -1,11 +1,13 @@
 import { OrderableMap } from './OrderableMap'
 
 export class Plugin<PARENT> extends OrderableMap<PARENT> {
-  constructor(parent: PARENT, name: string) {
+  public init: Function
+
+  constructor(parent?: PARENT, name?: string) {
     super(parent, name)
     this.extend(['init'])
 
-    this.set('init', (Plugin: any, args = []) => new Plugin(...args))
+    this.set('init', (_Plugin: any, args = []) => new _Plugin(...args))
   }
 
   use(plugin: any, args = []) {

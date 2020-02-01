@@ -1,9 +1,8 @@
 import React from 'react'
 import styled, { StyledComponent, keyframes } from 'styled-components'
 import StyleProvider from '@bestatic/styled'
-import { ScrollTop } from '@bestatic/layout'
+import { ScrollTop, Link } from '@bestatic/layout'
 import { WithSiteData } from '@bestatic/components'
-import { Link } from '@bestatic/layout'
 
 import {
   space,

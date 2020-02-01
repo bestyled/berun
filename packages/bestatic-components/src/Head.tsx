@@ -53,23 +53,33 @@ export class Head extends React.Component<any, any> {
 
     nodes.forEach(node => {
     //  node.remove()
-    })*/
+    }) */
     children.forEach((child: any) => {
       if (child.type === 'title') {
         const title = document.head!.querySelector('title')
-        if (title) title.remove()
+        if (title) {
+          title.remove()
+        }
       }
       if (child.type === 'meta') {
         const { name } = child.props
         let meta
-        if (name) meta = document.head!.querySelector(`meta[name="${name}"]`)
-        if (meta) meta.remove()
+        if (name) {
+          meta = document.head!.querySelector(`meta[name="${name}"]`)
+        }
+        if (meta) {
+          meta.remove()
+        }
       }
       if (child.type === 'link') {
         const { id } = child.props
         let link
-        if (id) link = document.head!.querySelector(`link[id="${id}"]`)
-        if (link) link.remove()
+        if (id) {
+          link = document.head!.querySelector(`link[id="${id}"]`)
+        }
+        if (link) {
+          link.remove()
+        }
       }
     })
 
@@ -103,7 +113,9 @@ export class Head extends React.Component<any, any> {
       )
     }
 
-    if (!document.head) throw new Error('Missing Document Head')
+    if (!document.head) {
+      throw new Error('Missing Document Head')
+    }
 
     return createPortal(children, document.head)
   }

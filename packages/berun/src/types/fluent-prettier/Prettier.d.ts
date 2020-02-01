@@ -1,0 +1,34 @@
+import { FluentMap, FluentSet } from '@berun/fluent';
+export declare class Prettier<PARENT> extends FluentMap<PARENT> {
+    printWidth: (value: number) => this;
+    tabWidth: (value: number) => this;
+    useTabs: (value: boolean) => this;
+    semi: (value: boolean) => this;
+    singleQuote: (value: boolean) => this;
+    trailingComma: (value: string) => this;
+    bracketSpacing: (value: boolean) => this;
+    jsxBracketSameLine: (value: boolean) => this;
+    arrowParens: (value: string) => this;
+    rangeStart: (value: number) => this;
+    rangeEnd: (value: number) => this;
+    parser: (value: string) => this;
+    filepath: (value: string) => this;
+    requirePragma: (value: boolean) => this;
+    insertPragma: (value: boolean) => this;
+    proseWrap: (value: string) => this;
+    overrides: FluentSet<this, unknown>;
+    noConfig: (value: boolean) => this;
+    debugCheck: (value: boolean) => this;
+    config: (value: string) => this;
+    ignorePath: (value: string) => this;
+    listDifferent: (value: boolean) => this;
+    configPrecedence: (value: string) => this;
+    noEditorConfig: (value: boolean) => this;
+    withNodeModules: (value: boolean) => this;
+    write: (value: boolean) => this;
+    logLevel: (value: string) => this;
+    stdinFilepath: (value: string) => this;
+    files: FluentSet<this, unknown>;
+    constructor(parent?: PARENT, name?: string);
+    toArgs(omit?: string[]): any[];
+}

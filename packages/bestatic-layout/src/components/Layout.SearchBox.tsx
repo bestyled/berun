@@ -2,10 +2,7 @@ import React, { useMemo, memo } from 'react'
 
 import styled, { createGlobalStyle, StyledComponent } from 'styled-components'
 import { Head, Body } from '@bestatic/layout'
-import { SearchSvgStr } from '../img/search'
-import { AlgoliaSvgStr } from '../img/algolia'
 import { useSiteData } from '@bestatic/components'
-
 import {
   space,
   display,
@@ -16,6 +13,8 @@ import {
   SpaceProps,
   themeGet
 } from 'styled-system'
+import { SearchSvgStr } from '../img/search'
+import { AlgoliaSvgStr } from '../img/algolia'
 
 declare global {
   const docsearch: Function
@@ -24,28 +23,29 @@ declare global {
 // POLYFILL FOR BTOA
 
 // base64 character set, plus padding character (=)
-var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
 global = global || window
-if (!global['btoa'])
-  global['btoa'] = function(string) {
+if (!global.btoa) {
+  global.btoa = function(string) {
     string = String(string)
-    var bitmap,
-      a,
-      b,
-      c,
-      result = '',
-      i = 0,
-      rest = string.length % 3 // To determine the final padding
+    let bitmap
+    let a
+    let b
+    let c
+    let result = ''
+    let i = 0
+    const rest = string.length % 3 // To determine the final padding
 
     for (; i < string.length; ) {
       if (
         (a = string.charCodeAt(i++)) > 255 ||
         (b = string.charCodeAt(i++)) > 255 ||
         (c = string.charCodeAt(i++)) > 255
-      )
+      ) {
         throw new TypeError(
           "Failed to execute 'btoa' on 'Window': The string to be encoded contains characters outside of the Latin1 range."
         )
+      }
 
       bitmap = (a << 16) | (b << 8) | c
       result +=
@@ -58,15 +58,16 @@ if (!global['btoa'])
     // If there's need of padding, replace the last 'A's with equal signs
     return rest ? result.slice(0, rest - 3) + '==='.substring(rest) : result
   }
+}
 
 function getAlgoliaLoadScript({ apiKey, appId, indexName }) {
-  var DOC_SEARCH = {
+  const DOC_SEARCH = {
     appId,
     apiKey,
     indexName,
     debug: true
   }
-  DOC_SEARCH['inputSelector'] = '#docsearch-input'
+  DOC_SEARCH.inputSelector = '#docsearch-input'
   const DOC_SEARCH_CODE = btoa(JSON.stringify(DOC_SEARCH).replace(/a/g, '!Ax6'))
   return `window.addEventListener('load', function DocSearchLoad(){ 
       window.docsearch(JSON.parse(atob("${DOC_SEARCH_CODE}").replace(/!Ax6/g, 'a')));
@@ -116,7 +117,7 @@ export const SearchBox = memo<any>(props => {
   )
 })
 
-SearchBox['isSearchBox'] = true
+SearchBox.isSearchBox = true
 
 const SearchContainer = styled.div`
   left: 0;

@@ -6,8 +6,6 @@ import styled, {
   StyledComponent
 } from 'styled-components'
 
-import { MdScopeProvider } from './MdScopeProvider'
-
 import {
   fontSize,
   fontFamily,
@@ -19,15 +17,15 @@ import {
   ColorProps,
   themeGet
 } from 'styled-system'
-
 import { Head } from '@bestatic/layout'
+import { useSiteData } from '@bestatic/components'
+import { MdScopeProvider } from './MdScopeProvider'
 
 import elements from '../elements'
 
 import { theme } from '../theme/default'
 
 import { GlobalPrismStyle } from './PrismStyleProvider'
-import { useSiteData } from '@bestatic/components'
 
 const GlobalStyle = createGlobalStyle`
 a {
@@ -48,13 +46,16 @@ type RootProps = {
 }
 
 const HeadHelmet = props => {
-  var weightsObj = themeGet('fontWeights', { normal: 400 })(props)
+  const weightsObj = themeGet('fontWeights', { normal: 400 })(props)
 
-  var weights = Object.keys(weightsObj)
+  const weights = Object.keys(weightsObj)
     .map(k => weightsObj[k])
     .join(',')
 
-  var result = themeGet('googleFonts', [])(props)
+  const result = themeGet(
+    'googleFonts',
+    []
+  )(props)
     .map(i =>
       React.createElement('link', {
         id: i,

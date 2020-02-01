@@ -10,7 +10,9 @@ export class PluginPreset<PARENT> extends OrderableMap<PARENT> {
   }
 
   merge(obj, omit = []) {
-    if (!obj) return this
+    if (!obj) {
+      return this
+    }
 
     if (Array.isArray(obj)) {
       this.set('options', obj[1])
@@ -24,7 +26,9 @@ export class PluginPreset<PARENT> extends OrderableMap<PARENT> {
   toConfig() {
     const options = this.get('options')
 
-    if (Object.keys(options).length === 0) return this.name
+    if (Object.keys(options).length === 0) {
+      return this.name
+    }
 
     return [this.name, options]
   }

@@ -1,8 +1,6 @@
-'use strict'
-
-module.exports = {
+export default {
   process() {
-    return 'module.exports = {};'
+    return 'export default {};'
   },
   getCacheKey() {
     // The output is always the same.

@@ -14,12 +14,12 @@ need to install it directly, follow these directions:
 $ npm install --save-dev @berun/fluent-fuse-box
 ```
 
-### 1. Embed within `berun.config.js`
+### 1. Embed within `berun.config.ts`
 
 ```js
-// berun.config.js
+// berun.config.ts
 
-module.exports = {
+export default {
   use: [
      // ...
     '@berun/fluent-fuse-box',
@@ -185,15 +185,15 @@ to massage the plugins output to match simple strings.  For example:
 
 ``` js
 
-const actual_result = fusebox.toConfig()
+const actualResult = fusebox.toConfig()
 
-actual_result.plugins = actual_result.plugins.map(p => [
+actualResult.plugins = actualResult.plugins.map(p => [
   p.__pluginName,
   p.__pluginConstructorName,
   p.__pluginArgs
 ])
 
-expect(actual_result).toEqual({
+expect(actualResult).toEqual({
     homeDir: '/Volumes/data/mypath',
     sourceMaps: { project: true, vendor: false },
     hash: true,

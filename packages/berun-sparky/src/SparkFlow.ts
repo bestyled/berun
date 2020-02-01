@@ -11,12 +11,14 @@ import { parse, SparkyFilePatternOptions } from './SparkyFilePattern'
 
 export class SparkFlow {
   private activities = []
-  private watcher: any
-  private files: SparkyFile[]
-  private completedCallback: any
-  private initialWatch = false
 
-  constructor() {}
+  private watcher: any
+
+  private files: SparkyFile[]
+
+  private completedCallback: any
+
+  private initialWatch = false
 
   public glob(globs: string[], opts?: SparkyFilePatternOptions): SparkFlow {
     this.activities.push(() => this.getFiles(globs, opts))
@@ -50,14 +52,16 @@ export class SparkFlow {
     this.activities.push(
       () =>
         new Promise((resolve, reject) => {
-          var chokidarOptions = {
+          const chokidarOptions = {
             cwd: opts ? ensureUserPath(opts.base) : null
           }
 
           this.watcher = chokidar
             .watch(globs, chokidarOptions)
             .on('all', (event, fp) => {
-              if (event === 'addDir' || event === 'unlinkDir') return
+              if (event === 'addDir' || event === 'unlinkDir') {
+                return
+              }
               if (this.initialWatch) {
                 this.files = []
                 log.echoStatus(`Changed ${fp}`)
@@ -65,7 +69,7 @@ export class SparkFlow {
                   fn(event, fp)
                 }
               }
-              let info = parse(fp, opts)
+              const info = parse(fp, opts)
               this.files.push(new SparkyFile(info.filepath, info.root))
               if (this.initialWatch) {
                 // call it again
@@ -99,24 +103,26 @@ export class SparkFlow {
       getFilePromises.push(this.getFile(g, opts))
     })
     return Promise.all(getFilePromises).then(results => {
-      this.files = [].concat.apply([], results)
+      this.files = [...results]
       return this.files
     })
   }
 
   protected getFile(globString, opts?: SparkyFilePatternOptions) {
-    let info = parse(globString, opts)
+    const info = parse(globString, opts)
 
     return new Promise((resolve, reject) => {
       if (!info.isGlob) {
-        return resolve([new SparkyFile(info.filepath, info.root)])
+        resolve([new SparkyFile(info.filepath, info.root)])
+      } else {
+        glob.default(info.glob, (err, files: string[]) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(files.map(file => new SparkyFile(file, info.root)))
+          }
+        })
       }
-      glob(info.glob, (err, files: string[]) => {
-        if (err) {
-          return reject(err)
-        }
-        return resolve(files.map(file => new SparkyFile(file, info.root)))
-      })
     })
   }
 
@@ -129,7 +135,9 @@ export class SparkFlow {
       () =>
         new Promise((resolve, reject) => {
           fs.remove(ensureDir(dest), err => {
-            if (err) return reject(err)
+            if (err) {
+              return reject(err)
+            }
             return resolve()
           })
         })
@@ -139,8 +147,8 @@ export class SparkFlow {
 
   public plugin(plugin: Plugin): SparkFlow {
     this.activities.push(() => {
-      //Promise.all(this.files.map(file => file.copy(dest)))
-      //File.createByName(collection, "sd")
+      // Promise.all(this.files.map(file => file.copy(dest)))
+      // File.createByName(collection, "sd")
     })
     return this
   }
@@ -156,12 +164,13 @@ export class SparkFlow {
 
   public file(mask: string, fn: any) {
     this.activities.push(() => {
-      let regexp = string2RegExp(mask)
+      const regexp = string2RegExp(mask)
       return each(this.files, (file: SparkyFile) => {
         if (regexp.test(file.filepath)) {
           log.echoStatus(`Captured file ${file.homePath}`)
           return fn(file)
         }
+        return false
       })
     })
     return this
@@ -169,9 +178,7 @@ export class SparkFlow {
 
   public next(fn: (file: SparkyFile) => void) {
     this.activities.push(() => {
-      return each(this.files, (file: SparkyFile) => {
-        return fn(file)
-      })
+      return each(this.files, (file: SparkyFile) => fn(file))
     })
     return this
   }

@@ -27,8 +27,8 @@ $ npm install --save-dev @berun/runner-tsmain
 ```
 
 ```js
-// berun.config.js
-module.exports = {
+// berun.config.ts
+export default {
   use: [ '@berun/runner-tsmain']
 }
 ```
@@ -42,4 +42,4 @@ module.exports = {
 ```
 
 No additional changes are required to the dependent project, other than inclusion of this runner
-in the `berun.config.js` file as above.
+in the `berun.config.ts` file as above.

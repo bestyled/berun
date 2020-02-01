@@ -1,8 +1,19 @@
 {
   "name": "@berun/runner-mdx",
-  "version": "2.2.12",
+  "version": "3.0.6",
   "description": "BeRun runner for building MDX documentation applications",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "src/index.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bugs": "https://github.com/bestyled/berun/issues",
+  "engines": {
+    "node": ">=8.3",
+    "npm": ">=5.4.0",
+    "yarn": ">=1.2.1"
+  },
   "keywords": [
     "berun",
     "berun-preset",
@@ -15,48 +26,44 @@
     "hot module replacement",
     "create react app"
   ],
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
   "license": "Apache-2.0",
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-mdx",
-  "bugs": "https://github.com/bestyled/berun/issues",
-  "engines": {
-    "node": ">=8.3",
-    "npm": ">=5.4.0",
-    "yarn": ">=1.2.1"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@berun/fluent-mdx": "^2.2.2",
-    "@berun/fuse-box-plugin-babel": "^3.5.21",
-    "@mapbox/rehype-prism": "^0.3.1",
-    "@mdx-js/loader": "^0.20.3",
-    "@mdx-js/mdx": "^0.20.3",
-    "@mdx-js/tag": "^0.20.3",
-    "character-parser": "^3.1.0",
-    "fuse-box-plugin-mdx": "^1.0.12",
-    "prismjs": "^1.16.0",
-    "remark-autolink-headings": "^5.1.0",
-    "remark-emoji": "^2.0.2",
-    "remark-images": "^0.18.0",
-    "remark-slug": "^5.1.1",
-    "remark-unwrap-images": "0.2.0"
-  },
-  "scripts": {
-    "coverage": "berun-dev test --coverage",
-    "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
-  },
-  "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25",
-    "@berun/preset-react": "^2.2.12"
-  },
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-mdx",
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch"
+  },
+  "dependencies": {
+    "@berun/berun": "3.0.6",
+    "@berun/fluent-mdx": "3.0.6",
+    "@berun/fuse-box-plugin-babel": "3.0.6",
+    "@berun/runner-babel": "3.0.6",
+    "@mapbox/rehype-prism": "^0.3.1",
+    "@mdx-js/loader": "^1.5.5",
+    "babel-loader": "^8.0.6",
+    "fuse-box-plugin-mdx": "3.0.6",
+    "remark-autolink-headings": "^5.2.1",
+    "remark-emoji": "^2.0.2",
+    "remark-images": "^1.0.0",
+    "remark-slug": "^5.1.2",
+    "remark-unwrap-images": "^1.0.0"
+  },
+  "devDependencies": {
+    "@berun/preset-fuse-box-react": "3.0.6",
+    "@berun/preset-react": "3.0.6",
+    "@berun/berun": "3.0.6",
+    "@berun/dev-scripts": "3.0.6"
+  },
+  "peerDependencies": {}
 }

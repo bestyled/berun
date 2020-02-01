@@ -43,7 +43,7 @@ test('toConfig with fluent', () => {
     .requirePragma(false)
     .arrowParens('always')
 
-  const expected_result = {
+  const expectedResult = {
     semi: false,
     bracketSpacing: true,
     rangeStart: 0,
@@ -52,7 +52,7 @@ test('toConfig with fluent', () => {
     arrowParens: 'always'
   }
 
-  expect(prettier.toConfig()).toEqual(expected_result)
+  expect(prettier.toConfig()).toEqual(expectedResult)
 })
 
 test('toArgs with fluent', () => {
@@ -66,7 +66,7 @@ test('toArgs with fluent', () => {
     .requirePragma(false)
     .arrowParens('always')
 
-  const expected_result = [
+  const expectedResult = [
     '--no-semi',
     '--range-start',
     0,
@@ -75,7 +75,7 @@ test('toArgs with fluent', () => {
     'always'
   ]
 
-  expect(prettier.toArgs()).toEqual(expected_result)
+  expect(prettier.toArgs()).toEqual(expectedResult)
 })
 
 test('toArgs with merge', () => {
@@ -96,7 +96,7 @@ test('toArgs with merge', () => {
 
   prettier.merge(config1).merge(config2)
 
-  const expected_result = [
+  const expectedResult = [
     '--no-semi',
     '--insert-pragma',
     '--range-start',
@@ -105,7 +105,7 @@ test('toArgs with merge', () => {
     'always'
   ]
 
-  expect(prettier.toArgs()).toEqual(expected_result)
+  expect(prettier.toArgs()).toEqual(expectedResult)
 })
 
 test('toArgs with files, fluent', () => {
@@ -122,7 +122,7 @@ test('toArgs with files, fluent', () => {
     .semi(false)
     .singleQuote(true)
 
-  const expected_result = [
+  const expectedResult = [
     '--ignore-path',
     '.gitignore',
     '--write',
@@ -132,5 +132,5 @@ test('toArgs with files, fluent', () => {
     '{,!(node_modules|dist|build)/**/}*.{js,jsx,ts,tsx,css,less,scss,sass,graphql,json,md}'
   ]
 
-  expect(prettier.toArgs()).toEqual(expected_result)
+  expect(prettier.toArgs()).toEqual(expectedResult)
 })

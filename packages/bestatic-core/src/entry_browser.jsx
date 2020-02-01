@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, hydrate } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
+import config from '@bestatic/config' // dynamically loaded using bundler fron app or ./config directory
 import { createContext } from './config/createContext'
 import { getRoutes } from './config/getRoutes'
 import { App } from './App'
-import config from '@bestatic/config' // dynamically loaded using bundler fron app or ./config directory
 
 async function init() {
   const bestatic = createContext()
@@ -14,7 +14,9 @@ async function init() {
 
   const div = document.getElementById('root')
 
-  if (!div) throw new Error("Missing <div id='root'> in HTML")
+  if (!div) {
+    throw new Error("Missing <div id='root'> in HTML")
+  }
 
   const mount = div.innerHTML ? hydrate : render
 

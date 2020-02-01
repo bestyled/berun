@@ -12,4 +12,4 @@ export class Configuration {
   public PROJECT_ROOT = process.env.PROJECT_ROOT || path.dirname(MAIN_FILE)
 }
 
-export let Config = new Configuration()
+export const Config = new Configuration()

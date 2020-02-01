@@ -58,7 +58,7 @@ export const NavLinks: React.SFC<any> = ({
   ...props
 }) => {
   return (
-    <React.Fragment>
+    <>
       {sort(routes, order)
         .filter(filter)
         .filter(route => route.menu !== false)
@@ -73,14 +73,14 @@ export const NavLinks: React.SFC<any> = ({
             />
             {route.children && route.match && (
               <SubNavLinks
-                key={route.key + '-sub'}
+                key={`${route.key}-sub`}
                 href={route.path}
                 items={route.children}
               />
             )}
           </React.Fragment>
         ))}
-    </React.Fragment>
+    </>
   )
 }
 

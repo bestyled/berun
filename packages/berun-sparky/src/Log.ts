@@ -1,19 +1,24 @@
 import * as log from 'fliplog'
-import * as prettyTime from 'pretty-time'
+import prettyTime from 'pretty-time'
 import { getDateTime } from './Utils'
 
 export class Log {
   private static deferred: Function[] = []
 
   public timeStart = process.hrtime()
+
   public printLog: any = true
-  public showBundledFiles: boolean = true
+
+  public showBundledFiles = true
+
   public debugMode: any = false
+
   public spinner: any
 
   public static defer(fn: Function) {
     Log.deferred.push(fn)
   }
+
   constructor({ doLog, debugMode } = { doLog: true, debugMode: false }) {
     this.printLog = doLog
     this.debugMode = debugMode
@@ -27,7 +32,7 @@ export class Log {
         (level &&
           level.includes &&
           level.includes(tag) &&
-          !level.includes('!' + tag))
+          !level.includes(`!${tag}`))
 
       if (level === false) {
         return false
@@ -65,21 +70,25 @@ export class Log {
   }
 
   public echoSparkyTaskStart(taskName: string) {
-    const gray = log.chalk().gray
-    const magenta = log.chalk().magenta
-    const str = ['[', gray(getDateTime()), ']', ' Starting']
-    str.push(` '${magenta(taskName)}' `)
-    console.log(str.join(''))
+    if (process.env.NODE_ENV !== 'test') {
+      const { gray } = log.chalk()
+      const { magenta } = log.chalk()
+      const str = ['[', gray(getDateTime()), ']', ' Starting']
+      str.push(` '${magenta(taskName)}' `)
+      console.log(str.join(''))
+    }
     return this
   }
 
   public echoSparkyTaskEnd(taskName, took: [number, number]) {
-    const gray = log.chalk().gray
-    const magenta = log.chalk().magenta
-    const str = ['[', gray(getDateTime()), ']', ' Resolved']
-    str.push(` '${magenta(taskName)}' `, 'after ')
-    str.push(`${gray(prettyTime(took, 'ms'))}`)
-    console.log(str.join(''))
+    if (process.env.NODE_ENV !== 'test') {
+      const { gray } = log.chalk()
+      const { magenta } = log.chalk()
+      const str = ['[', gray(getDateTime()), ']', ' Resolved']
+      str.push(` '${magenta(taskName)}' `, 'after ')
+      str.push(`${gray(prettyTime(took, 'ms'))}`)
+      console.log(str.join(''))
+    }
     return this
   }
 
@@ -114,7 +123,10 @@ export class Log {
   }
 
   public echoWarning(str: string) {
-    log.yellow(`  → WARNING ${str}`).echo()
-    return this
+    if (process.env.NODE_ENV !== 'test') {
+      log.yellow(`  → WARNING ${str}`).echo()
+      return this
+    }
+    throw new Error(str)
   }
 }

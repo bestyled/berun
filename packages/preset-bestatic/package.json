@@ -1,39 +1,13 @@
 {
   "name": "@berun/preset-bestatic",
-  "version": "2.2.16",
+  "version": "3.0.6",
   "description": "TDX and MDX-based documentation server",
-  "main": "src/index.js",
-  "keywords": [
-    "mdx",
-    "react",
-    "docs",
-    "documentation",
-    "react-static"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "src"
-  ],
+  "main": "dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "src/index.ts",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
   ],
-  "scripts": {
-    "coverage": "berun-dev test --coverage",
-    "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
-  },
-  "license": "Apache-2.0",
-  "dependencies": {
-    "@berun/runner-static": "^2.3.9",
-    "@berun/runner-tdx": "^2.2.13",
-    "@berun/runner-tdx-frontmatter": "^2.2.12"
-  },
-  "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25"
-  },
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -46,5 +20,40 @@
       "ie 11"
     ]
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "files": [
+    "src",
+    "dist"
+  ],
+  "keywords": [
+    "mdx",
+    "react",
+    "docs",
+    "documentation",
+    "react-static"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch"
+  },
+  "dependencies": {
+    "@berun/berun": "3.0.6",
+    "resolve-cwd": "^2.0.0"
+  },
+  "devDependencies": {
+    "@berun/preset-fuse-box-react": "3.0.6",
+    "@berun/preset-react": "3.0.6",
+    "@berun/berun": "3.0.6",
+    "@berun/dev-scripts": "3.0.6"
+  },
+  "peerDependencies": {}
 }

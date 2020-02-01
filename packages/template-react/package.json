@@ -1,26 +1,6 @@
 {
   "name": "@berun/template-react",
-  "version": "0.3.14",
-  "devDependencies": {
-    "@berun/preset-react": "^2.2.12",
-    "@berun/runner-eslint": "^2.2.4",
-    "@berun/runner-prettier": "^2.2.12",
-    "@berun/runner-webpack-css": "^2.2.12",
-    "@berun/scripts": "^2.2.8"
-  },
-  "resolutions": {
-    "babel-core": "^7.0.0-bridge.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "start": "berun-scripts start",
-    "build": "berun-scripts build",
-    "format": "berun-scripts lint",
-    "test": "berun-scripts test --env=jsdom",
-    "eject": "berun-scripts eject"
-  },
+  "version": "1.0.6",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -33,5 +13,26 @@
       "ie 11"
     ]
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "publishConfig": {
+    "access": "public"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "scripts": {
+    "start": "berun-scripts start",
+    "build": "berun-scripts build",
+    "format": "berun-scripts lint",
+    "test": "berun-scripts test --env=jsdom",
+    "eject": "berun-scripts eject"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@berun/preset-react": "3.0.6",
+    "@berun/runner-eslint": "3.0.6",
+    "@berun/runner-prettier": "3.0.6",
+    "@berun/runner-webpack-css": "3.0.6",
+    "@berun/scripts": "3.0.6"
+  },
+  "peerDependencies": {}
 }

@@ -4,44 +4,44 @@ No two JavaScript projects are ever the same, and as such there may be times whe
 to the way your BeRun runners are building your project. BeRun provides a mechanism to augment presets and
 runners in the context of a project without resorting to creating and publishing an entirely independent preset.
 
-## `./config/berun.config.js`
+## `./config/berun.config.ts`
 
-First, you will need to create a `./config/berun.config.js` file in the root of your project. You
-[may have already done this](./usage.md#using-multiple-presets) if you specified your middleware via `./config/berun.config.js`
+First, you will need to create a `./config/berun.config.ts` file in the root of your project. You
+[may have already done this](./usage.md#using-multiple-presets) if you specified your middleware via `./config/berun.config.ts`
 as opposed to CLI `--use`.
 
-The `./config/berun.config.js` file is picked up by BeRun automatically if it exists. This can simplify your BeRun commands
+The `./config/berun.config.ts` file is picked up by BeRun automatically if it exists. This can simplify your BeRun commands
 by making them as simple as `berun start` or `berun build`. If you do all your customization within
-`./config/berun.config.js`, the CLI will pick up these changes every time you run it.
+`./config/berun.config.ts`, the CLI will pick up these changes every time you run it.
 
 ### Runner formats
 
-Before we delve into making customizations in `./config/berun.config.js`, it's important to note that this file can be in any
+Before we delve into making customizations in `./config/berun.config.ts`, it's important to note that this file can be in any
 valid [middleware format](./middleware.md#formats) that BeRun accepts. For project-based customization, it is
 recommended to use the object format, and that will be the format we focus on for the remainder of this guide. Should
-you need a lot of API customization, you may still opt to write your `./config/berun.config.js` file in the function format.
+you need a lot of API customization, you may still opt to write your `./config/berun.config.ts` file in the function format.
 
-Your `./config/berun.config.js` file is a JavaScript module which will be required by BeRun using Node.js. Any code written in
+Your `./config/berun.config.ts` file is a JavaScript module which will be required by BeRun using Node.js. Any code written in
 this file should be usable by the version of Node.js you have running on your system when running BeRun. The
-`./config/berun.config.js` file should export an object or function depending on which format you opt to use.
+`./config/berun.config.ts` file should export an object or function depending on which format you opt to use.
 
 ```js
-module.exports = {
+export default {
   /* make customizations */
 };
 ```
 
 ```js
-module.exports = (berun) => {
+export default (berun) => {
   /* make customizations */
 };
 ```
 
-**In a nutshell, the `./config/berun.config.js` file is wholly runners**.
+**In a nutshell, the `./config/berun.config.ts` file is wholly runners**.
 
 ## Using middleware
 
-By specifying a `use` array in your `./config/berun.config.js`, you can inform BeRun to load additional runners when it
+By specifying a `use` array in your `./config/berun.config.ts`, you can inform BeRun to load additional runners when it
 runs, including any additional files you wish to include as middleware. Each item in this `use` array can be any
 BeRun-supported [middleware format](./Runners.mdx#formats).
 
@@ -49,7 +49,7 @@ In its simplest form, each item can be the string module name or path to middlew
 use for you:
 
 ```js
-module.exports = {
+export default {
   use: [
     '@berun/preset-react',
     '@berun/tslint',
@@ -63,7 +63,7 @@ If your middleware module supports its own options, instead of referencing it by
 module name and options:
 
 ```js
-module.exports = {
+export default {
   use: [
     ['@berun/runner-eslint', {
       eslint: {
@@ -84,7 +84,7 @@ If you need to make more advanced configuration changes, you can even directly p
 and have access to the BeRun API:
 
 ```js
-module.exports = {
+export default {
   use: [
     '@berun/preset-react',
     '@berun/runner-eslint',
@@ -100,14 +100,14 @@ module.exports = {
 
 Sometimes you can only make certain configuration changes in certain Node.js environments, or you may choose to
 selectively make changes based on the values of any arbitrary environment variable. These can be done from
-`./config/berun.config.js` using the `env` property. Each property within `env` maps to an environment variable with key-values
+`./config/berun.config.ts` using the `env` property. Each property within `env` maps to an environment variable with key-values
 mapping to  environment values which contain further middleware. This works for any environment variable, not just
 `NODE_ENV`.
 
 For example, if you wanted to include additional middleware when `NODE_ENV` is `production`:
 
 ```js
-module.exports = {
+export default {
   env: {
     NODE_ENV: {
       production: {
@@ -121,7 +121,7 @@ module.exports = {
 _Example: Turn on CSS modules when the environment variable `CSS_MODULES=enable`:_
 
 ```js
-module.exports = {
+export default {
   env: {
     CSS_MODULES: {
       // Turn on CSS modules when the environment variable CSS_MODULES=enable
@@ -141,7 +141,7 @@ You may use any middleware format as the value for the matching environment-valu
 ## Advanced configuration changes
 
 Making deep or complex changes to BeRun build configuration beyond what middleware options afford you can be done
-using the function middleware format. If you wish, your entire `./config/berun.config.js` file can be a middleware function, but
+using the function middleware format. If you wish, your entire `./config/berun.config.ts` file can be a middleware function, but
 typically this function can be inlined directly as an additional item in the `use` array.
 
 If you're familiar with middleware from the Express/connect world, this works similarly. When using Express middleware,
@@ -166,7 +166,7 @@ presets `@berun/preset-react`, any config set can be extended, manipulated, or r
 _Example: BeRun's React preset adds `.jsx` as a module extension. Let's remove it._
 
 ```js
-module.exports = {
+export default {
   use: [
     '@berun/preset-react',
     (berun) => berun.webpack.resolve.extensions.delete('.jsx')
@@ -177,7 +177,7 @@ module.exports = {
 _Example: BeRun's Node.js preset has performance hints disabled. Let's re-enable them._
 
 ```js
-module.exports = {
+export default {
   use: [
     '@berun/node',
     (berun) => berun.webpack.performance.hints('error')

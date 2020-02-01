@@ -1,8 +1,14 @@
 {
   "name": "@berun/runner-eslint",
-  "version": "2.2.4",
+  "version": "3.0.6",
   "description": "BeRun runner to add react eslint configuration",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "ts:main": "src/index.ts",
+  "types": "src/index.ts",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bugs": "https://github.com/bestyled/berun/issues",
   "keywords": [
     "berun",
     "berun-runner",
@@ -12,45 +18,37 @@
     "polyfill",
     "create react app"
   ],
-  "authors": [
-    "OffGrid Networks <admin@offgridnetworks.com>"
-  ],
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   },
-  "license": "Apache-2.0",
   "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-eslint",
-  "bugs": "https://github.com/bestyled/berun/issues",
-  "engines": {
-    "node": ">=8.3",
-    "npm": ">=5.4.0",
-    "yarn": ">=1.2.1"
+  "scripts": {
+    "prebuild": "berun-dev clean",
+    "build": "berun-dev build",
+    "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "prepublishOnly": "yarn build",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent-eslint": "^2.2.2",
-    "babel-eslint": "10.0.1",
-    "chalk": "2.4.2",
-    "eslint": "5.16.0",
-    "eslint-config-react-app": "3.0.8",
-    "eslint-loader": "2.1.2",
-    "eslint-plugin-flowtype": "3.4.2",
-    "eslint-plugin-import": "2.16.0",
-    "eslint-plugin-jsx-a11y": "6.2.1",
-    "eslint-plugin-react": "7.12.4",
+    "@berun/berun": "3.0.6",
+    "@berun/fluent-eslint": "3.0.6",
+    "eslint": "^6.8.0",
+    "eslint-config-berun": "6.0.6",
+    "eslint-loader": "^3.0.3",
     "react-dev-utils": "8.0.0"
   },
-  "scripts": {
-    "coverage": "berun-dev test --coverage",
-    "test": "berun-dev test",
-    "test:watch": "berun-dev test -o --watch",
-    "lint": "berun-dev lint"
-  },
   "devDependencies": {
-    "@berun/dev-scripts": "^2.0.25",
-    "@berun/fluent": "^2.2.2",
-    "@berun/fluent-babel": "^2.2.2",
-    "@berun/fluent-eslint": "^2.1.6",
-    "@berun/fluent-webpack": "^2.2.2"
+    "@berun/preset-react": "3.0.6",
+    "@berun/berun": "3.0.6",
+    "@berun/dev-scripts": "3.0.6",
+    "@berun/fluent": "3.0.6",
+    "@berun/fluent-babel": "3.0.6",
+    "@berun/fluent-eslint": "3.0.6",
+    "@berun/fluent-webpack": "3.0.6"
   },
-  "gitHead": "c7282d0cc1ad3405ea4cca16286f1517c7be9dfb"
+  "peerDependencies": {}
 }

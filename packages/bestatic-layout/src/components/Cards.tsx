@@ -1,7 +1,5 @@
 import React from 'react'
 import styled, { StyledComponent } from 'styled-components'
-import { Link } from './Link'
-
 import {
   space,
   color,
@@ -15,6 +13,7 @@ import {
   BorderRadiusProps,
   themeGet
 } from 'styled-system'
+import { Link } from './Link'
 
 type CssProps = { css?: any }
 const css = props => props.css
@@ -39,7 +38,7 @@ CardsRoot.defaultProps = {
 
 export const Cards = props => <CardsRoot>{props.children}</CardsRoot>
 
-Cards['isCards'] = true
+Cards.isCards = true
 
 export const Card = styled.div`
   flex: 1;
@@ -91,7 +90,10 @@ export const Post = props =>
             <TitleLink href={`/blog/post/${item.id}`}>{item.title}</TitleLink>
           </h1>
           <h3>{item.user.name}</h3>
-          <p>{item.body}....</p>
+          <p>
+            {item.body}
+            ....
+          </p>
           <p>
             <FooterLink href={`/blog/post/${item.id}`}>
               Read More &rarr;
@@ -108,4 +110,4 @@ export const Post = props =>
     </Card>
   )
 
-Post['isPost'] = true
+Post.isPost = true

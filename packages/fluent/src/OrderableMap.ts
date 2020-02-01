@@ -2,6 +2,7 @@ import { FluentMap } from './FluentMap'
 
 export class OrderableMap<PARENT> extends FluentMap<PARENT> {
   __after: string
+
   __before: string
 
   before(name: string) {
