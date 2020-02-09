@@ -26,7 +26,7 @@ async function run() {
   const arrays = [].concat(...workspaces.map(pattern => glob.sync(pattern)))
 
   arrays.forEach(dir => {
-    console.log(path.join(cwd, dir))
+    console.log(dir)
     try {
       /** Identify and transpile dependencies */
       fixDependencies({
@@ -39,10 +39,7 @@ async function run() {
           'fs',
           'os',
           'module',
-          'path',
-          'firebase/app',
-          'firebase/auth',
-          'firebase/firestore'
+          'path'
         ],
         shallowOnly: true
       })

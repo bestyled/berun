@@ -48,7 +48,7 @@ export default function processPackage(options: PackageOptions) {
     .forEach(key => {
       const pkg = packages[key]
       if (pkg._inWorkspace) {
-        dependencies[key] = pkg.version
+        dependencies[key] = `^${pkg.version}`
       } else if (
         key in existingPeerDependencies ||
         (['react', 'react-dom'].indexOf(key) > -1 &&
@@ -72,7 +72,7 @@ export default function processPackage(options: PackageOptions) {
     .forEach(key => {
       const pkg = packagesLib[key]
       if (pkg._inWorkspace) {
-        dependencies[key] = pkg.version
+        dependencies[key] = `^${pkg.version}`
       } else if (
         key in existingPeerDependencies ||
         (['react', 'react-dom'].indexOf(key) > -1 &&
@@ -102,7 +102,7 @@ export default function processPackage(options: PackageOptions) {
           (existingDependencies[key] || '^0').match(/^([^0-9*]*).*/)[1] || ''
         dependencies[key] = prefix + pkg.version
       } else if (pkg._inWorkspace) {
-        devDependencies[key] = pkg.version
+        devDependencies[key] = `^${pkg.version}`
       } else if (
         key in existingPeerDependencies ||
         (['react', 'react-dom'].indexOf(key) > -1 &&
@@ -132,7 +132,7 @@ export default function processPackage(options: PackageOptions) {
           (existingDevDependencies[key] || '^0').match(/^([^0-9]*).*/)[1] || ''
         devDependencies[key] = prefix + devJsonVersion
       } else {
-        devDependencies[key] = devJsonVersion
+        devDependencies[key] = `^${devJsonVersion}`
       }
     } catch (ex) {
       console.log(`Could not find devDependency ${key}`)

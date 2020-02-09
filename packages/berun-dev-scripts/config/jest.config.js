@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   testEnvironment: 'node',
   moduleDirectories: ['./node_modules', './src'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],

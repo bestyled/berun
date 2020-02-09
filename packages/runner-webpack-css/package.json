@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-webpack-css",
-  "version": "3.0.9",
+  "version": "3.0.11",
   "description": "BeRun runner to add react stylers for css configuration",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
@@ -39,22 +39,22 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "3.0.9",
+    "@berun/berun": "^3.0.11",
     "autoprefixer": "^9.7.4",
     "css-loader": "^3.4.2",
     "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-flexbugs-fixes": "^4.2.0",
     "postcss-loader": "^3.0.0",
-    "postcss-safe-parser": "^4.0.1",
+    "postcss-safe-parser": "^4.0.2",
     "react-dev-utils": "^8.0.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3"
   },
   "devDependencies": {
-    "@berun/preset-react": "3.0.9",
-    "@berun/berun": "3.0.9",
-    "@berun/dev-scripts": "3.0.9"
+    "@berun/preset-react": "^3.0.11",
+    "@berun/berun": "^3.0.11",
+    "@berun/dev-scripts": "^3.0.14"
   },
   "peerDependencies": {}
 }

@@ -9,6 +9,68 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+//
+// Node.js require pirate
+//
+
+require('sucrase/register/ts-legacy-module-interop')
+const { transform } = require('sucrase')
+const Module = require('module')
+const path = require('path')
+const { addHook } = require('pirates')
+
+const originalRequire = Module.prototype.require
+const proxyCache = {}
+
+const MY_PACKAGE_DIR = path.basename(path.resolve(__dirname, '..'))
+
+// Transpile all local modules of this package
+addHook(
+  (code, filePath) => {
+    const { code: transformedCode, sourceMap } = transform(code, {
+      sourceMapOptions: { compiledFilename: filePath },
+      transforms: ['typescript', 'imports'],
+      enableLegacyTypeScriptModuleInterop: true,
+      filePath
+    })
+    const mapBase64 = Buffer.from(JSON.stringify(sourceMap)).toString('base64')
+    const suffix = `//# sourceMappingURL=data:application/json;charset=utf-8;base64,${mapBase64}`
+    return `${transformedCode}\n${suffix}`
+  },
+  {
+    exts: ['.ts'],
+    matcher: filename => {
+      return filename.indexOf(MY_PACKAGE_DIR) !== -1
+    },
+    ignoreNodeModules: false
+  }
+)
+
+Module.prototype.require = name => {
+  if (name in proxyCache) {
+    return originalRequire.apply(this, [proxyCache[name]])
+  }
+  // TEST IF FIRST PATH INTO NODE_MODULE
+  if (/(^[^./]*$)|(^@[^./]*\/[^./]*$)/.test(name)) {
+    let packagefile
+    try {
+      packagefile = require.resolve(`${name}/package.json`)
+    } catch (ex) {
+      // noop: base node module
+    }
+
+    if (packagefile && !packagefile.includes('/node_modules/')) {
+      const packagejson = originalRequire.apply(this, [packagefile])
+      const main = packagejson['ts:main'] || packagejson.main || 'index.js'
+      const abspath = path.join(path.dirname(packagefile), main)
+      proxyCache[name] = abspath
+      return originalRequire.apply(this, [abspath])
+    }
+  }
+
+  return originalRequire.apply(this, [name])
+}
+
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
@@ -16,7 +78,9 @@ process.on('unhandledRejection', err => {
   throw err
 })
 
-const spawn = require('cross-spawn')
+//
+// MAIN ENTRY POINT
+//
 
 const args = process.argv.slice(2)
 
@@ -32,25 +96,5 @@ switch (cmd) {
     script = 'cmd'
 }
 
-const result = spawn.sync(
-  'node',
-  [require.resolve(`../scripts/${script}`)].concat(args),
-  { stdio: 'inherit' }
-)
-if (result.signal) {
-  if (result.signal === 'SIGKILL') {
-    console.log(
-      'The build failed because the process exited too early. ' +
-        'This probably means the system ran out of memory or someone called ' +
-        '`kill -9` on the process.'
-    )
-  } else if (result.signal === 'SIGTERM') {
-    console.log(
-      'The build failed because the process exited too early. ' +
-        'Someone might have called `kill` or `killall`, or the system could ' +
-        'be shutting down.'
-    )
-  }
-  process.exit(1)
-}
-process.exit(result.status)
+process.argv = args
+require(`../scripts/${script}`)

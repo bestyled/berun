@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-webpack",
-  "version": "3.0.9",
+  "version": "3.0.11",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -42,8 +42,8 @@
   },
   "devDependencies": {
     "webpack": "^4.41.5",
-    "@berun/dev-scripts": "3.0.9",
-    "@types/webpack": "^4.41.5"
+    "@berun/dev-scripts": "^3.0.14",
+    "@types/webpack": "^4.41.6"
   },
   "peerDependencies": {}
 }

@@ -1,6 +1,6 @@
 {
   "name": "@berun/fuse-box-plugin-babel",
-  "version": "3.0.9",
+  "version": "3.0.11",
   "main": "./dist/index.js",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -40,7 +40,7 @@
     "fuse-box": "^3.7.1"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "3.0.9"
+    "@berun/dev-scripts": "^3.0.14"
   },
   "peerDependencies": {}
 }

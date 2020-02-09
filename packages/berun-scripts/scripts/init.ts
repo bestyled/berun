@@ -11,7 +11,7 @@
 // terminate the Node.js process with a non-zero exit code.
 import fs from 'fs-extra'
 import path from 'path'
-import chalk from 'chalk'
+import * as chalk from 'chalk'
 import { execSync } from 'child_process'
 import spawn from 'cross-spawn'
 import { defaultBrowsers } from 'react-dev-utils/browsersHelper'

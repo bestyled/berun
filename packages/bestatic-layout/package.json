@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/layout",
-  "version": "3.0.9",
+  "version": "3.0.11",
   "description": "MDX-based theme",
   "main": "dist/esm/index.js",
   "ts:main": "src/index.ts",
@@ -35,9 +35,9 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@bestatic/components": "3.0.9",
-    "@bestatic/core": "3.0.9",
-    "@bestatic/styled": "3.0.9",
+    "@bestatic/components": "^3.0.11",
+    "@bestatic/core": "^3.0.11",
+    "@bestatic/styled": "^3.0.11",
     "is-absolute-url": "^3.0.3",
     "lodash.sortby": "^4.7.0",
     "react-router": "^5.1.2",
@@ -46,7 +46,7 @@
     "styled-system": "^4.2.4"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "3.0.9"
+    "@berun/dev-scripts": "^3.0.14"
   },
   "peerDependencies": {
     "react": "^16.12.0"

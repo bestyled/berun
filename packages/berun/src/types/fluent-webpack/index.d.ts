@@ -18,6 +18,7 @@ interface TypedFluentMap<Parent, Value> extends Fluent<Parent> {
     };
     values(): Value[];
     when(condition: boolean, trueBrancher: (obj: this) => void, falseBrancher?: (obj: this) => void): this;
+    order(): any;
 }
 declare type FluentMap<Parent> = TypedFluentMap<Parent, any>;
 interface TypedFluentSet<Parent, Value> extends Fluent<Parent> {
@@ -237,6 +238,8 @@ interface Optimization extends FluentMap<Config> {
     sideEffects(value: boolean): this;
     splitChunks(value: SplitChunksOptions): this;
     usedExports(value: boolean): this;
+    // MISSING in webpack-chain
+    minimizers: Map<Plugin<this>>
 }
 interface RuntimeChunk {
     name: string | RuntimeChunkFunction;

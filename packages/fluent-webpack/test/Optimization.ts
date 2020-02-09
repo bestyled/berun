@@ -1,6 +1,8 @@
 import { Optimization } from '../src'
 
 class StringifyPlugin {
+  public values: any
+
   constructor(...args) {
     this.values = args
   }

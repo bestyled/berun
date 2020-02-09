@@ -6,6 +6,7 @@ import * as precinct from 'precinct'
 import * as ts from 'typescript'
 import * as resolve from 'resolve'
 import * as terser from 'terser'
+import * as chalk from 'chalk'
 
 const nameCache = {}
 const cwd = process.cwd()
@@ -39,8 +40,17 @@ const _getDependencies = function _getDependencies({
   let dependencies
   let transpiledCode
   let transpiledMap
-
-  const code = fs.readFileSync(filename, 'utf8')
+  let code
+  try {
+    code = fs.readFileSync(filename, 'utf8')
+  } catch (ex) {
+    console.error(
+      `could not resolve ${chalk.redBright(
+        path.relative(basedir, filename)
+      )} from ${chalk.cyan(basedir)}`
+    )
+    process.exit(1)
+  }
   const basename = path.basename(filename)
 
   try {
@@ -93,7 +103,9 @@ const _getDependencies = function _getDependencies({
         transpiledCode = code
       } catch (ex) {
         console.log(
-          `error getting dependencies for typescript definition ${filename}: ${ex.message}`
+          `error getting dependencies for typescript definition ${chalk.redBright(
+            filename
+          )}: ${chalk.gray(ex.message)}`
         )
         throw ex
       }
@@ -111,7 +123,11 @@ const _getDependencies = function _getDependencies({
       })
       transpiledCode = code
     } catch (ex) {
-      console.log(`error getting dependencies for ${filename}: ${ex.message}`)
+      console.log(
+        `error getting dependencies for ${chalk.redBright(
+          filename
+        )}: ${chalk.gray(ex.message)}`
+      )
       throw ex
     }
   }
@@ -139,7 +155,7 @@ const _getDependencies = function _getDependencies({
       }
     } catch (ex) {
       console.error(filename)
-      console.log(`error minifying code with terser: ${ex.message}`)
+      console.log(`error minifying code with terser: ${chalk.gray(ex.message)}`)
       throw ex
     }
   }
@@ -204,7 +220,9 @@ const _getDependencies = function _getDependencies({
 
     if (!exists) {
       console.error(
-        `skipping non-empty but non-existent resolution: ${resolvedFilename} for partial: ${dep}`
+        `skipping non-empty but non-existent resolution: ${chalk.redBright(
+          resolvedFilename
+        )} for partial: ${chalk.cyan(dep)}`
       )
       continue
     }
@@ -309,6 +327,10 @@ function commonJSLookup({
       return packages[packageJson.name]
     }
 
+    if (packageJson.name === 'functions') {
+      return packageJson
+    }
+
     pkgfile = fs.realpathSync(pkgfile)
 
     packageJson._main = packageJson.main
@@ -330,6 +352,10 @@ function commonJSLookup({
     return packageJson
   }
 
+  if (dependency.startsWith('firebase/')) {
+    dependency = 'firebase'
+  }
+
   try {
     resolvedFilename = resolve.sync(dependency, {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
@@ -338,9 +364,30 @@ function commonJSLookup({
       moduleDirectory: [path.resolve(rootdir, 'node_modules'), basedir]
     })
   } catch (e) {
-    console.error(`could not resolve ${dependency} from ${basedir}`)
-    console.error(e)
-    process.exit(1)
+    if (dependency.endsWith('/package.json')) {
+      try {
+        resolvedFilename = resolve.sync(`@types/${dependency}`, {
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+          basedir,
+          packageFilter,
+          moduleDirectory: [path.resolve(rootdir, 'node_modules'), basedir]
+        })
+      } catch (e) {
+        console.error(
+          `could not resolve ${chalk.redBright(
+            path.relative(basedir, dependency)
+          )} from ${chalk.cyan(basedir)}`
+        )
+        process.exit(1)
+      }
+    } else {
+      console.error(
+        `could not resolve ${chalk.redBright(
+          path.relative(basedir, dependency)
+        )} from ${chalk.cyan(basedir)}`
+      )
+      process.exit(1)
+    }
   }
 
   return resolvedFilename
@@ -358,10 +405,8 @@ interface WalkDependencieOptions {
 
 export default function walkDependencies(
   options: WalkDependencieOptions,
-  callback: () => void
+  callback: Function
 ) {
-  const packageJSON = require(path.join(options.basedir, 'package.json'))
-
   const visited = {}
   const dependencyCache = {}
 
@@ -369,6 +414,18 @@ export default function walkDependencies(
 
   const sourcefiles = []
   const builtfiles = []
+
+  let packageJSON
+  try {
+    packageJSON = require(path.join(options.basedir, 'package.json'))
+  } catch (ex) {
+    console.error(
+      `${chalk.gray('warning:')} missing ${chalk.yellow(
+        'package.json'
+      )} in ${chalk.yellow(options.basedir)}`
+    )
+    return { files: builtfiles, packages, packageJSON: {}, rootdir }
+  }
 
   const files = options.files || [
     makeRelative(packageJSON['ts:main'] || packageJSON.main || undefined)
@@ -403,7 +460,7 @@ export default function walkDependencies(
 
   delete packages[packageJSON.name]
 
-  return { packages, packageJSON, rootdir }
+  return { files: builtfiles, packages, packageJSON, rootdir }
 }
 
 function makeRelative(file: string | undefined) {

@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-fuse-box-react-ts",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "0.3.14",
   "browserslist": {
     "development": [
@@ -30,12 +30,12 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@berun/preset-fuse-box-react": "3.0.9",
-    "@berun/runner-prettier": "3.0.9",
-    "@berun/runner-tslint": "3.0.9",
-    "@berun/scripts": "3.0.9",
-    "@berun/sparky": "3.0.9",
-    "@types/jest": "^25.1.1",
+    "@berun/preset-fuse-box-react": "^3.0.11",
+    "@berun/runner-prettier": "^3.0.11",
+    "@berun/runner-tslint": "^3.0.11",
+    "@berun/scripts": "^3.0.11",
+    "@berun/sparky": "^3.0.11",
+    "@types/jest": "^25.1.2",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5"
   },

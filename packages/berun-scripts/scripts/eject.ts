@@ -12,7 +12,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { execSync } from 'child_process'
-import chalk from 'chalk'
+import * as chalk from 'chalk'
 import inquirer from 'react-dev-utils/inquirer'
 import { sync as spawnSync } from 'react-dev-utils/crossSpawn'
 import os from 'os'
