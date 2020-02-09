@@ -44,7 +44,7 @@ const _getDependencies = function _getDependencies({
   const basename = path.basename(filename)
 
   try {
-    if (/\.tsx?$/.test(filename)) {
+    if (/\.tsx?$/.test(filename) && !/\.d\.ts$/.test(filename)) {
       const tsresult = ts.transpileModule(code, {
         compilerOptions: {
           target: ts.ScriptTarget.ES2015,
@@ -67,12 +67,14 @@ const _getDependencies = function _getDependencies({
       })
 
       transpiledMap = inlineSourceMap ? undefined : tsresult.sourceMapText
-      transpiledCode = tsresult.outputText
-
+      transpiledCode = tsresult.outputText.replace(
+        /require\.resolve\(/g,
+        'require('
+      )
       dependencies = precinct(transpiledCode, {
         type: 'commonjs',
         includeCore: false
-      })
+      } as any)
 
       try {
         dependencies = dependencies.concat(
@@ -83,13 +85,26 @@ const _getDependencies = function _getDependencies({
       } catch (ex) {
         console.error(ex)
       }
+    } else if (/\.d\.ts$/.test(filename)) {
+      try {
+        dependencies = precinct.paperwork(filename, {
+          includeCore: false
+        })
+        transpiledCode = code
+      } catch (ex) {
+        console.log(
+          `error getting dependencies for typescript definition ${filename}: ${ex.message}`
+        )
+        throw ex
+      }
     } else {
-      dependencies = precinct.paperwork(filename, {
+      transpiledCode = code.replace(/require\.resolve\(/g, 'require(')
+      dependencies = precinct(transpiledCode, {
         includeCore: false
-      })
-      transpiledCode = code
+      } as any)
     }
   } catch (e) {
+    console.error(`${path.basename(filename)}: ${e.message}`)
     try {
       dependencies = precinct.paperwork(filename, {
         includeCore: false

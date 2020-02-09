@@ -1,9 +1,10 @@
 import Berun from '@berun/berun'
 
-import 'babel-loader'
-import '@svgr/webpack'
-import 'url-loader'
-import 'file-loader'
+// FIX-DEPENDENCIES
+require.resolve('babel-loader')
+require.resolve('@svgr/webpack')
+require.resolve('url-loader')
+require.resolve('file-loader')
 
 /**
  *  Disable require.ensure as it's not a standard language feature.

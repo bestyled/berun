@@ -1,5 +1,5 @@
-// REQUIRES FOR DEPENDENCY REFERENCES
-require('eslint-config-berun')
+// FIX-DEPENDENCIES
+require.resolve('eslint-config-berun')
 
 module.exports = {
   extends: [

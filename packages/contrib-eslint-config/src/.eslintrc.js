@@ -3,18 +3,18 @@
 // Inspired by https://github.com/airbnb/javascript
 // Adapted for TypeScript and Prettier
 
-// REQUIRES FOR DEPENDENCY REFERENCES
-require('eslint')
-require('eslint-config-airbnb')
-require('eslint-config-prettier')
-require('eslint-plugin-prettier')
-require('eslint-plugin-react')
-require('eslint-plugin-react-hooks')
-require('@typescript-eslint/parser')
-require('@typescript-eslint/eslint-plugin')
-require('eslint-plugin-import')
-require('eslint-plugin-jsx-a11y')
-require('prettier')
+// FIX-DEPENDENCIES
+require.resolve('eslint')
+require.resolve('eslint-config-airbnb')
+require.resolve('eslint-config-prettier')
+require.resolve('eslint-plugin-prettier')
+require.resolve('eslint-plugin-react')
+require.resolve('eslint-plugin-react-hooks')
+require.resolve('@typescript-eslint/parser')
+require.resolve('@typescript-eslint/eslint-plugin')
+require.resolve('eslint-plugin-import')
+require.resolve('eslint-plugin-jsx-a11y')
+require.resolve('prettier')
 
 const fs = require('fs')
 const path = require('path')

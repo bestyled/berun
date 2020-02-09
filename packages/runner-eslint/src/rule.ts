@@ -1,6 +1,7 @@
 import Berun from '@berun/berun'
 
-import 'eslint-loader'
+// FIX-DEPENDENCIES
+require.resolve('eslint-loader')
 
 /**
  *   run the linter.

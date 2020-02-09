@@ -1,8 +1,8 @@
 import Berun from '@berun/berun'
 
-// DEPENDENCIES
-import 'babel-loader'
-import '@tinia/tdx-loader'
+// FIX-DEPENDENCIES
+require.resolve('babel-loader')
+require.resolve('@tinia/tdx-loader')
 
 /**
  * TDX Loader

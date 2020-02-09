@@ -1,4 +1,4 @@
-import * as webpack from './webpack'
+import * as webpack from '@types/webpack'
 import { ServerOptions } from './https'
 
 interface Fluent<Parent> {
@@ -71,21 +71,31 @@ interface Plugin<Parent> extends FluentMap<Parent> {
   init(value: (plugin: PluginClass, args: any[]) => webpack.Plugin): this
   use(plugin: PluginClass, args?: any[]): this
   tap(f: (args: any[]) => any[]): this
+  // Orderable
+  before(name: string): this
+  after(name: string): this
 }
 interface Module extends FluentMap<Config> {
   rules: TypedFluentMap<this, Rule>
   rule(name: string): Rule
   noParse(noParse: RegExp | RegExp[] | ((contentPath: string) => boolean)): this
+  strictExportPresence(value: boolean): this
 }
+
 interface Output extends FluentMap<Config> {
+  auxiliaryComment(value: string | { [comment: string]: string }): this
   chunkFilename(value: string): this
+  chunkLoadTimeout(value: number): this
   crossOriginLoading(value: boolean | string): this
   filename(value: string): this
   library(value: string): this
+  libraryExport(value: string | string[]): this
   libraryTarget(value: string): this
   devtoolFallbackModuleFilenameTemplate(value: any): this
   devtoolLineToLine(value: any): this
   devtoolModuleFilenameTemplate(value: any): this
+  devtoolNamespace(value: string): this
+  globalObject(value: string): this
   hashFunction(value: string): this
   hashDigest(value: string): this
   hashDigestLength(value: number): this
@@ -101,22 +111,42 @@ interface Output extends FluentMap<Config> {
   sourcePrefix(value: string): this
   strictModuleExceptionHandling(value: boolean): this
   umdNamedDefine(value: boolean): this
+  futureEmitAssets(value: boolean): this
 }
 export interface DevServer extends FluentMap<Config> {
+  allowedHosts: TypedFluentSet<this, string>
+
+  after(
+    value: (app: any, server: any, compiler: webpack.Compiler) => void
+  ): this
+  before(
+    value: (app: any, server: any, compiler: webpack.Compiler) => void
+  ): this
+  bonjour(value: boolean): this
   clientLogLevel(value: 'none' | 'error' | 'warning' | 'info'): this
+  color(value: boolean): this
   compress(value: boolean): this
   contentBase(value: boolean | string | string[]): this
+  disableHostCheck(value: boolean): this
   filename(value: string): this
   headers(value: { [header: string]: string }): this
   historyApiFallback(value: boolean | any): this
   host(value: string): this
   hot(value: boolean): this
   hotOnly(value: boolean): this
+  http2(value: boolean): this
   https(value: boolean | ServerOptions): this
+  index(value: string): this
+  info(value: boolean): this
   inline(value: boolean): this
   lazy(value: boolean): this
+  mimeTypes(value: Record<string, any>): this
   noInfo(value: boolean): this
+  open(value: boolean): this
+  openPage(value: string | string[]): this
   overlay(value: boolean | { warnings?: boolean; errors?: boolean }): this
+  pfx(value: string): this
+  pfxPassphrase(value: string): this
   port(value: number): this
   progress(value: boolean): this
   proxy(value: any): this
@@ -124,10 +154,17 @@ export interface DevServer extends FluentMap<Config> {
   publicPath(publicPath: string): this
   quiet(value: boolean): this
   setup(value: (expressApp: any) => void): this
+  socket(value: string): this
+  sockHost(value: string): this
+  sockPath(value: string): this
+  sockPort(value: number): this
   staticOptions(value: any): this
   stats(value: webpack.Options.Stats): this
+  stdin(value: boolean): this
+  useLocalIp(value: boolean): this
   watchContentBase(value: boolean): this
   watchOptions(value: any): this
+  writeToDisk(value: boolean): this
 }
 interface Performance extends FluentMap<Config> {
   hints(value: boolean | 'error' | 'warning'): this
@@ -161,15 +198,32 @@ interface ResolveLoader extends FluentMap<Config> {
   packageMains: TypedFluentSet<this, string>
 }
 interface Rule extends FluentMap<Module> {
-  uses: TypedFluentMap<this, Use<any>>
+  rules: TypedFluentMap<this, Rule>
+  oneOfs: TypedFluentMap<this, Rule>
+  uses: TypedFluentMap<this, Use<this>>
   include: TypedFluentSet<this, webpack.Condition>
   exclude: TypedFluentSet<this, webpack.Condition>
+
   parser(value: { [optName: string]: any }): this
   test(value: webpack.Condition | webpack.Condition[]): this
+  type(
+    value:
+      | 'javascript/auto'
+      | 'javascript/dynamic'
+      | 'javascript/esm'
+      | 'json'
+      | 'webassembly/experimental'
+  ): this
   enforce(value: 'pre' | 'post'): this
-  use(name: string): Use<any>
+
+  use(name: string): Use<this>
+  rule(name: string): Rule
+  oneOf(name: string): Rule
   pre(): this
   post(): this
+  before(name: string): this
+  after(name: string): this
+  resourceQuery(value: webpack.Condition | webpack.Condition[]): this
 }
 interface Optimization extends FluentMap<Config> {
   concatenateModules(value: boolean): this

@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge'
 import Sparky from '@berun/sparky'
 import spawn from 'cross-spawn'
+import * as path from 'path'
 
 import { defaultOptions } from './options'
 import { isPlainObject, requireFromRoot } from './util'
@@ -77,7 +78,15 @@ export default class BeRun {
       // If middleware is a string, it's a module to require.
       // Require it, then run the results back through .use()
       // with the provided options
-      this.use(requireFromRoot(middleware, this.options.paths.appPath), options)
+
+      if (path.isAbsolute(middleware)) {
+        this.use(require(middleware), options)
+      } else {
+        this.use(
+          requireFromRoot(middleware, this.options.paths.appPath),
+          options
+        )
+      }
     } else if (Array.isArray(middleware)) {
       // If middleware is an array, it's a pair of some other
       // middleware type and options
@@ -110,10 +119,14 @@ export default class BeRun {
       // If middleware is a string, it's a module to require.
       // Require it, then run the results back through .use()
       // with the provided options
-      await this.useAsync(
-        requireFromRoot(middleware, this.options.paths.appPath),
-        options
-      )
+      if (path.isAbsolute(middleware)) {
+        await this.useAsync(require(middleware), options)
+      } else {
+        await this.useAsync(
+          requireFromRoot(middleware, this.options.paths.appPath),
+          options
+        )
+      }
     } else if (Array.isArray(middleware)) {
       // If middleware is an array, it's a pair of some other
       // middleware type and options

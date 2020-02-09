@@ -1,4 +1,4 @@
-// DEPENDENCIES LISTED HERE FOR FIX-DEPENDENCIES
-import '../config/.eslintrc'
-import '../config/babel.config'
+// FIX-DEPENDENCIES
+import '../config/.eslintrc.js'
+import '../config/babel.config.js'
 import '../config/jest.config'

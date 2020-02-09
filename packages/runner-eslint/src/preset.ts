@@ -1,8 +1,9 @@
 import eslintFormatter from 'react-dev-utils/eslintFormatter'
 import Berun from '@berun/berun'
-// import to assure included in dependencies
-import 'eslint-config-berun'
-import 'eslint'
+
+// FIX-DEPENDENCIES
+require.resolve('eslint-config-berun')
+require.resolve('eslint')
 
 export default (berun: Berun, _) => {
   berun.eslint.merge({

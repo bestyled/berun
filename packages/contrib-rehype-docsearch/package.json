@@ -1,6 +1,6 @@
 {
   "name": "rehype-docsearch",
-  "version": "3.0.6",
+  "version": "3.0.9",
   "description": "Output docsearch json from rehype",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
@@ -43,7 +43,7 @@
     "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "3.0.6"
+    "@berun/dev-scripts": "3.0.9"
   },
   "peerDependencies": {}
 }

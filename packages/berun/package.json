@@ -1,6 +1,6 @@
 {
   "name": "@berun/berun",
-  "version": "3.0.6",
+  "version": "3.0.9",
   "description": "Create and build JS applications with managed configurations",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
@@ -36,8 +36,9 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent": "3.0.6",
-    "@berun/sparky": "3.0.6",
+    "@berun/fluent": "3.0.9",
+    "@berun/sparky": "3.0.9",
+    "@types/webpack": "^4.41.5",
     "cross-spawn": "^7.0.1",
     "deepmerge": "^4.2.2",
     "dotenv": "^8.2.0",
@@ -48,7 +49,7 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@berun/fluent-webpack": "3.0.6",
+    "@berun/fluent-webpack": "3.0.9",
     "@types/webpack": "^4.41.5"
   },
   "peerDependencies": {}

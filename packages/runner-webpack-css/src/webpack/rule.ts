@@ -3,10 +3,11 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import autoprefixer from 'autoprefixer'
 import Berun from '@berun/berun'
 
-import 'style-loader'
-import 'css-loader'
-import 'postcss-loader'
-import 'sass-loader'
+// FIX-DEPENDENCIES
+require.resolve('style-loader')
+require.resolve('css-loader')
+require.resolve('postcss-loader')
+require.resolve('sass-loader')
 
 // style files regexes
 const cssRegex = /\.css$/

@@ -4,11 +4,11 @@ import path from 'path'
 import chalk from 'chalk'
 import Berun from '@berun/berun'
 
-// dependencies
-import 'jest-pnp-resolver'
-import 'babel-jest'
-import './transforms/fileTransform.js'
-import './transforms/cssTransform.js'
+// FIX-DEPENDENCIES
+require.resolve('jest-pnp-resolver')
+require.resolve('babel-jest')
+require.resolve('./transforms/fileTransform.js')
+require.resolve('./transforms/cssTransform.js')
 
 export default (berun: Berun, options: { paths?: any } = {}) => {
   // Use this instead of `paths.testsSetup` to avoid putting

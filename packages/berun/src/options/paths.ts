@@ -136,7 +136,7 @@ exported = {
   servedPath: getServedPath(resolveApp('package.json')),
   config: hasLocalConfig
     ? getFile(resolveApp('config/berun.config'), ['.ts', '.js'])
-    : require.resolve('@berun/scripts/config/berun.config.ts'),
+    : require.resolve('../../config/berun.config.default.ts'),
   remoteOriginUrl: getRemoteOriginUrl(resolveApp('package.json'))
 }
 

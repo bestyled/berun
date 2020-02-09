@@ -1,7 +1,8 @@
 import Berun from '@berun/berun'
 
-import 'babel-loader'
-import '@mdx-js/loader'
+// FIX-DEPENDENCIES
+require.resolve('babel-loader')
+require.resolve('@mdx-js/loader')
 
 /**
  * MDX Loader

@@ -1,8 +1,8 @@
-// REQUIRES FOR DEPENDENCY REFERENCES
-require('@babel/preset-typescript')
-require('@babel/preset-env')
-require('@babel/plugin-proposal-decorators')
-require('@babel/plugin-proposal-class-properties')
+// FIX-DEPENDENCIES
+require.resolve('@babel/preset-typescript')
+require.resolve('@babel/preset-env')
+require.resolve('@babel/plugin-proposal-decorators')
+require.resolve('@babel/plugin-proposal-class-properties')
 
 module.exports = {
   presets: [

@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-mdx-frontmatter",
-  "version": "3.0.6",
+  "version": "3.0.9",
   "description": "BeRun runner for using yaml frontmatter with MDX documentation applications",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
@@ -46,19 +46,19 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "3.0.6",
-    "@berun/fuse-box-plugin-babel": "3.0.6",
+    "@berun/berun": "3.0.9",
+    "@berun/fuse-box-plugin-babel": "3.0.9",
     "@mdx-js/loader": "^1.5.5",
     "babel-loader": "^8.0.6",
-    "fuse-box-plugin-mdx": "3.0.6",
+    "fuse-box-plugin-mdx": "3.0.9",
     "gray-matter": "^4.0.2"
   },
   "devDependencies": {
-    "@berun/preset-fuse-box-react": "3.0.6",
-    "@berun/preset-react": "3.0.6",
-    "@berun/runner-mdx": "3.0.6",
-    "@berun/berun": "3.0.6",
-    "@berun/dev-scripts": "3.0.6"
+    "@berun/preset-fuse-box-react": "3.0.9",
+    "@berun/preset-react": "3.0.9",
+    "@berun/runner-mdx": "3.0.9",
+    "@berun/berun": "3.0.9",
+    "@berun/dev-scripts": "3.0.9"
   },
   "peerDependencies": {}
 }

@@ -1,6 +1,6 @@
 {
   "name": "@berun/docs",
-  "version": "3.0.6",
+  "version": "3.0.9",
   "author": {
     "name": "OffGrid Networks"
   },
@@ -33,12 +33,12 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@bestatic/core": "3.0.6",
+    "@bestatic/core": "3.0.9",
     "styled-components": "^4.4.1",
-    "@berun/preset-bestatic": "3.0.6",
-    "@berun/preset-react": "3.0.6",
-    "@berun/scripts": "3.0.6",
-    "@bestatic/layout": "3.0.6"
+    "@berun/preset-bestatic": "3.0.9",
+    "@berun/preset-react": "3.0.9",
+    "@berun/scripts": "3.0.9",
+    "@bestatic/layout": "3.0.9"
   },
   "peerDependencies": {}
 }

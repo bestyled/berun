@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-mdx",
-  "version": "3.0.6",
+  "version": "3.0.9",
   "main": "./dist/index.js",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -37,10 +37,10 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent": "3.0.6"
+    "@berun/fluent": "3.0.9"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "3.0.6"
+    "@berun/dev-scripts": "3.0.9"
   },
   "peerDependencies": {}
 }

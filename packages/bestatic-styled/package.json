@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/styled",
-  "version": "3.0.6",
+  "version": "3.0.9",
   "description": "Styled scope provider for Markdown/MDX/TDX documents",
   "main": "dist/esm/index.js",
   "ts:main": "src/index.ts",
@@ -38,8 +38,8 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@bestatic/components": "3.0.6",
-    "@bestatic/layout": "3.0.6",
+    "@bestatic/components": "3.0.9",
+    "@bestatic/layout": "3.0.9",
     "@tinia/tdx-tag": "^0.3.2",
     "is-absolute-url": "^3.0.3",
     "react-router-dom": "^5.1.2",
@@ -47,7 +47,7 @@
     "styled-system": "^4.2.4"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "3.0.6"
+    "@berun/dev-scripts": "3.0.9"
   },
   "peerDependencies": {
     "react": "^16.12.0"

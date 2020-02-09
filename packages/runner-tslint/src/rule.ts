@@ -1,7 +1,7 @@
 import Berun from '@berun/berun'
 
-// DEPENDENCIES
-import 'tslint-loader'
+// FIX-DEPENDENCIES
+require.resolve('tslint-loader')
 
 /**
  * Run the linter.
