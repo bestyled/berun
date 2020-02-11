@@ -3,7 +3,7 @@
  * Portions copyright (c) 2018 BeRun Contributors
  */
 
-import React from 'react'
+import * as React from 'react'
 
 import styled, { StyledComponent, withTheme } from 'styled-components'
 

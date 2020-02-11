@@ -1,5 +1,5 @@
 import { FuseBox } from 'fuse-box'
-import path from 'path'
+import * as path from 'path'
 import express from 'express'
 import Berun from '@berun/berun'
 

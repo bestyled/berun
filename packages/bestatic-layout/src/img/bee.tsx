@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { renderToStaticMarkup } from '@bestatic/core'
 
 export const BeStyledLogo: React.SFC<{

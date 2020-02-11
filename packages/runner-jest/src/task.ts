@@ -1,4 +1,4 @@
-import jestApi from 'jest'
+import * as jestApi from 'jest'
 
 export default berun => {
   const argv = process.argv.slice(3) // 0 = node, 1 = script, 2 = sparky cmd= 'test', 3+ = args

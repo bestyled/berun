@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "berun-scripts start:static",
-    "build": "berun-scripts build:static"
+    "build-docs": "berun-scripts build:static"
   },
   "dependencies": {},
   "devDependencies": {

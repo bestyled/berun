@@ -8,7 +8,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as findPkg from 'find-pkg'
-import globby from 'globby'
+import * as globby from 'globby'
 
 const findPkgs = (rootPath, globPatterns) => {
   if (!globPatterns) {

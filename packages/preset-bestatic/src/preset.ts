@@ -1,10 +1,10 @@
-import path from 'path'
-import fs from 'fs'
-import resolveCWD from 'resolve-cwd'
+import * as path from 'path'
+import * as fs from 'fs'
+import * as resolveCWD from 'resolve-cwd'
 import Berun from '@berun/berun'
 
 export default (berun: Berun, options = {}) => {
-  const corePath = path.dirname(resolveCWD('@bestatic/core/dist/index.js'))
+  const corePath = path.dirname(resolveCWD('@bestatic/core/src/index.ts'))
 
   if (!berun.options.cmd.endsWith(':static')) {
     return

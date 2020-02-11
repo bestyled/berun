@@ -4,7 +4,7 @@
  * Portions copyright (c) 2018-2020 BeStatic Contributors
  */
 
-import React from 'react'
+import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import isAbsolute from 'is-absolute-url'
 

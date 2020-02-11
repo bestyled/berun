@@ -1,7 +1,7 @@
 import { srcPolyfills } from '@berun/runner-web-polyfills'
-import fs from 'fs'
-import path from 'path'
-import chalk from 'chalk'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as chalk from 'chalk'
 import Berun from '@berun/berun'
 
 // FIX-DEPENDENCIES

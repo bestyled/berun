@@ -1,5 +1,5 @@
 import config from '@bestatic/config' // dynamically loaded using bundler fron app or ./config directory
-import React from 'react'
+import * as React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { App } from './App'
 import { createContext } from './config/createContext'

@@ -1,7 +1,7 @@
 {
   "name": "@berun/fluent-eslint",
   "version": "3.0.11",
-  "main": "./dist/index.js",
+  "main": "src/index.ts",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
   "authors": [
@@ -24,13 +24,10 @@
   },
   "repository": "https://github.com/bestyled/berun/tree/master/packages/fluent-eslint",
   "scripts": {
-    "prebuild": "berun-dev clean",
-    "build": "berun-dev build",
     "berun:types": "tsc --pretty --emitDeclarationOnly --declarationDir ../berun/src/types/fluent-eslint",
     "coverage": "berun-dev test --coverage",
     "format": "berun-dev format",
     "lint": "berun-dev lint",
-    "prepublishOnly": "yarn build",
     "test": "berun-dev test",
     "test:watch": "berun-dev test -o --watch"
   },

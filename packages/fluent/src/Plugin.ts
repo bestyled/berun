@@ -34,6 +34,9 @@ export class Plugin<PARENT> extends OrderableMap<PARENT> {
   toConfig() {
     const init = this.get('init')
     const plugin = this.get('plugin')
+    if (!plugin) {
+      throw new Error(`Missing plugin ${this.name}`)
+    }
     const constructorName = plugin.__expression
       ? `(${plugin.__expression})`
       : plugin.name

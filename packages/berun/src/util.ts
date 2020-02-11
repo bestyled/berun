@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 
 export const normalizePath = (base, url) =>
   path.isAbsolute(url) ? url : path.join(base, url)

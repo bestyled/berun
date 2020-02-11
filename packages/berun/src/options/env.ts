@@ -4,9 +4,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import fs from 'fs'
-import path from 'path'
-import dotEnvExpand from 'dotenv-expand'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as dotEnvExpand from 'dotenv-expand'
 import * as dotEnv from 'dotenv'
 import * as paths from './paths'
 

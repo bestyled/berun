@@ -62,12 +62,17 @@ export class SparkyFile {
       this.read()
     }
     if (typeof fn === 'function') {
-      const contents = this.contents.toString()
-        ? JSON.parse(this.contents.toString())
-        : {}
-      const response = fn(contents)
-      this.contents = response || contents
-      this.savingRequired = true
+      try {
+        const contents = this.contents.toString()
+          ? JSON.parse(this.contents.toString())
+          : {}
+        const response = fn(contents)
+        this.contents = response || contents
+        this.savingRequired = true
+      } catch (ex) {
+        console.error(`SparkyFile Error parsing ${this.filepath} ${ex.message}`)
+        process.exit(1)
+      }
     }
     return this
   }

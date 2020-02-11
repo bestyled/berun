@@ -1,5 +1,5 @@
 import * as log from 'fliplog'
-import prettyTime from 'pretty-time'
+import * as prettyTime from 'pretty-time'
 import { getDateTime } from './Utils'
 
 export class Log {

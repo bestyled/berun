@@ -7,7 +7,7 @@
  */
 import '@babel/runtime'
 
-import path from 'path'
+import * as path from 'path'
 
 const validateBoolOption = (name, value, defaultValue) => {
   if (typeof value === 'undefined') {

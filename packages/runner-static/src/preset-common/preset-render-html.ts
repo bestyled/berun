@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import resolveCWD from 'resolve-cwd'
+import * as resolveCWD from 'resolve-cwd'
 import renderAlgolia from './preset-render-algolia'
 
 const renderPage = async (

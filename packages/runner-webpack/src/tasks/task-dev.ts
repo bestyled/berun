@@ -1,12 +1,12 @@
-import chalk from 'chalk'
+import * as chalk from 'chalk'
 import clearConsole from 'react-dev-utils/clearConsole'
-import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles'
+import * as checkRequiredFiles from 'react-dev-utils/checkRequiredFiles'
 import {
   choosePort,
   createCompiler,
   prepareUrls
 } from 'react-dev-utils/WebpackDevServerUtils'
-import openBrowser from 'react-dev-utils/openBrowser'
+import * as openBrowser from 'react-dev-utils/openBrowser'
 import { checkBrowsers } from 'react-dev-utils/browsersHelper'
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'

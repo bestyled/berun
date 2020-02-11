@@ -1,6 +1,6 @@
-import getCSSModuleLocalIdent from 'react-dev-utils/getCSSModuleLocalIdent'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import autoprefixer from 'autoprefixer'
+import * as getCSSModuleLocalIdent from 'react-dev-utils/getCSSModuleLocalIdent'
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import * as autoprefixer from 'autoprefixer'
 import Berun from '@berun/berun'
 
 // FIX-DEPENDENCIES

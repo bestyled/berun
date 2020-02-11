@@ -1,6 +1,6 @@
-import deepmerge from 'deepmerge'
+import * as deepmerge from 'deepmerge'
 import Sparky from '@berun/sparky'
-import spawn from 'cross-spawn'
+import * as spawn from 'cross-spawn'
 import * as path from 'path'
 
 import { defaultOptions } from './options'
@@ -195,7 +195,7 @@ export default class BeRun {
           (isPlainObject(options[key]) && isPlainObject(value)))
       ) {
         Object.assign(options, {
-          [key]: deepmerge(options[key], newOptions[key])
+          [key]: (deepmerge as any)(options[key], newOptions[key])
         })
       } else {
         Object.assign(options, { [key]: newOptions[key] })

@@ -12,17 +12,12 @@
 //
 // Node.js require pirate
 //
-
-require('sucrase/register/ts-legacy-module-interop')
 const { transform } = require('sucrase')
 const Module = require('module')
 const path = require('path')
 const { addHook } = require('pirates')
 
-const originalRequire = Module.prototype.require
-const proxyCache = {}
-
-const MY_PACKAGE_DIR = path.basename(path.resolve(__dirname, '..'))
+const MY_PACKAGE_SCOPE = '@berun'
 
 // Transpile all local modules of this package
 addHook(
@@ -34,19 +29,26 @@ addHook(
       filePath
     })
     const mapBase64 = Buffer.from(JSON.stringify(sourceMap)).toString('base64')
-    const suffix = `//# sourceMappingURL=data:application/json;charset=utf-8;base64,${mapBase64}`
+    const suffix = `${'/'}${'/'}# sourceMappingURL=data:application/json;charset=utf-8;base64,${mapBase64}`
     return `${transformedCode}\n${suffix}`
   },
   {
     exts: ['.ts'],
     matcher: filename => {
-      return filename.indexOf(MY_PACKAGE_DIR) !== -1
+      return filename.indexOf(MY_PACKAGE_SCOPE) !== -1
     },
     ignoreNodeModules: false
   }
 )
 
-Module.prototype.require = name => {
+// Pirate all other TS files
+require('sucrase/register/ts-legacy-module-interop')
+
+const proxyCache = {}
+
+const originalRequire = Module.prototype.require
+
+Module.prototype.require = function proxyRequire(name) {
   if (name in proxyCache) {
     return originalRequire.apply(this, [proxyCache[name]])
   }
@@ -59,7 +61,11 @@ Module.prototype.require = name => {
       // noop: base node module
     }
 
-    if (packagefile && !packagefile.includes('/node_modules/')) {
+    if (
+      packagefile &&
+      (packagefile.includes(MY_PACKAGE_SCOPE) ||
+        !packagefile.includes('/node_modules/'))
+    ) {
       const packagejson = originalRequire.apply(this, [packagefile])
       const main = packagejson['ts:main'] || packagejson.main || 'index.js'
       const abspath = path.join(path.dirname(packagefile), main)
@@ -68,7 +74,8 @@ Module.prototype.require = name => {
     }
   }
 
-  return originalRequire.apply(this, [name])
+  // eslint-disable-next-line prefer-rest-params
+  return originalRequire.apply(this, arguments)
 }
 
 // Makes the script crash on unhandled rejections instead of silently

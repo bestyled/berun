@@ -1,16 +1,13 @@
-import React from 'react'
+import * as React from 'react'
 import { StaticRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
 import * as ReactRouter from 'react-router'
 import {
   HeadProvider,
-  Head,
   BodyProvider,
   SiteDataProvider,
   WithRouteData,
   RoutesProvider
 } from '@bestatic/components'
-import get from 'lodash.get'
-import isAbsolute from 'is-absolute-url'
 
 function defaultComponents(routes) {
   const DefaultLayout = props =>
@@ -38,10 +35,7 @@ function defaultComponents(routes) {
         <Root {...props}>
           <h1>Uh oh, something went wrong</h1>
           <p>The page you are looking for doesn't exist or has been moved.</p>
-          <h6>{props.location.pathname}
-{' '}
-404
-</h6>
+          <h6>{props.location.pathname} 404</h6>
         </Root>
       )
     }

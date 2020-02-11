@@ -1,16 +1,26 @@
-import Config from 'webpack-chain/src/Config'
-import DevServer from 'webpack-chain/src/DevServer'
+import * as Config from 'webpack-chain/src/Config'
+import * as DevServer from 'webpack-chain/src/DevServer'
+import * as Module from 'webpack-chain/src/Module'
+import * as Optimization from 'webpack-chain/src/Optimization'
+import * as Output from 'webpack-chain/src/Output'
+import * as Performance from 'webpack-chain/src/Performance'
+import * as Resolve from 'webpack-chain/src/Resolve'
+import * as ResolveLoader from 'webpack-chain/src/ResolveLoader'
+import * as Rule from 'webpack-chain/src/Rule'
+import * as Use from 'webpack-chain/src/Use'
 
-export { Config, DevServer }
-
-export { default as Module } from 'webpack-chain/src/Module'
-export { default as Optimization } from 'webpack-chain/src/Optimization'
-export { default as Output } from 'webpack-chain/src/Output'
-export { default as Performance } from 'webpack-chain/src/Performance'
-export { default as Resolve } from 'webpack-chain/src/Resolve'
-export { default as ResolveLoader } from 'webpack-chain/src/ResolveLoader'
-export { default as Rule } from 'webpack-chain/src/Rule'
-export { default as Use } from 'webpack-chain/src/Use'
+export {
+  Config,
+  DevServer,
+  Module,
+  Optimization,
+  Output,
+  Performance,
+  Resolve,
+  ResolveLoader,
+  Rule,
+  Use
+}
 
 export const Webpack = berun => {
   berun.webpack = new Config()

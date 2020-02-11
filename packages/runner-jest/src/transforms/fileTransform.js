@@ -3,7 +3,7 @@
  *
  * This source code is included under the Facebook MIT license
  */
-import path from 'path'
+import * as path from 'path'
 
 // This is a custom Jest transformer turning file imports into filenames.
 // http://facebook.github.io/jest/docs/en/webpack.html

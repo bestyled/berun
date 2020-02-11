@@ -18,10 +18,15 @@ require.resolve('prettier')
 
 const fs = require('fs')
 const path = require('path')
-
-const prettierrc = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, './.prettierrc'))
-)
+let prettierrc
+try {
+  prettierrc = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, './.prettierrc'))
+  )
+} catch (ex) {
+  console.error(`Error parsing .prettierrc ${ex.message}`)
+  process.exit(1)
+}
 
 // The ESLint browser environment defines all browser globals as valid,
 // even though most people don't know some of them exist (e.g. `name` or `status`).

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import { AccentBar } from './Layout.AccentBar'
 import { Container } from './Layout.Container'

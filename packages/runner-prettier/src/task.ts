@@ -1,5 +1,5 @@
-import path from 'path'
-import chalk from 'chalk'
+import * as path from 'path'
+import * as chalk from 'chalk'
 
 import 'prettier'
 

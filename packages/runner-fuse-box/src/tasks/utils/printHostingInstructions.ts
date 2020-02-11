@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import chalk from 'chalk'
-import url from 'url'
-import globalModules from 'global-modules'
-import fs from 'fs'
+import * as chalk from 'chalk'
+import * as url from 'url'
+import * as globalModules from 'global-modules'
+import * as fs from 'fs'
 
 function printHostingInstructions(
   appPackage,

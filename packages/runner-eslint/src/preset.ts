@@ -1,4 +1,4 @@
-import eslintFormatter from 'react-dev-utils/eslintFormatter'
+import * as eslintFormatter from 'react-dev-utils/eslintFormatter'
 import Berun from '@berun/berun'
 
 // FIX-DEPENDENCIES
@@ -19,4 +19,5 @@ export default (berun: Berun, _) => {
       noRedeclare: false
     }
   })
+  // console.log(eslintFormatter)
 }

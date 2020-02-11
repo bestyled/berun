@@ -1,5 +1,5 @@
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
-import safePostCssParser from 'postcss-safe-parser'
+import * as OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import * as safePostCssParser from 'postcss-safe-parser'
 import Berun from '@berun/berun'
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.

@@ -1,4 +1,4 @@
-import deepmerge from 'deepmerge'
+import * as deepmerge from 'deepmerge'
 import { Fluent, FluentSet } from '.'
 import { FluentValueInstance } from './FluentMapDecorators'
 
@@ -171,7 +171,7 @@ export class FluentMap<PARENT> extends Fluent<PARENT> {
       ) {
         this.set(key, value)
       } else {
-        this.set(key, deepmerge(this.get(key), value))
+        this.set(key, (deepmerge as any)(this.get(key), value))
       }
     })
 

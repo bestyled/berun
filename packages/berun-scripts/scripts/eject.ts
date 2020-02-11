@@ -9,13 +9,13 @@
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-import fs from 'fs-extra'
-import path from 'path'
+import * as fs from 'fs-extra'
+import * as path from 'path'
 import { execSync } from 'child_process'
 import * as chalk from 'chalk'
-import inquirer from 'react-dev-utils/inquirer'
+import * as inquirer from 'react-dev-utils/inquirer'
 import { sync as spawnSync } from 'react-dev-utils/crossSpawn'
-import os from 'os'
+import * as os from 'os'
 import * as paths from '@berun/berun/src/options/paths'
 
 process.on('unhandledRejection', err => {

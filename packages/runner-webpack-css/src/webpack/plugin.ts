@@ -1,4 +1,4 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import Berun from '@berun/berun'
 
 /**

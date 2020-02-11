@@ -80,9 +80,14 @@ export class BabelPluginClass implements Plugin {
       babelRcConfig = fs.readFileSync(babelRcPath).toString()
 
       if (babelRcConfig) {
-        babelRcConfig = {
-          ...JSON.parse(babelRcConfig),
-          ...this.config
+        try {
+          babelRcConfig = {
+            ...JSON.parse(babelRcConfig),
+            ...this.config
+          }
+        } catch (ex) {
+          console.error(`Error parsing .babelrc ${ex.message}`)
+          process.exit(1)
         }
       }
     }

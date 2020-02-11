@@ -1,6 +1,6 @@
-import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin'
-import PnpWebpackPlugin from 'pnp-webpack-plugin'
-import path from 'path'
+import * as ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin'
+import * as PnpWebpackPlugin from 'pnp-webpack-plugin'
+import * as path from 'path'
 import Berun from '@berun/berun'
 
 // Hack to use a class instead of an object

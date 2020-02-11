@@ -1,5 +1,4 @@
 import { validate } from 'webpack'
-import util from 'util'
 import { Config } from '../src'
 
 class StringifyPlugin {

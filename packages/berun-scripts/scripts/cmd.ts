@@ -8,47 +8,7 @@
  */
 // @remove-on-eject-end
 
-//
-// Node.js require pirate
-//
-
-import 'sucrase/register/ts-legacy-module-interop'
-import Module from 'module'
-import path from 'path'
 import { create as berunBuilder } from '@berun/berun'
-
-const originalRequire = Module.prototype.require
-const proxyCache = {}
-
-Module.prototype.require = function requireProxy(
-  this: any,
-  name: string,
-  ...rest
-) {
-  if (name in proxyCache) {
-    return originalRequire.apply(this, [proxyCache[name]])
-  }
-
-  // TEST IF FIRST PATH INTO NODE_MODULE
-  if (/(^[^./]*$)|(^@[^./]*\/[^./]*$)/.test(name)) {
-    let packagefile
-    try {
-      packagefile = require.resolve(`${name}/package.json`)
-    } catch (ex) {
-      // noop: base node module
-    }
-
-    if (packagefile && !packagefile.includes('/node_modules/')) {
-      const packagejson = originalRequire.apply(this, [packagefile])
-      const main = packagejson['ts:main'] || packagejson.main || 'index.js'
-      const abspath = path.join(path.dirname(packagefile), main)
-      proxyCache[name] = abspath
-      return originalRequire.apply(this, [abspath])
-    }
-  }
-
-  return originalRequire.apply(this, [name, ...rest])
-} as any
 
 const cmd = process.argv[2]
 
@@ -66,7 +26,6 @@ const ENV = {
 
 process.env.NODE_ENV = process.env.NODE_ENV || ENV[cmd] || 'development'
 process.env.BABEL_ENV = process.env.NODE_ENV
-
 // Certain task runners such as Fuse-Box require PROJECT_ROOT to be set
 // when called from another task runner like @berun/scripts or Gulp
 process.env.PROJECT_ROOT = process.cwd()

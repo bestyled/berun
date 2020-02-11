@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import chalk from 'chalk'
-import fs from 'fs'
-import path from 'path'
+import * as chalk from 'chalk'
+import * as fs from 'fs'
+import * as path from 'path'
 
 // We assume that having wrong versions of these
 // in the tree will likely break your setup.

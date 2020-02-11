@@ -1,6 +1,6 @@
 import docsearch from 'rehype-docsearch'
-import fs from 'fs'
-import path from 'path'
+import * as fs from 'fs'
+import * as path from 'path'
 
 const renderAlgolia = async (pages, routes, sitedata, opts) => {
   const result = await Promise.all(

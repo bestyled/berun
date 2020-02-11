@@ -1,19 +1,19 @@
-import chalk from 'chalk'
-import fs from 'fs'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
-import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin'
-import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin'
-import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
+import * as chalk from 'chalk'
+import * as fs from 'fs'
+import * as HtmlWebpackPlugin from 'html-webpack-plugin'
+import * as CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
+import * as InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin'
+import * as WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin'
+import * as ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
 import { DefinePlugin, HotModuleReplacementPlugin, IgnorePlugin } from 'webpack'
-import ManifestPlugin from 'webpack-manifest-plugin'
-import ProgressBarPlugin from 'progress-bar-webpack-plugin'
-import forkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import * as ManifestPlugin from 'webpack-manifest-plugin'
+import * as ProgressBarPlugin from 'progress-bar-webpack-plugin'
+import * as forkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
 // PROD ONLY
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin'
+import * as WorkboxWebpackPlugin from 'workbox-webpack-plugin'
 
-import deepmerge from 'deepmerge'
+import * as deepmerge from 'deepmerge'
 import Berun from '@berun/berun'
 
 /**
@@ -25,7 +25,7 @@ export const pluginHtml = (
 ) => {
   const ISPRODUCTION = process.env.NODE_ENV === 'production'
 
-  const htmlPluginArgs = deepmerge(
+  const htmlPluginArgs = (deepmerge as any)(
     {
       inject: true,
       template: fs.existsSync(berun.options.paths.appHtml)
@@ -236,11 +236,13 @@ export const pluginWorkbox = (berun: Berun, _) => {
  * Typescript type checking
  */
 export const pluginForkTsChecker = (berun: Berun, _) => {
-  berun.webpack.plugin('fork-ts-checker').use(forkTsCheckerWebpackPlugin, [
-    {
-      async: false,
-      tsconfig: berun.options.paths.appTSConfig,
-      eslint: false
-    }
-  ])
+  berun.webpack
+    .plugin('fork-ts-checker')
+    .use(forkTsCheckerWebpackPlugin as any, [
+      {
+        async: false,
+        tsconfig: berun.options.paths.appTSConfig,
+        eslint: false
+      }
+    ])
 }

@@ -63,7 +63,7 @@ const _getDependencies = function _getDependencies({
           lib: ['esnext'],
           strict: true,
           allowSyntheticDefaultImports: true,
-          esModuleInterop: false,
+          esModuleInterop: true,
           removeComments: true,
           inlineSourceMap,
           sourceMap: inlineSourceMap ? undefined : true,

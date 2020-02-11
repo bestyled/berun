@@ -3,7 +3,7 @@
  * Portions copyright (c) 2018 BeStatic Contributors
  */
 
-import React from 'react'
+import * as React from 'react'
 import LiveCode from './PreCodeLiveCode'
 
 // Changes .jsx fenced code blocks to LiveCode

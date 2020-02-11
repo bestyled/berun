@@ -189,7 +189,12 @@ export function bumpVersion(
     if (!fs.existsSync(filePath)) {
       throw new Error(`${filePath} was not found`)
     }
-    json = JSON.parse(fs.readFileSync(filePath).toString())
+    try {
+      json = JSON.parse(fs.readFileSync(filePath).toString())
+    } catch (ex) {
+      console.error(`SparkyUtil Error parsing ${filePath} ${ex.message}`)
+      process.exit(1)
+    }
   } else {
     json = opts.userJson
   }

@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Jest Tests",
             "program": "${workspaceRoot}/node_modules/@berun/dev-scripts/bin/berun-dev.js",
-            "cwd": "${workspaceFolder}/packages/runner-mdx",
+            "cwd": "${workspaceFolder}/packages/runner-tslint",
             "args": [
                 "test"
             ],

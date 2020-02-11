@@ -3,7 +3,6 @@
  * Place this file in ~/config/betstatic.config.js
  */
 
-import React from 'react'
 import { getLocalPages, getBlogPages } from '@bestatic/core'
 import { ServerStyleSheet } from 'styled-components'
 import axios from 'axios'

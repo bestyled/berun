@@ -154,7 +154,7 @@ export class Sparky {
       ])
     } catch (ex) {
       console.error(ex)
-      process.exit(1)
+      throw ex
     }
     let res
     if (typeof task.fn === 'function') {

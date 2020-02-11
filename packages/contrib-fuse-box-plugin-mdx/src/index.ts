@@ -38,7 +38,7 @@ export class FuseBoxMDXPlugin implements Plugin {
     const result = await mdx(file.contents, this.options)
 
     file.contents = `
-  import React from 'react'
+  import * as React from 'react'
   import { MdxTag } from '@mdx-js/tag'
     ${result}
     `

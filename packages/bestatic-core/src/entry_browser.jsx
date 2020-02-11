@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { render, hydrate } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import config from '@bestatic/config' // dynamically loaded using bundler fron app or ./config directory

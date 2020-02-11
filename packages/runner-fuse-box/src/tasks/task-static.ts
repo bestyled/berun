@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 
 export default berun => {
   const staticDirs = berun.options.paths.appPublic

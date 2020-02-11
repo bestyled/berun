@@ -1,5 +1,5 @@
 import { Linter, Configuration } from 'tslint'
-import chalk from 'chalk'
+import * as chalk from 'chalk'
 
 export default berun => {
   const fix = process.argv.indexOf('--fix') > -1

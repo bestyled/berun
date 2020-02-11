@@ -2,7 +2,7 @@
  * Copyright (c) 2018 Brent Jackson under MIT license from mdx-go
  * Portions copyright (c) 2018 BeRun Contributors
  */
-import React from 'react'
+import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled, { StyledComponent } from 'styled-components'
 import sortby from 'lodash.sortby'
@@ -72,14 +72,18 @@ export const Pagination = withRouter(
       <Flex py={4}>
         {previous && (
           <NavLink {...props} href={previous.path}>
-            &lsaquo; {previous.previousPage || previous.name || 'previous'}
+            &lsaquo; 
+{' '}
+{previous.previousPage || previous.name || 'previous'}
           </NavLink>
         )}
         <Spacer />
         {next && (
           <NavLink {...props} href={next.path}>
-            {next.nextPage || next.name || 'next'} &rsaquo;
-          </NavLink>
+            {next.nextPage || next.name || 'next'}
+{' '}
+&rsaquo;
+</NavLink>
         )}
       </Flex>
     )

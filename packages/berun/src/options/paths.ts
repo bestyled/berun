@@ -1,6 +1,6 @@
-import path from 'path'
-import fs from 'fs'
-import url from 'url'
+import * as path from 'path'
+import * as fs from 'fs'
+import * as url from 'url'
 import * as remoteOriginUrlModule from 'remote-origin-url'
 import { findMonorepo, isMonoRoot } from './utils/workspaceUtils'
 

@@ -1,4 +1,4 @@
-import TerserPlugin from 'terser-webpack-plugin'
+import * as TerserPlugin from 'terser-webpack-plugin'
 import Berun from '@berun/berun'
 
 /**

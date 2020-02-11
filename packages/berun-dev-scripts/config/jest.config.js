@@ -5,7 +5,7 @@ module.exports = {
   resolver: '@berun/dev-scripts/lib/jest/resolver.js',
   testRegex: '(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '@berun/dev-scripts/lib/jest/babelTransform.js'
+    '^.+\\.(js|jsx|ts|tsx)$': '@berun/dev-scripts/lib/jest/sucraseTransform.js'
   },
   transformIgnorePatterns: ['[\\/]node_modules[\\/](?!(@berun|@bestatic))']
 }

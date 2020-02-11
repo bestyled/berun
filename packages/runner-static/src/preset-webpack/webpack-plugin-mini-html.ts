@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 import { RawSource } from 'webpack-sources'
 
 class HTMLMiniPlugin {

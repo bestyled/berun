@@ -3,7 +3,7 @@
  * Portions copyright (c) 2018 BeRun Contributors
  */
 
-import React from 'react'
+import * as React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 export const ScrollTop = withRouter(

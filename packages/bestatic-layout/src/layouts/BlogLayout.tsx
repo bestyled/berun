@@ -3,7 +3,7 @@
  * Portions copyright (c) 2018 BeRun Contributors
  */
 
-import React from 'react'
+import * as React from 'react'
 import StyleProvider from '@bestatic/styled'
 import { WithSiteData } from '@bestatic/components'
 import Layout from '../components/Layout'
