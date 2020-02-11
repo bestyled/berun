@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-prettier",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -32,10 +32,10 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent": "^3.0.11"
+    "@berun/fluent": "^3.0.12"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.14"
+    "@berun/dev-scripts": "^3.0.15"
   },
   "peerDependencies": {}
 }

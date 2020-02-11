@@ -1,6 +1,6 @@
 {
   "name": "@berun/preset-fuse-box-react",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "BeRun preset for building React web applications with Fuse-Box",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -39,15 +39,15 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.11",
-    "@berun/runner-babel": "^3.0.11",
-    "@berun/runner-fuse-box": "^3.0.11",
-    "@berun/runner-jest": "^3.0.11"
+    "@berun/berun": "^3.0.12",
+    "@berun/runner-babel": "^3.0.12",
+    "@berun/runner-fuse-box": "^3.0.12",
+    "@berun/runner-jest": "^3.0.12"
   },
   "devDependencies": {
-    "@berun/fluent-babel": "^3.0.11",
-    "@berun/berun": "^3.0.11",
-    "@berun/dev-scripts": "^3.0.14"
+    "@berun/fluent-babel": "^3.0.12",
+    "@berun/berun": "^3.0.12",
+    "@berun/dev-scripts": "^3.0.15"
   },
   "peerDependencies": {}
 }

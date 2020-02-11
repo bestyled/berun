@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-berun",
-  "version": "6.0.11",
+  "version": "6.0.12",
   "description": "Eslint preset used by @berun",
   "main": "./src/.eslintrc.js",
   "authors": [
@@ -24,8 +24,8 @@
     "prepublishOnly": "yarn format"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.19.0",
-    "@typescript-eslint/parser": "^2.19.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
     "confusing-browser-globals": "^1.0.9",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",

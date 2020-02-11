@@ -1,6 +1,6 @@
 {
   "name": "fuse-box-plugin-mdx",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -38,7 +38,7 @@
     "fuse-box": "^3.7.1"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.14"
+    "@berun/dev-scripts": "^3.0.15"
   },
   "peerDependencies": {}
 }
