@@ -1,5 +1,5 @@
 import * as chalk from 'chalk'
-import clearConsole from 'react-dev-utils/clearConsole'
+import * as clearConsole from 'react-dev-utils/clearConsole'
 import * as checkRequiredFiles from 'react-dev-utils/checkRequiredFiles'
 import {
   choosePort,
@@ -8,10 +8,11 @@ import {
 } from 'react-dev-utils/WebpackDevServerUtils'
 import * as openBrowser from 'react-dev-utils/openBrowser'
 import { checkBrowsers } from 'react-dev-utils/browsersHelper'
-import webpack from 'webpack'
-import WebpackDevServer from 'webpack-dev-server'
+import * as WebpackDevServer from 'webpack-dev-server'
 import Berun from '@berun/berun'
 import verifyPackageTree from './utils/verifyPackageTree'
+
+const webpack = require('webpack')
 
 // MAIN MODULE EXPORTS, WITH DEFAULT FLOW
 

@@ -1,4 +1,3 @@
-import * as glob from 'glob'
 import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as path from 'path'
@@ -8,6 +7,8 @@ import { SparkyFile } from './SparkyFile'
 import { log } from './Sparky'
 import { Plugin } from './FuseBox'
 import { parse, SparkyFilePatternOptions } from './SparkyFilePattern'
+
+const glob = require('glob')
 
 export class SparkFlow {
   private activities = []
@@ -98,24 +99,27 @@ export class SparkFlow {
     opts?: SparkyFilePatternOptions
   ): Promise<SparkyFile[]> {
     this.files = []
-    const getFilePromises = []
+    const getFilePromises: Promise<SparkyFile[]>[] = []
     globs.forEach(g => {
       getFilePromises.push(this.getFile(g, opts))
     })
     return Promise.all(getFilePromises).then(results => {
-      this.files = [...results]
+      this.files = [].concat(...results)
       return this.files
     })
   }
 
-  protected getFile(globString, opts?: SparkyFilePatternOptions) {
+  protected getFile(
+    globString,
+    opts?: SparkyFilePatternOptions
+  ): Promise<SparkyFile[]> {
     const info = parse(globString, opts)
 
     return new Promise((resolve, reject) => {
       if (!info.isGlob) {
         resolve([new SparkyFile(info.filepath, info.root)])
       } else {
-        glob.default(info.glob, (err, files: string[]) => {
+        glob(info.glob, (err, files: string[]) => {
           if (err) {
             reject(err)
           } else {
@@ -186,7 +190,11 @@ export class SparkFlow {
   public dest(dest: string): SparkFlow {
     log.echoStatus(`Copy to ${dest}`)
     this.activities.push(() =>
-      Promise.all(this.files.map(file => file.copy(dest)))
+      Promise.all(
+        this.files.map(async file => {
+          await file.copy(dest)
+        })
+      )
     )
     return this
   }

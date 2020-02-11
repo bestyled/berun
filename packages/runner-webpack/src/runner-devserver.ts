@@ -1,6 +1,6 @@
-import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
-import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware'
-import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware'
+import * as errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware'
+import * as evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware'
+import * as noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware'
 import * as ignoredFiles from 'react-dev-utils/ignoredFiles'
 import {
   prepareProxy,

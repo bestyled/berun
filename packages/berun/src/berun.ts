@@ -71,6 +71,10 @@ export default class BeRun {
   }
 
   use(middleware, options?) {
+    if (typeof middleware === 'object' && 'default' in middleware) {
+      middleware = middleware.default
+    }
+
     if (typeof middleware === 'function') {
       // If middleware is a function, invoke it with self and the provided options
       middleware(this, options)

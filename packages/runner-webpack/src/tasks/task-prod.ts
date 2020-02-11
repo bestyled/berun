@@ -1,7 +1,6 @@
 import * as path from 'path'
 import * as chalk from 'chalk'
 import * as fs from 'fs-extra'
-import webpack from 'webpack'
 import * as bfj from 'bfj'
 import * as checkRequiredFiles from 'react-dev-utils/checkRequiredFiles'
 import * as FileSizeReporter from 'react-dev-utils/FileSizeReporter'
@@ -10,6 +9,8 @@ import * as formatWebpackMessages from 'react-dev-utils/formatWebpackMessages'
 
 import verifyPackageTree from './utils/verifyPackageTree'
 import printHostingInstructions from './utils/printHostingInstructions'
+
+const webpack = require('webpack')
 
 // MAIN MODULE EXPORTS, WITH DEFAULT FLOW
 

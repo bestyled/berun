@@ -73,10 +73,10 @@ function verifyPackageTree() {
             `\nThere might be a problem with the project dependency tree.\n` +
               `It is likely ${chalk.bold(
                 'not'
-              )} a bug in Create React App, but something you need to fix locally.\n\n`
+              )} a bug in Berun, but something you need to fix locally.\n\n`
           )}The ${chalk.bold(
             ownPackageJson.name
-          )} package provided by Create React App requires a dependency:\n\n${chalk.green(
+          )} package provided by Berun requires a dependency:\n\n${chalk.green(
             `  "${chalk.bold(dep)}": "${chalk.bold(expectedVersion)}"\n\n`
           )}Don't try to install it manually: your package manager does it automatically.\n` +
             `However, a different version of ${chalk.bold(
