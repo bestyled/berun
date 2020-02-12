@@ -23,6 +23,8 @@
     "lint:runner": "lerna exec --concurrency 1 --scope @berun/runner* yarn lint",
     "lint:preset": "lerna exec --concurrency 1 --scope @berun/preset* yarn lint",
     "lint:template": "lerna exec --concurrency 1 --scope @berun/template* yarn format",
+    "patch": "lerna exec npm version patch && yarn fix",
+    "publish:all": "lerna exec --concurrency 1 npm publish",
     "test:all": "yarn test:fluent && yarn test:runner  && yarn test:preset",
     "test:bestatic": "echo no tests",
     "test:fluent": "lerna exec --concurrency 1 --scope @berun/fluent* yarn test",

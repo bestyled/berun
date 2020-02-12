@@ -4,9 +4,24 @@ import Berun from '@berun/berun'
 import presetCoreWebpack from './runner-core'
 import presetResolveWebpack from './runner-resolve'
 import presetDevServer from './runner-devserver'
-import * as taskDev from './tasks/task-dev'
 
-import * as taskProd from './tasks/task-prod'
+import taskDev, {
+  taskDevBuildPreFlightArgs,
+  taskDevBuildPreFlightChecks,
+  taskDevBuildGetPort,
+  taskDevBuildCompile
+} from './tasks/task-dev'
+
+import taskProd, {
+  taskBuildPreFlightArgs,
+  taskBuildPreFlightMeasure,
+  taskBuildPreFlightClean,
+  taskBuildPreFlightChecks,
+  taskBuildCopyPublicAssets,
+  taskBuildCompile,
+  taskBuildPostFlightFileSizes,
+  taskBuildPostFlightInstructions
+} from './tasks/task-prod'
 
 import {
   ruleParser,
@@ -34,24 +49,6 @@ import {
 } from './runner-plugin'
 
 import { optimization, terser } from './runner-optimization'
-
-const {
-  taskDevBuildPreFlightArgs,
-  taskDevBuildPreFlightChecks,
-  taskDevBuildGetPort,
-  taskDevBuildCompile
-} = taskDev
-
-const {
-  taskBuildPreFlightArgs,
-  taskBuildPreFlightMeasure,
-  taskBuildPreFlightClean,
-  taskBuildPreFlightChecks,
-  taskBuildCopyPublicAssets,
-  taskBuildCompile,
-  taskBuildPostFlightFileSizes,
-  taskBuildPostFlightInstructions
-} = taskProd
 
 type BerunFunc = (berun: Berun) => void
 

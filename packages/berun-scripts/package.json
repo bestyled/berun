@@ -1,6 +1,6 @@
 {
   "name": "@berun/scripts",
-  "version": "3.0.12",
+  "version": "3.0.14",
   "description": "Configuration and scripts for BeRun.",
   "main": "./bin/berun-scripts.js",
   "authors": [
@@ -48,20 +48,20 @@
   "dependencies": {
     "pirates": "^4.0.1",
     "sucrase": "^3.12.1",
-    "@berun/berun": "^3.0.12",
+    "@berun/berun": "^3.0.14",
     "chalk": "^3.0.0",
     "cross-spawn": "^7.0.1",
     "fs-extra": "^8.1.0",
     "react-dev-utils": "^8.0.0"
   },
   "devDependencies": {
-    "@berun/berun": "^3.0.12",
+    "@berun/berun": "^3.0.14",
     "chalk": "^3.0.0",
     "cross-spawn": "^7.0.1",
     "fs-extra": "^8.1.0",
     "react-dev-utils": "^8.0.0",
     "sucrase": "^3.12.1",
-    "@berun/dev-scripts": "^3.0.15"
+    "@berun/dev-scripts": "^3.0.17"
   },
   "peerDependencies": {}
 }

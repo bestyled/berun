@@ -8,9 +8,7 @@
  */
 // @remove-on-eject-end
 
-import { create as berunBuilder } from '@berun/berun'
-
-const cmd = process.argv[2]
+const cmd = process.argv[0]
 
 const ENV = {
   build: 'production',
@@ -29,6 +27,9 @@ process.env.BABEL_ENV = process.env.NODE_ENV
 // Certain task runners such as Fuse-Box require PROJECT_ROOT to be set
 // when called from another task runner like @berun/scripts or Gulp
 process.env.PROJECT_ROOT = process.cwd()
+
+// eslint-disable-next-line import/first
+import { create as berunBuilder } from '@berun/berun'
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
