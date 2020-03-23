@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-react",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -28,11 +28,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@berun/preset-react": "^3.0.14",
-    "@berun/runner-eslint": "^3.0.14",
-    "@berun/runner-prettier": "^3.0.14",
-    "@berun/runner-webpack-css": "^3.0.14",
-    "@berun/scripts": "^3.0.14"
+    "@berun/preset-react": "^3.0.15",
+    "@berun/runner-eslint": "^3.0.15",
+    "@berun/runner-prettier": "^3.0.15",
+    "@berun/runner-webpack-css": "^3.0.15",
+    "@berun/scripts": "^3.0.15"
   },
   "peerDependencies": {}
 }
