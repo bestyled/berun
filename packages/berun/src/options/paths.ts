@@ -15,7 +15,7 @@ let exported: {
   appSrc: string
   appTSConfig: string
   config: string
-  dotenv: any
+  configEnv: string
   homepage: string
   isTypeScript: boolean
   publicPath: string
@@ -53,7 +53,7 @@ function ensureSlash(inputPath, needsSlash) {
 
 const getPublicUrl = appPackageJson =>
   // eslint-disable-next-line
-  envPublicUrl || require(appPackageJson).homepage
+  envPublicUrl || require(appPackageJson).homepage || "http://localhost:3000"
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
@@ -106,17 +106,17 @@ const getRemoteOriginUrl = _ => {
     '.git/config'
   )
   let result
+  const appPackageJsonContents = require(exported.appPackageJson)
 
   if (
-    exported.appPackageJson.repository &&
-    exported.appPackageJson.repository.url &&
-    exported.appPackageJson.repository.type === 'git'
+    appPackageJsonContents.repository &&
+    appPackageJsonContents.repository.url &&
+    appPackageJsonContents.repository.type === 'git'
   ) {
-    result = exported.appPackageJson.repository.url
+    result = appPackageJsonContents.repository.url
   } else {
     result = remoteOriginUrlModule.sync(rootPath)
   }
-
   return result
 }
 
@@ -124,7 +124,7 @@ const getRemoteOriginUrl = _ => {
 exported = {
   ...exported,
   ownPath: path.resolve(__dirname, '..'),
-  dotenv: resolveApp('.env'),
+  configEnv: getFile(resolveApp('config/env.config'), ['.js', '.ts', '.json']),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
@@ -164,7 +164,7 @@ export const {
   appSrc,
   appTSConfig,
   config,
-  dotenv,
+  configEnv,
   homepage,
   isTypeScript,
   publicPath,

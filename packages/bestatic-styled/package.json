@@ -40,7 +40,7 @@
     "@tinia/tdx-tag": "^0.3.2",
     "is-absolute-url": "^3.0.3",
     "react-router-dom": "^5.1.2",
-    "styled-components": "^4.4.1",
+    "styled-components": "^5.0.1",
     "styled-system": "^4.2.4"
   },
   "devDependencies": {

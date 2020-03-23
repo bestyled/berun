@@ -121,6 +121,8 @@ module.exports = {
     'react/prop-types': 0,
     'class-methods-use-this': 0,
     'react/static-property-placement': 0,
+    'react/no-children-prop': 0,
+    'react/jsx-one-expression-per-line': 0,
     'no-shadow': 0,
     '@typescript-eslint/interface-name-prefix': 0,
     'global-require': 0,

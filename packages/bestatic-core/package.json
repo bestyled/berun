@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "@bestatic/components": "^3.0.14",
-    "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {

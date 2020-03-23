@@ -1,6 +1,7 @@
-import visit from 'unist-util-visit'
-import is from 'hast-util-is-element'
 import { selectAll } from 'hast-util-select'
+
+const visit = require('unist-util-visit')
+const is = require('hast-util-is-element')
 
 const ROOT = '#tdx'
 const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']

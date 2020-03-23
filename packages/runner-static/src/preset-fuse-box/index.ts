@@ -84,7 +84,8 @@ export const presetStatic = async function presetStatic(
   } = await entrySsr()
 
   await remove(opts.tempdir)
-  opts.basename = opts.basename || process.env.PUBLIC_URL
+  opts.basename = opts.basename || ''
+  // opts.basename = opts.basename || process.env.PUBLIC_URL
   opts.noJS = berun.sparkyContext.noJS
   opts.homepage = berun.options.paths.homepage
   opts.appBuild = berun.options.paths.appBuild

@@ -16,6 +16,7 @@
       "ie 11"
     ]
   },
+  "homepage": "https://berun.js.org",
   "license": "MPL-2.0",
   "publishConfig": {
     "access": "public"
@@ -29,16 +30,18 @@
   },
   "scripts": {
     "start": "berun-scripts start:static",
-    "build-docs": "berun-scripts build:static"
+    "build-docs": "berun-scripts build:algolia:static",
+    "deploy": "gh-pages -d build-static"
   },
   "dependencies": {},
   "devDependencies": {
     "@bestatic/core": "^3.0.14",
-    "styled-components": "^4.4.1",
+    "styled-components": "^5.0.1",
     "@berun/preset-bestatic": "^3.0.14",
     "@berun/preset-react": "^3.0.14",
     "@berun/scripts": "^3.0.14",
-    "@bestatic/layout": "^3.0.14"
+    "@bestatic/layout": "^3.0.14",
+    "gh-pages": "^2.2.0"
   },
   "peerDependencies": {}
 }

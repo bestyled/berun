@@ -2,7 +2,7 @@ import * as deepmerge from 'deepmerge'
 import Sparky from '@berun/sparky'
 import * as spawn from 'cross-spawn'
 import * as path from 'path'
-
+import * as fs from 'fs'
 import { defaultOptions } from './options'
 import { isPlainObject, requireFromRoot } from './util'
 
@@ -14,13 +14,27 @@ export default class BeRun {
   sparky: Sparky
 
   constructor(options?) {
-    this.options = this._mergeOptions(defaultOptions, options)
-    this.outputHandlers = new Map()
-    this.sparky = new Sparky()
-
     if (!process.env.NODE_ENV) {
       process.env.NODE_ENV = 'production'
     }
+
+    this.options = this._mergeOptions(defaultOptions, options)
+    this._mergeOptions(process.env, defaultOptions.env)
+
+    const appDirectory = fs.realpathSync(process.cwd())
+    process.env.NODE_PATH = (process.env.NODE_PATH || '')
+      .split(path.delimiter)
+      .filter(folder => folder && !path.isAbsolute(folder))
+      .map(folder => path.resolve(appDirectory, folder))
+      .join(path.delimiter)
+
+    process.env.PUBLIC_URL =
+      process.env.PUBLIC_URL || defaultOptions.paths.homepage
+
+    this.options.env = getClientEnvironment(defaultOptions.paths.publicUrl)
+
+    this.outputHandlers = new Map()
+    this.sparky = new Sparky()
 
     if (!process.env.GENERATE_SOURCEMAP) {
       process.env.GENERATE_SOURCEMAP = 'false'
@@ -208,4 +222,37 @@ export default class BeRun {
 
     return options
   }
+}
+
+const REACT_APP = /^REACT_APP_/i
+const BERUN_APP = /^BERUN_/i
+
+function getClientEnvironment(publicUrl) {
+  const raw = Object.keys(process.env)
+    .filter(key => REACT_APP.test(key) || BERUN_APP.test(key))
+    .reduce(
+      (env, key) => {
+        env[key] = process.env[key]
+        return env
+      },
+      {
+        // Useful for determining whether we’re running in production mode.
+        // Most importantly, it switches React into the correct mode.
+        NODE_ENV: process.env.NODE_ENV || 'development',
+        // Useful for resolving the correct path to static assets in `public`.
+        // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
+        // This should only be used as an escape hatch. Normally you would put
+        // images into the `src` and `import` them in code to get their paths.
+        PUBLIC_URL: publicUrl
+      }
+    )
+  // Stringify all values so we can feed into Webpack DefinePlugin
+  const stringified = {
+    'process.env': Object.keys(raw).reduce((env, key) => {
+      env[key] = JSON.stringify(raw[key])
+      return env
+    }, {})
+  }
+
+  return { raw, stringified }
 }

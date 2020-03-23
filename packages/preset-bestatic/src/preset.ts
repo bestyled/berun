@@ -11,15 +11,15 @@ export default (berun: Berun, options = {}) => {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    berun.options.paths.appIndexJs = path.join(corePath, 'entry_ssr.js')
+    berun.options.paths.appIndexJs = path.join(corePath, 'entry_ssr.jsx')
   } else {
-    berun.options.paths.appIndexJs = path.join(corePath, 'entry_browser.js')
+    berun.options.paths.appIndexJs = path.join(corePath, 'entry_browser.jsx')
   }
 
   const configLocal = path.join(
     berun.options.paths.appPath,
     'config',
-    'bestatic.config.js'
+    'bestatic.config.ts'
   )
 
   const configPath = fs.existsSync(configLocal)

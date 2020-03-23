@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as fs from 'fs'
 import { ensureDirSync, remove } from 'fs-extra'
-import nodeExternals from 'webpack-node-externals'
+import * as nodeExternals from 'webpack-node-externals'
 import Berun from '@berun/berun'
 import renderHTML from '../preset-common/preset-render-html'
 import PluginMiniHTML from './webpack-plugin-mini-html'
@@ -83,7 +83,8 @@ export const presetStatic = async (
   } = await entrySsr()
 
   await remove(opts.tempdir)
-  opts.basename = opts.basename || process.env.PUBLIC_URL
+  opts.basename = opts.basename || ''
+  // opts.basename = opts.basename || process.env.PUBLIC_URL
   opts.noJS = berun.sparkyContext.noJS
   opts.homepage = berun.options.paths.homepage
   opts.appBuild = berun.options.paths.appBuild

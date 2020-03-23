@@ -38,7 +38,7 @@
     "@bestatic/core": "^3.0.14",
     "@bestatic/layout": "^3.0.14",
     "axios": "^0.18.1",
-    "styled-components": "^4.4.1",
+    "styled-components": "^5.0.1",
     "@berun/preset-bestatic": "^3.0.14",
     "@berun/preset-react": "^3.0.14",
     "@berun/runner-eslint": "^3.0.14",

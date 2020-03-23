@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useState, PropsWithChildren } from 'react'
 
 interface RouteDataProps {
   observers: Promise<null>[]
@@ -7,41 +7,29 @@ interface RouteDataProps {
   datacache: {}
 }
 
-export class WithRouteData extends React.Component<RouteDataProps, any> {
-  constructor(props: RouteDataProps) {
-    super(props)
-    this.prefetchData()
-  }
+export const WithRouteData = (props: PropsWithChildren<RouteDataProps>) => {
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<any>(null)
 
-  state = {
-    loading: true
-  }
+  const { id, datacache, getData, observers } = props
 
-  prefetchData() {
-    const { id, datacache, getData, observers } = this.props
-
-    if (datacache && id in datacache) {
-      const data = datacache[id]
-
-      this.state = { loading: false, ...data }
-      // called from constructor so OK to set state directly
-
-      return
+  if (datacache && id in datacache) {
+    const cachedData = datacache[id]
+    setLoading(false)
+    setData(cachedData)
+  } else {
+    const dataPromise = async () => {
+      const extData = await getData()
+      if (datacache) {
+        datacache[id] = extData
+      }
+      setLoading(false)
+      setData(extData)
+      return null
     }
 
-    const dataPromise = new Promise<null>(async resolve => {
-      const data = await getData()
-      if (datacache) {
-        datacache[id] = data
-      }
-      this.setState({ loading: false, ...data })
-      resolve(null)
-    })
-
-    observers.push(dataPromise)
+    observers.push(dataPromise())
   }
 
-  render() {
-    return (this.props.children as Function)(this.state)
-  }
+  return (props.children as Function)({ data, loading })
 }

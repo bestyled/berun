@@ -53,3 +53,10 @@ yarn.lock
 package-lock.json
 .fusebox
 packages/sample
+
+
+#secrets
+env.config.*
+
+# static docs
+build-static

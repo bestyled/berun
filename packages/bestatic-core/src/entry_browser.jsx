@@ -2,15 +2,13 @@ import * as React from 'react'
 import { render, hydrate } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import config from '@bestatic/config' // dynamically loaded using bundler fron app or ./config directory
-import { createContext } from './config/createContext'
+import { createBeStaticContext } from './config/createBeStaticContext'
 import { getRoutes } from './config/getRoutes'
 import { App } from './App'
 
 async function init() {
-  const bestatic = createContext()
-
+  const bestatic = await createBeStaticContext(config)
   const routes = await getRoutes(bestatic, config)
-  const sitedata = await config.getSiteData(bestatic)
 
   const div = document.getElementById('root')
 
@@ -25,7 +23,7 @@ async function init() {
 
   mount(
     <BrowserRouter basename={basename}>
-      <App routes={routes} sitedata={sitedata} {...props} />
+      <App routes={routes} sitedata={bestatic} {...props} />
     </BrowserRouter>,
     div
   )

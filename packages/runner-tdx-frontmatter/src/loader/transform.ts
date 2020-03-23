@@ -1,4 +1,4 @@
-import matter from 'gray-matter'
+const matter = require('gray-matter')
 
 export default async function(src) {
   const { content, data } = matter(src)

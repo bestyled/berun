@@ -10,8 +10,14 @@ export default {
   getSiteData: async bestatic => ({
     ...bestatic,
     title: 'BeRun Platform',
+    company: 'OffGrid Networks',
     blog: 'BeRun Blog',
-    logo: '/logo.svg'
+    logo: '/logo.svg',
+    algolia: {
+      appId: process.env.BERUN_ALGOLIA_APPID,
+      apiKey: process.env.BERUN_ALGOLIA_APIKEY,
+      indexName: process.env.BERUN_ALGOLIA_INDEX
+    }
   }),
   getRoutes: async bestatic => {
     const localPages = await getLocalPages(bestatic)

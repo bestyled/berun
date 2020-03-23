@@ -1,8 +1,8 @@
-import unified from 'unified'
-import parseHTML from 'rehype-parse'
-
 // Custom DocSearch Rehype Compiler
 import hastToDocsearch from './hast-to-docsearch'
+
+const unified = require('unified')
+const parseHTML = require('rehype-parse')
 
 const DEFAULT_OPTIONS = {
   hastPlugins: [],
@@ -26,7 +26,7 @@ function createCompiler(options) {
 
   fn.use(hastToDocsearch, options)
 
-  compilers.foEach(compilerPlugin => {
+  compilers.forEach(compilerPlugin => {
     fn.use(compilerPlugin, options)
   })
 

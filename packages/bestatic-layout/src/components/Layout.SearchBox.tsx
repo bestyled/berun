@@ -65,9 +65,9 @@ function getAlgoliaLoadScript({ apiKey, appId, indexName }) {
     appId,
     apiKey,
     indexName,
-    debug: true
+    debug: true,
+    inputSelector: '#docsearch-input'
   }
-  DOC_SEARCH.inputSelector = '#docsearch-input'
   const DOC_SEARCH_CODE = btoa(JSON.stringify(DOC_SEARCH).replace(/a/g, '!Ax6'))
   return `window.addEventListener('load', function DocSearchLoad(){ 
       window.docsearch(JSON.parse(atob("${DOC_SEARCH_CODE}").replace(/!Ax6/g, 'a')));
@@ -77,7 +77,7 @@ function getAlgoliaLoadScript({ apiKey, appId, indexName }) {
 export const SearchBox = memo<any>(props => {
   const siteData = useSiteData()
   const algoliaScript = useMemo(
-    () => getAlgoliaLoadScript(siteData.algolia),
+    () => getAlgoliaLoadScript(siteData.algolia || {}),
     []
   )
 
@@ -117,7 +117,7 @@ export const SearchBox = memo<any>(props => {
   )
 })
 
-SearchBox.isSearchBox = true
+SearchBox['isSearchBox'] = true
 
 const SearchContainer = styled.div`
   left: 0;

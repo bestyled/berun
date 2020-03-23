@@ -22,11 +22,11 @@ export const DocsLayout = props => (
             >
               {sitedata.title}
             </Layout.TopNavItem>
-            {sitedata.topnav.map(items => {
-              ;<Layout.TopNavItem key={items.label} href={items.href}>
+            {sitedata.topnav.map(items => (
+              <Layout.TopNavItem key={items.label} href={items.href}>
                 {items.label}
               </Layout.TopNavItem>
-            })}
+            ))}
             <Layout.SearchBox />
             <Layout.ScrollAnimation />
           </Layout.TopNav>

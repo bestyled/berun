@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { StaticRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
-import * as ReactRouter from 'react-router'
+import { StaticRouter, Route, Switch, withRouter } from 'react-router-dom'
 import {
   HeadProvider,
   BodyProvider,
@@ -25,16 +24,18 @@ function defaultComponents(routes) {
       />
     )
 
-  const index = routes.find(r => r.path == '/')
+  const index = routes.find(r => r.path === '/')
 
   const Root = withRouter(index.Root || DefaultLayout)
 
   const NotFound = (
-    routes.find(r => r.path == '404') || {
+    routes.find(r => r.path === '404') || {
       Component: props => (
         <Root {...props}>
           <h1>Uh oh, something went wrong</h1>
-          <p>The page you are looking for doesn't exist or has been moved.</p>
+          <p>
+            The page you are looking for doesn&apos;t exist or has been moved.
+          </p>
           <h6>{props.location.pathname} 404</h6>
         </Root>
       )
@@ -44,8 +45,6 @@ function defaultComponents(routes) {
   return { NotFound, Root }
 }
 
-const ConditionalWrap = ({ condition, wrap, children }) =>
-  condition ? wrap(children) : children
 const ConditionalWrapData = ({ condition, wrap, children }) =>
   condition ? wrap(children) : children(null)
 
@@ -104,7 +103,8 @@ const generateRoute = ({
                         routes,
                         Root: childroute.Root || Root,
                         observers,
-                        datacache
+                        datacache,
+                        NotFound: null
                       })
                     )}
                   <Route
@@ -123,12 +123,11 @@ const generateRoute = ({
 export const App = ({
   routes,
   sitedata = {},
-  fullscreen = false,
   datacache = null,
   headTags = [],
   bodyTags = [],
   observers = [],
-  staticrouter
+  staticrouter = null
 }) => {
   const { NotFound, Root } = defaultComponents(routes)
 

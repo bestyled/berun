@@ -5,19 +5,27 @@
  *
  * This configuration is provided to all BeStatic components via the <SiteData> component
  */
-export function createContext() {
+export async function createBeStaticContext(config: { getSiteData: Function }) {
   const BESTATIC_ENV = process.env.BESTATIC_ENV || process.env.NODE_ENV
 
-  return {
+  let bestatic = {
     appPath: process.env.APP_PATH,
     workspace: process.env.WORKSPACE,
     publicUrl: process.env.PUBLIC_URL,
     remoteOriginUrl: process.env.REMOTE_ORIGIN_URL,
     title: process.env.TITLE,
     version: process.env.VERSION,
-    copyright:
-      process.env.COPYRIGHT || `Copyright (c) ${new Date().getFullYear()}.`,
     BESTATIC_ENV,
-    isProduction: BESTATIC_ENV === 'production'
-  }
+    isProduction: BESTATIC_ENV === 'production',
+    topnav: []
+  } as any
+
+  bestatic = await config.getSiteData(bestatic)
+
+  bestatic.copyright =
+    bestatic.copyright ||
+    process.env.COPYRIGHT ||
+    `Copyright (c) ${bestatic.company || ''} ${new Date().getFullYear()}.`
+
+  return bestatic
 }

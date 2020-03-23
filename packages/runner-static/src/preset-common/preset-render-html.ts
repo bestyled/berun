@@ -29,7 +29,7 @@ const renderPage = async (
     datacache,
     staticrouter: {
       basename: opts.basename,
-      location: path,
+      location: { pathname: path },
       context: {}
     }
   })

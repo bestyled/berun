@@ -112,7 +112,7 @@ function unflatten(routes) {
       )
       parent = parent || accum.find(r => r.path === '/docs/')
       if (!parent || parent.path === '/docs/') {
-        route.Root = route.Root || parent.Root
+        route.Root = route.Root || (parent ? parent.Root : null)
         accum.push(route)
       } else {
         parent.children = parent.children || []

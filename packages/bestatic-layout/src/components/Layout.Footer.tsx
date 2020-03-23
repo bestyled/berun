@@ -72,7 +72,7 @@ export const Footer: React.SFC = (withRouter((props: any) => {
 
   const editUrl = new URL(
     route ? route.id : '/',
-    `${sitedata.remoteOriginUrl}/blob/master/`
+    `${sitedata.remoteOriginUrl.replace('git@:', 'htpps://')}/`
   )
 
   return (

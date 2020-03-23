@@ -5,7 +5,7 @@ const noop = () => {
   console.warn('Missing BodyProvider')
 }
 
-type ContextProps = {
+type BodyContextProps = {
   tags: any[]
   push: Function
 }
@@ -14,7 +14,7 @@ type BodyProviderProps = {
   tags: any[]
 }
 
-export const Context = React.createContext<ContextProps>({
+export const BodyContext = React.createContext<BodyContextProps>({
   tags: [],
   push: noop
 })
@@ -35,18 +35,18 @@ export class BodyProvider extends React.Component<BodyProviderProps> {
     }
 
     return (
-      <Context.Provider value={context}>{this.props.children}</Context.Provider>
+      <BodyContext.Provider value={context}>
+        {this.props.children}
+      </BodyContext.Provider>
     )
   }
 }
 
-export class Body extends React.Component<any, any> {
-  state = {
-    didMount: false
-  }
+export const Body = (props: React.PropsWithChildren<{}>) => {
+  const [didMount, setDidMount] = React.useState(false)
 
-  rehydrate = () => {
-    const children = React.Children.toArray(this.props.children)
+  const rehydrate = () => {
+    const children = React.Children.toArray(props.children)
 
     setTimeout(() => {
       const nodes = Array.from(document.body.querySelectorAll('[data-body]'))
@@ -66,16 +66,14 @@ export class Body extends React.Component<any, any> {
         if (oldScript) {
           oldScript.remove()
         }
-        this.appendScript(child)
+        appendScript(child)
       }
     })
 
-    this.setState({
-      didMount: true
-    })
+    setDidMount(true)
   }
 
-  appendScript(scriptTag: any) {
+  const appendScript = (scriptTag: any) => {
     const {
       onError,
       onLoad,
@@ -105,32 +103,28 @@ export class Body extends React.Component<any, any> {
     return newElement
   }
 
-  componentDidMount() {
-    this.rehydrate()
+  React.useEffect(() => {
+    rehydrate()
+  }, [])
+
+  const children = React.Children.toArray(props.children)
+    // .filter((child: any) => (child.type == 'script'))
+    .map((child: any) =>
+      React.cloneElement(child, {
+        'data-body': true
+      })
+    )
+
+  if (!didMount) {
+    return (
+      <BodyContext.Consumer
+        children={({ push }) => {
+          push(children)
+          return false
+        }}
+      />
+    )
   }
 
-  render() {
-    const children = React.Children.toArray(this.props.children)
-      // .filter((child: any) => (child.type == 'script'))
-      .map((child: any) =>
-        React.cloneElement(child, {
-          'data-body': true
-        })
-      )
-
-    const { didMount } = this.state
-
-    if (!didMount) {
-      return (
-        <Context.Consumer
-          children={({ push }) => {
-            push(children)
-            return false
-          }}
-        />
-      )
-    }
-
-    return createPortal(children, document.body)
-  }
+  return createPortal(children, document.body)
 }

@@ -3,10 +3,10 @@ import * as fs from 'fs-extra'
 
 function getRunner(berun) {
   if ('webpack' in berun) {
-    return require('@berun/runner-webpack')
+    return require('@berun/runner-webpack').default
   }
   if ('fusebox' in berun) {
-    return require('@berun/runner-fuse-box')
+    return require('@berun/runner-fuse-box').default
   }
   throw new Error(
     'Static preset only supports webpack and fusebox currently;  cannot find either of these in berun use chain'
@@ -68,7 +68,10 @@ const taskStaticRemoveJS = async berun => {
   await fs.remove(bundle)
 }
 
-const taskDev = berun => getRunner(berun).taskDev(berun)
+const taskDev = berun => {
+  const runner = getRunner(berun)
+  return runner.taskDev(berun)
+}
 
 export { taskStaticPreFlightArgs, taskStaticRemoveJS }
 export const taskStaticDev = taskDev

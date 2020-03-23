@@ -5,7 +5,7 @@ const noop = () => {
   console.warn('Missing HeadProvider')
 }
 
-type ContextProps = {
+type HeadContextProps = {
   tags: any[]
   push: Function
 }
@@ -14,39 +14,31 @@ type HeadProviderProps = {
   tags: any[]
 }
 
-export const Context = React.createContext<ContextProps>({
+export const Context = React.createContext<HeadContextProps>({
   tags: [],
   push: noop
 })
 
-export class HeadProvider extends React.Component<HeadProviderProps> {
-  static defaultProps = {
-    tags: []
+export const HeadProvider = (
+  props: React.PropsWithChildren<HeadProviderProps>
+) => {
+  const push = (elements: any) => {
+    props.tags.push(...elements)
   }
 
-  push = (elements: any) => {
-    this.props.tags.push(...elements)
+  const context = {
+    ...props,
+    push
   }
 
-  render() {
-    const context = {
-      ...this.props,
-      push: this.push
-    }
-
-    return (
-      <Context.Provider value={context}>{this.props.children}</Context.Provider>
-    )
-  }
+  return <Context.Provider value={context}>{props.children}</Context.Provider>
 }
 
-export class Head extends React.Component<any, any> {
-  state = {
-    didMount: false
-  }
+export const Head = (props: React.PropsWithChildren<{}>) => {
+  const [didMount, setDidMount] = React.useState(false)
 
-  rehydrate = () => {
-    const children = React.Children.toArray(this.props.children)
+  const rehydrate = () => {
+    const children = React.Children.toArray(props.children)
     /*  const nodes = [
       ...document.head.querySelectorAll('[data-head]')
     ]
@@ -83,40 +75,33 @@ export class Head extends React.Component<any, any> {
       }
     })
 
-    this.setState({
-      didMount: true
+    setDidMount(true)
+  }
+
+  React.useEffect(() => {
+    rehydrate()
+  }, [])
+
+  const children = React.Children.toArray(props.children).map((child: any) =>
+    React.cloneElement(child, {
+      'data-head': true
     })
-  }
+  )
 
-  componentDidMount() {
-    this.rehydrate()
-  }
-
-  render() {
-    const children = React.Children.toArray(this.props.children).map(
-      (child: any) =>
-        React.cloneElement(child, {
-          'data-head': true
-        })
+  if (!didMount) {
+    return (
+      <Context.Consumer
+        children={({ push }) => {
+          push(children)
+          return false
+        }}
+      />
     )
-
-    const { didMount } = this.state
-
-    if (!didMount) {
-      return (
-        <Context.Consumer
-          children={({ push }) => {
-            push(children)
-            return false
-          }}
-        />
-      )
-    }
-
-    if (!document.head) {
-      throw new Error('Missing Document Head')
-    }
-
-    return createPortal(children, document.head)
   }
+
+  if (!document.head) {
+    throw new Error('Missing Document Head')
+  }
+
+  return createPortal(children, document.head)
 }

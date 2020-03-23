@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "@berun/babel-preset-react-app": "^6.0.14",
+    "@berun/babel-preset-react-app": "^6.0.15",
     "@berun/berun": "^3.0.14",
     "@berun/fluent-webpack": "^3.0.14",
     "@svgr/webpack": "^5.1.0",

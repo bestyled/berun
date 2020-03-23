@@ -47,7 +47,7 @@
     "@berun/fuse-box-plugin-babel": "^3.0.14",
     "@berun/runner-babel": "^3.0.14",
     "@mapbox/rehype-prism": "^0.3.1",
-    "@tinia/tdx-loader": "^0.3.3",
+    "@tinia/tdx-loader": "^0.4.2",
     "babel-loader": "^8.0.6",
     "fuse-box-plugin-tdx": "^0.3.6",
     "remark-autolink-headings": "^5.2.1",

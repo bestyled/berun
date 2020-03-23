@@ -38,8 +38,6 @@
     "@types/webpack": "4.41.6",
     "cross-spawn": "^7.0.1",
     "deepmerge": "^4.2.2",
-    "dotenv": "^8.2.0",
-    "dotenv-expand": "^5.1.0",
     "find-pkg": "^2.0.0",
     "globby": "^9.2.0",
     "remote-origin-url": "^2.0.0",

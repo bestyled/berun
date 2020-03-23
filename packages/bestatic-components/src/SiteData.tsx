@@ -1,16 +1,14 @@
 import * as React from 'react'
+import { createContext, useContext } from 'react'
 
-const SiteDataContext = React.createContext<any>({})
+const SiteDataContext = createContext<any>({})
 
 const { Provider, Consumer } = SiteDataContext
 
 export const WithSiteData = Consumer
 
-export const useSiteData = () => React.useContext(SiteDataContext)
+export const useSiteData = () => useContext(SiteDataContext)
 
-export class SiteDataProvider extends React.Component<any, any> {
-  render() {
-    const { children, ...sitedata } = this.props
-    return <Provider value={sitedata}>{children}</Provider>
-  }
+export const SiteDataProvider = ({ children, ...sitedata }) => {
+  return <Provider value={sitedata}>{children}</Provider>
 }

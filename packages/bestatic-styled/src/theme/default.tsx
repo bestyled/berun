@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 function shadeColor(color, percent) {
   const f = parseInt(color.slice(1), 16)
   const t = percent < 0 ? 0 : 255

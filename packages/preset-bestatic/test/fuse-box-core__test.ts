@@ -10,7 +10,7 @@ test('Gets FuseBox core configuration', async () => {
   expect(berun.fusebox.get('homeDir')).toEqual('/Volumes/DATA/projects/berun')
 
   expect(berun.fusebox.bundle('main').get('instructions')).toEqual(
-    '>packages/bestatic-core/src/entry_browser.js + packages/preset-bestatic/pages/**/*.*'
+    '>packages/bestatic-core/src/entry_browser.jsx + packages/preset-bestatic/pages/**/*.*'
   )
 
   // HACK to wait 1s to allow Fusebox enough time to tear down
