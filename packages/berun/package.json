@@ -35,7 +35,7 @@
   "dependencies": {
     "@berun/fluent": "^3.0.15",
     "@berun/sparky": "^3.0.15",
-    "@types/webpack": "4.41.6",
+    "@types/webpack": "^4.41.10",
     "cross-spawn": "^7.0.1",
     "deepmerge": "^4.2.2",
     "find-pkg": "^2.0.0",
@@ -44,8 +44,7 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@berun/fluent-webpack": "^3.0.15",
-    "@types/webpack": "4.41.6"
+    "@berun/fluent-webpack": "^3.0.15"
   },
   "peerDependencies": {}
 }

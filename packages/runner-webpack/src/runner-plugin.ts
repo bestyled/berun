@@ -1,6 +1,5 @@
 import * as chalk from 'chalk'
 import * as fs from 'fs'
-import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 import * as CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 import * as InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin'
 import * as WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin'
@@ -15,6 +14,8 @@ import * as WorkboxWebpackPlugin from 'workbox-webpack-plugin'
 
 import * as deepmerge from 'deepmerge'
 import Berun from '@berun/berun'
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 /**
  *  Generates an `index.html` file with the <script> injected.
