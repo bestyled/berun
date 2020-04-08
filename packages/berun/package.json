@@ -1,6 +1,6 @@
 {
   "name": "@berun/berun",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "description": "Create and build JS applications with managed configurations",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -33,9 +33,9 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent": "^3.0.15",
-    "@berun/sparky": "^3.0.15",
-    "@types/webpack": "^4.41.10",
+    "@berun/fluent": "^3.0.16",
+    "@berun/sparky": "^3.0.16",
+    "@types/webpack": "^4.41.6",
     "cross-spawn": "^7.0.1",
     "deepmerge": "^4.2.2",
     "find-pkg": "^2.0.0",
@@ -44,7 +44,7 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@berun/fluent-webpack": "^3.0.15"
+    "@berun/fluent-webpack": "^3.0.16"
   },
   "peerDependencies": {}
 }

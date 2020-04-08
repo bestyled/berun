@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-webpack",
-  "version": "3.0.16",
+  "version": "3.0.17",
   "description": "Webpack runner for building React web applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "@berun/babel-preset-react-app": "^6.0.16",
-    "@berun/berun": "^3.0.15",
-    "@berun/fluent-webpack": "^3.0.15",
+    "@berun/babel-preset-react-app": "^6.0.17",
+    "@berun/berun": "^3.0.16",
+    "@berun/fluent-webpack": "^3.0.16",
     "@svgr/webpack": "^5.1.0",
     "babel-loader": "^8.0.6",
     "bfj": "7.0.2",
@@ -52,23 +52,23 @@
     "fork-ts-checker-webpack-plugin": "4.0.3",
     "fs-extra": "8.1.0",
     "global-modules": "^2.0.0",
-    "html-webpack-plugin": "^4.0.4",
+    "html-webpack-plugin": "^4.0.0-beta.5",
     "pnp-webpack-plugin": "1.6.0",
     "progress-bar-webpack-plugin": "2.1.0",
     "react-dev-utils": "8.0.0",
     "terser-webpack-plugin": "2.3.4",
     "url": "^0.11.0",
     "url-loader": "^3.0.0",
-    "webpack": "4.42.0",
+    "webpack": "4.41.6",
     "webpack-dev-server": "3.10.2",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "5.0.0"
   },
   "devDependencies": {
-    "@berun/runner-babel": "^3.0.15",
-    "@berun/runner-web-polyfills": "^3.0.15",
-    "@berun/berun": "^3.0.15",
-    "@berun/dev-scripts": "^3.0.18"
+    "@berun/runner-babel": "^3.0.16",
+    "@berun/runner-web-polyfills": "^3.0.16",
+    "@berun/berun": "^3.0.16",
+    "@berun/dev-scripts": "^3.0.19"
   },
   "peerDependencies": {}
 }

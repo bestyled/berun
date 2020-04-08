@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tsmain",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "description": "BeRun runner to add react ts:main support",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -36,13 +36,13 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.15"
+    "@berun/berun": "^3.0.16"
   },
   "devDependencies": {
-    "@berun/preset-react": "^3.0.15",
-    "@berun/berun": "^3.0.15",
-    "@berun/dev-scripts": "^3.0.18",
-    "@berun/fluent": "^3.0.15"
+    "@berun/preset-react": "^3.0.16",
+    "@berun/berun": "^3.0.16",
+    "@berun/dev-scripts": "^3.0.19",
+    "@berun/fluent": "^3.0.16"
   },
   "peerDependencies": {}
 }

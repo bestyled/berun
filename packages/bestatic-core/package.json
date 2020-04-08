@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/core",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "description": "React Static Documentation",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -45,11 +45,11 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@bestatic/components": "^3.0.15",
+    "@bestatic/components": "^3.0.16",
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.18"
+    "@berun/dev-scripts": "^3.0.19"
   },
   "peerDependencies": {
     "react": "^16.12.0",

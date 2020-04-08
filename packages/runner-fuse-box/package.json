@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-fuse-box",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "description": "BeRun runner for fuse-box, a webpack alternative",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -37,9 +37,9 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.15",
-    "@berun/fluent-fuse-box": "^3.0.15",
-    "@berun/fuse-box-plugin-babel": "^3.0.15",
+    "@berun/berun": "^3.0.16",
+    "@berun/fluent-fuse-box": "^3.0.16",
+    "@berun/fuse-box-plugin-babel": "^3.0.16",
     "chalk": "^3.0.0",
     "express": "^4.17.1",
     "fs-extra": "^8.1.0",
@@ -49,12 +49,12 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@berun/runner-babel": "^3.0.15",
-    "@berun/berun": "^3.0.15",
-    "@berun/dev-scripts": "^3.0.18",
-    "@berun/fluent": "^3.0.15",
-    "@berun/fluent-babel": "^3.0.15",
-    "@berun/fluent-fuse-box": "^3.0.15"
+    "@berun/runner-babel": "^3.0.16",
+    "@berun/berun": "^3.0.16",
+    "@berun/dev-scripts": "^3.0.19",
+    "@berun/fluent": "^3.0.16",
+    "@berun/fluent-babel": "^3.0.16",
+    "@berun/fluent-fuse-box": "^3.0.16"
   },
   "peerDependencies": {}
 }
