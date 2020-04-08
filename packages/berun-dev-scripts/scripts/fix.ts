@@ -39,7 +39,8 @@ async function run() {
           'fs',
           'os',
           'module',
-          'path'
+          'path',
+          'crypto'
         ],
         shallowOnly: true
       })

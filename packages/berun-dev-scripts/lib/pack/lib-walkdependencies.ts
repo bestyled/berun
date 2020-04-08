@@ -380,7 +380,7 @@ function commonJSLookup({
         )
         process.exit(1)
       }
-    } else {
+    } else if (!dependency.startsWith('@content')) {
       console.error(
         `could not resolve ${chalk.redBright(
           path.relative(basedir, dependency)
