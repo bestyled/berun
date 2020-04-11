@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-fuse-box-docs",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -27,15 +27,15 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@bestatic/core": "^3.0.16",
-    "@bestatic/layout": "^3.0.16",
+    "@bestatic/core": "^3.0.17",
+    "@bestatic/layout": "^3.0.17",
     "axios": "^0.18.1",
     "styled-components": "^5.0.1",
-    "@berun/preset-bestatic": "^3.0.16",
-    "@berun/preset-fuse-box-react": "^3.0.16",
-    "@berun/runner-eslint": "^3.0.16",
-    "@berun/runner-prettier": "^3.0.16",
-    "@berun/scripts": "^3.0.16"
+    "@berun/preset-bestatic": "^3.0.17",
+    "@berun/preset-fuse-box-react": "^3.0.17",
+    "@berun/runner-eslint": "^3.0.17",
+    "@berun/runner-prettier": "^3.0.17",
+    "@berun/scripts": "^3.0.17"
   },
   "peerDependencies": {}
 }

@@ -1,6 +1,6 @@
 {
   "name": "@berun/dev-scripts",
-  "version": "3.0.19",
+  "version": "3.0.20",
   "main": "./bin/berun-dev.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
@@ -39,7 +39,7 @@
     "@babel/preset-typescript": "^7.8.3",
     "cross-spawn": "^7.0.1",
     "eslint": "^6.8.0",
-    "eslint-config-berun": "^6.0.16",
+    "eslint-config-berun": "^6.0.17",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "jest": "^25.1.0",

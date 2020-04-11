@@ -8,6 +8,7 @@ export default (berun: Berun, options) => {
     babelrc: false,
     presets: ['@berun/babel-preset-react-app'],
     highlightCode: true,
-    compact: !!options.ISPRODUCTION
+    compact: !!options.ISPRODUCTION,
+    sourceType: 'unambiguous'
   })
 }

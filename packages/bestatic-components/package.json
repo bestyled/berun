@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/components",
-  "version": "3.0.16",
+  "version": "3.0.17",
   "description": "BeStatic Components including Tiny <head>, <body> injector, local route ",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -32,7 +32,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.19"
+    "@berun/dev-scripts": "^3.0.20"
   },
   "peerDependencies": {
     "react": "^16.12.0",

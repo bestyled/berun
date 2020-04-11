@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-web-polyfills",
-  "version": "3.0.16",
+  "version": "3.0.17",
   "description": "BeRun runner to add browser polyfills",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -30,7 +30,7 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.16",
+    "@berun/berun": "^3.0.17",
     "core-js": "^3.6.4",
     "object-assign": "^4.1.1",
     "promise": "^8.0.3",
@@ -38,10 +38,10 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@berun/fluent-webpack": "^3.0.16",
-    "@berun/berun": "^3.0.16",
-    "@berun/dev-scripts": "^3.0.19",
-    "@berun/fluent": "^3.0.16"
+    "@berun/fluent-webpack": "^3.0.17",
+    "@berun/berun": "^3.0.17",
+    "@berun/dev-scripts": "^3.0.20",
+    "@berun/fluent": "^3.0.17"
   },
   "peerDependencies": {}
 }
