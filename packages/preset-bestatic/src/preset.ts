@@ -4,16 +4,16 @@ import * as resolveCWD from 'resolve-cwd'
 import Berun from '@berun/berun'
 
 export default (berun: Berun, options = {}) => {
-  const corePath = path.dirname(resolveCWD('@bestatic/core/src/index.ts'))
+  const corePath = path.dirname(resolveCWD('@bestatic/core/dist/index.js'))
 
   if (!berun.options.cmd.endsWith(':static')) {
     return
   }
 
   if (process.env.NODE_ENV === 'production') {
-    berun.options.paths.appIndexJs = path.join(corePath, 'entry_ssr.jsx')
+    berun.options.paths.appIndexJs = path.join(corePath, 'entry_ssr.js')
   } else {
-    berun.options.paths.appIndexJs = path.join(corePath, 'entry_browser.jsx')
+    berun.options.paths.appIndexJs = path.join(corePath, 'entry_browser.js')
   }
 
   const configLocal = path.join(

@@ -24,8 +24,11 @@ declare global {
 
 // base64 character set, plus padding character (=)
 const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+// @ts-ignore
 global = global || window
+// @ts-ignore
 if (!global.btoa) {
+  // @ts-ignore
   global.btoa = function(string) {
     string = String(string)
     let bitmap

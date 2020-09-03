@@ -1,9 +1,8 @@
 {
   "name": "@bestatic/styled",
-  "version": "3.0.20",
+  "version": "3.0.22",
   "description": "Styled scope provider for Markdown/MDX/TDX documents",
-  "main": "src/index.ts",
-  "ts:main": "src/index.ts",
+  "main": "dist/index.js",
   "types": "src/index.ts",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
@@ -35,16 +34,16 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@bestatic/components": "^3.0.20",
-    "@bestatic/layout": "^3.0.20",
+    "@bestatic/components": "^3.0.22",
+    "@bestatic/layout": "^3.0.22",
     "@tinia/tdx-tag": "^0.3.2",
     "is-absolute-url": "^3.0.3",
-    "react-router-dom": "^5.1.2",
-    "styled-components": "^5.1.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.1.1",
     "styled-system": "^4.2.4"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.23"
+    "@berun/dev-scripts": "^3.0.28"
   },
   "peerDependencies": {
     "react": "^16.13.1"

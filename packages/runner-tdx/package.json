@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tdx",
-  "version": "3.0.20",
+  "version": "3.0.22",
   "description": "BeRun runner for building TDX documentation applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -42,10 +42,10 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.20",
-    "@berun/fluent-tdx": "^3.0.20",
-    "@berun/fuse-box-plugin-babel": "^3.0.20",
-    "@berun/runner-babel": "^3.0.21",
+    "@berun/berun": "^3.0.22",
+    "@berun/fluent-tdx": "^3.0.22",
+    "@berun/fuse-box-plugin-babel": "^3.0.22",
+    "@berun/runner-babel": "^3.0.23",
     "@mapbox/rehype-prism": "^0.3.1",
     "@tinia/tdx-loader": "^0.4.2",
     "babel-loader": "^8.1.0",
@@ -57,10 +57,10 @@
     "remark-unwrap-images": "^1.0.0"
   },
   "devDependencies": {
-    "@berun/preset-fuse-box-react": "^3.0.20",
-    "@berun/preset-react": "^3.0.20",
-    "@berun/berun": "^3.0.20",
-    "@berun/dev-scripts": "^3.0.23"
+    "@berun/preset-fuse-box-react": "^3.0.22",
+    "@berun/preset-react": "^3.0.22",
+    "@berun/berun": "^3.0.22",
+    "@berun/dev-scripts": "^3.0.28"
   },
   "peerDependencies": {}
 }

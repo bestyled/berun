@@ -1,8 +1,9 @@
 export const taskAlgoliaDeploy = async berun => {
   const algoliasearch = require('algoliasearch')
+  console.log( process.env.BERUN_ALGOLIA_APPID, process.env.BERUN_ALGOLIA_APIADMIN)
   const client = algoliasearch(
     process.env.BERUN_ALGOLIA_APPID,
-    process.env.ALGOLIA_APIADMIN
+    process.env.BERUN_ALGOLIA_APIADMIN
   )
 
   // 1. Initialize the target and temporary indices

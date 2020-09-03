@@ -1,6 +1,6 @@
 {
   "name": "rehype-docsearch",
-  "version": "3.0.20",
+  "version": "3.0.22",
   "description": "Output docsearch json from rehype",
   "main": "dist/index.js",
   "ts:main": "src/index.ts",
@@ -36,14 +36,14 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "hast-util-is-element": "^1.0.4",
+    "hast-util-is-element": "^1.1.0",
     "hast-util-select": "^3.0.1",
     "rehype-parse": "^6.0.2",
-    "unified": "^8.4.2",
+    "unified": "^9.1.0",
     "unist-util-visit": "^1.4.1"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.23"
+    "@berun/dev-scripts": "^3.0.28"
   },
   "peerDependencies": {}
 }

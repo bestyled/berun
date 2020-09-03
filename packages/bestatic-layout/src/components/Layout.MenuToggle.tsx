@@ -93,7 +93,7 @@ const MenuHiddenToggle = styled.input`
   }
 `
 
-export const MenuToggle: React.FC<any> = ({ children, ...props }) => {
+export const MenuToggle: React.FC<any> & { isMenuToggle: boolean } = ({ children, ...props }) => {
   return (
     <Container id="menu-toggle-container" {...props}>
       <MenuHiddenToggle type="checkbox" id="toggle-1" />

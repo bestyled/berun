@@ -61,7 +61,7 @@ FooterItem.defaultProps = {
   fontSize: 1
 }
 
-export const Footer: React.SFC = (withRouter((props: any) => {
+export const Footer: React.SFC & { isFooter: boolean } = (withRouter((props: any) => {
   const sitedata = useSiteData()
   const pathname = props.match.path
 
@@ -85,7 +85,7 @@ export const Footer: React.SFC = (withRouter((props: any) => {
       </FooterRow>
     </FooterRoot>
   )
-}) as any) as React.SFC
+}) as any) as React.SFC & { isFooter: boolean }
 
 Footer.isFooter = true
 

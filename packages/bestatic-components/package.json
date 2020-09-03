@@ -1,9 +1,8 @@
 {
   "name": "@bestatic/components",
-  "version": "3.0.20",
+  "version": "3.0.22",
   "description": "BeStatic Components including Tiny <head>, <body> injector, local route ",
-  "main": "src/index.ts",
-  "ts:main": "src/index.ts",
+  "main": "dist/index.js",
   "types": "src/index.ts",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
@@ -32,7 +31,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.23"
+    "@berun/dev-scripts": "^3.0.28"
   },
   "peerDependencies": {
     "react": "^16.13.1",

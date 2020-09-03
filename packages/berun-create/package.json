@@ -1,6 +1,6 @@
 {
   "name": "create-berun",
-  "version": "3.0.20",
+  "version": "3.0.22",
   "description": "Create BeRun apps with fluent, single file, build configuration.",
   "main": "src/index.js",
   "authors": [
@@ -22,9 +22,6 @@
     "react"
   ],
   "license": "Apache-2.0",
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": "https://github.com/bestyled/berun/tree/master/packages/berun-create",
   "scripts": {
     "format": "berun-dev format",
