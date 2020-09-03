@@ -139,6 +139,7 @@ export const pluginEnv = (berun: Berun, options) => {
 export const pluginPackageInfo = (berun: Berun, options) => {
   const packageJson = require(berun.options.paths.appPackageJson)
 
+
   const PACKAGE = {
     APP_PATH: JSON.stringify(berun.options.paths.appPath),
     WORKSPACE: JSON.stringify(berun.options.paths.workspace),

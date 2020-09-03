@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-mdx",
-  "version": "3.0.17",
+  "version": "3.0.20",
   "description": "BeRun runner for building MDX documentation applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -42,25 +42,25 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.17",
-    "@berun/fluent-mdx": "^3.0.17",
-    "@berun/fuse-box-plugin-babel": "^3.0.17",
-    "@berun/runner-babel": "^3.0.18",
+    "@berun/berun": "^3.0.20",
+    "@berun/fluent-mdx": "^3.0.20",
+    "@berun/fuse-box-plugin-babel": "^3.0.20",
+    "@berun/runner-babel": "^3.0.21",
     "@mapbox/rehype-prism": "^0.3.1",
-    "@mdx-js/loader": "^1.5.5",
-    "babel-loader": "^8.0.6",
-    "fuse-box-plugin-mdx": "^3.0.17",
-    "remark-autolink-headings": "^5.2.1",
-    "remark-emoji": "^2.0.2",
+    "@mdx-js/loader": "^1.5.8",
+    "babel-loader": "^8.1.0",
+    "fuse-box-plugin-mdx": "^3.0.20",
+    "remark-autolink-headings": "^5.2.2",
+    "remark-emoji": "^2.1.0",
     "remark-images": "^1.0.0",
     "remark-slug": "^5.1.2",
     "remark-unwrap-images": "^1.0.0"
   },
   "devDependencies": {
-    "@berun/preset-fuse-box-react": "^3.0.17",
-    "@berun/preset-react": "^3.0.17",
-    "@berun/berun": "^3.0.17",
-    "@berun/dev-scripts": "^3.0.20"
+    "@berun/preset-fuse-box-react": "^3.0.20",
+    "@berun/preset-react": "^3.0.20",
+    "@berun/berun": "^3.0.20",
+    "@berun/dev-scripts": "^3.0.23"
   },
   "peerDependencies": {}
 }

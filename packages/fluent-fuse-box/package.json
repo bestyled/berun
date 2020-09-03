@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-fuse-box",
-  "version": "3.0.17",
+  "version": "3.0.20",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -34,10 +34,10 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent": "^3.0.17"
+    "@berun/fluent": "^3.0.20"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.20"
+    "@berun/dev-scripts": "^3.0.23"
   },
   "peerDependencies": {}
 }

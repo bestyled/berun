@@ -40,7 +40,11 @@ async function run() {
           'os',
           'module',
           'path',
-          'crypto'
+          'crypto',
+          'net',
+          'dgram',
+          'https',
+          'stream'
         ],
         shallowOnly: true
       })

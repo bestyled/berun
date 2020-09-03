@@ -68,6 +68,7 @@ export default function processPackage(options: PackageOptions) {
 
   Object.keys(packagesLib)
     .filter(key => key !== myname)
+    .filter(Boolean)
     .sort()
     .forEach(key => {
       const pkg = packagesLib[key]
@@ -93,6 +94,7 @@ export default function processPackage(options: PackageOptions) {
   Object.keys(packagesDev)
     .filter(key => key !== myname)
     .filter(key => !(key in packages))
+    .filter(Boolean)
     .sort()
     .forEach(key => {
       const pkg = packagesDev[key]

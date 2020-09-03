@@ -106,7 +106,12 @@ export default function(_, opts) {
           useBuiltIns: true
         }
       ],
-      isTypeScriptEnabled && [require('@babel/preset-typescript').default]
+      isTypeScriptEnabled && [
+        require('@babel/preset-typescript').default,
+        {
+          onlyRemoveTypeImports: true
+        }
+      ]
     ].filter(Boolean),
     plugins: [
       isFlowEnabled && [

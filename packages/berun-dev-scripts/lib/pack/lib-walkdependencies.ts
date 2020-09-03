@@ -167,6 +167,9 @@ const _getDependencies = function _getDependencies({
     const dep = dependencies[i]
 
     let dependency = dep
+      .split('?')[0]
+      .replace(/^!/, '')
+      .split('!')[0]
 
     if (externals.indexOf(dependency) > -1) {
       continue
