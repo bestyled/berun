@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-berun",
-  "version": "6.0.22",
+  "version": "6.0.24",
   "description": "Eslint preset used by @berun",
   "main": "./src/.eslintrc.js",
   "authors": [

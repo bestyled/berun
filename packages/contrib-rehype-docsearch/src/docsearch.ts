@@ -12,8 +12,7 @@ const DEFAULT_OPTIONS = {
 function createCompiler(options) {
   const { hastPlugins } = options
   const { compilers } = options
-
-  const fn = unified().use(parseHTML, options)
+  const fn = unified().use(parseHTML, { emitParseErrors: true })
 
   hastPlugins.forEach(plugin => {
     // handle [plugin, pluginOptions] syntax
@@ -25,7 +24,6 @@ function createCompiler(options) {
   })
 
   fn.use(hastToDocsearch, options)
-
   compilers.forEach(compilerPlugin => {
     fn.use(compilerPlugin, options)
   })
@@ -42,9 +40,10 @@ export const docsearchSync = function docsearchSync(
     compilers?: any[]
   } = {}
 ) {
+  console.log('docsearchSync')
   const opts = { ...DEFAULT_OPTIONS, ...options }
   const compiler = createCompiler(opts)
-
+  console.log(compiler)
   const fileOpts: { filepath?: string; path?: string; contents?: string } = {
     contents: src
   }
@@ -53,8 +52,8 @@ export const docsearchSync = function docsearchSync(
   }
 
   try {
-    const { contents } = compiler.processSync(fileOpts)
-    return contents
+    const { result } = compiler.processSync(fileOpts)
+    return result
   } catch (ex) {
     console.log(ex)
     return undefined
@@ -81,8 +80,8 @@ export default async function docsearchAsync(
   }
 
   try {
-    const { contents } = await compiler.process(fileOpts)
-    return contents
+    const { result } = await compiler.process(fileOpts)
+    return result
   } catch (ex) {
     console.log(ex)
     return undefined

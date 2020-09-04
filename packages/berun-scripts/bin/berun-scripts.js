@@ -17,7 +17,8 @@ const Module = require('module')
 const path = require('path')
 const { addHook } = require('pirates')
 
-const MY_PACKAGE_SCOPE = '@berun'
+const MY_PACKAGE_SCOPE1 = '@berun'
+const MY_PACKAGE_SCOPE2 = '@bestatic'
 
 // Transpile all local modules of this package
 addHook(
@@ -35,7 +36,7 @@ addHook(
   {
     exts: ['.ts'],
     matcher: filename => {
-      return filename.indexOf(MY_PACKAGE_SCOPE) !== -1
+      return filename.indexOf(MY_PACKAGE_SCOPE1) !== -1 ||  filename.indexOf(MY_PACKAGE_SCOPE2) !== -1
     },
     ignoreNodeModules: false
   }
@@ -63,7 +64,7 @@ Module.prototype.require = function proxyRequire(name) {
 
     if (
       packagefile &&
-      (packagefile.includes(MY_PACKAGE_SCOPE) ||
+      (packagefile.includes(MY_PACKAGE_SCOPE1) || packagefile.includes(MY_PACKAGE_SCOPE2) ||
         !packagefile.includes('/node_modules/'))
     ) {
       const packagejson = originalRequire.apply(this, [packagefile])

@@ -1,3 +1,8 @@
+// FIX-DEPENDENCIES
+require.resolve('@berun/runner-tdx')
+require.resolve('@berun/runner-tdx-frontmatter')
+require.resolve('@berun/runner-static')
+
 import Berun from '@berun/berun'
 import preset from './preset'
 

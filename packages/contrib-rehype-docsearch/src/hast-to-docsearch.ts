@@ -21,6 +21,7 @@ export default function hastToDocsearch(this: any, options) {
 
     if (start) {
       visit(start, node => {
+       
         if (node.type === 'element' && is(node, HEADINGS)) {
           const value = getPlainText(node)
           switch (node.tagName) {
@@ -84,7 +85,6 @@ export default function hastToDocsearch(this: any, options) {
         }
       })
     }
-
     return parts
   }
 }
