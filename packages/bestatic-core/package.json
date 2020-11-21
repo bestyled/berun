@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/core",
-  "version": "3.0.28",
+  "version": "3.0.29",
   "description": "React Static Documentation",
   "main": "dist/index.js",
   "types": "src/index.ts",

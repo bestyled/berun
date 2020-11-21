@@ -10,8 +10,8 @@ export function getLocalPages(bestatic) {
     // eslint-disable-next-line
     const fuseimport = Object.assign(
       {},
-      FuseBox.import('./pages/*.mdx'),
-      FuseBox.import('./pages/docs/*.mdx')
+      FuseBox.import('./content/*.mdx'),
+      FuseBox.import('./content/docs/*.mdx')
     )
 
     const loaders = Object.keys(fuseimport).reduce((accum, key) => {
@@ -32,7 +32,7 @@ export function getLocalPages(bestatic) {
     context = require.context(
       process.env.APP_PATH,
       true,
-      /pages\/.*\.(md|mdx)$/
+      /content\/.*\.(md|mdx)$/
     )
 
     keys = context.keys()
@@ -51,7 +51,7 @@ export function getLocalPages(bestatic) {
       const dirname = path
         .dirname(key)
         .replace(/^\./, '')
-        .replace(/^[/\\]pages/, '')
+        .replace(/^[/\\]content/, '')
 
       const exact = name === 'index'
 
