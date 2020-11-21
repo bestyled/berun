@@ -16,7 +16,7 @@ The React starter template includes
 * Babel 7 with Typescript support
 * Typescript 3 (for linting)
 * Jest
-* TSLint and Prettier
+* ESLint and Prettier
 * A well-defined `tsconfig.json` file
 * All the appropriate optimizations and configurations from `create-react-app` with all the flexibilty without ejecting.
 
@@ -66,18 +66,6 @@ With `@berun/template-react-ts` this requires adjusting a single `berun.config.t
 changes are needed to webpack, jest, babel, etc., and can be done delicately (using a fluent interface) 
 to tweak the existing configuration vs ejecting/forking it and rewriting it.  
 
-### Example: swap out webpack for fuse-box
-
-```js
-// berun.config.ts
-export default {
-  use: [
-    '@berun/preset-fuse-box-react-ts',  /* REMOVED '@berun/preset-react-ts', */
-    '@berun/runner-tslint',
-    '@berun/runner-prettier'
-  ]
-}
-```
 
 ### Example: support TS Main to transpile Typescript dependencies in node_modules
 
@@ -87,7 +75,7 @@ export default {
   use: [
     '@berun/preset-react-ts',
     '@berun/runner-tsmain', /* ADDED */
-    '@berun/runner-tslint',
+    '@berun/runner-eslint',
     '@berun/runner-prettier'
   ]
 }

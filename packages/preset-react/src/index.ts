@@ -17,6 +17,7 @@ export default (berun: Berun, options: { title?: string } = {}) => {
     .use(webpack.ruleMjs)
     .use(webpack.ruleMainImage)
     .use(webpack.ruleMainCompile)
+    .use(webpack.ruleVendorCompileTs)
     // .use(webpack.ruleMainExternal)
     .use(webpack.ruleMainStatic)
     .use(webpack.ruleMainSvg)

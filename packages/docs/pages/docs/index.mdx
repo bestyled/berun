@@ -15,7 +15,7 @@ of the development and production build configuration.
 ## Automated presets
 
 Plugins in BeRun are called `presets` or `runners`.   There are `presets` included for React projects and static websites,
-and `runners` included for Webpack, Fuse-Box, Babel, Jest, ESLint, Prettier and many other front-end tools.
+and `runners` included for Webpack, Babel, Jest, ESLint, Prettier and many other front-end tools.
 There are runners in development planned for Parcel and other contemporary tools.
 
 ## Fluent-based interface
@@ -42,13 +42,7 @@ In contrast, BeRun uses a [`fluent interface`](https://en.wikipedia.org/wiki/Flu
 As you can see it works by declarative composition, and reconfiguring an 
 existing preset often means just a one or two line configuration in the included configuration file.
 The base preset for `React` produces output equivalent to `create-react-app` (regularly updated) but 
-allows fine-grained reconfiguration using named plugins, for example:
-
-``` js
- berun.fusebox.plugin('Babel').tap(() => ({
-        extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx']
-      }))
-```
+allows fine-grained reconfiguration using named plugin
 
 ## Bundler- and tool- independent
 
@@ -60,7 +54,7 @@ are on V5+ and its a pretty robust, light-weight and well-written architecture w
 our entire fluent architecture on the exact same concepts. 
 
 However, rather than basing all builds on webpack, we view that as just one choice of packaging tool.
-We've demonstrated independence for all runners by also including Fuse-Box from the beginning, and we'll be adding
+We've demonstrated independence for all runners from the beginning, and we'll be adding
 additional bundlers like Rollup or Parcel as similar first class citizens.   
 Most importantly, Jest, mdx-js, TDX, Prettier, in fact all such tools in BeRun are equal
 first class citizens and all get their fluent interface in BeRun.   So once you've got the hang of configuring 
@@ -92,8 +86,8 @@ and static site generator.   It's like `Gatsby`, `Docususaurus` or `React-Static
 ![BeRun Sparky](/berun.svg "BeRun Sparky")*SPARKY INSIDE*
 
 Since we are packaging tool agnostic, we also wanted to include a light-weight task manager to allow declarative
-pipelines that can call any such tools.     We've lifted the light-weight but well-proven `Sparky` task manager 
-from Fuse-Box and incorproated directly in BeRun (in its own dependency of course `@berun/sparky`)
+pipelines that can call any such tools.     We've forked the light-weight but well-proven `Sparky` task manager 
+and incorproated directly in BeRun (in its own dependency of course `@berun/sparky`)
 
 ### BeStyled and more
 

@@ -2,7 +2,6 @@ import * as fs from 'fs-extra'
 import * as path from 'path'
 import { replaceExt, ensureUserPath, ensureDir } from './Utils'
 import { Config } from './Config'
-import { Plugin } from './FuseBox'
 
 export class SparkyFile {
   public homePath: string
@@ -75,12 +74,6 @@ export class SparkyFile {
       }
     }
     return this
-  }
-
-  public plugin(plugin: Plugin) {
-    if (!this.contents) {
-      this.read()
-    }
   }
 
   public setContent(cnt: string): SparkyFile {

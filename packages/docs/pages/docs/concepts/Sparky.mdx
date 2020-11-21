@@ -1,7 +1,7 @@
 # Sparky
 
 `Sparky` is a task runner much like `Gulp` or `Grunt`, but what sets it apart is that it is built right into BeRun, has access to the BeRun configuration,
-and is based on well proven technology (as it was directly ported from Fuse-Box Sparky).   It works with Webpack, Fuse-Box and in fact
+and is based on well proven technology (as it was directly ported from Fuse-Box Sparky).   It works with Webpack, etc and in fact
 any command line tools.
 
 ## Benefits
@@ -42,9 +42,7 @@ berun.sparky.exec('start').then(() => { process.nextTick(process.exit) })
 ## Sparky Context
 
 One of the great benefits in `Sparky` is `Context`. Context is an object that is shared between tasks that will be 
-instantiated upon file execution.  It is included for compatibility with Fuse-Box, but since the entire `berun` context is passed to
-every Sparky task, its often unnecessary.
-
+instantiated upon file execution.  
 
 ## Task
 
@@ -119,7 +117,7 @@ tberun.sparky.ask('default', ['copy-assets'], async berun => {
 
 ## Help
 
-You can use the `help` method to add a help message. You can then run fuse-box with a single
+You can use the `help` method to add a help message. You can then run sparky with a single
 `help` argument to get a list of available tasks and their associated help messages.
 
 For example:

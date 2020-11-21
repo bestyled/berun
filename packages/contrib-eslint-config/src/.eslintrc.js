@@ -44,23 +44,23 @@ module.exports = {
     'airbnb',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
   ],
 
   settings: {
     react: {
-      version: 'detect'
+      version: 'detect',
     },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts']
-      }
-    }
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+      },
+    },
   },
 
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
   },
 
   parser: '@typescript-eslint/parser',
@@ -69,9 +69,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
-    warnOnUnsupportedTypeScriptVersion: true
+    warnOnUnsupportedTypeScriptVersion: true,
   },
 
   plugins: [
@@ -79,7 +79,7 @@ module.exports = {
     'jsx-a11y',
     'react',
     'react-hooks',
-    'prettier'
+    'prettier',
   ],
 
   env: {
@@ -87,7 +87,7 @@ module.exports = {
     commonjs: true,
     es6: true,
     jest: true,
-    node: true
+    node: true,
   },
 
   // NOTE: When adding rules here, you need to make sure they are compatible with
@@ -130,6 +130,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
 
     // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
-    'react-hooks/rules-of-hooks': 'error'
-  }
+    'react-hooks/rules-of-hooks': 'error',
+  },
 }

@@ -1,33 +1,9 @@
 import * as path from 'path'
 
-declare const FuseBox: { import: Function }
-
 export function getLocalPages(bestatic) {
   let context
   let keys
-
-  if (process.env.FuseBox) {
-    // eslint-disable-next-line
-    const fuseimport = Object.assign(
-      {},
-      FuseBox.import('./content/*.mdx'),
-      FuseBox.import('./content/docs/*.mdx')
-    )
-
-    const loaders = Object.keys(fuseimport).reduce((accum, key) => {
-      accum[
-        `.${path.sep}${path.relative(
-          bestatic.appPath,
-          path.join(bestatic.workspace, key)
-        )}`
-      ] = fuseimport[key]
-      return accum
-    }, {})
-
-    keys = Object.keys(loaders)
-
-    context = key => loaders[key]
-  } else {
+  
     // eslint-disable-next-line
     context = require.context(
       process.env.APP_PATH,
@@ -36,8 +12,7 @@ export function getLocalPages(bestatic) {
     )
 
     keys = context.keys()
-  }
-
+  
   const routes = keys
     .map(key => {
       const extname = path.extname(key)

@@ -30,7 +30,6 @@ export default (berun: Berun, options = {}) => {
 
   berun
     .when('webpack' in berun, berun => presetWebPack(berun, opt))
-    .when('fusebox' in berun, berun => presetFuseBox(berun, opt))
 }
 
 const presetWebPack = (berun: Berun, opt) => {
@@ -50,40 +49,3 @@ const presetWebPack = (berun: Berun, opt) => {
   }
 }
 
-const presetFuseBox = (berun: Berun, opt) => {
-  const appIndexJs = path.relative(
-    berun.options.paths.workspace,
-    berun.options.paths.appIndexJs
-  )
-  const optConfig = `~/${path.relative(
-    berun.options.paths.workspace,
-    opt.configPath
-  )}`
-  const docpath = path.relative(
-    berun.options.paths.workspace,
-    path.join(berun.options.paths.appPath, 'pages', '**', '*.*')
-  )
-
-  berun.fusebox.alias.set('@bestatic/config', optConfig).end()
-
-  if (process.env.NODE_ENV === 'production') {
-    berun.fusebox
-      .homeDir(berun.options.paths.workspace)
-      .debug(true)
-      .bundles.clear()
-      .end()
-      .bundle('main')
-      .instructions(`>${appIndexJs} + ${docpath}`)
-      .end()
-  } else {
-    berun.fusebox
-      .homeDir(berun.options.paths.workspace)
-      .bundles.clear()
-      .end()
-      .bundle('main')
-      .instructions(`>${appIndexJs} + ${docpath}`)
-      .watch(null)
-      .hmr(null)
-      .end()
-  }
-}

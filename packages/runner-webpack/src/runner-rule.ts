@@ -84,6 +84,24 @@ export const ruleMainCompile = (berun: Berun, _) => {
 }
 
 /**
+ * Process vendor node_modules TS with Babel.
+ * The preset includes JSX, Flow, and some ESnext features.
+ */
+export const ruleVendorCompileTs = (berun: Berun, _) => {
+  berun.webpack.module
+    .rule('main')
+    .oneOf('vendorcompilets')
+    .test(/\.(jsx|ts|tsx)$/)
+    .include.merge([berun.options.paths.workspace])
+    .end()
+    .use('babel')
+    .loader(require.resolve('babel-loader'))
+    .options({
+      /* placeholder */
+    })
+}
+
+/**
  * "file" loader makes sure those assets get served by WebpackDevServer.
  * When you `import` an asset, you get its (virtual) filename.
  * In production, they would get copied to the `build` folder.

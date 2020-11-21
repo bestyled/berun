@@ -28,6 +28,7 @@ import {
   ruleMjs,
   ruleMainImage,
   ruleMainCompile,
+  ruleVendorCompileTs,
   ruleMainStatic,
   ruleMainSvg
 } from './runner-rule'
@@ -72,6 +73,7 @@ interface BerunWebpack {
   ruleParser: BerunFunc
   ruleMainImage: BerunFunc
   ruleMainCompile: BerunFunc
+  ruleVendorCompileTs: BerunFunc
   ruleMainStatic: BerunFunc
   ruleMainSvg: BerunFunc
   pluginHtml: BerunFunc
@@ -117,6 +119,13 @@ const webpack: BerunWebpack = Object.assign(
           .options(berun.babel.toConfig())
       }
 
+      if (main.oneOfs.has('vendorcompilets')) {
+        main
+          .oneOf('vendorcompilets')
+          .use('babel')
+          .options(berun.babel.toConfig())
+      }
+
       if (berun.webpack.module.rules.has('lint')) {
         berun.webpack.module
           .rule('lint')
@@ -146,6 +155,7 @@ const webpack: BerunWebpack = Object.assign(
     ruleParser,
     ruleMainImage,
     ruleMainCompile,
+    ruleVendorCompileTs,
     ruleMainStatic,
     ruleMainSvg,
     pluginHtml,

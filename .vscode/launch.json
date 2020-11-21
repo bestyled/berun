@@ -4,25 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Jest Tests",
-            "program": "${workspaceRoot}/node_modules/@berun/dev-scripts/bin/berun-dev.js",
-            "cwd": "${workspaceFolder}/packages/runner-tslint",
-            "args": [
-                "test"
-            ],
-            "console": "integratedTerminal"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "start sample",
-            "program": "${workspaceFolder}/packages/berun-scripts/scripts/cmd",
-            "args": ["start:static"],
-            "cwd": "${workspaceFolder}/packages/template-fuse-box-docs"
-        },
+
         {
             "type": "node",
             "request": "launch",
@@ -30,14 +12,6 @@
             "program": "${workspaceFolder}/packages/berun-scripts/scripts/cmd",
             "args": ["test"],
             "cwd": "${workspaceFolder}/packages/templtae-react"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Build sample",
-            "program": "${workspaceFolder}/packages/berun-scripts/scripts/cmd",
-            "args": ["build"],
-            "cwd": "${workspaceFolder}/packages/template-fuse-box-docs"
         },
         {
             "type": "node",

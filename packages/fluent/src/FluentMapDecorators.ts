@@ -1,6 +1,5 @@
 export const FluentValueInstance = {}
 
-// tslint:disable-next-line:function-name
 export function FluentValue<T, V>(obj?: T, value?: V): (value: V) => T {
   /* placeholder function that gets replaced by FluentMap's this.extendfluent() */
   return FluentValueInstance as any

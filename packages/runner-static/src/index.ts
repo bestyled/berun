@@ -10,11 +10,8 @@ function getPreset(berun) {
   if ('webpack' in berun) {
     return require('./preset-webpack')
   }
-  if ('fusebox' in berun) {
-    return require('./preset-fuse-box')
-  }
   throw new Error(
-    'Static preset only supports webpack and fusebox currently;  cannot find either of these in berun use chain'
+    'Static preset only supports webpack currently;  cannot find either of these in berun use chain'
   )
 }
 

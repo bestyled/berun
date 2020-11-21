@@ -5,7 +5,8 @@
     "**/dist": true,
     "**/.fusebox": true,
     "**/build": true,
-    "**/public": true
+    "**/public": true,
+    "yarn.lock": true
   },
   "search.useIgnoreFiles": false,
   "javascript.implicitProjectConfig.experimentalDecorators": false,

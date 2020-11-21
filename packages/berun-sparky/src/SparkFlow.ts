@@ -5,7 +5,6 @@ import { each } from 'realm-utils'
 import { ensureDir, string2RegExp, ensureUserPath } from './Utils'
 import { SparkyFile } from './SparkyFile'
 import { log } from './Sparky'
-import { Plugin } from './FuseBox'
 import { parse, SparkyFilePatternOptions } from './SparkyFilePattern'
 
 const glob = require('glob')

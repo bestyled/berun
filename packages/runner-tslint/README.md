@@ -1,1 +1,0 @@
-This file is part of the @berun package. See [@bestyled/berun](https://https://www.npmjs.com/package/@berun/berun) for further details

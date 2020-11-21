@@ -127,7 +127,7 @@ async function taskBuildCompile(berun) {
       console.log(
         `${'To ignore, add '}${chalk.cyan(
           '// eslint-disable-next-line'
-        )} (or ${chalk.cyan('// tslint:disable-next-line')} if TypeScript)` +
+        )} ` +
           ` to the line before.\n`
       )
     } else {

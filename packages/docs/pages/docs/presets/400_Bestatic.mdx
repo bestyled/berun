@@ -24,16 +24,16 @@ export default {
 }
 ```
 
-Note: if used standalone, this preset requires and must folow `@berun/runner-react` or `@berun/runner-fuse-box-react`.
+Note: if used standalone, this preset requires and must folow `@berun/preset-react`.
 This is because BeStatic is based on Mdx (JSX in Markdown) and requires the React runner to transpile the .mdx files.
 
 ## Included build tools
 
 * @berun/runner-mdx (Mdx and Remark / Hast plugin ecosystem)
 * @berun/runner-mdx-frontmatter (Parses front matter in `.md` and `.mdx` files)
-* @berun/runner-static (Two pass execution for Webpack or Fuse-Box to generate static html)
+* @berun/runner-static (Two pass execution for Webpack to generate static html)
 
-Note: requires Webpack or Fuse-Box (not included, peer dependency)
+Note: requires Webpack (not included, peer dependency)
 
 ## Sparky tasks
 

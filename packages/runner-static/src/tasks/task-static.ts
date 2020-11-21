@@ -5,11 +5,8 @@ function getRunner(berun) {
   if ('webpack' in berun) {
     return require('@berun/runner-webpack').default
   }
-  if ('fusebox' in berun) {
-    return require('@berun/runner-fuse-box').default
-  }
   throw new Error(
-    'Static preset only supports webpack and fusebox currently;  cannot find either of these in berun use chain'
+    'Static preset only supports webpack currently;  cannot find either of these in berun use chain'
   )
 }
 

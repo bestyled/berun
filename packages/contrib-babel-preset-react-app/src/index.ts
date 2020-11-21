@@ -157,7 +157,7 @@ export default function(_, opts) {
           // Undocumented option that lets us encapsulate our runtime, ensuring
           // the correct version is used
           // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
-          absoluteRuntime: false // ** DISABLE FOR FUSE-BOX  **  absoluteRuntimePath
+          absoluteRuntime: false
         }
       ],
       isEnvProduction && [
