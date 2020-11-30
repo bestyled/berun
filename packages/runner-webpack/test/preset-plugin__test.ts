@@ -5,12 +5,12 @@ test('Gets Webpack plugin configuration', () => {
   const berun = berunJs(presetReact)
 
   expect(
-    berun.webpack.plugins.values().map(plugin => {
+    berun.webpack.plugins.values().map((plugin) => {
       const c = plugin.toConfig()
       return {
         name: c.__pluginName,
         args: c.__pluginArgs,
-        constructor: c.__pluginConstructorName
+        constructor: c.__pluginConstructorName,
       }
     })
   ).toEqual([
@@ -19,10 +19,10 @@ test('Gets Webpack plugin configuration', () => {
       args: [
         {
           inject: true,
-          templateContent: expect.stringContaining('<!DOCTYPE html>')
-        }
+          templateContent: expect.stringContaining('<!DOCTYPE html>'),
+        },
       ],
-      name: 'html'
+      name: 'html',
     },
     {
       name: 'interpolate-html',
@@ -31,9 +31,9 @@ test('Gets Webpack plugin configuration', () => {
         expect.any(Function),
         {
           NODE_ENV: 'test',
-          PUBLIC_URL: ''
-        }
-      ]
+          PUBLIC_URL: '',
+        },
+      ],
     },
     {
       name: 'env',
@@ -48,42 +48,43 @@ test('Gets Webpack plugin configuration', () => {
             REMOTE_ORIGIN_URL: '"git@github.com:bestyled/berun.git"',
             TITLE: '"@berun/runner-webpack"',
             VERSION: expect.any(String),
-            WORKSPACE: '"/Volumes/DATA/projects/berun"'
-          }
-        }
-      ]
+            WORKSPACE: '"/Volumes/DATA/projects/berun"',
+            META_WORKSPACE: '"/Volumes/DATA/projects/berun"',
+          },
+        },
+      ],
     },
     {
       name: 'progress-bar',
       constructor: 'ProgressBarPlugin',
-      args: expect.any(Array)
+      args: expect.any(Array),
     },
     {
       name: 'modulenotfound',
       constructor: 'ModuleNotFoundPlugin',
-      args: ['/Volumes/DATA/projects/berun/packages/runner-webpack']
+      args: ['/Volumes/DATA/projects/berun/packages/runner-webpack'],
     },
     {
       name: 'hot',
       constructor: 'HotModuleReplacementPlugin',
-      args: []
+      args: [],
     },
     {
       name: 'case-sensitive-paths',
       constructor: 'CaseSensitivePathsPlugin',
-      args: []
+      args: [],
     },
     {
       name: 'watch-missing-node-modules',
       constructor: 'WatchMissingNodeModulesPlugin',
       args: [
-        '/Volumes/DATA/projects/berun/packages/runner-webpack/node_modules'
-      ]
+        '/Volumes/DATA/projects/berun/packages/runner-webpack/node_modules',
+      ],
     },
     {
       name: 'moment',
       constructor: 'IgnorePlugin',
-      args: [/^\.\/locale$/, /moment$/]
+      args: [/^\.\/locale$/, /moment$/],
     },
     {
       name: 'manifest',
@@ -91,9 +92,9 @@ test('Gets Webpack plugin configuration', () => {
       args: [
         {
           fileName: 'asset-manifest.json',
-          publicPath: '/'
-        }
-      ]
+          publicPath: '/',
+        },
+      ],
     },
     {
       args: [
@@ -101,12 +102,12 @@ test('Gets Webpack plugin configuration', () => {
           async: false,
           tsconfig:
             '/Volumes/DATA/projects/berun/packages/runner-webpack/tsconfig.json',
-          eslint: false
-        }
+          eslint: false,
+        },
       ],
       constructor: 'ForkTsCheckerWebpackPlugin',
-      name: 'fork-ts-checker'
-    }
+      name: 'fork-ts-checker',
+    },
   ])
 })
 
@@ -115,12 +116,12 @@ test('Gets Webpack production plugin configuration', () => {
   const berun = berunJs(presetReact)
 
   expect(
-    berun.webpack.plugins.values().map(plugin => {
+    berun.webpack.plugins.values().map((plugin) => {
       const c = plugin.toConfig()
       return {
         name: c.__pluginName,
         args: c.__pluginArgs,
-        constructor: c.__pluginConstructorName
+        constructor: c.__pluginConstructorName,
       }
     })
   ).toEqual([
@@ -140,11 +141,11 @@ test('Gets Webpack production plugin configuration', () => {
             keepClosingSlash: true,
             minifyJS: true,
             minifyCSS: true,
-            minifyURLs: true
-          }
-        }
+            minifyURLs: true,
+          },
+        },
       ],
-      name: 'html'
+      name: 'html',
     },
     {
       name: 'interpolate-html',
@@ -153,9 +154,9 @@ test('Gets Webpack production plugin configuration', () => {
         expect.any(Function),
         {
           NODE_ENV: 'production',
-          PUBLIC_URL: ''
-        }
-      ]
+          PUBLIC_URL: '',
+        },
+      ],
     },
     {
       name: 'env',
@@ -170,20 +171,21 @@ test('Gets Webpack production plugin configuration', () => {
             REMOTE_ORIGIN_URL: '"git@github.com:bestyled/berun.git"',
             TITLE: '"@berun/runner-webpack"',
             VERSION: expect.any(String),
-            WORKSPACE: '"/Volumes/DATA/projects/berun"'
-          }
-        }
-      ]
+            WORKSPACE: '"/Volumes/DATA/projects/berun"',
+            META_WORKSPACE: '"/Volumes/DATA/projects/berun"',
+          },
+        },
+      ],
     },
     {
       name: 'progress-bar',
       constructor: 'ProgressBarPlugin',
-      args: expect.any(Array)
+      args: expect.any(Array),
     },
     {
       name: 'modulenotfound',
       constructor: 'ModuleNotFoundPlugin',
-      args: ['/Volumes/DATA/projects/berun/packages/runner-webpack']
+      args: ['/Volumes/DATA/projects/berun/packages/runner-webpack'],
     },
     /*  {
       name: 'workbox',
@@ -204,7 +206,7 @@ test('Gets Webpack production plugin configuration', () => {
     {
       name: 'moment',
       constructor: 'IgnorePlugin',
-      args: [/^\.\/locale$/, /moment$/]
+      args: [/^\.\/locale$/, /moment$/],
     },
     {
       name: 'manifest',
@@ -212,9 +214,9 @@ test('Gets Webpack production plugin configuration', () => {
       args: [
         {
           fileName: 'asset-manifest.json',
-          publicPath: '/'
-        }
-      ]
+          publicPath: '/',
+        },
+      ],
     },
     {
       args: [
@@ -222,11 +224,11 @@ test('Gets Webpack production plugin configuration', () => {
           async: false,
           tsconfig:
             '/Volumes/DATA/projects/berun/packages/runner-webpack/tsconfig.json',
-          eslint: false
-        }
+          eslint: false,
+        },
       ],
       constructor: 'ForkTsCheckerWebpackPlugin',
-      name: 'fork-ts-checker'
-    }
+      name: 'fork-ts-checker',
+    },
   ])
 })

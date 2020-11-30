@@ -12,6 +12,7 @@ export async function createBeStaticContext(config: { getSiteData: Function }) {
   let bestatic = {
     appPath: process.env.APP_PATH,
     workspace: process.env.WORKSPACE,
+    metaWorkspace: process.env.META_WORKSPACE,
     publicUrl: process.env.PUBLIC_URL,
     remoteOriginUrl: process.env.REMOTE_ORIGIN_URL,
     title: process.env.TITLE,

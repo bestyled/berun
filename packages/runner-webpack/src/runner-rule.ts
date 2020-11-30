@@ -10,10 +10,7 @@ require.resolve('file-loader')
  *  Disable require.ensure as it's not a standard language feature.
  */
 export const ruleParser = (berun: Berun, _) => {
-  berun.webpack.module
-    .rule('parser')
-    .parser({ requireEnsure: false })
-    .end()
+  berun.webpack.module.rule('parser').parser({ requireEnsure: false }).end()
 }
 
 /**
@@ -37,12 +34,12 @@ export const ruleMjs = (berun: Berun, _) => {
       configFile: false,
       compact: false,
       presets: [
-        require.resolve('@berun/babel-preset-react-app/dist/dependencies')
+        require.resolve('@berun/babel-preset-react-app/dist/dependencies'),
       ],
       cacheDirectory: true,
       cacheCompression: process.env.NODE_ENV === 'production',
       highlightCode: true,
-      sourceMaps: false
+      sourceMaps: false,
     })
 }
 
@@ -72,7 +69,7 @@ export const ruleMainCompile = (berun: Berun, _) => {
     .rule('main')
     .oneOf('compile')
     .test(/\.(js|jsx|ts|tsx)$/)
-    .include.merge([berun.options.paths.workspace])
+    .include.merge([berun.options.paths.metaWorkspace])
     .end()
     .exclude.add(/node_modules/)
     .end()
@@ -92,7 +89,7 @@ export const ruleVendorCompileTs = (berun: Berun, _) => {
     .rule('main')
     .oneOf('vendorcompilets')
     .test(/\.(jsx|ts|tsx)$/)
-    .include.merge([berun.options.paths.workspace])
+    .include.merge([berun.options.paths.metaWorkspace])
     .end()
     .use('babel')
     .loader(require.resolve('babel-loader'))
@@ -125,7 +122,7 @@ export const ruleMainStatic = (berun: Berun, _) => {
     .use('file')
     .loader(require.resolve('file-loader'))
     .options({
-      name: 'static/media/[name].[hash:8].[ext]'
+      name: 'static/media/[name].[hash:8].[ext]',
     })
 }
 

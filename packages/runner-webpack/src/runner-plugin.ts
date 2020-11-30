@@ -143,6 +143,7 @@ export const pluginPackageInfo = (berun: Berun, options) => {
   const PACKAGE = {
     APP_PATH: JSON.stringify(berun.options.paths.appPath),
     WORKSPACE: JSON.stringify(berun.options.paths.workspace),
+    META_WORKSPACE: JSON.stringify(berun.options.paths.metaWorkspace),
     PUBLIC_URL: JSON.stringify(berun.options.paths.publicUrl),
     REMOTE_ORIGIN_URL: JSON.stringify(berun.options.paths.remoteOriginUrl),
     TITLE: JSON.stringify(packageJson.name || 'BeRun App'),

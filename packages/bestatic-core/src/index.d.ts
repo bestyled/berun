@@ -57,6 +57,7 @@ export interface IConfig {
 export interface IBeStatic {
   appPath: string
   workspace: string
+  metaWorkspace: string
   publicUrl: string
   remoteOriginUrl: string
   title: string

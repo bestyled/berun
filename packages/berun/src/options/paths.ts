@@ -26,11 +26,12 @@ let exported: {
   testsSetup: string
   useYarn: boolean
   workspace: string
+  metaWorkspace: string
   ownPath: string
 } = {} as any
 
 const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath)
 
 const envPublicUrl = process.env.PUBLIC_URL
 
@@ -51,7 +52,7 @@ function ensureSlash(inputPath, needsSlash) {
   return inputPath
 }
 
-const getPublicUrl = appPackageJson =>
+const getPublicUrl = (appPackageJson) =>
   // eslint-disable-next-line
   envPublicUrl || require(appPackageJson).homepage || "http://localhost:3000"
 
@@ -89,6 +90,7 @@ exported.srcPaths = [exported.appSrc]
 exported.appPath = resolveApp('.')
 exported.appPackageJson = resolveApp('package.json')
 exported.workspace = path.dirname(exported.appPackageJson)
+exported.metaWorkspace = path.dirname(exported.appPackageJson)
 exported.useYarn = fs.existsSync(path.join(exported.appPath, 'yarn.lock'))
 
 // if app is in a monorepo (lerna or yarn workspace), treat other packages in
@@ -97,10 +99,17 @@ const mono = findMonorepo(appDirectory)
 if (mono.isAppIncluded) {
   Array.prototype.push.apply(exported.srcPaths, mono.pkgs)
   exported.workspace = path.dirname(mono.monoPkgPath)
+
+  // if mono repo is itself in a meta repository, set the metaWorkspace variable
+  if (fs.existsSync(path.resolve(exported.workspace, '..', '.meta'))) {
+     exported.metaWorkspace = path.resolve(exported.workspace, '..')
+  } else {    
+    exported.metaWorkspace = exported.workspace
+  }
 }
 exported.useYarn = exported.useYarn || mono.isYarnWs
 
-const getRemoteOriginUrl = _ => {
+const getRemoteOriginUrl = (_) => {
   const rootPath = path.resolve(
     exported.workspace || exported.appPath,
     '.git/config'
@@ -137,7 +146,7 @@ exported = {
   config: hasLocalConfig
     ? getFile(resolveApp('config/berun.config'), ['.ts', '.js'])
     : require.resolve('../../config/berun.config.default.ts'),
-  remoteOriginUrl: getRemoteOriginUrl(resolveApp('package.json'))
+  remoteOriginUrl: getRemoteOriginUrl(resolveApp('package.json')),
 }
 
 if (exported.isTypeScript) {
@@ -175,5 +184,6 @@ export const {
   testsSetup,
   useYarn,
   workspace,
-  ownPath
+  metaWorkspace,
+  ownPath,
 } = exported

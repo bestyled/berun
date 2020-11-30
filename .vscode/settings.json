@@ -3,7 +3,7 @@
     "**/node_modules": true,
     "**/bower_components": true,
     "**/dist": true,
-    "**/.fusebox": true,
+    "**/.vendorcompilets": true,
     "**/build": true,
     "**/public": true,
     "yarn.lock": true
