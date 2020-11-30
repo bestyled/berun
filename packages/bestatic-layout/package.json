@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/layout",
-  "version": "3.1.1",
+  "version": "3.2.3",
   "description": "MDX-based theme",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -42,7 +42,7 @@
     "styled-system": "^4.2.4"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.1.0"
+    "@berun/dev-scripts": "^3.2.3"
   },
   "peerDependencies": {
     "react": "^17.0.1"

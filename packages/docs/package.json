@@ -1,6 +1,6 @@
 {
   "name": "@berun/docs",
-  "version": "3.1.1",
+  "version": "3.2.3",
   "author": {
     "name": "OffGrid Networks"
   },
@@ -37,9 +37,9 @@
   "devDependencies": {
     "@bestatic/core": "^3.1.0",
     "styled-components": "^5.2.1",
-    "@berun/preset-bestatic": "^3.1.0",
-    "@berun/preset-react": "^3.1.0",
-    "@berun/scripts": "^3.1.0",
+    "@berun/preset-bestatic": "^3.2.3",
+    "@berun/preset-react": "^3.2.3",
+    "@berun/scripts": "^3.2.3",
     "@bestatic/layout": "^3.1.0",
     "gh-pages": "^2.2.0"
   },

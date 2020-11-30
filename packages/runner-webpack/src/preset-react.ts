@@ -18,6 +18,7 @@ export default (berun: Berun, options: { title?: string } = {}) => {
     .use(webpack.ruleVendorCompileTs)
     //  .use(webpack.ruleMainExternal)
     .use(webpack.ruleMainStatic)
+    .use(webpack.ruleMainFonts)
     .use(webpack.ruleMainSvg)
     .use(webpack.pluginHtml, { title: options.title })
     .use(webpack.pluginInterpolateHtml)

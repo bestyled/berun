@@ -9,7 +9,7 @@ import taskDev, {
   taskDevBuildPreFlightArgs,
   taskDevBuildPreFlightChecks,
   taskDevBuildGetPort,
-  taskDevBuildCompile
+  taskDevBuildCompile,
 } from './tasks/task-dev'
 
 import taskProd, {
@@ -20,7 +20,7 @@ import taskProd, {
   taskBuildCopyPublicAssets,
   taskBuildCompile,
   taskBuildPostFlightFileSizes,
-  taskBuildPostFlightInstructions
+  taskBuildPostFlightInstructions,
 } from './tasks/task-prod'
 
 import {
@@ -30,7 +30,8 @@ import {
   ruleMainCompile,
   ruleVendorCompileTs,
   ruleMainStatic,
-  ruleMainSvg
+  ruleMainFonts,
+  ruleMainSvg,
 } from './runner-rule'
 
 import {
@@ -46,7 +47,7 @@ import {
   pluginMoment,
   pluginManifest,
   pluginWorkbox,
-  pluginForkTsChecker
+  pluginForkTsChecker,
 } from './runner-plugin'
 
 import { optimization, terser } from './runner-optimization'
@@ -76,6 +77,7 @@ interface BerunWebpack {
   ruleVendorCompileTs: BerunFunc
   ruleMainStatic: BerunFunc
   ruleMainSvg: BerunFunc
+  ruleMainFonts: BerunFunc
   pluginHtml: BerunFunc
   pluginInterpolateHtml: BerunFunc
   pluginProgressBar: BerunFunc
@@ -98,8 +100,8 @@ const webpack: BerunWebpack = Object.assign(
 
     berun
       .use(Webpack)
-      .when(!ISPRODUCTION, b => b.use(WebpackDevServer))
-      .when(!ISPRODUCTION, b => b.use(presetDevServer))
+      .when(!ISPRODUCTION, (b) => b.use(WebpackDevServer))
+      .when(!ISPRODUCTION, (b) => b.use(presetDevServer))
       .use(presetCoreWebpack)
       .use(presetResolveWebpack)
       .use(optimization)
@@ -113,10 +115,7 @@ const webpack: BerunWebpack = Object.assign(
       const main = berun.webpack.module.rule('main')
 
       if (main.oneOfs.has('compile')) {
-        main
-          .oneOf('compile')
-          .use('babel')
-          .options(berun.babel.toConfig())
+        main.oneOf('compile').use('babel').options(berun.babel.toConfig())
       }
 
       if (main.oneOfs.has('vendorcompilets')) {
@@ -157,6 +156,7 @@ const webpack: BerunWebpack = Object.assign(
     ruleMainCompile,
     ruleVendorCompileTs,
     ruleMainStatic,
+    ruleMainFonts,
     ruleMainSvg,
     pluginHtml,
     pluginInterpolateHtml,
@@ -171,7 +171,7 @@ const webpack: BerunWebpack = Object.assign(
     pluginManifest,
     pluginWorkbox,
     pluginForkTsChecker,
-    terser
+    terser,
   }
 )
 

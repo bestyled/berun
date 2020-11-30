@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-react-ts",
-  "version": "3.1.1",
+  "version": "3.2.3",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -28,12 +28,12 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@berun/preset-react": "^3.1.0",
-    "@berun/runner-babel": "^3.1.0",
-    "@berun/runner-prettier": "^3.1.0",
-    "@berun/runner-eslint": "^3.1.0",
-    "@berun/runner-webpack-css": "^3.1.0",
-    "@berun/scripts": "^3.1.0",
+    "@berun/preset-react": "^3.2.3",
+    "@berun/runner-babel": "^3.2.3",
+    "@berun/runner-prettier": "^3.2.3",
+    "@berun/runner-eslint": "^3.2.3",
+    "@berun/runner-webpack-css": "^3.2.3",
+    "@berun/scripts": "^3.2.3",
     "@types/jest": "^25.2.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0"

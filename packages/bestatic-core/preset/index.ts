@@ -11,6 +11,6 @@ export default {
     '@berun/runner-tsmain',
     '@berun/preset-bestatic',
     '@berun/runner-eslint',
-    '@berun/runner-prettier'
-  ]
+    '@berun/runner-prettier',
+  ],
 }

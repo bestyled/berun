@@ -126,6 +126,18 @@ export const ruleMainStatic = (berun: Berun, _) => {
     })
 }
 
+export const ruleMainFonts = (berun: Berun, _) => {
+  berun.webpack.module
+    .rule('main')
+    .oneOf('ttf')
+    .test(/^.+\.(ttf)$/)
+    .use('file')
+    .loader(require.resolve('file-loader'))
+    .options({
+      name: 'static/fonts/[name].[hash:8].[ext]',
+    })
+}
+
 export const ruleMainSvg = (berun: Berun, _) => {
   berun.webpack.module
     .rule('main')

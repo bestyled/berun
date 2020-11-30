@@ -1,6 +1,6 @@
 {
   "name": "@berun/sparky",
-  "version": "3.1.1",
+  "version": "3.2.3",
   "description": "Sparky task runner for @berun",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -49,7 +49,7 @@
     "realm-utils": "^1.0.9"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.1.0"
+    "@berun/dev-scripts": "^3.2.3"
   },
   "peerDependencies": {}
 }

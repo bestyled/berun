@@ -1,7 +1,7 @@
 {
   "name": "berun-mono-repository",
   "private": true,
-  "version": "3.1.0",
+  "version": "3.2.3",
   "description": "Configuration and scripts for front end builds, fixed",
   "repository": "bestyled/berun",
   "license": "Apache-2.0",

@@ -31,7 +31,7 @@ export const pluginHtml = (
       inject: true,
       template: fs.existsSync(berun.options.paths.appHtml)
         ? berun.options.paths.appHtml
-        : null
+        : null,
     },
     (ISPRODUCTION &&
       ({
@@ -45,8 +45,8 @@ export const pluginHtml = (
           keepClosingSlash: true,
           minifyJS: true,
           minifyCSS: true,
-          minifyURLs: true
-        }
+          minifyURLs: true,
+        },
       } as any)) ||
       {},
     options.html || {}
@@ -67,10 +67,7 @@ export const pluginHtml = (
     </html>`
   }
 
-  berun.webpack
-    .plugin('html')
-    .use(HtmlWebpackPlugin, [htmlPluginArgs])
-    .end()
+  berun.webpack.plugin('html').use(HtmlWebpackPlugin, [htmlPluginArgs]).end()
 }
 
 /**
@@ -98,12 +95,12 @@ export const pluginProgressBar = (
     format: [
       chalk[color](`[${name}] :bar`),
       chalk[color](':percent'),
-      chalk.gray(':elapseds :msg')
+      chalk.gray(':elapseds :msg'),
     ].join(' '),
     summary: false,
     customSummary: () => {
       /** noop */
-    }
+    },
   }
 
   berun.webpack.plugin('progress-bar').use(ProgressBarPlugin, [options])
@@ -139,7 +136,6 @@ export const pluginEnv = (berun: Berun, options) => {
 export const pluginPackageInfo = (berun: Berun, options) => {
   const packageJson = require(berun.options.paths.appPackageJson)
 
-
   const PACKAGE = {
     APP_PATH: JSON.stringify(berun.options.paths.appPath),
     WORKSPACE: JSON.stringify(berun.options.paths.workspace),
@@ -148,7 +144,7 @@ export const pluginPackageInfo = (berun: Berun, options) => {
     REMOTE_ORIGIN_URL: JSON.stringify(berun.options.paths.remoteOriginUrl),
     TITLE: JSON.stringify(packageJson.name || 'BeRun App'),
     VERSION: JSON.stringify(packageJson.version),
-    DIRECTORIES: JSON.stringify(packageJson.directories || {})
+    DIRECTORIES: JSON.stringify(packageJson.directories || {}),
   }
 
   const processEnv = Object.assign(
@@ -159,8 +155,8 @@ export const pluginPackageInfo = (berun: Berun, options) => {
 
   berun.webpack.plugin('env').use(DefinePlugin, [
     {
-      'process.env': processEnv
-    }
+      'process.env': processEnv,
+    },
   ])
 }
 
@@ -208,8 +204,8 @@ export const pluginManifest = (berun: Berun, _) => {
   berun.webpack.plugin('manifest').use(ManifestPlugin, [
     {
       fileName: 'asset-manifest.json',
-      publicPath: berun.options.paths.publicPath
-    }
+      publicPath: berun.options.paths.publicPath,
+    },
   ])
 }
 
@@ -229,9 +225,9 @@ export const pluginWorkbox = (berun: Berun, _) => {
         new RegExp('^/_'),
         // Exclude URLs containing a dot, as they're likely a resource in
         // public/ and not a SPA route
-        new RegExp('/[^/]+\\.[^/]+$')
-      ]
-    }
+        new RegExp('/[^/]+\\.[^/]+$'),
+      ],
+    },
   ])
 }
 
@@ -245,7 +241,7 @@ export const pluginForkTsChecker = (berun: Berun, _) => {
       {
         async: false,
         tsconfig: berun.options.paths.appTSConfig,
-        eslint: false
-      }
+        eslint: false,
+      },
     ])
 }

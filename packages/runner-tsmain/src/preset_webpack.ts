@@ -11,7 +11,7 @@ export default (berun: Berun, options: { node_modules?: string } = {}) => {
         !berun.webpack.has('target') ||
           berun.webpack.get('target') === 'web' ||
           berun.webpack.get('target') === 'webworker',
-        mainFields => mainFields.add('browser')
+        (mainFields) => mainFields.add('browser')
       )
       .add('module')
       .add('main')
@@ -31,10 +31,10 @@ export default (berun: Berun, options: { node_modules?: string } = {}) => {
         .add({
           and: [
             excludes,
-            filepath => {
+            (filepath) => {
               return /node_modules/.test(filepath) && !hasPkgTsMain(filepath)
-            }
-          ]
+            },
+          ],
         })
     }
   }
@@ -44,7 +44,7 @@ function hasPkgTsMain(filepath) {
   const pkgRoot = findRoot(filepath)
   const packageJsonPath = path.resolve(pkgRoot, 'package.json')
   const packageJsonText = fs.readFileSync(packageJsonPath, {
-    encoding: 'utf-8'
+    encoding: 'utf-8',
   })
   const packageJson = JSON.parse(packageJsonText)
   return {}.hasOwnProperty.call(packageJson, PROPKEY_TSMAIN)
