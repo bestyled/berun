@@ -9,7 +9,7 @@ require.resolve('@berun/runner-prettier')
 
 export default (berun: Berun) => {
 
-  const CONFIG= require(path.resolve(process.cwd(), './config/env.config'))
+  const { default: CONFIG }= require(path.resolve(process.cwd(), './config/env.config'))
   
   const ISPRODUCTION = process.env.NODE_ENV === 'production'
 
