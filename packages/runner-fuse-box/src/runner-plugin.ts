@@ -37,12 +37,9 @@ export const pluginPackageInfo = (berun: Berun, options) => {
     DIRECTORIES: packageJson.directories || {}
   }
 
-  const processEnv = Object.assign(
-    PACKAGE,
-    berun.options.env.raw,
-    options || {},
-    { FuseBox: true }
-  )
+  const processEnv = Object.assign(PACKAGE, berun.options.env, options || {}, {
+    FuseBox: true
+  })
 
   berun.fusebox.plugin('Env').use(EnvPlugin, [processEnv])
 }

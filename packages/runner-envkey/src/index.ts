@@ -8,24 +8,19 @@ interface Options extends LoaderOptions {
 export default function mainEntryEnvKey(berun: Berun, opts: Options = {}) {
   load(opts)
 
-  const raw = { ...berun.options.env.raw }
+  const result = { ...berun.options.env }
 
   for (const k of opts.permitted) {
-    raw[k] = process.env[k]
+    result[k] = process.env[k]
   }
 
   if (opts.define) {
     for (const k in opts.define) {
       if (Object.prototype.hasOwnProperty.call(opts.define, k)) {
-        raw[k] = opts.define[k]
+        result[k] = opts.define[k]
       }
     }
   }
 
-  berun.options.env = {
-    raw,
-    stringified: {
-      'process.env': JSON.stringify(raw)
-    }
-  }
+  berun.options.env = result
 }

@@ -21,6 +21,6 @@ test('Sets Webpack', () => {
   expect(process.env.TEST).toBe('it')
   expect(process.env.TEST_2).toBe('works!')
 
-  expect(berun.options.env.raw.TEST).toBe('it')
-  expect(berun.options.env.raw.TEST_2).toBe('works!')
+  expect(berun.options.env.TEST).toBe('it')
+  expect(berun.options.env.TEST_2).toBe('works!')
 })

@@ -1,6 +1,6 @@
 {
   "name": "@berun/preset-bestatic",
-  "version": "7.0.0",
+  "version": "7.0.2",
   "description": "TDX and MDX-based documentation server",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -43,15 +43,15 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.0.0",
+    "@berun/berun": "^7.0.2",
     "react-dev-utils": "^8.0.0",
     "resolve-cwd": "^2.0.0"
   },
   "devDependencies": {
-    "@berun/preset-fuse-box-react": "^7.0.0",
-    "@berun/preset-react": "^7.0.0",
-    "@berun/berun": "^7.0.0",
-    "@berun/dev-scripts": "^7.0.0"
+    "@berun/preset-fuse-box-react": "^7.0.2",
+    "@berun/preset-react": "^7.0.2",
+    "@berun/berun": "^7.0.2",
+    "@berun/dev-scripts": "^7.0.2"
   },
   "peerDependencies": {}
 }

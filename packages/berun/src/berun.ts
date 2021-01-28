@@ -1,8 +1,8 @@
+import * as path from 'path'
+import * as fs from 'fs'
 import * as deepmerge from 'deepmerge'
 import Sparky from '@berun/sparky'
 import * as spawn from 'cross-spawn'
-import * as path from 'path'
-import * as fs from 'fs'
 import { defaultOptions } from './options'
 import { isPlainObject, requireFromRoot } from './util'
 
@@ -13,25 +13,29 @@ export default class BeRun {
 
   sparky: Sparky
 
-  constructor(options?) {
+  constructor(options?: Record<string, any>) {
     if (!process.env.NODE_ENV) {
       process.env.NODE_ENV = 'production'
     }
 
-    this.options = this._mergeOptions(defaultOptions, options)
-    this._mergeOptions(process.env, defaultOptions.env)
+    this.options = this._mergeOptions(options, defaultOptions)
 
     const appDirectory = fs.realpathSync(process.cwd())
     process.env.NODE_PATH = (process.env.NODE_PATH || '')
       .split(path.delimiter)
-      .filter(folder => folder && !path.isAbsolute(folder))
-      .map(folder => path.resolve(appDirectory, folder))
+      .filter((folder) => folder && !path.isAbsolute(folder))
+      .map((folder) => path.resolve(appDirectory, folder))
       .join(path.delimiter)
 
     process.env.PUBLIC_URL =
       process.env.PUBLIC_URL || defaultOptions.paths.homepage
 
-    this.options.env = getClientEnvironment(defaultOptions.paths.publicUrl)
+    this.options.env = getClientEnvironment(
+      defaultOptions.paths.publicUrl,
+      this.options.env
+    )
+
+    this._mergeOptions(process.env, this.options.env)
 
     this.outputHandlers = new Map()
     this.sparky = new Sparky()
@@ -41,7 +45,7 @@ export default class BeRun {
     }
 
     const proxy = new Proxy(this, {
-      get(self, property: string) {
+      get(self: BeRun, property: string) {
         // eslint-disable-next-line no-nested-ternary
         return property in self
           ? self[property]
@@ -57,8 +61,9 @@ export default class BeRun {
   }
 
   regexFromExtensions(extensions: string[] = []) {
-    const exts = extensions.map(ext => ext.replace('.', '\\.'))
+    const exts = extensions.map((ext) => ext.replace('.', '\\.'))
 
+    // eslint-disable-next-line @rushstack/security/no-unsafe-regexp
     return new RegExp(
       extensions.length === 1
         ? String.raw`\.${exts[0]}$`
@@ -66,12 +71,12 @@ export default class BeRun {
     )
   }
 
-  register(name, handler) {
+  register(name: string, handler: Function) {
     this.outputHandlers.set(name, handler)
   }
 
   when(
-    condition,
+    condition: boolean,
     whenTruthy: (berun: this) => void,
     whenFalsy?: (berun: this) => void
   ) {
@@ -84,7 +89,7 @@ export default class BeRun {
     return this
   }
 
-  use(middleware, options?) {
+  use(middleware: any, options?: Record<string, any>) {
     if (typeof middleware === 'object' && 'default' in middleware) {
       middleware = middleware.default
     }
@@ -119,7 +124,7 @@ export default class BeRun {
 
       if (middleware.use) {
         if (Array.isArray(middleware.use)) {
-          middleware.use.map(usage => this.use(usage))
+          middleware.use.map((usage) => this.use(usage))
         } else {
           this.use(middleware.use)
         }
@@ -129,7 +134,7 @@ export default class BeRun {
     return this
   }
 
-  async useAsync(middleware, options?) {
+  async useAsync(middleware: any, options?: Record<string, any>) {
     if (typeof middleware === 'function') {
       // If middleware is a function, invoke it with self and the provided options
       await middleware(this, options)
@@ -160,7 +165,7 @@ export default class BeRun {
       if (middleware.use) {
         if (Array.isArray(middleware.use)) {
           await Promise.all(
-            middleware.use.map(async usage => {
+            middleware.use.map(async (usage) => {
               await this.use(usage)
             })
           )
@@ -171,7 +176,7 @@ export default class BeRun {
     }
   }
 
-  spawn(cmd, argv) {
+  spawn(cmd: string, argv: string[]) {
     const result = spawn.sync(cmd, argv, {
       stdio: ['ignore', 'pipe', 'pipe'],
       cwd: process.cwd()
@@ -199,8 +204,8 @@ export default class BeRun {
     }
   }
 
-  _mergeOptions(options, newOptions) {
-    Object.keys(newOptions).forEach(key => {
+  _mergeOptions(options: Record<string, any>, newOptions: Record<string, any>) {
+    Object.keys(newOptions).forEach((key) => {
       const value = newOptions[key]
 
       // Only merge values if there is an existing value to merge with,
@@ -227,32 +232,31 @@ export default class BeRun {
 const REACT_APP = /^REACT_APP_/i
 const BERUN_APP = /^BERUN_/i
 
-function getClientEnvironment(publicUrl) {
-  const raw = Object.keys(process.env)
-    .filter(key => REACT_APP.test(key) || BERUN_APP.test(key))
-    .reduce(
-      (env, key) => {
-        env[key] = process.env[key]
-        return env
-      },
-      {
-        // Useful for determining whether we’re running in production mode.
-        // Most importantly, it switches React into the correct mode.
-        NODE_ENV: process.env.NODE_ENV || 'development',
-        // Useful for resolving the correct path to static assets in `public`.
-        // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
-        // This should only be used as an escape hatch. Normally you would put
-        // images into the `src` and `import` them in code to get their paths.
-        PUBLIC_URL: publicUrl
-      }
-    )
-  // Stringify all values so we can feed into Webpack DefinePlugin
-  const stringified = {
-    'process.env': Object.keys(raw).reduce((env, key) => {
-      env[key] = JSON.stringify(raw[key])
-      return env
-    }, {})
+function getClientEnvironment(
+  publicUrl: string,
+  optionsEnv: Record<string, any>
+) {
+  const raw = {
+    ...Object.keys(process.env)
+      .filter((key) => REACT_APP.test(key) || BERUN_APP.test(key))
+      .reduce(
+        (env, key) => {
+          env[key] = process.env[key]
+          return env
+        },
+        {
+          // Useful for determining whether we’re running in production mode.
+          // Most importantly, it switches React into the correct mode.
+          NODE_ENV: process.env.NODE_ENV || 'development',
+          // Useful for resolving the correct path to static assets in `public`.
+          // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
+          // This should only be used as an escape hatch. Normally you would put
+          // images into the `src` and `import` them in code to get their paths.
+          PUBLIC_URL: publicUrl
+        }
+      ),
+    ...optionsEnv
   }
 
-  return { raw, stringified }
+  return raw
 }

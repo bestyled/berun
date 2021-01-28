@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-fuse-box-react",
-  "version": "7.0.0",
+  "version": "7.0.2",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -28,11 +28,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@berun/preset-fuse-box-react": "^7.0.0",
-    "@berun/runner-eslint": "^7.0.0",
-    "@berun/runner-prettier": "^7.0.0",
-    "@berun/runner-webpack-css": "^7.0.0",
-    "@berun/scripts": "^7.0.0"
+    "@berun/preset-fuse-box-react": "^7.0.2",
+    "@berun/runner-eslint": "^7.0.2",
+    "@berun/runner-prettier": "^7.0.2",
+    "@berun/runner-webpack-css": "^7.0.2",
+    "@berun/scripts": "^7.0.2"
   },
   "peerDependencies": {}
 }

@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-react-ts",
-  "version": "7.0.0",
+  "version": "7.0.2",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -28,12 +28,12 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@berun/preset-react": "^7.0.0",
-    "@berun/runner-babel": "^7.0.0",
-    "@berun/runner-prettier": "^7.0.0",
-    "@berun/runner-tslint": "^7.0.0",
-    "@berun/runner-webpack-css": "^7.0.0",
-    "@berun/scripts": "^7.0.0",
+    "@berun/preset-react": "^7.0.2",
+    "@berun/runner-babel": "^7.0.2",
+    "@berun/runner-prettier": "^7.0.2",
+    "@berun/runner-tslint": "^7.0.2",
+    "@berun/runner-webpack-css": "^7.0.2",
+    "@berun/scripts": "^7.0.2",
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0"

@@ -1,5 +1,5 @@
-import * as chalk from 'chalk'
 import * as fs from 'fs'
+import * as chalk from 'chalk'
 import * as CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 import * as InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin'
 import * as WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin'
@@ -67,10 +67,7 @@ export const pluginHtml = (
     </html>`
   }
 
-  berun.webpack
-    .plugin('html')
-    .use(HtmlWebpackPlugin, [htmlPluginArgs])
-    .end()
+  berun.webpack.plugin('html').use(HtmlWebpackPlugin, [htmlPluginArgs]).end()
 }
 
 /**
@@ -82,7 +79,7 @@ export const pluginHtml = (
 export const pluginInterpolateHtml = (berun: Berun, _) => {
   berun.webpack
     .plugin('interpolate-html')
-    .use(InterpolateHtmlPlugin, [HtmlWebpackPlugin, berun.options.env.raw])
+    .use(InterpolateHtmlPlugin, [HtmlWebpackPlugin, berun.options.env])
 }
 
 export const pluginProgressBar = (
@@ -124,10 +121,12 @@ export const pluginModuleNotFound = (berun: Berun, _) => {
  * if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
  */
 export const pluginEnv = (berun: Berun, options) => {
-  const processEnv = Object.assign(
-    berun.options.env.stringified['process.env'],
-    options || {}
-  )
+  const raw = berun.options.env
+  const stringified = Object.keys(raw).reduce((env, key) => {
+    env[key] = JSON.stringify(raw[key])
+    return env
+  }, {})
+  const processEnv = Object.assign(stringified, options || {})
 
   berun.webpack.plugin('env').use(DefinePlugin, [{ 'process.env': processEnv }])
 }
@@ -139,7 +138,6 @@ export const pluginEnv = (berun: Berun, options) => {
 export const pluginPackageInfo = (berun: Berun, options) => {
   const packageJson = require(berun.options.paths.appPackageJson)
 
-
   const PACKAGE = {
     APP_PATH: JSON.stringify(berun.options.paths.appPath),
     WORKSPACE: JSON.stringify(berun.options.paths.workspace),
@@ -150,11 +148,13 @@ export const pluginPackageInfo = (berun: Berun, options) => {
     DIRECTORIES: JSON.stringify(packageJson.directories || {})
   }
 
-  const processEnv = Object.assign(
-    PACKAGE,
-    berun.options.env.stringified['process.env'],
-    options || {}
-  )
+  const raw = berun.options.env
+  const stringified = Object.keys(raw).reduce((env, key) => {
+    env[key] = JSON.stringify(raw[key])
+    return env
+  }, {})
+
+  const processEnv = Object.assign(PACKAGE, stringified, options || {})
 
   berun.webpack.plugin('env').use(DefinePlugin, [
     {

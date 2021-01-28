@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-jest",
-  "version": "7.0.0",
+  "version": "7.0.2",
   "description": "BeRun runner to add react jest configuration",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -36,21 +36,21 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.0.0",
-    "@berun/fluent-jest": "^7.0.0",
-    "@berun/runner-web-polyfills": "^7.0.0",
+    "@berun/berun": "^7.0.2",
+    "@berun/fluent-jest": "^7.0.2",
+    "@berun/runner-web-polyfills": "^7.0.2",
     "babel-jest": "^25.5.1",
     "chalk": "^3.0.0",
     "jest": "^25.5.4",
     "jest-pnp-resolver": "^1.2.1"
   },
   "devDependencies": {
-    "@berun/fluent-babel": "^7.0.0",
-    "@berun/berun": "^7.0.0",
-    "@berun/dev-scripts": "^7.0.0",
-    "@berun/fluent": "^7.0.0",
-    "@berun/fluent-jest": "^7.0.0",
-    "@berun/fluent-webpack": "^7.0.0"
+    "@berun/fluent-babel": "^7.0.2",
+    "@berun/berun": "^7.0.2",
+    "@berun/dev-scripts": "^7.0.2",
+    "@berun/fluent": "^7.0.2",
+    "@berun/fluent-jest": "^7.0.2",
+    "@berun/fluent-webpack": "^7.0.2"
   },
   "peerDependencies": {}
 }
