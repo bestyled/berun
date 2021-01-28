@@ -68,14 +68,28 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true)
 }
 
-function getFile(file, extensions) {
-  for (let i = 0; i < extensions.length; i++) {
-    if (fs.existsSync(file + extensions[i])) {
-      return file + extensions[i]
+function getFile(files: Array<[string, string[]]>): string
+function getFile(file: string, extensions: string[]): string
+function getFile(fileOrFiles: string | Array<[string, string[]]>, extensions?: string[]): string {
+
+  let files: Array<[string, string[]]>
+
+  if (typeof fileOrFiles === 'string') {
+    files = [[fileOrFiles, extensions]]
+  } else {
+    files = fileOrFiles
+  }
+
+  for (let f = 0; f < files.length; f++) {
+    const [file, extensions] = files[f]
+    for (let i = 0; i < extensions.length; i++) {
+      if (fs.existsSync(file + extensions[i])) {
+        return file + extensions[i]
+      }
     }
   }
 
-  return file + extensions[0]
+  return files[0][0] + files[0][1][0]
 }
 const isMono = isMonoRoot(appDirectory)
 
@@ -124,7 +138,12 @@ const getRemoteOriginUrl = _ => {
 exported = {
   ...exported,
   ownPath: path.resolve(__dirname, '..'),
-  configEnv: getFile(resolveApp('config/env.config'), ['.js', '.ts', '.json']),
+  configEnv: getFile([
+    [resolveApp('.config/env.config'), ['.js', '.ts', '.json']],
+    [resolveApp('config/env.config'), ['.js', '.ts', '.json']],
+    [resolveApp('.config/.env'), ['']],
+    [resolveApp('.env'), ['']],
+  ]),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),

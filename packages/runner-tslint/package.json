@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tslint",
-  "version": "3.0.20",
+  "version": "7.0.0",
   "description": "BeRun runner to add react tslint configuration",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -31,18 +31,18 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.20",
-    "@berun/fluent-tslint": "^3.0.20",
+    "@berun/berun": "^7.0.0",
+    "@berun/fluent-tslint": "^7.0.0",
     "chalk": "^3.0.0",
     "tslint": "^6.1.1",
     "tslint-loader": "^3.5.4"
   },
   "devDependencies": {
-    "@berun/preset-react": "^3.0.20",
-    "@berun/berun": "^3.0.20",
-    "@berun/dev-scripts": "^3.0.23",
-    "@berun/fluent": "^3.0.20",
-    "@berun/fluent-tslint": "^3.0.20"
+    "@berun/preset-react": "^7.0.0",
+    "@berun/berun": "^7.0.0",
+    "@berun/dev-scripts": "^7.0.0",
+    "@berun/fluent": "^7.0.0",
+    "@berun/fluent-tslint": "^7.0.0"
   },
   "peerDependencies": {}
 }

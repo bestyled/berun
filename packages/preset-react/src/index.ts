@@ -12,7 +12,7 @@ export default (berun: Berun, options: { title?: string } = {}) => {
     .use(webpack)
     .use(jestRunner)
     .use(polyfills)
-    .when(ISPRODUCTION, b => b.use(webpack.terser))
+    .when(ISPRODUCTION, (b) => b.use(webpack.terser))
     .use(webpack.ruleParser)
     .use(webpack.ruleMjs)
     .use(webpack.ruleMainImage)
@@ -26,16 +26,16 @@ export default (berun: Berun, options: { title?: string } = {}) => {
     .use(webpack.pluginProgressBar)
     .use(webpack.pluginModuleNotFound)
     //  .when(ISPRODUCTION, b => b.use(webpack.pluginWorkbox))
-    .when(!ISPRODUCTION, b => b.use(webpack.pluginHot))
-    .when(!ISPRODUCTION, b => b.use(webpack.pluginCaseSensitivePaths))
-    .when(!ISPRODUCTION, b => b.use(webpack.pluginWatchMissingNodeModules))
+    .when(!ISPRODUCTION, (b) => b.use(webpack.pluginHot))
+    .when(!ISPRODUCTION, (b) => b.use(webpack.pluginCaseSensitivePaths))
+    .when(!ISPRODUCTION, (b) => b.use(webpack.pluginWatchMissingNodeModules))
     .use(webpack.pluginMoment)
     .use(webpack.pluginManifest)
     .when(
       ISPRODUCTION &&
         berun.options.paths.isTypeScript &&
         berun.options.tsChecker,
-      b => b.use(webpack.pluginForkTsChecker)
+      (b) => b.use(webpack.pluginForkTsChecker)
     )
 
   berun.sparky.task('start', webpack.taskDev)

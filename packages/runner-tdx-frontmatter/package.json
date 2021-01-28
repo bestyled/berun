@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-tdx-frontmatter",
-  "version": "3.0.20",
+  "version": "7.0.0",
   "description": "BeRun runner for using yaml frontmatter with TDX documentation applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -43,20 +43,20 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^3.0.20",
-    "@berun/fuse-box-plugin-babel": "^3.0.20",
+    "@berun/berun": "^7.0.0",
+    "@berun/fuse-box-plugin-babel": "^7.0.0",
     "@tinia/tdx-loader": "^0.4.2",
     "babel-loader": "^8.1.0",
     "fuse-box-plugin-tdx": "^0.3.6",
     "gray-matter": "^4.0.2"
   },
   "devDependencies": {
-    "@berun/preset-fuse-box-react": "^3.0.20",
-    "@berun/preset-react": "^3.0.20",
-    "@berun/runner-tdx": "^3.0.20",
-    "@berun/berun": "^3.0.20",
-    "@berun/dev-scripts": "^3.0.23",
-    "@berun/runner-mdx": "^3.0.20"
+    "@berun/preset-fuse-box-react": "^7.0.0",
+    "@berun/preset-react": "^7.0.0",
+    "@berun/runner-tdx": "^7.0.0",
+    "@berun/berun": "^7.0.0",
+    "@berun/dev-scripts": "^7.0.0",
+    "@berun/runner-mdx": "^7.0.0"
   },
   "peerDependencies": {}
 }

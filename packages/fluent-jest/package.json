@@ -1,6 +1,6 @@
 {
   "name": "@berun/fluent-jest",
-  "version": "3.0.20",
+  "version": "7.0.0",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -32,10 +32,10 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/fluent": "^3.0.20"
+    "@berun/fluent": "^7.0.0"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^3.0.23"
+    "@berun/dev-scripts": "^7.0.0"
   },
   "peerDependencies": {}
 }

@@ -29,18 +29,15 @@ export default (berun: Berun, options = {}) => {
   const opt = { configPath, ...options }
 
   berun
-    .when('webpack' in berun, berun => presetWebPack(berun, opt))
-    .when('fusebox' in berun, berun => presetFuseBox(berun, opt))
+    .when('webpack' in berun, (berun) => presetWebPack(berun, opt))
+    .when('fusebox' in berun, (berun) => presetFuseBox(berun, opt))
 }
 
 const presetWebPack = (berun: Berun, opt) => {
   berun.webpack.resolve.alias.set('@bestatic/config$', opt.configPath)
 
   if (process.env.NODE_ENV === 'production') {
-    berun.webpack
-      .entry('main')
-      .clear()
-      .add(berun.options.paths.appIndexJs)
+    berun.webpack.entry('main').clear().add(berun.options.paths.appIndexJs)
   } else {
     berun.webpack
       .entry('main')

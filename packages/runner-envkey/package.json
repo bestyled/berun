@@ -1,7 +1,7 @@
 {
-  "name": "@berun/runner-web-polyfills",
+  "name": "@berun/runner-envkey",
   "version": "7.0.0",
-  "description": "BeRun runner to add browser polyfills",
+  "description": "BeRun runner to import environment variables from [EnvKey](https://envkey.com)",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
   "types": "src/index.ts",
@@ -21,7 +21,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-web-polyfills",
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/runner-envkey",
   "scripts": {
     "coverage": "berun-dev test --coverage",
     "format": "berun-dev format",
@@ -31,17 +31,12 @@
   },
   "dependencies": {
     "@berun/berun": "^7.0.0",
-    "core-js": "^3.6.5",
-    "object-assign": "^4.1.1",
-    "promise": "^8.1.0",
-    "raf": "^3.4.1",
-    "whatwg-fetch": "^3.0.0"
+    "envkey": "1.2.8"
   },
   "devDependencies": {
     "@berun/fluent-webpack": "^7.0.0",
     "@berun/berun": "^7.0.0",
-    "@berun/dev-scripts": "^7.0.0",
-    "@berun/fluent": "^7.0.0"
+    "@berun/dev-scripts": "^7.0.0"
   },
   "peerDependencies": {}
 }

@@ -23,7 +23,7 @@ test('Gets Webpack module rules configuration', () => {
             '/Volumes/DATA/projects/berun/node_modules/eslint/lib/api.js',
           baseConfig: {
             extends: [
-              '/Volumes/DATA/projects/berun/node_modules/eslint-config-berun/src/.eslintrc.js'
+              '/Volumes/DATA/projects/berun/node_modules/@sync-labs/eslint-config/profile/node.js'
             ],
             settings: { react: { version: '999.999.999' } }
           },

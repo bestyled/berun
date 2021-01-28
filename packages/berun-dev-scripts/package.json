@@ -1,6 +1,6 @@
 {
   "name": "@berun/dev-scripts",
-  "version": "3.0.26",
+  "version": "7.0.0",
   "main": "./bin/berun-dev.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
@@ -33,30 +33,30 @@
     "find-pkg": "^2.0.0",
     "pirates": "^4.0.1",
     "sucrase": "^3.13.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
+    "@sync-labs/eslint-config": "^2.2.6",
     "cross-spawn": "^7.0.2",
-    "eslint": "^6.8.0",
-    "eslint-config-berun": "^6.0.20",
+    "eslint": "^7.18.0",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
-    "jest": "^25.4.0",
+    "jest": "^25.5.4",
     "precinct": "^6.2.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.2.1",
     "resolve": "^1.16.1",
     "rimraf": "^3.0.2",
     "terser": "^4.6.11",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
     "@types/fs-extra": "^8.1.0",
-    "@types/node": "^10.17.20"
+    "@types/node": "^10.17.51"
   },
   "peerDependencies": {}
 }
