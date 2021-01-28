@@ -14,7 +14,7 @@ const webpack = require('webpack')
 
 // MAIN MODULE EXPORTS, WITH DEFAULT FLOW
 
-export default async berun => {
+export default async (berun) => {
   try {
     await taskBuildPreFlightArgs(berun)
     await taskBuildPreFlightChecks(berun)
@@ -106,7 +106,7 @@ async function taskBuildCopyPublicAssets(berun) {
   if (await fs.pathExists(berun.options.paths.appPublic)) {
     await fs.copy(berun.options.paths.appPublic, berun.options.paths.appBuild, {
       dereference: true,
-      filter: file => file !== berun.options.paths.appHtml
+      filter: (file) => file !== berun.options.paths.appHtml
     })
   }
 }
@@ -125,9 +125,7 @@ async function taskBuildCompile(berun) {
         )} to learn more about each warning.`
       )
       console.log(
-        `${'To ignore, add '}${chalk.cyan(
-          '// eslint-disable-next-line'
-        )} (or ${chalk.cyan('// tslint:disable-next-line')} if TypeScript)` +
+        `${'To ignore, add '}${chalk.cyan('// eslint-disable-next-line')} ` +
           ` to the line before.\n`
       )
     } else {

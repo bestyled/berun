@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-webpack",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "Webpack runner for building React web applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
-    "@berun/babel-preset-react-app": "^7.0.2",
-    "@berun/berun": "^7.0.2",
-    "@berun/fluent-webpack": "^7.0.2",
+    "@berun/babel-preset-react-app": "^7.0.3",
+    "@berun/berun": "^7.0.3",
+    "@berun/fluent-webpack": "^7.0.3",
     "@svgr/webpack": "^5.5.0",
     "babel-loader": "^8.1.0",
     "bfj": "7.0.2",
@@ -65,10 +65,10 @@
     "workbox-webpack-plugin": "5.0.0"
   },
   "devDependencies": {
-    "@berun/runner-babel": "^7.0.2",
-    "@berun/runner-web-polyfills": "^7.0.2",
-    "@berun/berun": "^7.0.2",
-    "@berun/dev-scripts": "^7.0.2"
+    "@berun/runner-babel": "^7.0.3",
+    "@berun/runner-web-polyfills": "^7.0.3",
+    "@berun/berun": "^7.0.3",
+    "@berun/dev-scripts": "^7.0.3"
   },
   "peerDependencies": {}
 }

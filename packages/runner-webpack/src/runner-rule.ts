@@ -10,10 +10,7 @@ require.resolve('file-loader')
  *  Disable require.ensure as it's not a standard language feature.
  */
 export const ruleParser = (berun: Berun, _) => {
-  berun.webpack.module
-    .rule('parser')
-    .parser({ requireEnsure: false })
-    .end()
+  berun.webpack.module.rule('parser').parser({ requireEnsure: false }).end()
 }
 
 /**
@@ -72,9 +69,27 @@ export const ruleMainCompile = (berun: Berun, _) => {
     .rule('main')
     .oneOf('compile')
     .test(/\.(js|jsx|ts|tsx)$/)
-    .include.merge([berun.options.paths.workspace])
+    .include.merge([berun.options.paths.metaWorkspace])
     .end()
     .exclude.add(/node_modules/)
+    .end()
+    .use('babel')
+    .loader(require.resolve('babel-loader'))
+    .options({
+      /* placeholder */
+    })
+}
+
+/**
+ * Process vendor node_modules TS with Babel.
+ * The preset includes JSX, Flow, and some ESnext features.
+ */
+export const ruleVendorCompileTs = (berun: Berun, _) => {
+  berun.webpack.module
+    .rule('main')
+    .oneOf('vendorcompilets')
+    .test(/\.(jsx|ts|tsx)$/)
+    .include.merge([berun.options.paths.metaWorkspace])
     .end()
     .use('babel')
     .loader(require.resolve('babel-loader'))
@@ -108,6 +123,18 @@ export const ruleMainStatic = (berun: Berun, _) => {
     .loader(require.resolve('file-loader'))
     .options({
       name: 'static/media/[name].[hash:8].[ext]'
+    })
+}
+
+export const ruleMainFonts = (berun: Berun, _) => {
+  berun.webpack.module
+    .rule('main')
+    .oneOf('ttf')
+    .test(/^.+\.(ttf)$/)
+    .use('file')
+    .loader(require.resolve('file-loader'))
+    .options({
+      name: 'static/fonts/[name].[hash:8].[ext]'
     })
 }
 

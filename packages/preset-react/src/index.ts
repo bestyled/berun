@@ -1,5 +1,6 @@
 import babel from '@berun/runner-babel'
 import webpack from '@berun/runner-webpack'
+import tsmain from '@berun/runner-tsmain'
 import jestRunner from '@berun/runner-jest'
 import polyfills from '@berun/runner-web-polyfills'
 import Berun from '@berun/berun'
@@ -10,6 +11,7 @@ export default (berun: Berun, options: { title?: string } = {}) => {
   berun
     .use(babel)
     .use(webpack)
+    .use(tsmain)
     .use(jestRunner)
     .use(polyfills)
     .when(ISPRODUCTION, (b) => b.use(webpack.terser))
@@ -17,8 +19,10 @@ export default (berun: Berun, options: { title?: string } = {}) => {
     .use(webpack.ruleMjs)
     .use(webpack.ruleMainImage)
     .use(webpack.ruleMainCompile)
+    .use(webpack.ruleVendorCompileTs)
     // .use(webpack.ruleMainExternal)
     .use(webpack.ruleMainStatic)
+    .use(webpack.ruleMainFonts)
     .use(webpack.ruleMainSvg)
     .use(webpack.pluginHtml, { title: options.title })
     .use(webpack.pluginInterpolateHtml)

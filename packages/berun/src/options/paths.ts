@@ -26,11 +26,12 @@ let exported: {
   testsSetup: string
   useYarn: boolean
   workspace: string
+  metaWorkspace: string
   ownPath: string
 } = {} as any
 
 const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath)
 
 const envPublicUrl = process.env.PUBLIC_URL
 
@@ -40,7 +41,7 @@ const hasLocalConfig =
   fs.existsSync(resolveApp('config/berun.config.ts')) ||
   fs.existsSync(resolveApp('config/berun.config.js'))
 
-function ensureSlash(inputPath, needsSlash) {
+function ensureSlash(inputPath: string, needsSlash: boolean) {
   const hasSlash = inputPath.endsWith('/')
   if (hasSlash && !needsSlash) {
     return inputPath.substr(0, inputPath.length - 1)
@@ -51,7 +52,7 @@ function ensureSlash(inputPath, needsSlash) {
   return inputPath
 }
 
-const getPublicUrl = appPackageJson =>
+const getPublicUrl = (appPackageJson) =>
   // eslint-disable-next-line
   envPublicUrl || require(appPackageJson).homepage || "http://localhost:3000"
 
@@ -61,7 +62,7 @@ const getPublicUrl = appPackageJson =>
 // single-page apps that may serve index.html for nested URLs like /todos/42.
 // We can't use a relative path in HTML because we don't want to load something
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
-function getServedPath(appPackageJson) {
+function getServedPath(appPackageJson: string) {
   const publicUrl = getPublicUrl(appPackageJson)
   const servedUrl =
     envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/')
@@ -70,8 +71,10 @@ function getServedPath(appPackageJson) {
 
 function getFile(files: Array<[string, string[]]>): string
 function getFile(file: string, extensions: string[]): string
-function getFile(fileOrFiles: string | Array<[string, string[]]>, extensions?: string[]): string {
-
+function getFile(
+  fileOrFiles: string | Array<[string, string[]]>,
+  extensions?: string[]
+): string {
   let files: Array<[string, string[]]>
 
   if (typeof fileOrFiles === 'string') {
@@ -103,6 +106,7 @@ exported.srcPaths = [exported.appSrc]
 exported.appPath = resolveApp('.')
 exported.appPackageJson = resolveApp('package.json')
 exported.workspace = path.dirname(exported.appPackageJson)
+exported.metaWorkspace = path.dirname(exported.appPackageJson)
 exported.useYarn = fs.existsSync(path.join(exported.appPath, 'yarn.lock'))
 
 // if app is in a monorepo (lerna or yarn workspace), treat other packages in
@@ -111,10 +115,17 @@ const mono = findMonorepo(appDirectory)
 if (mono.isAppIncluded) {
   Array.prototype.push.apply(exported.srcPaths, mono.pkgs)
   exported.workspace = path.dirname(mono.monoPkgPath)
+
+  // if mono repo is itself in a meta repository, set the metaWorkspace variable
+  if (fs.existsSync(path.resolve(exported.workspace, '..', '.meta'))) {
+    exported.metaWorkspace = path.resolve(exported.workspace, '..')
+  } else {
+    exported.metaWorkspace = exported.workspace
+  }
 }
 exported.useYarn = exported.useYarn || mono.isYarnWs
 
-const getRemoteOriginUrl = _ => {
+const getRemoteOriginUrl = () => {
   const rootPath = path.resolve(
     exported.workspace || exported.appPath,
     '.git/config'
@@ -142,7 +153,7 @@ exported = {
     [resolveApp('.config/env.config'), ['.js', '.ts', '.json']],
     [resolveApp('config/env.config'), ['.js', '.ts', '.json']],
     [resolveApp('.config/.env'), ['']],
-    [resolveApp('.env'), ['']],
+    [resolveApp('.env'), ['']]
   ]),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
@@ -156,7 +167,7 @@ exported = {
   config: hasLocalConfig
     ? getFile(resolveApp('config/berun.config'), ['.ts', '.js'])
     : require.resolve('../../config/berun.config.default.ts'),
-  remoteOriginUrl: getRemoteOriginUrl(resolveApp('package.json'))
+  remoteOriginUrl: getRemoteOriginUrl()
 }
 
 if (exported.isTypeScript) {
@@ -194,5 +205,6 @@ export const {
   testsSetup,
   useYarn,
   workspace,
+  metaWorkspace,
   ownPath
 } = exported
