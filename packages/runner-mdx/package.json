@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-mdx",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "BeRun runner for building MDX documentation applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -42,8 +42,8 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.1.0",
-    "@berun/fluent-mdx": "^7.1.0",
+    "@berun/berun": "^7.3.2",
+    "@berun/fluent-mdx": "^7.3.2",
     "@mapbox/rehype-prism": "^0.3.1",
     "@mdx-js/loader": "^2.0.0-next.9",
     "babel-loader": "^8.2.2",
@@ -54,9 +54,9 @@
     "remark-unwrap-images": "^1.0.0"
   },
   "devDependencies": {
-    "@berun/preset-react": "^7.1.0",
-    "@berun/berun": "^7.1.0",
-    "@berun/dev-scripts": "^7.1.0"
+    "@berun/preset-react": "^7.3.2",
+    "@berun/berun": "^7.3.2",
+    "@berun/dev-scripts": "^7.3.2"
   },
   "peerDependencies": {}
 }

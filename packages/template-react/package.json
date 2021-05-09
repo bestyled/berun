@@ -1,6 +1,6 @@
 {
   "name": "@berun/template-react",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
@@ -26,13 +26,12 @@
     "test": "berun-scripts test --env=jsdom",
     "eject": "berun-scripts eject"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@berun/preset-react": "^7.1.0",
-    "@berun/runner-eslint": "^7.1.0",
-    "@berun/runner-prettier": "^7.1.0",
-    "@berun/runner-webpack-css": "^7.1.0",
-    "@berun/scripts": "^7.1.0"
+    "@berun/preset-react": "^7.3.2",
+    "@berun/runner-eslint": "^7.3.2",
+    "@berun/runner-prettier": "^7.3.2",
+    "@berun/runner-webpack-css": "^7.3.2",
+    "@berun/scripts": "^7.3.2"
   },
   "peerDependencies": {}
 }

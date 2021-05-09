@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-static",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Cross build engine preset for building static applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -38,8 +38,8 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.1.0",
-    "@berun/runner-webpack": "^7.1.0",
+    "@berun/berun": "^7.3.2",
+    "@berun/runner-webpack": "^7.3.2",
     "algoliasearch": "^3.35.1",
     "fs-extra": "^8.1.0",
     "rehype-docsearch": "^7.1.0",
@@ -48,9 +48,9 @@
     "webpack-sources": "^1.4.3"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^7.1.0",
-    "@berun/runner-babel": "^7.1.0",
-    "@berun/runner-web-polyfills": "^7.1.0"
+    "@berun/dev-scripts": "^7.3.2",
+    "@berun/runner-babel": "^7.3.2",
+    "@berun/runner-web-polyfills": "^7.3.2"
   },
   "peerDependencies": {}
 }

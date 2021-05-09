@@ -1,12 +1,12 @@
 {
   "name": "@berun/fix-dependencies",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "main": "./bin/fix.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
   ],
   "bin": {
-    "berun-dev": "./bin/fix.js"
+    "berun-dev": "bin/fix.js"
   },
   "keywords": [
     "jest",

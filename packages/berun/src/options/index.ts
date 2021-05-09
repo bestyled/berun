@@ -1,17 +1,16 @@
 import * as fs from 'fs'
 import * as paths from './paths'
 
-export const defaultOptions = {
-  paths,
-  env: fs.existsSync(paths.configEnv) ? getConfig(paths.configEnv) : {}
-}
-
-export default defaultOptions
-
 const NEWLINE = '\n'
 const RE_INI_KEY_VAL = /^\s*([\w.-]+)\s*=\s*(.*)?\s*$/
 const RE_NEWLINES = /\\n/g
 const NEWLINES_MATCH = /\n|\r|\r\n/
+
+// eslint-disable-next-line import/prefer-default-export
+export const defaultOptions = {
+  paths,
+  env: fs.existsSync(paths.configEnv) ? getConfig(paths.configEnv) : {}
+}
 
 function getConfig(filename: string) {
   let config: Record<string, any>

@@ -1,6 +1,6 @@
 {
   "name": "@berun/docs",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "author": {
     "name": "OffGrid Networks"
   },
@@ -33,14 +33,13 @@
     "build-docs": "berun-scripts build:algolia:static",
     "deploy": "gh-pages -d build-static"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@bestatic/core": "^7.1.0",
+    "@bestatic/core": "^7.3.2",
     "styled-components": "^5.3.0",
-    "@berun/preset-bestatic": "^7.1.0",
-    "@berun/preset-react": "^7.1.0",
-    "@berun/scripts": "^7.1.0",
-    "@bestatic/layout": "^7.1.0",
+    "@berun/preset-bestatic": "^7.3.2",
+    "@berun/preset-react": "^7.3.2",
+    "@berun/scripts": "^7.3.2",
+    "@bestatic/layout": "^7.3.2",
     "gh-pages": "^2.2.0"
   },
   "peerDependencies": {}

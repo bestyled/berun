@@ -1,12 +1,12 @@
 {
   "name": "@berun/dev-scripts",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "main": "./bin/berun-dev.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
   ],
   "bin": {
-    "berun-dev": "./bin/berun-dev.js"
+    "berun-dev": "bin/berun-dev.js"
   },
   "keywords": [
     "jest",

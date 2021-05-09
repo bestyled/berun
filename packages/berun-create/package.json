@@ -1,13 +1,13 @@
 {
   "name": "create-berun",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Create BeRun apps with fluent, single file, build configuration.",
   "main": "src/index.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
   ],
   "bin": {
-    "berun-create": "./src/index.js"
+    "berun-create": "src/index.js"
   },
   "bugs": {
     "url": "https://github.com/bestyled/berun/issues"

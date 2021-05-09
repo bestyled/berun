@@ -1,13 +1,13 @@
 {
   "name": "@berun/scripts",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Configuration and scripts for BeRun.",
   "main": "./bin/berun-scripts.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"
   ],
   "bin": {
-    "berun-scripts": "./bin/berun-scripts.js"
+    "berun-scripts": "bin/berun-scripts.js"
   },
   "browserslist": {
     "development": [
@@ -48,20 +48,20 @@
   "dependencies": {
     "pirates": "^4.0.1",
     "sucrase": "^3.18.1",
-    "@berun/berun": "^7.1.0",
+    "@berun/berun": "^7.3.2",
     "chalk": "^3.0.0",
     "cross-spawn": "^7.0.3",
     "fs-extra": "^8.1.0",
     "react-dev-utils": "^8.0.0"
   },
   "devDependencies": {
-    "@berun/berun": "^7.1.0",
+    "@berun/berun": "^7.3.2",
     "chalk": "^3.0.0",
     "cross-spawn": "^7.0.3",
     "fs-extra": "^8.1.0",
     "react-dev-utils": "^8.0.0",
     "sucrase": "^3.18.1",
-    "@berun/dev-scripts": "^7.1.0"
+    "@berun/dev-scripts": "^7.3.2"
   },
   "peerDependencies": {}
 }
