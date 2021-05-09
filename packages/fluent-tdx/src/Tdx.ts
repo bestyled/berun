@@ -1,22 +1,23 @@
+/* eslint-disable import/prefer-default-export */
 import { FluentMap } from '@berun/fluent'
 import { Plugin } from './Plugin'
 
 export class Tdx extends FluentMap<any> {
-  mdPlugins = new FluentMap(this)
+  remarkPlugins = new FluentMap(this)
 
-  hastPlugins = new FluentMap(this)
+  rehypePlugins = new FluentMap(this)
 
   constructor(parent: any = null, name = null) {
     super(parent, name)
     this.extendfluent()
   }
 
-  plugin(name: string, use?: string | Function, opts?: any): Plugin<this> {
-    if (!this.mdPlugins.has(name)) {
-      this.mdPlugins.set(name, new Plugin(this, name))
+  remark(name: string, use?: string | Function, opts?: any): Plugin<this> {
+    if (!this.remarkPlugins.has(name)) {
+      this.remarkPlugins.set(name, new Plugin(this, name))
     }
 
-    const plugin = this.mdPlugins.get(name)
+    const plugin = this.remarkPlugins.get(name)
 
     if (use) {
       plugin.use(use, opts)
@@ -27,12 +28,12 @@ export class Tdx extends FluentMap<any> {
     return plugin
   }
 
-  hast(name: string, use?: string | Function, opts?: any): Plugin<this> {
-    if (!this.hastPlugins.has(name)) {
-      this.hastPlugins.set(name, new Plugin(this, name))
+  rehype(name: string, use?: string | Function, opts?: any): Plugin<this> {
+    if (!this.rehypePlugins.has(name)) {
+      this.rehypePlugins.set(name, new Plugin(this, name))
     }
 
-    const plugin = this.hastPlugins.get(name)
+    const plugin = this.rehypePlugins.get(name)
 
     if (use) {
       plugin.use(use, opts)
@@ -45,10 +46,10 @@ export class Tdx extends FluentMap<any> {
 
   toConfig(omit: string[] = []) {
     return Object.assign(
-      super.toConfig(omit.concat(['mdPlugins', 'hastPlugins'])) || {},
+      super.toConfig(omit.concat(['remarkPlugins', 'rehypePlugins'])) || {},
       this.clean({
-        mdPlugins: this.mdPlugins.values().map(p => p.toConfig()),
-        hastPlugins: this.hastPlugins.values().map(p => p.toConfig())
+        remarkPlugins: this.remarkPlugins.values().map((p) => p.toConfig()),
+        rehypePlugins: this.rehypePlugins.values().map((p) => p.toConfig())
       })
     )
   }
@@ -58,18 +59,18 @@ export class Tdx extends FluentMap<any> {
       return this
     }
 
-    if (!omit.includes('mdPlugins') && 'mdPlugins' in obj) {
-      Object.keys(obj.mdPlugins).forEach(name =>
-        this.plugin(name).merge(obj.mdPlugins[name])
+    if (!omit.includes('remarkPlugins') && 'remarkPlugins' in obj) {
+      Object.keys(obj.remarkPlugins).forEach((name) =>
+        this.remark(name).merge(obj.remarkPlugins[name])
       )
     }
 
-    if (!omit.includes('hastPlugins') && 'hastPlugins' in obj) {
-      Object.keys(obj.bundle).forEach(name =>
-        this.hast(name).merge(obj.hastPlugins[name])
+    if (!omit.includes('rehypePlugins') && 'rehypePlugins' in obj) {
+      Object.keys(obj.rehypePlugins).forEach((name) =>
+        this.rehype(name).merge(obj.rehypePlugins[name])
       )
     }
 
-    return super.merge(obj, [...omit, 'mdPlugins', 'hastPlugins'])
+    return super.merge(obj, [...omit, 'remarkPlugins', 'rehypePlugins'])
   }
 }

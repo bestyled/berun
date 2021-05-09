@@ -27,7 +27,7 @@ export const BlogLayout = (props) => {
               <Layout.ScrollAnimation />
             </Layout.TopNav>
             <Cards>
-              {props.children}
+              <div id="mdx">{props.children}</div>
               <Pagination
                 filter={(route) => route.blog}
                 px={[0, 100, 160, 270]}

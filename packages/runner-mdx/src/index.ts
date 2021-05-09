@@ -8,17 +8,19 @@ export default (berun: Berun, options = {}) => {
 
   berun
     .use(Mdx)
-    .mdx.plugin(require('remark-emoji'))
+    .mdx.remark(require('./mdx-squash-single-para-wrapper'))
     .end()
-    .plugin(require('remark-images'))
+    .remark(require('remark-emoji'))
     .end()
-    .plugin(require('remark-autolink-headings'))
+    .remark(require('remark-images'))
     .end()
-    .plugin(require('remark-slug'))
+    .remark(require('remark-autolink-headings'))
     .end()
-    .plugin(require('remark-unwrap-images'))
+    .remark(require('remark-slug'))
     .end()
-    .hast(require('@mapbox/rehype-prism'))
+    .remark(require('remark-unwrap-images'))
+    .end()
+    .rehype(require('@mapbox/rehype-prism'))
     .end()
 
   berun.when('webpack' in berun, (berun) =>

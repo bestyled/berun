@@ -33,8 +33,8 @@ test('Gets Webpack additional/updated rules configuration', () => {
         loader:
           '/Volumes/DATA/projects/berun/node_modules/@mdx-js/loader/index.js',
         options: {
-          mdPlugins: expect.any(Array),
-          hastPlugins: expect.any(Array)
+          remarkPlugins: expect.any(Array),
+          rehypePlugins: expect.any(Array)
         }
       },
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
@@ -75,8 +75,8 @@ test('Gets Webpack production module rules configuration', () => {
         loader:
           '/Volumes/DATA/projects/berun/node_modules/@mdx-js/loader/index.js',
         options: {
-          mdPlugins: expect.any(Array),
-          hastPlugins: expect.any(Array)
+          remarkPlugins: expect.any(Array),
+          rehypePlugins: expect.any(Array)
         }
       },
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */

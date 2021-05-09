@@ -1,6 +1,6 @@
 {
   "name": "@bestatic/core",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "description": "React Static Documentation",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -46,16 +46,16 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@bestatic/components": "^7.3.5",
+    "@bestatic/components": "^7.3.6",
     "react-router-dom": "^5.2.0",
-    "@berun/preset-react": "^7.3.5",
-    "@berun/runner-tsmain": "^7.3.5",
-    "@berun/preset-bestatic": "^7.3.5",
-    "@berun/runner-eslint": "^7.3.5",
-    "@berun/runner-prettier": "^7.3.5"
+    "@berun/preset-react": "^7.3.6",
+    "@berun/runner-tsmain": "^7.3.6",
+    "@berun/preset-bestatic": "^7.3.6",
+    "@berun/runner-eslint": "^7.3.6",
+    "@berun/runner-prettier": "^7.3.6"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^7.3.5"
+    "@berun/dev-scripts": "^7.3.6"
   },
   "peerDependencies": {
     "react": "^17.0.2",

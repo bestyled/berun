@@ -1,6 +1,6 @@
 {
   "name": "@berun/preset-react",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "description": "BeRun preset for building React web applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -38,17 +38,17 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.3.5",
-    "@berun/runner-babel": "^7.3.5",
-    "@berun/runner-jest": "^7.3.5",
-    "@berun/runner-tsmain": "^7.3.5",
-    "@berun/runner-web-polyfills": "^7.3.5",
-    "@berun/runner-webpack": "^7.3.5"
+    "@berun/berun": "^7.3.6",
+    "@berun/runner-babel": "^7.3.6",
+    "@berun/runner-jest": "^7.3.6",
+    "@berun/runner-tsmain": "^7.3.6",
+    "@berun/runner-web-polyfills": "^7.3.6",
+    "@berun/runner-webpack": "^7.3.6"
   },
   "devDependencies": {
-    "@berun/fluent-babel": "^7.3.5",
-    "@berun/berun": "^7.3.5",
-    "@berun/dev-scripts": "^7.3.5"
+    "@berun/fluent-babel": "^7.3.6",
+    "@berun/berun": "^7.3.6",
+    "@berun/dev-scripts": "^7.3.6"
   },
   "peerDependencies": {}
 }

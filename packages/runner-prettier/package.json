@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-prettier",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "description": "BeRun runner to add prettier configuration",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -31,17 +31,17 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.3.5",
-    "@berun/fluent-prettier": "^7.3.5",
+    "@berun/berun": "^7.3.6",
+    "@berun/fluent-prettier": "^7.3.6",
     "chalk": "^3.0.0",
     "prettier": "^2.2.1"
   },
   "devDependencies": {
-    "@berun/berun": "^7.3.5",
-    "@berun/dev-scripts": "^7.3.5",
-    "@berun/fluent": "^7.3.5",
-    "@berun/fluent-eslint": "^7.3.5",
-    "@berun/preset-react": "^7.3.5"
+    "@berun/berun": "^7.3.6",
+    "@berun/dev-scripts": "^7.3.6",
+    "@berun/fluent": "^7.3.6",
+    "@berun/fluent-eslint": "^7.3.6",
+    "@berun/preset-react": "^7.3.6"
   },
   "peerDependencies": {}
 }

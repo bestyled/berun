@@ -12,7 +12,7 @@ export const ruleMainDocs = (berun: Berun, _) => {
   const main = berun.webpack.module.rule('main')
 
   if (!main.oneOfs.has('markdown')) {
-    throw new Error('Missing weboack mdx configuration')
+    throw new Error('Missing webpack mdx configuration')
   }
 
   main

@@ -42,8 +42,8 @@ function(berun) {
 
 ```js
 berun.mdx
-  .hast(name)
-  .plugin(name)
+  .rehype(name)
+  .remark(name)
 ```
 
 Moving to deeper points in the API will change the context of what you
@@ -60,28 +60,28 @@ low-level methods, please refer to their corresponding name in the
 ### Mdx Remark Plugins 
 
 ```js
-// Backed at berun.mdx.mdPlugins
-berun.mdx.plugin(name, useStringOrFunction?, options?) : FluentMap
+// Backed at berun.mdx.remarkPlugins
+berun.mdx.remark(name, useStringOrFunction?, options?) : FluentMap
 
 // Example
   berun.mdx
-    .plugin('remark-images')
+    .remark('remark-images')
     .end()
-    .plugin('remark-autolink-headings')
+    .remark('remark-autolink-headings')
     .end()
-    .plugin('remark-emoji', 'remark-emoji', { padSpaceAfter: true })
+    .remark('remark-emoji', 'remark-emoji', { padSpaceAfter: true })
     .end()
 ```
 
-### Mdx Hast Plugins 
+### Mdx Rehype (Hast) Plugins 
 
 ```js
-// Backed at berun.mdx.hastPlugins
-berun.mdx.hast(name, useStringOrFunction?, options?) : FluentMap
+// Backed at berun.mdx.rehypePlugins
+berun.mdx.rehype(name, useStringOrFunction?, options?) : FluentMap
 
 // Example
   berun.mdx
-    .hast('@mapbox/rehype-prism')
+    .rehype('@mapbox/rehype-prism')
     .end()
 ```
 
@@ -99,7 +99,7 @@ instance.
 // Example: Only add images plugin during production
 config
   .when(process.env.NODE_ENV === 'production', berun => {
-    berun.mdx.plugin('remark-images')
+    berun.mdx.remark('remark-images')
   });
 ```
 
@@ -109,7 +109,7 @@ You can inspect the generated Mdx config using `berun.mdx.toConfig()`.
 
 ``` js
 expect(berun.mdx.toConfig()).toEqual({
-    mdPlugins: [
+    remarkPlugins: [
       ['remark-images', { replaced: true }],
       'remark-autolink-headings',
       ['remark-emoji', { padSpaceAfter: true }]

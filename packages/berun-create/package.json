@@ -1,6 +1,6 @@
 {
   "name": "create-berun",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "description": "Create BeRun apps with fluent, single file, build configuration.",
   "main": "src/index.js",
   "authors": [

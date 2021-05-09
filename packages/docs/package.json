@@ -1,6 +1,6 @@
 {
   "name": "@berun/docs",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "author": {
     "name": "OffGrid Networks"
   },
@@ -34,12 +34,12 @@
     "deploy": "gh-pages -d build-static"
   },
   "devDependencies": {
-    "@bestatic/core": "^7.3.5",
+    "@bestatic/core": "^7.3.6",
     "styled-components": "^5.3.0",
-    "@berun/preset-bestatic": "^7.3.5",
-    "@berun/preset-react": "^7.3.5",
-    "@berun/scripts": "^7.3.5",
-    "@bestatic/layout": "^7.3.5",
+    "@berun/preset-bestatic": "^7.3.6",
+    "@berun/preset-react": "^7.3.6",
+    "@berun/scripts": "^7.3.6",
+    "@bestatic/layout": "^7.3.6",
     "gh-pages": "^2.2.0"
   },
   "peerDependencies": {}

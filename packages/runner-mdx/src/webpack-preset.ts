@@ -11,7 +11,6 @@ export default (berun: Berun, _) => {
   const _webpackOldToConfig = berun.webpack.toConfig
   berun.webpack.toConfig = (...rest) => {
     _webpackOldToConfig.call(berun.webpack, ...rest)
-
     const main = berun.webpack.module.rule('main')
 
     if (main.oneOfs.has('markdown')) {

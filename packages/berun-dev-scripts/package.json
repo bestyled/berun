@@ -1,6 +1,6 @@
 {
   "name": "@berun/dev-scripts",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "main": "./bin/berun-dev.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"

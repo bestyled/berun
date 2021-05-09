@@ -10,17 +10,17 @@ export default (berun: Berun, options = {}) => {
 
   berun
     .use(Tdx)
-    .tdx.plugin(require('remark-emoji'))
+    .tdx.remark(require('remark-emoji'))
     .end()
-    .plugin(require('remark-images'))
+    .remark(require('remark-images'))
     .end()
-    .plugin(require('remark-autolink-headings'))
+    .remark(require('remark-autolink-headings'))
     .end()
-    .plugin(require('remark-slug'))
+    .remark(require('remark-slug'))
     .end()
-    .plugin(require('remark-unwrap-images'))
+    .remark(require('remark-unwrap-images'))
     .end()
-    .hast(require('@mapbox/rehype-prism'))
+    .rehype(require('@mapbox/rehype-prism'))
     .end()
 
   berun.when('webpack' in berun, (berun) =>

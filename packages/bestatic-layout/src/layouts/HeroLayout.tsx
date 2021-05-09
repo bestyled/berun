@@ -112,7 +112,7 @@ export const HeroLayout = (props) => {
       {(sitedata) => (
         <StyleProvider title={sitedata.title} theme={sitedata.theme}>
           <HeroRoot logo={sitedata.herologo || sitedata.logo}>
-            {props.children}
+            <div id="mdx">{props.children}</div>
           </HeroRoot>
           <HeroFooter>
             {sitedata.footer ? (

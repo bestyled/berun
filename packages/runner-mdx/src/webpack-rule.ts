@@ -23,9 +23,7 @@ export const ruleMainDocs = (berun: Berun, _) => {
     .end()
     .use('babel')
     .loader(require.resolve('babel-loader'))
-    .options({
-      /* placeholder */
-    })
+    .options({})
     .end()
     .use('mdx')
     .loader(require.resolve('@mdx-js/loader'))

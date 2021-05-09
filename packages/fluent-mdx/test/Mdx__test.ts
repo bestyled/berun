@@ -21,7 +21,7 @@ class StringifyPluginClass {
   }
 }
 
-const StringifyPlugin = options => {
+const StringifyPlugin = (options) => {
   return new StringifyPluginClass(options)
 }
 
@@ -36,23 +36,23 @@ test('plugins with name', () => {
   const mdx = new MdxConfig()
 
   const instance = mdx
-    .plugin('remark-images')
+    .remark('remark-images')
     .end()
-    .plugin('remark-autolink-headings')
+    .remark('remark-autolink-headings')
     .end()
-    .plugin('remark-emoji', 'remark-emoji', { padSpaceAfter: true })
+    .remark('remark-emoji', 'remark-emoji', { padSpaceAfter: true })
     .end()
 
   expect(instance).toBe(mdx)
 
-  expect(mdx.mdPlugins.get('remark-autolink-headings').name).toBe(
+  expect(mdx.remarkPlugins.get('remark-autolink-headings').name).toBe(
     'remark-autolink-headings'
   )
-  expect(mdx.mdPlugins.get('remark-images').name).toBe('remark-images')
-  expect(mdx.mdPlugins.get('remark-emoji').name).toBe('remark-emoji')
-  expect(mdx.mdPlugins.get('remark-emoji').get('options').padSpaceAfter).toBe(
-    true
-  )
+  expect(mdx.remarkPlugins.get('remark-images').name).toBe('remark-images')
+  expect(mdx.remarkPlugins.get('remark-emoji').name).toBe('remark-emoji')
+  expect(
+    mdx.remarkPlugins.get('remark-emoji').get('options').padSpaceAfter
+  ).toBe(true)
 })
 
 test('toConfig empty', () => {
@@ -65,23 +65,23 @@ test('toConfig with fluent', () => {
   const mdx = new MdxConfig()
 
   const instance = mdx
-    .plugin('remark-images')
+    .remark('remark-images')
     .end()
-    .plugin('remark-autolink-headings')
+    .remark('remark-autolink-headings')
     .end()
-    .plugin('remark-emoji')
+    .remark('remark-emoji')
     .tap(() => ({ padSpaceAfter: true }))
     .end()
-    .hast('hast-plugin')
+    .rehype('hast-plugin')
     .end()
 
   const result = {
-    mdPlugins: [
+    remarkPlugins: [
       'remark-images',
       'remark-autolink-headings',
       ['remark-emoji', { padSpaceAfter: true }]
     ],
-    hastPlugins: ['hast-plugin']
+    rehypePlugins: ['hast-plugin']
   }
 
   expect(instance).toBe(mdx)
@@ -92,14 +92,14 @@ test('toConfig with merge', () => {
   const mdx = new MdxConfig()
 
   const config1 = {
-    mdPlugins: {
+    remarkPlugins: {
       images: { plugin: 'remark-images' },
       autolinkHeadings: { plugin: 'remark-autolink-headings' }
     }
   }
 
   const config2 = {
-    mdPlugins: {
+    remarkPlugins: {
       images: { plugin: 'remark-images', options: { replaced: true } },
       emoji: { plugin: 'remark-emoji', options: { padSpaceAfter: true } }
     }
@@ -108,7 +108,7 @@ test('toConfig with merge', () => {
   const instance = mdx.merge(config1).merge(config2)
 
   const result = {
-    mdPlugins: [
+    remarkPlugins: [
       ['remark-images', { replaced: true }],
       'remark-autolink-headings',
       ['remark-emoji', { padSpaceAfter: true }]
@@ -123,9 +123,9 @@ test('plugin with function', () => {
   const mdx = new MdxConfig()
 
   const plugin = mdx
-    .plugin('stringify', StringifyPlugin)
+    .remark('stringify', StringifyPlugin)
     .end()
-    .hast('stringify', StringifyPlugin, { spacer: true })
+    .rehype('stringify', StringifyPlugin, { spacer: true })
 
   expect(plugin.get('plugin')).toBe(StringifyPlugin)
   expect(plugin.get('options')).toEqual({ spacer: true })

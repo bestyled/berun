@@ -1,6 +1,6 @@
 {
   "name": "@berun/babel-preset-react-app",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "description": "Babel preset used by @berun",
   "main": "./dist/index.js",
   "ts:main": "./src/index.ts",

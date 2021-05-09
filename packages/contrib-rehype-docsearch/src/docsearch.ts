@@ -5,17 +5,17 @@ const unified = require('unified')
 const parseHTML = require('rehype-parse')
 
 const DEFAULT_OPTIONS = {
-  hastPlugins: [],
+  rehypePlugins: [],
   compilers: []
 }
 
 function createCompiler(options) {
-  const { hastPlugins } = options
+  const { rehypePlugins } = options
   const { compilers } = options
 
   const fn = unified().use(parseHTML, options)
 
-  hastPlugins.forEach(plugin => {
+  rehypePlugins.forEach((plugin) => {
     // handle [plugin, pluginOptions] syntax
     if (Array.isArray(plugin) && plugin.length > 1) {
       fn.use(plugin[0], plugin[1])
@@ -26,7 +26,7 @@ function createCompiler(options) {
 
   fn.use(hastToDocsearch, options)
 
-  compilers.forEach(compilerPlugin => {
+  compilers.forEach((compilerPlugin) => {
     fn.use(compilerPlugin, options)
   })
 
@@ -38,7 +38,7 @@ export const docsearchSync = function docsearchSync(
   options: {
     filepath?: string
     path?: string
-    hastPlugins?: any[]
+    rehypePlugins?: any[]
     compilers?: any[]
   } = {}
 ) {
@@ -66,7 +66,7 @@ export default async function docsearchAsync(
   options: {
     filepath?: string
     path?: string
-    hastPlugins?: any[]
+    rehypePlugins?: any[]
     compilers?: any[]
   } = {}
 ) {

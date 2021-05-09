@@ -36,21 +36,21 @@ test('plugins with name', () => {
   const tdx = new TdxConfig()
 
   const instance = tdx
-    .plugin('remark-images')
+    .remark('remark-images')
     .end()
-    .plugin('remark-autolink-headings')
+    .remark('remark-autolink-headings')
     .end()
-    .plugin('remark-emoji', 'remark-emoji', { padSpaceAfter: true })
+    .remark('remark-emoji', 'remark-emoji', { padSpaceAfter: true })
     .end()
 
   expect(instance).toBe(tdx)
 
-  expect(tdx.mdPlugins.get('remark-autolink-headings').name).toBe(
+  expect(tdx.remarkPlugins.get('remark-autolink-headings').name).toBe(
     'remark-autolink-headings'
   )
-  expect(tdx.mdPlugins.get('remark-images').name).toBe('remark-images')
-  expect(tdx.mdPlugins.get('remark-emoji').name).toBe('remark-emoji')
-  expect(tdx.mdPlugins.get('remark-emoji').get('options').padSpaceAfter).toBe(
+  expect(tdx.remarkPlugins.get('remark-images').name).toBe('remark-images')
+  expect(tdx.remarkPlugins.get('remark-emoji').name).toBe('remark-emoji')
+  expect(tdx.remarkPlugins.get('remark-emoji').get('options').padSpaceAfter).toBe(
     true
   )
 })
@@ -65,23 +65,23 @@ test('toConfig with fluent', () => {
   const tdx = new TdxConfig()
 
   const instance = tdx
-    .plugin('remark-images')
+    .remark('remark-images')
     .end()
-    .plugin('remark-autolink-headings')
+    .remark('remark-autolink-headings')
     .end()
-    .plugin('remark-emoji')
+    .remark('remark-emoji')
     .tap(() => ({ padSpaceAfter: true }))
     .end()
-    .hast('hast-plugin')
+    .rehype('hast-plugin')
     .end()
 
   const result = {
-    mdPlugins: [
+    remarkPlugins: [
       'remark-images',
       'remark-autolink-headings',
       ['remark-emoji', { padSpaceAfter: true }]
     ],
-    hastPlugins: ['hast-plugin']
+    rehypePlugins: ['hast-plugin']
   }
 
   expect(instance).toBe(tdx)
@@ -92,14 +92,14 @@ test('toConfig with merge', () => {
   const tdx = new TdxConfig()
 
   const config1 = {
-    mdPlugins: {
+    remarkPlugins: {
       images: { plugin: 'remark-images' },
       autolinkHeadings: { plugin: 'remark-autolink-headings' }
     }
   }
 
   const config2 = {
-    mdPlugins: {
+    remarkPlugins: {
       images: { plugin: 'remark-images', options: { replaced: true } },
       emoji: { plugin: 'remark-emoji', options: { padSpaceAfter: true } }
     }
@@ -108,7 +108,7 @@ test('toConfig with merge', () => {
   const instance = tdx.merge(config1).merge(config2)
 
   const result = {
-    mdPlugins: [
+    remarkPlugins: [
       ['remark-images', { replaced: true }],
       'remark-autolink-headings',
       ['remark-emoji', { padSpaceAfter: true }]
@@ -123,9 +123,9 @@ test('plugin with function', () => {
   const tdx = new TdxConfig()
 
   const plugin = tdx
-    .plugin('stringify', StringifyPlugin)
+    .remark('stringify', StringifyPlugin)
     .end()
-    .hast('stringify', StringifyPlugin, { spacer: true })
+    .rehype('stringify', StringifyPlugin, { spacer: true })
 
   expect(plugin.get('plugin')).toBe(StringifyPlugin)
   expect(plugin.get('options')).toEqual({ spacer: true })

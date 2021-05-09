@@ -4,7 +4,7 @@ import docsearchDefault, {
 
 export default function docsearch(src, options = {}) {
   return docsearchDefault(src, {
-    hastPlugins: [],
+    rehypePlugins: [],
     compilers: [],
     ...options
   })
@@ -12,7 +12,7 @@ export default function docsearch(src, options = {}) {
 
 export const docsearchSync = function docsearchSync(src, options = {}) {
   return docsearchSyncDefault(src, {
-    hastPlugins: [],
+    rehypePlugins: [],
     compilers: [],
     ...options
   })

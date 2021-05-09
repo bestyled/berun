@@ -35,7 +35,7 @@ export const DocsLayout = (props) => (
               <NavLinks {...props} />
             </Layout.Sidebar>
             <Layout.Main>
-              {props.children}
+              <div id="mdx">{props.children}</div>
               <Pagination {...props} />
             </Layout.Main>
           </Layout.MenuToggle>

@@ -1,6 +1,6 @@
 {
   "name": "@berun/preset-bestyled",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "description": "BeRun preset for building React BeStyled applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -39,14 +39,14 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.13.15",
-    "@berun/berun": "^7.3.5",
-    "@berun/preset-react": "^7.3.5",
-    "@berun/runner-envkey": "^7.3.5",
-    "@berun/runner-prettier": "^7.3.5",
-    "@berun/runner-webpack": "^7.3.5"
+    "@berun/berun": "^7.3.6",
+    "@berun/preset-react": "^7.3.6",
+    "@berun/runner-envkey": "^7.3.6",
+    "@berun/runner-prettier": "^7.3.6",
+    "@berun/runner-webpack": "^7.3.6"
   },
   "devDependencies": {
-    "@berun/fluent-babel": "^7.3.5"
+    "@berun/fluent-babel": "^7.3.6"
   },
   "peerDependencies": {}
 }
