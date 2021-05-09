@@ -7,7 +7,7 @@ import fixDependencies from '../lib/pack/step-fix-dependencies'
 process.env.BABEL_ENV = 'development'
 process.env.NODE_ENV = 'development'
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err
 })
 
@@ -20,12 +20,13 @@ async function run() {
   const { workspaces } = packageJSON
 
   if (!workspaces) {
-    throw new Error('Not a valid mono repository;  missing workspaces')
+    console.warn('Not a valid mono repository; skipping fix')
+    process.exit(0)
   }
 
-  const arrays = [].concat(...workspaces.map(pattern => glob.sync(pattern)))
+  const arrays = [].concat(...workspaces.map((pattern) => glob.sync(pattern)))
 
-  arrays.forEach(dir => {
+  arrays.forEach((dir) => {
     console.log(dir)
     try {
       /** Identify and transpile dependencies */
@@ -57,4 +58,4 @@ async function run() {
   process.exit()
 }
 
-run()
+void run()

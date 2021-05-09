@@ -17,9 +17,11 @@ import {
   FontWeightProps
 } from 'styled-system'
 
-type CssProps = { css?: any }
+interface CssProps {
+  css?: any
+}
 
-const css = props => props.css
+const css = (props) => props.css
 
 const HeroFooter = styled.div`
   position: absolute;
@@ -59,7 +61,7 @@ const HeroRoot = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image:url(/hero.jpg);
+  background-image: url(/hero.jpg);
   background-size: cover;
   align-items: center;
   justify-content: center;
@@ -69,7 +71,7 @@ const HeroRoot = styled.div`
     background-size: 96px 96px;
     display: block;
     height: 128px;
-    content:"";
+    content: '';
     animation: ${slideIn} 0.5s ease-out;
   }
 
@@ -78,11 +80,11 @@ const HeroRoot = styled.div`
     font-weight: 100;
   }
 
-  & p { 
+  & p {
     text-align: center;
   }
 
-  ${space} ${height} ${color} ${css} ${fontSize} 
+  ${space} ${height} ${color} ${css} ${fontSize}
 ` as StyledComponent<
   SpaceProps & HeightProps & ColorProps & FontSizeProps & CssProps,
   any
@@ -104,10 +106,10 @@ Hero.defaultProps = {
   color: 'textOnColor'
 }
 
-export const HeroLayout = props => {
+export const HeroLayout = (props) => {
   return (
     <WithSiteData>
-      {sitedata => (
+      {(sitedata) => (
         <StyleProvider title={sitedata.title} theme={sitedata.theme}>
           <HeroRoot logo={sitedata.herologo || sitedata.logo}>
             {props.children}
@@ -116,9 +118,7 @@ export const HeroLayout = props => {
             {sitedata.footer ? (
               <Link href={sitedata.footer.href}>{sitedata.footer.label}</Link>
             ) : (
-              <Link href="https://github.com/bestyled/bestatic">
-                BeStatic Docs
-              </Link>
+              <Link href="https://github.com/berun/berun">BeStatic Docs</Link>
             )}
           </HeroFooter>
           <ScrollTop />

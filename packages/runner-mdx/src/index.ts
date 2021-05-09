@@ -2,10 +2,8 @@ import { Mdx } from '@berun/fluent-mdx'
 import Berun from '@berun/berun'
 
 export default (berun: Berun, options = {}) => {
-  if (!('webpack' in berun) && !('fusebox' in berun)) {
-    throw new Error(
-      'MD, MDX files only supported by webpack or fuse-box runners currently'
-    )
+  if (!('webpack' in berun)) {
+    throw new Error('MD, MDX files only supported by webpack runners currently')
   }
 
   berun
@@ -23,11 +21,7 @@ export default (berun: Berun, options = {}) => {
     .hast(require('@mapbox/rehype-prism'))
     .end()
 
-  berun
-    .when('webpack' in berun, berun =>
-      berun.use(require('./webpack-preset').default, options)
-    )
-    .when('fusebox' in berun, berun =>
-      berun.use(require('./fuse-box-preset').default, options)
-    )
+  berun.when('webpack' in berun, (berun) =>
+    berun.use(require('./webpack-preset').default, options)
+  )
 }

@@ -29,7 +29,7 @@ export default function processPackage(options) {
     writeFileSync
   )
 
-  Object.keys(packages).forEach(key => {
+  Object.keys(packages).forEach((key) => {
     const json = { ...packages[key] }
     json.main = json.main.replace(/\.tsx?$/, '.js')
     delete json['ts:main']

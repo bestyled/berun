@@ -8,9 +8,9 @@ import StyleProvider from '@bestatic/styled'
 import { Layout, NavLinks, Pagination, ScrollTop } from '@bestatic/layout'
 import { WithSiteData } from '@bestatic/components'
 
-export const DocsLayout = props => (
+export const DocsLayout = (props) => (
   <WithSiteData>
-    {sitedata => (
+    {(sitedata) => (
       <StyleProvider title={sitedata.title} theme={sitedata.theme}>
         <Layout>
           <Layout.TopNav logo={sitedata.logo}>
@@ -22,7 +22,7 @@ export const DocsLayout = props => (
             >
               {sitedata.title}
             </Layout.TopNavItem>
-            {sitedata.topnav.map(items => (
+            {sitedata.topnav.map((items) => (
               <Layout.TopNavItem key={items.label} href={items.href}>
                 {items.label}
               </Layout.TopNavItem>

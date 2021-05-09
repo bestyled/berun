@@ -22,10 +22,10 @@ export {
   Use
 }
 
-export const Webpack = berun => {
+export const Webpack = (berun) => {
   berun.webpack = new Config()
 }
 
-export const WebpackDevServer = berun => {
+export const WebpackDevServer = (berun) => {
   berun.devserver = new DevServer()
 }

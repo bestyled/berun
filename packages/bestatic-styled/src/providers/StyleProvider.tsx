@@ -19,21 +19,21 @@ import {
 } from 'styled-system'
 import { Head } from '@bestatic/layout'
 import { useSiteData } from '@bestatic/components'
-import { MdScopeProvider } from './MdScopeProvider'
 
 import elements from '../elements'
 
 import { theme } from '../theme/default'
+import { MdScopeProvider } from './MdScopeProvider'
 
 import { GlobalPrismStyle } from './PrismStyleProvider'
 
 const GlobalStyle = createGlobalStyle`
 a {
   text-decoration: none;
-  color: ${props => themeGet('colors.primary', 'blue')(props)}
+  color: ${(props) => themeGet('colors.primary', 'blue')(props)}
 }
 
-${props => ({
+${(props) => ({
   body: {
     fontWeight: themeGet('fontWeights.normal', 400)(props),
     fontFamily: themeGet('fonts.body', 'system-ui,sans-serif')(props)
@@ -41,22 +41,22 @@ ${props => ({
 })}
 `
 
-type RootProps = {
+interface RootProps {
   css?: any
 }
 
-const HeadHelmet = props => {
+const HeadHelmet = (props) => {
   const weightsObj = themeGet('fontWeights', { normal: 400 })(props)
 
   const weights = Object.keys(weightsObj)
-    .map(k => weightsObj[k])
+    .map((k) => weightsObj[k])
     .join(',')
 
   const result = themeGet(
     'googleFonts',
     []
   )(props)
-    .map(i =>
+    .map((i) =>
       React.createElement('link', {
         id: i,
         key: i,
@@ -74,7 +74,7 @@ const Root = styled.div`
   ${fontFamily}
   ${lineHeight}
   ${color}
-  ${(props: RootProps) => props.css} 
+  ${(props: RootProps) => props.css}
 ` as StyledComponent<
   RootProps & FontSizeProps & FontFamilyProps & ColorProps & LineHeightProps,
   any

@@ -51,7 +51,7 @@ test('Gets Webpack resolve Node onfiguration', () => {
     ],
     modules: ['node_modules'],
     plugins: expect.arrayContaining([expect.any(Object)]),
-    mainFields: ['ts:main', 'module', 'main']
+    mainFields: ['ts:main', 'browser', 'module', 'main']
   })
 })
 
@@ -60,29 +60,27 @@ test('Gets Webpack compile rule', () => {
   berun.use(presetTSMain)
   berun.webpack.toConfig() // run once to set babel config etc.
 
-  expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('compile')
-      .toConfig()
-  ).toEqual({
-    test: /\.(js|jsx|ts|tsx)$/,
-    include: ['/Volumes/DATA/projects/berun'],
-    exclude: [/node_modules/],
-    use: [
-      /* berun.webpack.module.rule('main').oneOf('compile').use('babel') */
-      {
-        loader:
-          '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
-        options: {
-          babelrc: false,
-          cacheDirectory: true,
-          cacheCompression: false,
-          compact: false,
-          highlightCode: true,
-          presets: ['@berun/babel-preset-react-app']
+  expect(berun.webpack.module.rule('main').oneOf('compile').toConfig()).toEqual(
+    {
+      test: /\.(js|jsx|ts|tsx)$/,
+      include: ['/Volumes/DATA/projects/berun'],
+      exclude: [/node_modules/],
+      use: [
+        /* berun.webpack.module.rule('main').oneOf('compile').use('babel') */
+        {
+          loader:
+            '/Volumes/DATA/projects/berun/node_modules/babel-loader/lib/index.js',
+          options: {
+            babelrc: false,
+            cacheDirectory: true,
+            cacheCompression: false,
+            compact: false,
+            highlightCode: true,
+            presets: ['@berun/babel-preset-react-app'],
+            sourceType: 'unambiguous'
+          }
         }
-      }
-    ]
-  })
+      ]
+    }
+  )
 })

@@ -11,7 +11,7 @@ import {
   border
 } from 'styled-system'
 
-export const themed = key => props => props.theme[key]
+export const themed = (key) => (props) => props.theme[key]
 
 const BlockLink = styled.a`
   display: block;
@@ -19,7 +19,7 @@ const BlockLink = styled.a`
   color: inherit;
 `
 
-const heading = Tag => ({ id, children, ...props }) => (
+const heading = (Tag) => ({ id, children, ...props }) => (
   <Tag id={id} {...props}>
     <BlockLink href={`#${id}`}>{children}</BlockLink>
   </Tag>

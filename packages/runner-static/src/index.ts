@@ -10,15 +10,12 @@ function getPreset(berun) {
   if ('webpack' in berun) {
     return require('./preset-webpack')
   }
-  if ('fusebox' in berun) {
-    return require('./preset-fuse-box')
-  }
   throw new Error(
-    'Static preset only supports webpack and fusebox currently;  cannot find either of these in berun use chain'
+    'Static preset only supports webpack currently;  cannot find either of these in berun use chain'
   )
 }
 
-const task = async berun => {
+const task = async (berun) => {
   const { presetTemp, presetStatic } = getPreset(berun)
 
   berun.sparkyContext.opts = {}
@@ -28,7 +25,7 @@ const task = async berun => {
   await taskStaticPass2(berun)
 }
 
-const taskDev = berun => {
+const taskDev = (berun) => {
   const { presetDev } = getPreset(berun)
   berun.sparkyContext.opts = {}
   berun.use(presetDev, berun.sparkyContext.opts)

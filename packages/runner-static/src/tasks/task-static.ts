@@ -5,11 +5,8 @@ function getRunner(berun) {
   if ('webpack' in berun) {
     return require('@berun/runner-webpack').default
   }
-  if ('fusebox' in berun) {
-    return require('@berun/runner-fuse-box').default
-  }
   throw new Error(
-    'Static preset only supports webpack and fusebox currently;  cannot find either of these in berun use chain'
+    'Static preset only supports webpack currently;  cannot find either of these in berun use chain'
   )
 }
 
@@ -17,7 +14,7 @@ function getRunner(berun) {
  * Sparky Task to run first of two-pass web-pack build
  * to create static react website
  */
-export const taskStaticPass1 = async berun => {
+export const taskStaticPass1 = async (berun) => {
   const {
     taskBuildPreFlightClean,
     taskBuildCopyPublicAssets,
@@ -36,7 +33,7 @@ export const taskStaticPass1 = async berun => {
  * Sparky Task to run second of two-pass web-pack build
  * to create static react website
  */
-export const taskStaticPass2 = async berun => {
+export const taskStaticPass2 = async (berun) => {
   const {
     taskBuildCopyPublicAssets,
     taskBuildCompile,
@@ -63,12 +60,12 @@ async function taskStaticPreFlightArgs(berun) {
   berun.sparkyContext.isSPA = false
 }
 
-const taskStaticRemoveJS = async berun => {
+const taskStaticRemoveJS = async (berun) => {
   const bundle = path.join(berun.options.paths.appBuild, './main.js')
   await fs.remove(bundle)
 }
 
-const taskDev = berun => {
+const taskDev = (berun) => {
   const runner = getRunner(berun)
   return runner.taskDev(berun)
 }

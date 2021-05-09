@@ -7,7 +7,7 @@ import * as React from 'react'
 import LiveCode from './PreCodeLiveCode'
 
 // Changes .jsx fenced code blocks to LiveCode
-export const withLiveCode = Component => ({
+export const withLiveCode = (Component) => ({
   children,
   className = '',
   ...props
@@ -29,6 +29,6 @@ export const withLiveCode = Component => ({
 export const code = withLiveCode('pre')
 
 export const scope = {
-  pre: props => props.children,
+  pre: (props) => props.children,
   code
 }

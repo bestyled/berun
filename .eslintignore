@@ -51,9 +51,6 @@ package-lock.json
 # macOS
 .DS_Store
 
-# Build caches
-.fusebox
-
 # Secrets
 .env-secrets.json
 

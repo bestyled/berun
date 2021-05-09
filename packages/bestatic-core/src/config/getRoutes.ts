@@ -6,6 +6,8 @@ export async function getRoutes(bestatic, config) {
   return routes
 }
 
+export default getRoutes
+
 function cleanRoute(route) {
   const result = {
     key: route.id || route.path,
@@ -30,7 +32,7 @@ function cleanRoute(route) {
 }
 
 function flatten(routes, accum = []) {
-  routes.forEach(route => {
+  routes.forEach((route) => {
     accum.push(route)
 
     if (route.children) {

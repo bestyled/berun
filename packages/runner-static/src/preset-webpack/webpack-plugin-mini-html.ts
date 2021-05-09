@@ -44,11 +44,11 @@ class HTMLMiniPlugin {
   }
 }
 
-const getFiles = entrypoints => {
+const getFiles = (entrypoints) => {
   const files: any = {}
 
-  entrypoints.forEach(entry => {
-    entry.getFiles().forEach(file => {
+  entrypoints.forEach((entry) => {
+    entry.getFiles().forEach((file) => {
       const extension = path.extname(file).replace(/\./, '')
 
       if (!files[extension]) {
@@ -86,11 +86,11 @@ const defaultTemplate = ({
 
 const generateCSSReferences = (files = [], publicPath = '') =>
   files
-    .map(file => `<link href='${publicPath}${file}' rel='stylesheet'>`)
+    .map((file) => `<link href='${publicPath}${file}' rel='stylesheet'>`)
     .join('')
 
 const generateJSReferences = (files = [], publicPath = '') =>
-  files.map(file => `<script src='${publicPath}${file}'></script>`).join('')
+  files.map((file) => `<script src='${publicPath}${file}'></script>`).join('')
 
 export default HTMLMiniPlugin
 export const template = defaultTemplate

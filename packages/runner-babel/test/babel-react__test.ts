@@ -8,6 +8,7 @@ test('Gets Babel core configuration', () => {
     babelrc: false,
     presets: ['@berun/babel-preset-react-app'],
     highlightCode: true,
-    compact: false
+    compact: false,
+    sourceType: 'unambiguous'
   })
 })

@@ -6,7 +6,6 @@
  * This configuration is provided to all BeStatic components via the <SiteData> component
  */
 export async function createBeStaticContext(config: { getSiteData: Function }) {
-
   const BESTATIC_ENV = process.env.BESTATIC_ENV || process.env.NODE_ENV
 
   let bestatic = {
@@ -30,3 +29,5 @@ export async function createBeStaticContext(config: { getSiteData: Function }) {
 
   return bestatic
 }
+
+export default createBeStaticContext

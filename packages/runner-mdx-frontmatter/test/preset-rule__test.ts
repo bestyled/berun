@@ -4,16 +4,11 @@ import { create as berunJs } from '@berun/berun'
 import presetMdxFrontMatter from '../src'
 
 test('Gets Webpack additional/updated rules configuration', () => {
-  const berun = berunJs(presetReact)
-    .use(presetMdx)
-    .use(presetMdxFrontMatter)
+  const berun = berunJs(presetReact).use(presetMdx).use(presetMdxFrontMatter)
   berun.webpack.toConfig() // run once to set babel, jest config etc.
 
   expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('markdown')
-      .toConfig()
+    berun.webpack.module.rule('main').oneOf('markdown').toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
@@ -29,7 +24,8 @@ test('Gets Webpack additional/updated rules configuration', () => {
           cacheCompression: false,
           compact: false,
           highlightCode: true,
-          presets: ['@berun/babel-preset-react-app']
+          presets: ['@berun/babel-preset-react-app'],
+          sourceType: 'unambiguous'
         }
       },
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
@@ -51,15 +47,10 @@ test('Gets Webpack additional/updated rules configuration', () => {
 
 test('Gets Webpack production module rules configuration', () => {
   process.env.NODE_ENV = 'production'
-  const berun = berunJs(presetReact)
-    .use(presetMdx)
-    .use(presetMdxFrontMatter)
+  const berun = berunJs(presetReact).use(presetMdx).use(presetMdxFrontMatter)
   berun.webpack.toConfig() // run once to set babel, jest config etc.
   expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('markdown')
-      .toConfig()
+    berun.webpack.module.rule('main').oneOf('markdown').toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-mdx-frontmatter'],
@@ -75,7 +66,8 @@ test('Gets Webpack production module rules configuration', () => {
           cacheCompression: true,
           compact: true,
           highlightCode: true,
-          presets: ['@berun/babel-preset-react-app']
+          presets: ['@berun/babel-preset-react-app'],
+          sourceType: 'unambiguous'
         }
       },
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */

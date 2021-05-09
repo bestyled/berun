@@ -30,7 +30,13 @@ export const ruleMainDocs = (berun: Berun, _) => {
     .use('mdx')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
-      /* placeholder */
+      renderer: `
+import * as React from 'react'
+import {mdx as mdxSource} from '@mdx-js/react'
+import { useSiteData as useEnv } from '@bestatic/components'
+`
     })
     .end()
 }
+
+export default ruleMainDocs

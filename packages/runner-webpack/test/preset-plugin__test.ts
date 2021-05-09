@@ -5,7 +5,7 @@ test('Gets Webpack plugin configuration', () => {
   const berun = berunJs(presetReact)
 
   expect(
-    berun.webpack.plugins.values().map(plugin => {
+    berun.webpack.plugins.values().map((plugin) => {
       const c = plugin.toConfig()
       return {
         name: c.__pluginName,
@@ -43,6 +43,7 @@ test('Gets Webpack plugin configuration', () => {
           'process.env': {
             NODE_ENV: '"test"',
             APP_PATH: '"/Volumes/DATA/projects/berun/packages/runner-webpack"',
+            META_WORKSPACE: '"/Volumes/DATA/projects/berun"',
             DIRECTORIES: '{}',
             PUBLIC_URL: '""',
             REMOTE_ORIGIN_URL: '"git@github.com:bestyled/berun.git"',
@@ -115,7 +116,7 @@ test('Gets Webpack production plugin configuration', () => {
   const berun = berunJs(presetReact)
 
   expect(
-    berun.webpack.plugins.values().map(plugin => {
+    berun.webpack.plugins.values().map((plugin) => {
       const c = plugin.toConfig()
       return {
         name: c.__pluginName,
@@ -165,6 +166,7 @@ test('Gets Webpack production plugin configuration', () => {
           'process.env': {
             NODE_ENV: '"production"',
             APP_PATH: '"/Volumes/DATA/projects/berun/packages/runner-webpack"',
+            META_WORKSPACE: '"/Volumes/DATA/projects/berun"',
             DIRECTORIES: '{}',
             PUBLIC_URL: '""',
             REMOTE_ORIGIN_URL: '"git@github.com:bestyled/berun.git"',

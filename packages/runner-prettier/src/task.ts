@@ -3,7 +3,7 @@ import * as chalk from 'chalk'
 
 import 'prettier'
 
-export default berun => {
+export default (berun) => {
   const argv = berun.prettier.toArgs()
 
   const cmd = path.join(

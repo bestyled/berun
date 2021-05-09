@@ -5,7 +5,7 @@ import { themeGet } from 'styled-system'
 export const GlobalPrismStyle = createGlobalStyle`
 a {
   text-decoration: none;
-  color: ${props => themeGet('colors.primary', 'blue')(props)}
+  color: ${(props) => themeGet('colors.primary', 'blue')(props)}
 }
 
 /**
@@ -16,7 +16,7 @@ a {
 code[class*="language-"],
 pre[class*="language-"] {
     color: inherit;
-    font-family: ${props =>
+    font-family: ${(props) =>
       themeGet(
         'fonts.mono',
         '"Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace'
@@ -41,12 +41,12 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-    background: ${props => themeGet('colors.neutral', 'blue')(props)};
+    background: ${(props) => themeGet('colors.neutral', 'blue')(props)};
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
-    background: ${props => themeGet('colors.neutral', 'blue')(props)};
+    background: ${(props) => themeGet('colors.neutral', 'blue')(props)};
 }
 
 /* Code blocks */
@@ -55,7 +55,7 @@ pre[class*="language-"] {
     margin: .5em 0;
     overflow: auto;
     border-radius: 2px;
-    background-color: ${props =>
+    background-color: ${(props) =>
       themeGet('colors.tertiaryBackground', 'white')(props)};
 }
 
@@ -75,7 +75,7 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: ${props => themeGet('colors.neutral', 'grey')(props)};
+    color: ${(props) => themeGet('colors.neutral', 'grey')(props)};
     font-style: italic;
 }
 
@@ -85,7 +85,7 @@ pre[class*="language-"] {
 
 .token.string,
 .token.attr-value {
-    color:  ${props => themeGet('colors.complement', 'black')(props)};
+    color:  ${(props) => themeGet('colors.complement', 'black')(props)};
 }
 .token.punctuation,
 .token.operator {
@@ -102,20 +102,20 @@ pre[class*="language-"] {
 .token.property,
 .token.regex,
 .token.inserted {
-    color: ${props => themeGet('colors.secondary', 'black')(props)};
+    color: ${(props) => themeGet('colors.secondary', 'black')(props)};
 }
 
 .token.atrule,
 .token.keyword,
 .token.attr-name,
 .language-autohotkey .token.selector {
-    color: ${props => themeGet('colors.secondary', 'black')(props)};
+    color: ${(props) => themeGet('colors.secondary', 'black')(props)};
 }
 
 .token.function,
 .token.deleted,
 .language-autohotkey .token.tag {
-    color: ${props => themeGet('colors.primary', 'black')(props)};
+    color: ${(props) => themeGet('colors.primary', 'black')(props)};
 }
 
 .token.tag,

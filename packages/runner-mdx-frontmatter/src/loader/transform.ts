@@ -1,6 +1,6 @@
-import matter from 'gray-matter'
+const matter = require('gray-matter')
 
-export default async function(src) {
+export default async function (src) {
   const { content, data } = matter(src)
 
   const { Layout, Root, ...meta } = data
@@ -26,7 +26,7 @@ function stringify(objFromJson) {
     return JSON.stringify(objFromJson)
   }
   const props = Object.keys(objFromJson)
-    .map(key => `${key}:${stringify(objFromJson[key])}`)
+    .map((key) => `${key}:${stringify(objFromJson[key])}`)
     .join(',')
   return `{${props}}`
 }

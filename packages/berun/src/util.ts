@@ -10,7 +10,7 @@ export const requireFromRoot = (moduleId, root) => {
     moduleId
   ]
 
-  const result = paths.find(p => {
+  const result = paths.find((p) => {
     try {
       require.resolve(p)
       return true
@@ -23,7 +23,7 @@ export const requireFromRoot = (moduleId, root) => {
   return require(result)
 }
 
-export const isPlainObject = x => {
+export const isPlainObject = (x) => {
   if (Object.prototype.toString.call(x) === '[object Object]') {
     const prototype = Object.getPrototypeOf(x)
 

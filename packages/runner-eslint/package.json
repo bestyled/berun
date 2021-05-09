@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-eslint",
-  "version": "7.0.3",
+  "version": "7.3.1",
   "description": "BeRun runner to add react eslint configuration",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -31,21 +31,21 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.0.3",
-    "@berun/fluent-eslint": "^7.0.3",
+    "@berun/berun": "^7.1.0",
+    "@berun/fluent-eslint": "^7.1.0",
     "@sync-labs/eslint-config": "^2.2.6",
-    "eslint": "^7.18.0",
+    "eslint": "^7.26.0",
     "eslint-loader": "^3.0.4",
     "react-dev-utils": "8.0.0"
   },
   "devDependencies": {
-    "@berun/preset-react": "^7.0.3",
-    "@berun/berun": "^7.0.3",
-    "@berun/dev-scripts": "^7.0.3",
-    "@berun/fluent": "^7.0.3",
-    "@berun/fluent-babel": "^7.0.3",
-    "@berun/fluent-eslint": "^7.0.3",
-    "@berun/fluent-webpack": "^7.0.3"
+    "@berun/preset-react": "^7.1.0",
+    "@berun/berun": "^7.1.0",
+    "@berun/dev-scripts": "^7.1.0",
+    "@berun/fluent": "^7.1.0",
+    "@berun/fluent-babel": "^7.1.0",
+    "@berun/fluent-eslint": "^7.1.0",
+    "@berun/fluent-webpack": "^7.1.0"
   },
   "peerDependencies": {}
 }

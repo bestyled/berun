@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState } from 'react'
 
-type ToggleContextType = {
+interface ToggleContextType {
   open?: boolean
   update?: Function
   toggleMenu?: () => any
@@ -25,7 +25,7 @@ export function ToggleProvider(props) {
     setOpen(false)
   }
   function toggleMenu() {
-    setOpen(open => !open)
+    setOpen((open) => !open)
   }
 
   const providerValue = useMemo(

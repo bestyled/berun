@@ -102,7 +102,7 @@ export const presetStatic = async (
 
   let i = 0
 
-  pages.forEach(page => {
+  pages.forEach((page) => {
     berun.webpack.plugin(`html${i++}`).use(PluginMiniHTML, [
       {
         filename: `${page.path}/index.html`,

@@ -7,8 +7,8 @@ import { getLocalPages } from '@bestatic/core'
 import { ServerStyleSheet } from 'styled-components'
 
 export default {
-  getSiteData: async bestatic => ({ ...bestatic }),
-  getRoutes: async bestatic => {
+  getSiteData: async (bestatic) => ({ ...bestatic }),
+  getRoutes: async (bestatic) => {
     await getLocalPages(bestatic)
   },
   renderToHtml: (renderToString, el) => {

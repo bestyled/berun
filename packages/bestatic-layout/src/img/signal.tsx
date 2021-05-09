@@ -22,5 +22,5 @@ export const SignalSvg: React.SFC<{
   )
 }
 
-export const SignalSvgStr = theme =>
+export const SignalSvgStr = (theme) =>
   encodeURIComponent(renderToStaticMarkup(<SignalSvg theme={theme} />))

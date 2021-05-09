@@ -2,7 +2,6 @@ import BeRunBase from './berun'
 
 import { Babel } from './types/fluent-babel/Babel'
 import { ESLint } from './types/fluent-eslint/ESLint'
-import { FuseBox } from './types/fluent-fuse-box/FuseBox'
 import { Jest } from './types/fluent-jest/Jest'
 import { Mdx } from './types/fluent-mdx/Mdx'
 import { Prettier } from './types/fluent-prettier/Prettier'
@@ -18,7 +17,6 @@ type Berun = BeRunBase & {
   babel?: Babel
   devserver?: DevServer
   eslint?: ESLint<never>
-  fusebox?: FuseBox<never>
   jest?: Jest<never>
   mdx?: Mdx
   prettier?: Prettier<never>

@@ -26,7 +26,7 @@ export function getLocalPages(bestatic) {
 
     keys = Object.keys(loaders)
 
-    context = key => loaders[key]
+    context = (key) => loaders[key]
   } else {
     // eslint-disable-next-line
     context = require.context(
@@ -39,7 +39,7 @@ export function getLocalPages(bestatic) {
   }
 
   const routes = keys
-    .map(key => {
+    .map((key) => {
       const extname = path.extname(key)
 
       const name = path.basename(key, extname)
@@ -90,11 +90,13 @@ export function getLocalPages(bestatic) {
   return unflatten(routes)
 }
 
+export default getLocalPages
+
 function unflatten(routes) {
   const accum = []
 
   const sorted = routes.sort((a, b) => (a.path > b.path ? +1 : -1))
-  sorted.forEach(route => {
+  sorted.forEach((route) => {
     if (route.path === '/') {
       route.menu = false
       accum.push(route)
@@ -108,9 +110,9 @@ function unflatten(routes) {
       route.path !== '/docs/'
     ) {
       let parent = accum.find(
-        r => r.path !== '/' && r.dirname === route.dirname
+        (r) => r.path !== '/' && r.dirname === route.dirname
       )
-      parent = parent || accum.find(r => r.path === '/docs/')
+      parent = parent || accum.find((r) => r.path === '/docs/')
       if (!parent || parent.path === '/docs/') {
         route.Root = route.Root || (parent ? parent.Root : null)
         accum.push(route)

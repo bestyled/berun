@@ -28,8 +28,8 @@ const {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('react-live')
 
-const themed = key => props => props.theme[key]
-const transformCode = src => `<React.Fragment>${src}</React.Fragment>`
+const themed = (key) => (props) => props.theme[key]
+const transformCode = (src) => `<React.Fragment>${src}</React.Fragment>`
 
 const Root = styled.div`
   border: 1px solid;
@@ -74,9 +74,9 @@ Editor.defaultProps = {
 }
 
 const Err = styled(LiveError)`
- ${space} ${fontSize}
+  ${space} ${fontSize}
  ${fontFamily} ${color} ${themed('LiveError')}
- ` as StyledComponent<
+` as StyledComponent<
   SpaceProps & FontSizeProps & FontFamilyProps & ColorProps,
   any
 >

@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable dot-notation */
 import * as React from 'react'
 import { StaticRouter, Route, Switch, withRouter } from 'react-router-dom'
 import {
@@ -9,7 +11,7 @@ import {
 } from '@bestatic/components'
 
 function defaultComponents(routes) {
-  const DefaultLayout = props =>
+  const DefaultLayout = (props) =>
     props.disabled ? (
       props.children
     ) : (
@@ -24,13 +26,13 @@ function defaultComponents(routes) {
       />
     )
 
-  const index = routes.find(r => r.path === '/')
+  const index = routes.find((r) => r.path === '/')
 
   const Root = withRouter(index.Root || DefaultLayout)
 
   const NotFound = (
-    routes.find(r => r.path === '404') || {
-      Component: props => (
+    routes.find((r) => r.path === '404') || {
+      Component: (props) => (
         <Root {...props}>
           <h1>Uh oh, something went wrong</h1>
           <p>
@@ -64,7 +66,7 @@ const generateRoute = ({
   return (
     <Route
       {...routeprops}
-      render={router => {
+      render={(router) => {
         // Save router match object on associated routes entry for Root or Component (via withRoutes) use;
         // nested routes will end up with a hierarchy of such match objects
 
@@ -75,7 +77,7 @@ const generateRoute = ({
 
           <ConditionalWrapData
             condition={typeof route.getData === 'function'}
-            wrap={children => (
+            wrap={(children) => (
               <WithRouteData
                 observers={observers}
                 datacache={datacache}
@@ -85,7 +87,7 @@ const generateRoute = ({
               </WithRouteData>
             )}
           >
-            {data => {
+            {(data) => {
               return router.match.isExact ? (
                 // Render themed component if we are an exact match
 
@@ -97,7 +99,7 @@ const generateRoute = ({
 
                 <Switch>
                   {children &&
-                    children.map(childroute =>
+                    children.map((childroute) =>
                       generateRoute({
                         route: childroute,
                         routes,
@@ -108,7 +110,9 @@ const generateRoute = ({
                       })
                     )}
                   <Route
-                    render={router => <NotFound {...router} routes={routes} />}
+                    render={(router) => (
+                      <NotFound {...router} routes={routes} />
+                    )}
                   />
                 </Switch>
               )
@@ -130,6 +134,7 @@ export const App = ({
   staticrouter = null
 }) => {
   const { NotFound, Root } = defaultComponents(routes)
+  global['env'] = { ...sitedata }
 
   const result = (
     <HeadProvider tags={headTags}>
@@ -137,7 +142,7 @@ export const App = ({
         <SiteDataProvider {...sitedata}>
           <RoutesProvider routes={routes}>
             <Switch>
-              {routes.map(route =>
+              {routes.map((route) =>
                 generateRoute({
                   routes,
                   Root: route.Root || Root,
@@ -148,7 +153,7 @@ export const App = ({
                 })
               )}
               <Route
-                render={router => <NotFound {...router} routes={routes} />}
+                render={(router) => <NotFound {...router} routes={routes} />}
               />
             </Switch>
           </RoutesProvider>

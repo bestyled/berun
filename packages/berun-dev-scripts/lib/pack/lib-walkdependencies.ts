@@ -166,10 +166,7 @@ const _getDependencies = function _getDependencies({
   for (let i = 0, l = dependencies.length; i < l; i++) {
     const dep = dependencies[i]
 
-    let dependency = dep
-      .split('?')[0]
-      .replace(/^!/, '')
-      .split('!')[0]
+    let dependency = dep.split('?')[0].replace(/^!/, '').split('!')[0]
 
     if (externals.indexOf(dependency) > -1) {
       continue
@@ -434,7 +431,7 @@ export default function walkDependencies(
     makeRelative(packageJSON['ts:main'] || packageJSON.main || undefined)
   ]
 
-  files.forEach(filename => {
+  files.forEach((filename) => {
     if (!filename) {
       return
     }

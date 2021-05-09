@@ -34,10 +34,16 @@ export const ruleMainDocs = (berun: Berun, _) => {
     .use('mdx')
     .loader(require.resolve('@mdx-js/loader'))
     .options({
-      /* placeholder */
+      renderer: `
+import * as React from 'react'
+import { mdx } from '@mdx-js/react'
+import { useSiteData as useEnv } from '@bestatic/components'
+`
     })
     .end()
     .use('frontmatter')
     .loader(require.resolve('./loader/babel-fm-loader'))
     .end()
 }
+
+export default ruleMainDocs

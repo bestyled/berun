@@ -11,14 +11,14 @@ import ScrollTop from '../components/ScrollTop'
 import Pagination from '../components/Pagination'
 import { Cards } from '../components/Cards'
 
-export const BlogLayout = props => {
+export const BlogLayout = (props) => {
   return (
     <WithSiteData>
-      {sitedata => (
+      {(sitedata) => (
         <StyleProvider title={sitedata.title}>
           <Layout>
             <Layout.TopNav center logo={sitedata.logo}>
-              {sitedata.topnav.map(items => {
+              {sitedata.topnav.map((items) => {
                 ;<Layout.TopNavItem key={items.label} href={items.href}>
                   {items.label}
                 </Layout.TopNavItem>
@@ -29,7 +29,7 @@ export const BlogLayout = props => {
             <Cards>
               {props.children}
               <Pagination
-                filter={route => route.blog}
+                filter={(route) => route.blog}
                 px={[0, 100, 160, 270]}
                 {...props}
               />

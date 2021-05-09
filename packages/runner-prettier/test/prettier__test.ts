@@ -11,7 +11,7 @@ test('Gets Prettier configuration', () => {
     '--no-config',
     '--no-semi',
     '--single-quote',
-    '{,!(node_modules|dist|build)/**/}*.{js,jsx,ts,tsx,css,less,scss,sass,graphql,json,md}'
+    '{,!(node_modules|dist|build)/**/}*.{js,jsx,ts,tsx,css,less,scss,sass,graphql,json,md}',
   ]
 
   expect(berun.prettier.toArgs()).toEqual(expectedResult)

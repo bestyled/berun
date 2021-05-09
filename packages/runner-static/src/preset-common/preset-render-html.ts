@@ -6,6 +6,7 @@ const renderPage = async (
   h,
   renderToString,
   renderToStaticMarkup,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   App,
   routes,
   sitedata,
@@ -75,6 +76,7 @@ const renderHTML = async (
   h,
   renderToString,
   renderToStaticMarkup,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   App,
   routes,
   sitedata,
@@ -82,7 +84,7 @@ const renderHTML = async (
   opts
 ) => {
   const pages = (await Promise.all(
-    routes.flattened.map(async route => {
+    routes.flattened.map(async (route) => {
       const { body, css, head } = await renderPage(
         h,
         renderToString,
@@ -99,7 +101,7 @@ const renderHTML = async (
   )) as { body: any; head: any; css: any; path: string; [key: string]: any }[]
 
   if (sitedata.algolia) {
-    renderAlgolia(pages, routes, sitedata, opts)
+    void renderAlgolia(pages, routes, sitedata, opts)
   }
 
   return pages

@@ -4,16 +4,11 @@ import { create as berunJs } from '@berun/berun'
 import presetTdxFrontMatter from '../src'
 
 test('Gets Webpack additional/updated rules configuration', () => {
-  const berun = berunJs(presetReact)
-    .use(presetTdx)
-    .use(presetTdxFrontMatter)
+  const berun = berunJs(presetReact).use(presetTdx).use(presetTdxFrontMatter)
   berun.webpack.toConfig() // run once to set babel, jest config etc.
 
   expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('markdown')
-      .toConfig()
+    berun.webpack.module.rule('main').oneOf('markdown').toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx|tdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter'],
@@ -29,7 +24,8 @@ test('Gets Webpack additional/updated rules configuration', () => {
           cacheDirectory: true,
           compact: false,
           highlightCode: true,
-          presets: ['@berun/babel-preset-react-app']
+          presets: ['@berun/babel-preset-react-app'],
+          sourceType: 'unambiguous'
         }
       },
       /* berun.webpack.module.rule('main').oneOf('markdown').use('mdx') */
@@ -51,15 +47,10 @@ test('Gets Webpack additional/updated rules configuration', () => {
 
 test('Gets Webpack production module rules configuration', () => {
   process.env.NODE_ENV = 'production'
-  const berun = berunJs(presetReact)
-    .use(presetTdx)
-    .use(presetTdxFrontMatter)
+  const berun = berunJs(presetReact).use(presetTdx).use(presetTdxFrontMatter)
   berun.webpack.toConfig() // run once to set babel, jest config etc.
   expect(
-    berun.webpack.module
-      .rule('main')
-      .oneOf('markdown')
-      .toConfig()
+    berun.webpack.module.rule('main').oneOf('markdown').toConfig()
   ).toEqual({
     test: /(\.(?:md|mdx|tdx))$/,
     include: ['/Volumes/DATA/projects/berun/packages/runner-tdx-frontmatter'],
@@ -75,7 +66,8 @@ test('Gets Webpack production module rules configuration', () => {
           cacheCompression: true,
           compact: true,
           highlightCode: true,
-          presets: ['@berun/babel-preset-react-app']
+          presets: ['@berun/babel-preset-react-app'],
+          sourceType: 'unambiguous'
         }
       },
       /* berun.webpack.module.rule('main').oneOf('markdown').use('tdx') */

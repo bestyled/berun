@@ -1,0 +1,46 @@
+{
+  "name": "@berun/fix-dependencies",
+  "version": "7.3.1",
+  "main": "./bin/fix.js",
+  "authors": [
+    "OffGrid Networks <admin@offgridnetworks.com>"
+  ],
+  "bin": {
+    "berun-dev": "./bin/fix.js"
+  },
+  "keywords": [
+    "jest",
+    "typescript",
+    "config",
+    "chain",
+    "fluent",
+    "api"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/bestyled/berun/tree/master/packages/dev-scripts",
+  "scripts": {
+    "build": "tsc",
+    "coverage": "berun-dev test --coverage",
+    "format": "berun-dev format",
+    "lint": "berun-dev lint",
+    "test": "berun-dev test",
+    "test:watch": "berun-dev test -o --watch"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.7",
+    "precinct": "^6.3.1",
+    "resolve": "^1.20.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^14.14.44"
+  },
+  "peerDependencies": {
+    "typescript": "^3.9.9"
+  }
+}

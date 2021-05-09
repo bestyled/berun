@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-static",
-  "version": "7.0.3",
+  "version": "7.3.1",
   "description": "Cross build engine preset for building static applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -20,14 +20,13 @@
     "react",
     "web",
     "create react app",
-    "webpack",
-    "fuse-box"
+    "webpack"
   ],
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/bestyled/bestatic/tree/master/packages/runner-static",
+  "repository": "https://github.com/berun/berun/tree/master/packages/runner-static",
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
   },
@@ -39,21 +38,19 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.0.3",
-    "@berun/runner-fuse-box": "^7.0.3",
-    "@berun/runner-webpack": "^7.0.3",
+    "@berun/berun": "^7.1.0",
+    "@berun/runner-webpack": "^7.1.0",
     "algoliasearch": "^3.35.1",
     "fs-extra": "^8.1.0",
-    "fuse-box": "^3.7.1",
-    "rehype-docsearch": "^7.0.3",
+    "rehype-docsearch": "^7.1.0",
     "resolve-cwd": "^2.0.0",
     "webpack-node-externals": "~1.7.2",
     "webpack-sources": "^1.4.3"
   },
   "devDependencies": {
-    "@berun/dev-scripts": "^7.0.3",
-    "@berun/runner-babel": "^7.0.3",
-    "@berun/runner-web-polyfills": "^7.0.3"
+    "@berun/dev-scripts": "^7.1.0",
+    "@berun/runner-babel": "^7.1.0",
+    "@berun/runner-web-polyfills": "^7.1.0"
   },
   "peerDependencies": {}
 }

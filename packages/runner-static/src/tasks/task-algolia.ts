@@ -1,4 +1,4 @@
-export const taskAlgoliaDeploy = async berun => {
+export const taskAlgoliaDeploy = async (berun) => {
   const algoliasearch = require('algoliasearch')
   const client = algoliasearch(
     process.env.BERUN_ALGOLIA_APPID,
@@ -35,3 +35,5 @@ export const taskAlgoliaDeploy = async berun => {
 
   console.log('Deployed to Algolia', result)
 }
+
+export default taskAlgoliaDeploy

@@ -3,12 +3,11 @@
     "**/node_modules": true,
     "**/bower_components": true,
     "**/dist": true,
-    "**/.fusebox": true,
     "**/build": true,
     "**/public": true
   },
   "search.useIgnoreFiles": false,
-  "javascript.implicitProjectConfig.experimentalDecorators": false,
+  "js/ts.implicitProjectConfig.experimentalDecorators": false,
   "workbench.colorTheme": "Default Light+",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

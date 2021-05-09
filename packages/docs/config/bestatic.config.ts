@@ -7,7 +7,7 @@ import { getLocalPages } from '@bestatic/core'
 import { ServerStyleSheet } from 'styled-components'
 
 export default {
-  getSiteData: async bestatic => ({
+  getSiteData: async (bestatic) => ({
     ...bestatic,
     title: 'BeRun Platform',
     company: 'OffGrid Networks',
@@ -19,7 +19,7 @@ export default {
       indexName: process.env.BERUN_ALGOLIA_INDEX
     }
   }),
-  getRoutes: async bestatic => {
+  getRoutes: async (bestatic) => {
     const localPages = await getLocalPages(bestatic)
 
     return [...localPages]
