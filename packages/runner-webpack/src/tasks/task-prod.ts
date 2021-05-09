@@ -192,7 +192,6 @@ function promisifyWebpackBuild(berun) {
     berun.sparkyContext.buildMessage ||
       'Creating an optimized production build...'
   )
-
   const compiler = webpack(berun.webpack.toConfig())
   return new Promise<any>((resolve, reject) => {
     try {

@@ -1,6 +1,6 @@
 {
   "name": "@berun/fix-dependencies",
-  "version": "7.3.2",
+  "version": "7.3.5",
   "main": "./bin/fix.js",
   "authors": [
     "OffGrid Networks <admin@offgridnetworks.com>"

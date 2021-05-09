@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-envkey",
-  "version": "7.3.2",
+  "version": "7.3.5",
   "description": "BeRun runner to import environment variables from [EnvKey](https://envkey.com)",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -30,13 +30,13 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.3.2",
+    "@berun/berun": "^7.3.5",
     "envkey": "1.2.8"
   },
   "devDependencies": {
-    "@berun/fluent-webpack": "^7.3.2",
-    "@berun/berun": "^7.3.2",
-    "@berun/dev-scripts": "^7.3.2"
+    "@berun/fluent-webpack": "^7.3.5",
+    "@berun/berun": "^7.3.5",
+    "@berun/dev-scripts": "^7.3.5"
   },
   "peerDependencies": {}
 }

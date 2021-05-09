@@ -1,42 +1,18 @@
 import * as path from 'path'
 
-declare const FuseBox: { import: Function }
-
+// eslint-disable-next-line import/prefer-default-export
 export function getLocalPages(bestatic) {
   let context
   let keys
 
-  if (process.env.FuseBox) {
-    // eslint-disable-next-line
-    const fuseimport = Object.assign(
-      {},
-      FuseBox.import('./pages/*.mdx'),
-      FuseBox.import('./pages/docs/*.mdx')
-    )
-
-    const loaders = Object.keys(fuseimport).reduce((accum, key) => {
-      accum[
-        `.${path.sep}${path.relative(
-          bestatic.appPath,
-          path.join(bestatic.workspace, key)
-        )}`
-      ] = fuseimport[key]
-      return accum
-    }, {})
-
-    keys = Object.keys(loaders)
-
-    context = (key) => loaders[key]
-  } else {
-    // eslint-disable-next-line
+  // eslint-disable-next-line
     context = require.context(
-      process.env.APP_PATH,
-      true,
-      /pages\/.*\.(md|mdx)$/
-    )
+    process.env.APP_PATH,
+    true,
+    /content\/.*\.(md|mdx)$/
+  )
 
-    keys = context.keys()
-  }
+  keys = context.keys()
 
   const routes = keys
     .map((key) => {
@@ -51,7 +27,7 @@ export function getLocalPages(bestatic) {
       const dirname = path
         .dirname(key)
         .replace(/^\./, '')
-        .replace(/^[/\\]pages/, '')
+        .replace(/^[/\\]content/, '')
 
       const exact = name === 'index'
 
@@ -89,8 +65,6 @@ export function getLocalPages(bestatic) {
 
   return unflatten(routes)
 }
-
-export default getLocalPages
 
 function unflatten(routes) {
   const accum = []

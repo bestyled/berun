@@ -1,1 +1,1 @@
-export { TDXProvider as MdScopeProvider } from '@tinia/tdx-tag'
+export { MDXProvider as MdScopeProvider } from '@mdx-js/react'

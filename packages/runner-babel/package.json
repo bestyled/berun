@@ -1,6 +1,6 @@
 {
   "name": "@berun/runner-babel",
-  "version": "7.3.2",
+  "version": "7.3.5",
   "description": "BeRun babel preset for building React web applications",
   "main": "src/index.ts",
   "ts:main": "src/index.ts",
@@ -38,12 +38,12 @@
     "test:watch": "berun-dev test -o --watch"
   },
   "dependencies": {
-    "@berun/berun": "^7.3.2",
-    "@berun/fluent-babel": "^7.3.2"
+    "@berun/berun": "^7.3.5",
+    "@berun/fluent-babel": "^7.3.5"
   },
   "devDependencies": {
-    "@berun/berun": "^7.3.2",
-    "@berun/dev-scripts": "^7.3.2"
+    "@berun/berun": "^7.3.5",
+    "@berun/dev-scripts": "^7.3.5"
   },
   "peerDependencies": {}
 }

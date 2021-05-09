@@ -1,7 +1,7 @@
 {
   "name": "berun-mono-repository",
   "private": true,
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Configuration and scripts for front end builds, fixed",
   "repository": "bestyled/berun",
   "license": "Apache-2.0",
@@ -16,6 +16,7 @@
     "clean": "rimraf yarn.lock && rimraf **/dist && rimraf **/node_modules",
     "build:all": "yarn build:contrib",
     "build:contrib": "lerna exec --concurrency 1 --scope @berun/fix-dependencies yarn build && lerna exec --concurrency 1 --scope @berun/babel* yarn build && lerna exec --concurrency 1 --scope rehype* yarn build",
+    "build:bestatic": "lerna exec --concurrency 1 --scope @bestatic/core yarn build",
     "fix": "berun-dev fix",
     "lint:all": "yarn lint:fluent && yarn lint:runner  && yarn lint:preset",
     "lint:bestatic": "lerna exec --concurrency 1 --scope @bestatic/* yarn lint",
