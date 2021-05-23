@@ -15,10 +15,13 @@ import {
 
 import { useSiteData } from '@bestatic/components'
 import { withRouter } from 'react-router'
+import { Link } from '@bestatic/styled'
 
-type CssProps = { css?: any }
+interface CssProps {
+  css?: any
+}
 
-const css = props => props.css
+const css = (props) => props.css
 
 export const FooterRoot = styled.header`
   flex: none;
@@ -34,13 +37,13 @@ FooterRoot.defaultProps = {
 }
 
 export const FooterRow = styled.div`
-padding-top: 4px;
-margin-left: 50px;
-display: flex;
-flex-wrap: wrap;
-align-items: flex-end;
-z-index: 1;
-  ${space}${color} ${css} 
+  padding-top: 4px;
+  margin-left: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  z-index: 1;
+  ${space}${color} ${css}
 ` as StyledComponent<SpaceProps & HeightProps & ColorProps & CssProps, any>
 
 FooterRow.defaultProps = {
@@ -48,9 +51,9 @@ FooterRow.defaultProps = {
 }
 
 export const FooterItem = styled.div`
-display: inline-block;
-padding-left: 14px;
-margin-bottom: 0;
+  display: inline-block;
+  padding-left: 14px;
+  margin-bottom: 0;
   ${space} ${color} ${css} ${fontSize}
 ` as StyledComponent<
   SpaceProps & FontSizeProps & HeightProps & ColorProps & CssProps,
@@ -61,36 +64,40 @@ FooterItem.defaultProps = {
   fontSize: 1
 }
 
-export const Footer: React.SFC = (withRouter((props: any) => {
-  const sitedata = useSiteData()
-  const pathname = props.match.path
+export const Footer: React.SFC & { isFooter: boolean } = withRouter(
+  (props: any) => {
+    const sitedata = useSiteData()
+    const pathname = props.match.path
 
-  const route = props.routes.flattened.find(
-    link =>
-      link.path === pathname || (link.match && link.match.path === pathname)
-  )
+    const route = props.routes.flattened.find(
+      (link) =>
+        link.path === pathname || (link.match && link.match.path === pathname)
+    )
 
-  const editUrl = new URL(
-    route ? route.id : '/',
-    `${sitedata.remoteOriginUrl.replace('git@:', 'htpps://')}/`
-  )
+    const editUrl = new URL(
+      route ? route.id : '/',
+      `${sitedata.remoteOriginUrl.replace('git@:', 'htpps://')}/`
+    )
 
-  return (
-    <FooterRoot id="footer-root">
-      <FooterRow>
-        <FooterItem>{sitedata.copyright}</FooterItem>
-        <FooterItem>
-          {sitedata.footer || <a href={editUrl.href}> Edit this page.</a>}
-        </FooterItem>
-      </FooterRow>
-    </FooterRoot>
-  )
-}) as any) as React.SFC
+    return (
+      <FooterRoot id="footer-root">
+        <FooterRow>
+          <FooterItem>{sitedata.copyright}</FooterItem>
+          <FooterItem>
+            {sitedata.footer ? (
+              <Link href={sitedata.footer.href}>{sitedata.footer.label}</Link>
+            ) : (
+              <a href={editUrl.href}> Edit this page.</a>
+            )}
+          </FooterItem>
+        </FooterRow>
+      </FooterRoot>
+    )
+  }
+) as any
 
 Footer.isFooter = true
 
 Footer.defaultProps = {
   height: 125
 }
-
-Footer.isFooter = true
